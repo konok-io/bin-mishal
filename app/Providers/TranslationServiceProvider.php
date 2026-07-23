@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Models\Translation;
-use Illuminate\Translation\FileLoader;
-use Illuminate\Translation\LoaderInterface;
-use Illuminate\Translation\Translator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Translation\FileLoader;
 
 class TranslationServiceProvider extends ServiceProvider
 {
@@ -30,15 +27,14 @@ class TranslationServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Clear translation cache when a translation is saved
-        Translation::clearCache();
+        //
     }
 }
 
 /**
  * Custom translation loader that checks database first, then falls back to file loader.
  */
-class DatabaseTranslationLoader implements LoaderInterface
+class DatabaseTranslationLoader
 {
     protected FileLoader $fileLoader;
 
@@ -57,26 +53,23 @@ class DatabaseTranslationLoader implements LoaderInterface
 
         // Then, overlay with database translations (higher priority)
         try {
-            $dbTranslations = Translation::getCachedForLocale($locale);
+            if (class_exists(\App\Models\Translation::class)) {
+                $dbTranslations = \App\Models\Translation::getCachedForLocale($locale);
 
-            // Filter for the requested group
-            $groupPrefix = $namespace ? "{$namespace}::" : "";
-            $groupPrefix .= $group . ".";
+                // Filter for the requested group
+                $groupPrefix = $namespace ? "{$namespace}::" : "";
+                $groupPrefix .= $group . ".";
 
-            foreach ($dbTranslations as $key => $value) {
-                // Check if this key belongs to the requested group
-                if (str_starts_with($key, $groupPrefix)) {
-                    // Extract the key without the group prefix
-                    $shortKey = substr($key, strlen($groupPrefix));
+                foreach ($dbTranslations as $key => $value) {
+                    if (str_starts_with($key, $groupPrefix)) {
+                        $shortKey = substr($key, strlen($groupPrefix));
 
-                    // If it's a nested key (contains dots), we need to build the array
-                    if (str_contains($shortKey, '.')) {
-                        data_set($lines, $shortKey, $value);
-                    } else {
-                        // Simple key
-                        if (!isset($lines[$shortKey]) || $lines[$shortKey] === $shortKey) {
-                            // Only override if the file translation is missing or is the raw key
-                            $lines[$shortKey] = $value;
+                        if (str_contains($shortKey, '.')) {
+                            data_set($lines, $shortKey, $value);
+                        } else {
+                            if (!isset($lines[$shortKey]) || $lines[$shortKey] === $shortKey) {
+                                $lines[$shortKey] = $value;
+                            }
                         }
                     }
                 }
