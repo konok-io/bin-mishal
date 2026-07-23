@@ -150,6 +150,7 @@
         .search-tabs {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 6px;
             margin-bottom: 16px !important;
         }
