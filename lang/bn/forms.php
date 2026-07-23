@@ -1,0 +1,58 @@
+<?php
+
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | Forms Language Lines (Bengali)
+    |--------------------------------------------------------------------------
+    */
+
+    'first_name' => 'প্রথম নাম',
+    'last_name' => 'শেষ নাম',
+    'full_name' => 'পূর্ণ নাম',
+    'name' => 'নাম',
+    'email' => 'ইমেইল ঠিকানা',
+    'phone' => 'ফোন নম্বর',
+    'whatsapp' => 'হোয়াটসঅ্যাপ নম্বর',
+    'password' => 'পাসওয়ার্ড',
+    'confirm_password' => 'পাসওয়ার্ড নিশ্চিত করুন',
+    'current_password' => 'বর্তমান পাসওয়ার্ড',
+    'new_password' => 'নতুন পাসওয়ার্ড',
+    'address' => 'ঠিকানা',
+    'city' => 'শহর',
+    'state' => 'রাজ্য',
+    'country' => 'দেশ',
+    'postal_code' => 'পোস্টাল কোড',
+    'nationality' => 'জাতীয়তা',
+    'date_of_birth' => 'জন্ম তারিখ',
+    'gender' => 'লিঙ্গ',
+    'male' => 'পুরুষ',
+    'female' => 'মহিলা',
+    'passport_number' => 'পাসপোর্ট নম্বর',
+    'passport_expiry' => 'পাসপোর্ট মেয়াদ',
+    'iqama_number' => 'আইকামা নম্বর',
+    'iqama_expiry' => 'আইকামা মেয়াদ',
+    'profession' => 'পেশা',
+    'company_name' => 'কোম্পানির নাম',
+    'message' => 'বার্তা',
+    'subject' => 'বিষয়',
+    'comments' => 'মন্তব্য',
+    'notes' => 'নোট',
+    'select_option' => 'একটি বিকল্প নির্বাচন করুন',
+    'search' => 'অনুসন্ধান করুন',
+    'filter' => 'ফিল্টার',
+    'sort_by' => 'সাজানোর ক্রম',
+    'order' => 'ক্রম',
+    'date' => 'তারিখ',
+    'amount' => 'পরিমাণ',
+    'quantity' => 'পরিমাণ',
+    'description' => 'বিবরণ',
+    'upload_file' => 'ফাইল আপলোড করুন',
+    'choose_file' => 'ফাইল বেছে নিন',
+    'drop_files' => 'ফাইল এখানে টেনে আনুন',
+    'max_file_size' => 'সর্বোচ্চ ফাইল সাইজ: :size',
+    'accepted_formats' => 'গৃহীত ফরম্যাট: :formats',
+    'remember_me' => 'মনে রাখুন',
+    'forgot_password' => 'পাসওয়ার্ড ভুলে গেছেন?',
+    'agree_terms' => 'আমি শর্তাবলী ও গোপনীয়তা নীতিতে সম্মত',
+];

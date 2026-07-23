@@ -1,0 +1,57 @@
+<?php
+
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | Buttons Language Lines (English)
+    |--------------------------------------------------------------------------
+    */
+
+    'save' => 'Save',
+    'save_and_continue' => 'Save & Continue',
+    'save_and_new' => 'Save & New',
+    'cancel' => 'Cancel',
+    'submit' => 'Submit',
+    'reset' => 'Reset',
+    'delete' => 'Delete',
+    'edit' => 'Edit',
+    'view' => 'View',
+    'back' => 'Back',
+    'next' => 'Next',
+    'previous' => 'Previous',
+    'close' => 'Close',
+    'confirm' => 'Confirm',
+    'approve' => 'Approve',
+    'reject' => 'Reject',
+    'send' => 'Send',
+    'print' => 'Print',
+    'download' => 'Download',
+    'upload' => 'Upload',
+    'search' => 'Search',
+    'filter' => 'Filter',
+    'export' => 'Export',
+    'import' => 'Import',
+    'refresh' => 'Refresh',
+    'retry' => 'Retry',
+    'login' => 'Login',
+    'register' => 'Register',
+    'logout' => 'Logout',
+    'book_now' => 'Book Now',
+    'apply_now' => 'Apply Now',
+    'request_quote' => 'Request Quote',
+    'contact_us' => 'Contact Us',
+    'subscribe' => 'Subscribe',
+    'unsubscribe' => 'Unsubscribe',
+    'read_more' => 'Read More',
+    'view_all' => 'View All',
+    'show_more' => 'Show More',
+    'show_less' => 'Show Less',
+    'add_to_cart' => 'Add to Cart',
+    'remove_from_cart' => 'Remove from Cart',
+    'checkout' => 'Checkout',
+    'continue_shopping' => 'Continue Shopping',
+    'place_order' => 'Place Order',
+    'make_payment' => 'Make Payment',
+    'confirm_booking' => 'Confirm Booking',
+    'cancel_booking' => 'Cancel Booking',
+];

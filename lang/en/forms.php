@@ -1,0 +1,58 @@
+<?php
+
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | Forms Language Lines (English)
+    |--------------------------------------------------------------------------
+    */
+
+    'first_name' => 'First Name',
+    'last_name' => 'Last Name',
+    'full_name' => 'Full Name',
+    'name' => 'Name',
+    'email' => 'Email Address',
+    'phone' => 'Phone Number',
+    'whatsapp' => 'WhatsApp Number',
+    'password' => 'Password',
+    'confirm_password' => 'Confirm Password',
+    'current_password' => 'Current Password',
+    'new_password' => 'New Password',
+    'address' => 'Address',
+    'city' => 'City',
+    'state' => 'State',
+    'country' => 'Country',
+    'postal_code' => 'Postal Code',
+    'nationality' => 'Nationality',
+    'date_of_birth' => 'Date of Birth',
+    'gender' => 'Gender',
+    'male' => 'Male',
+    'female' => 'Female',
+    'passport_number' => 'Passport Number',
+    'passport_expiry' => 'Passport Expiry',
+    'iqama_number' => 'Iqama Number',
+    'iqama_expiry' => 'Iqama Expiry',
+    'profession' => 'Profession',
+    'company_name' => 'Company Name',
+    'message' => 'Message',
+    'subject' => 'Subject',
+    'comments' => 'Comments',
+    'notes' => 'Notes',
+    'select_option' => 'Select an option',
+    'search' => 'Search',
+    'filter' => 'Filter',
+    'sort_by' => 'Sort By',
+    'order' => 'Order',
+    'date' => 'Date',
+    'amount' => 'Amount',
+    'quantity' => 'Quantity',
+    'description' => 'Description',
+    'upload_file' => 'Upload File',
+    'choose_file' => 'Choose File',
+    'drop_files' => 'Drop files here',
+    'max_file_size' => 'Max file size: :size',
+    'accepted_formats' => 'Accepted formats: :formats',
+    'remember_me' => 'Remember Me',
+    'forgot_password' => 'Forgot Password?',
+    'agree_terms' => 'I agree to the Terms and Privacy Policy',
+];

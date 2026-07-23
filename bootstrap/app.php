@@ -18,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \App\Http\Middleware\EnsureRole::class,
             'permission' => \App\Http\Middleware\EnsurePermission::class,
             'api.auth' => \App\Http\Middleware\EnsureApiAuthenticated::class,
+            'setlocale' => \App\Http\Middleware\SetLocale::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
@@ -26,8 +27,4 @@ return Application::configure(basePath: dirname(__DIR__))
         );
     })->create();
 
-// Load auth routes manually
-Route::middleware('web')->group(base_path('routes/auth.php'));
-
-// Load portal routes manually
-Route::middleware('web')->prefix('portal')->name('portal.')->group(base_path('routes/portal.php'));
+// Auth and Portal routes are now loaded inside the locale group in routes/web.php

@@ -1,0 +1,58 @@
+<?php
+
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | Forms Language Lines (Arabic)
+    |--------------------------------------------------------------------------
+    */
+
+    'first_name' => 'الاسم الأول',
+    'last_name' => 'اسم العائلة',
+    'full_name' => 'الاسم الكامل',
+    'name' => 'الاسم',
+    'email' => 'البريد الإلكتروني',
+    'phone' => 'رقم الهاتف',
+    'whatsapp' => 'رقم واتساب',
+    'password' => 'كلمة المرور',
+    'confirm_password' => 'تأكيد كلمة المرور',
+    'current_password' => 'كلمة المرور الحالية',
+    'new_password' => 'كلمة المرور الجديدة',
+    'address' => 'العنوان',
+    'city' => 'المدينة',
+    'state' => 'الولاية',
+    'country' => 'الدولة',
+    'postal_code' => 'الرمز البريدي',
+    'nationality' => 'الجنسية',
+    'date_of_birth' => 'تاريخ الميلاد',
+    'gender' => 'الجنس',
+    'male' => 'ذكر',
+    'female' => 'أنثى',
+    'passport_number' => 'رقم جواز السفر',
+    'passport_expiry' => 'تاريخ انتهاء جواز السفر',
+    'iqama_number' => 'رقم الإقامة',
+    'iqama_expiry' => 'تاريخ انتهاء الإقامة',
+    'profession' => 'المهنة',
+    'company_name' => 'اسم الشركة',
+    'message' => 'الرسالة',
+    'subject' => 'الموضوع',
+    'comments' => 'التعليقات',
+    'notes' => 'ملاحظات',
+    'select_option' => 'اختر خياراً',
+    'search' => 'بحث',
+    'filter' => 'تصفية',
+    'sort_by' => 'ترتيب حسب',
+    'order' => 'الترتيب',
+    'date' => 'التاريخ',
+    'amount' => 'المبلغ',
+    'quantity' => 'الكمية',
+    'description' => 'الوصف',
+    'upload_file' => 'رفع ملف',
+    'choose_file' => 'اختر ملفاً',
+    'drop_files' => 'اسحب الملفات هنا',
+    'max_file_size' => 'الحد الأقصى لحجم الملف: :size',
+    'accepted_formats' => 'الصيغ المقبولة: :formats',
+    'remember_me' => 'تذكرني',
+    'forgot_password' => 'نسيت كلمة المرور؟',
+    'agree_terms' => 'أوافق على الشروط وسياسة الخصوصية',
+];

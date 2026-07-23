@@ -1,0 +1,57 @@
+<?php
+
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | Buttons Language Lines (Arabic)
+    |--------------------------------------------------------------------------
+    */
+
+    'save' => 'حفظ',
+    'save_and_continue' => 'حفظ ومتابعة',
+    'save_and_new' => 'حفظ وجديد',
+    'cancel' => 'إلغاء',
+    'submit' => 'إرسال',
+    'reset' => 'إعادة تعيين',
+    'delete' => 'حذف',
+    'edit' => 'تعديل',
+    'view' => 'عرض',
+    'back' => 'رجوع',
+    'next' => 'التالي',
+    'previous' => 'السابق',
+    'close' => 'إغلاق',
+    'confirm' => 'تأكيد',
+    'approve' => 'موافقة',
+    'reject' => 'رفض',
+    'send' => 'إرسال',
+    'print' => 'طباعة',
+    'download' => 'تحميل',
+    'upload' => 'رفع',
+    'search' => 'بحث',
+    'filter' => 'تصفية',
+    'export' => 'تصدير',
+    'import' => 'استيراد',
+    'refresh' => 'تحديث',
+    'retry' => 'إعادة المحاولة',
+    'login' => 'تسجيل الدخول',
+    'register' => 'التسجيل',
+    'logout' => 'تسجيل الخروج',
+    'book_now' => 'احجز الآن',
+    'apply_now' => 'قدم الآن',
+    'request_quote' => 'طلب عرض سعر',
+    'contact_us' => 'اتصل بنا',
+    'subscribe' => 'اشتراك',
+    'unsubscribe' => 'إلغاء الاشتراك',
+    'read_more' => 'اقرأ المزيد',
+    'view_all' => 'عرض الكل',
+    'show_more' => 'عرض المزيد',
+    'show_less' => 'عرض أقل',
+    'add_to_cart' => 'أضف إلى السلة',
+    'remove_from_cart' => 'إزالة من السلة',
+    'checkout' => 'الدفع',
+    'continue_shopping' => 'متابعة التسوق',
+    'place_order' => 'تأكيد الطلب',
+    'make_payment' => 'إجراء الدفع',
+    'confirm_booking' => 'تأكيد الحجز',
+    'cancel_booking' => 'إلغاء الحجز',
+];

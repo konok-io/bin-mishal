@@ -11,11 +11,10 @@ use App\Http\Controllers\Admin\UmrahController;
 use App\Http\Controllers\Admin\VisaController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// Root redirect to default locale
+Route::get('/', fn() => redirect('/' . config('app.locale')))->name('root');
 
-// Admin Routes (Protected)
+// ADMIN ROUTES - Outside locale prefix (English only)
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin,super_admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/settings', fn() => view('admin.settings.index'))->name('settings.index');
@@ -85,3 +84,50 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin,super_ad
     Route::post('/payments/{id}/complete', [PaymentController::class, 'complete'])->name('payments.complete');
     Route::post('/payments/{id}/refund', [PaymentController::class, 'refund'])->name('payments.refund');
 });
+
+// LOCALIZED PUBLIC ROUTES — ALL public routes go inside this group
+Route::prefix('{locale}')
+    ->where(['locale' => 'bn|en|ar'])
+    ->middleware(['web', 'setlocale'])
+    ->group(function () {
+        // Homepage
+        Route::get('/', fn() => view('welcome'))->name('home');
+
+        // Temporary locale diagnostic page (A9)
+        Route::get('/locale-test', fn() => view('temp.locale-test'))->name('locale.test');
+    });
+
+/*
+|--------------------------------------------------------------------------
+| NOTE: Auth Routes (Fortify + Passkeys + 2FA)
+|--------------------------------------------------------------------------
+|
+| Fortify registers its own auth routes via config/fortify.php → 'routes => true'.
+| These live at /login, /register, /logout, /user/confirmed-two-factor-authentication,
+| /user/two-factor-authentication, etc. They are OUTSIDE the locale prefix.
+|
+| TO LOCALIZE AUTH ROUTES LATER:
+|   1. Set Fortify config: 'routes' => false
+|   2. Copy Fortify's route definitions into the {locale} group in web.php
+|   3. Replace the hardcoded strings with __() translated versions
+|   4. Update Fortify's view factories to load translated views
+|   5. Localize the redirect URLs in FortifyServiceProvider
+|
+| Leave them outside the locale prefix for now.
+|
+|--------------------------------------------------------------------------
+| NOTE: Portal Routes (routes/portal.php)
+|--------------------------------------------------------------------------
+|
+| routes/portal.php exists with Route::prefix('portal') already defined.
+| It is NOT loaded here to avoid Route::prefix('portal') × {locale} → /bn/portal/portal/...
+|
+| TO ENABLE LOCALIZED PORTAL ROUTES:
+|   1. Remove the 'portal' prefix from routes/portal.php
+|   2. Add the following inside the locale group:
+|       Route::prefix('portal')->name('portal.')->group(base_path('routes/portal.php'));
+|   3. Publish all portal controllers first (they don't exist yet)
+|
+| Leave portal routes unloaded for now.
+|
+*/
