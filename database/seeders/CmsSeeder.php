@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Enums\BookingType;
+use App\Models\BookingConfiguration;
 use App\Models\CMS\Menu;
 use App\Models\CMS\MenuItem;
 use App\Models\CMS\Page;
@@ -19,6 +21,93 @@ class CmsSeeder extends Seeder
         $this->seedHeroTabs();
         $this->seedMenu();
         $this->seedPages();
+        $this->seedBookingConfigurations();
+    }
+    
+    protected function seedBookingConfigurations(): void
+    {
+        $configs = [
+            [
+                'service_type' => 'flight',
+                'booking_types' => [BookingType::TICKET->value, BookingType::SEAT->value],
+                'is_enabled' => true,
+                'requires_confirmation' => true,
+                'min_quantity' => 1,
+                'max_quantity' => 9,
+                'currency' => 'SAR',
+                'pricing_model' => 'per_unit',
+                'allow_cancellation' => true,
+                'cancellation_deadline_days' => 3,
+            ],
+            [
+                'service_type' => 'umrah',
+                'booking_types' => [BookingType::UMRAH->value, BookingType::PACKAGE->value],
+                'is_enabled' => true,
+                'requires_confirmation' => true,
+                'min_quantity' => 1,
+                'max_quantity' => 20,
+                'currency' => 'SAR',
+                'pricing_model' => 'fixed',
+                'allow_cancellation' => true,
+                'cancellation_deadline_days' => 7,
+            ],
+            [
+                'service_type' => 'visa',
+                'booking_types' => [BookingType::VISA->value],
+                'is_enabled' => true,
+                'requires_confirmation' => true,
+                'min_quantity' => 1,
+                'max_quantity' => 10,
+                'currency' => 'SAR',
+                'pricing_model' => 'fixed',
+                'allow_cancellation' => false,
+            ],
+            [
+                'service_type' => 'cargo',
+                'booking_types' => [BookingType::CARGO->value, BookingType::QUANTITY->value],
+                'is_enabled' => true,
+                'requires_confirmation' => false,
+                'min_quantity' => 1,
+                'max_quantity' => 1000,
+                'currency' => 'SAR',
+                'pricing_model' => 'tiered',
+                'allow_cancellation' => true,
+                'cancellation_deadline_days' => 1,
+            ],
+            [
+                'service_type' => 'appointment',
+                'booking_types' => [BookingType::SCHEDULE->value, BookingType::APPOINTMENT->value],
+                'is_enabled' => true,
+                'requires_confirmation' => true,
+                'min_quantity' => 1,
+                'max_quantity' => 1,
+                'currency' => 'SAR',
+                'pricing_model' => 'fixed',
+                'allow_cancellation' => true,
+                'cancellation_deadline_days' => 1,
+            ],
+            [
+                'service_type' => 'investor',
+                'booking_types' => [BookingType::INVESTOR->value],
+                'is_enabled' => true,
+                'requires_confirmation' => true,
+                'min_quantity' => 1,
+                'max_quantity' => 1,
+                'currency' => 'SAR',
+                'pricing_model' => 'fixed',
+                'allow_cancellation' => true,
+                'cancellation_deadline_days' => 2,
+            ],
+        ];
+
+        foreach ($configs as $config) {
+            BookingConfiguration::updateOrCreate(
+                ['service_type' => $config['service_type']],
+                $config
+            );
+        }
+        
+        $this->command->info('Booking configurations seeded successfully.');
     }
 
     protected function seedSettings(): void
