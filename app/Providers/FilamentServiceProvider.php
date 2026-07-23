@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Filament\FilamentManager;
 use Illuminate\Support\ServiceProvider;
 
 class FilamentServiceProvider extends ServiceProvider
@@ -22,6 +21,6 @@ class FilamentServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Filament v3 auto-discovers resources from app/Filament/Resources
+        // Filament v4 auto-discovers resources from app/Filament/Resources
     }
 }

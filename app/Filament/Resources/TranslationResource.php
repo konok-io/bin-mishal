@@ -11,6 +11,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\BadgeColumn;
 
 class TranslationResource extends Resource
 {
@@ -84,28 +85,21 @@ class TranslationResource extends Resource
                     ->limit(50),
                 Tables\Columns\TextColumn::make('value_bn')
                     ->label('Bengali')
-                    ->limit(40)
-                    ->tooltip(fn($record) => $record->value_bn),
+                    ->limit(40),
                 Tables\Columns\TextColumn::make('value_en')
                     ->label('English')
-                    ->limit(40)
-                    ->tooltip(fn($record) => $record->value_en),
+                    ->limit(40),
                 Tables\Columns\TextColumn::make('value_ar')
                     ->label('Arabic')
-                    ->limit(40)
-                    ->tooltip(fn($record) => $record->value_ar),
-                Tables\Columns\BadgeColumn::make('status')
+                    ->limit(40),
+                Tables\Columns\TextColumn::make('status')
                     ->label('Status')
-                    ->colors([
-                        'success' => 'complete',
-                        'warning' => 'needs_review',
-                        'danger' => fn($state) => in_array($state, ['missing_bn', 'missing_en', 'missing_ar']),
-                    ]),
-                Tables\Columns\TextColumn::make('last_seen_in_code_at')
-                    ->label('Last Seen')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'complete' => 'success',
+                        'needs_review' => 'warning',
+                        default => 'danger',
+                    }),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Updated')
                     ->dateTime()
@@ -115,8 +109,7 @@ class TranslationResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('group')
                     ->options(fn() => Translation::query()->distinct()->pluck('group', 'group'))
-                    ->searchable()
-                    ->preload(),
+                    ->searchable(),
                 Tables\Filters\SelectFilter::make('status')
                     ->options([
                         'complete' => 'Complete',
