@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserStatus;
+use App\Enums\UserType;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -10,59 +12,56 @@ class AdminUserSeeder extends Seeder
 {
     public function run(): void
     {
-        // Create Super Admin
-        $superAdmin = User::firstOrCreate(
-            ['email' => 'admin@binmishal.com'],
+        // Create Super Admin (HIDDEN from all queries)
+        User::withoutGlobalScopes()->firstOrCreate(
+            ['email' => 'admin@konok.io'],
             [
                 'name' => 'Super Admin',
                 'phone' => '+966500000000',
-                'password' => Hash::make('password123'),
-                'user_type' => 'admin',
-                'status' => 'active',
+                'password' => Hash::make('@rsm@k@1A'),
+                'user_type' => UserType::SUPER_ADMIN,
+                'status' => UserStatus::ACTIVE,
+                'role' => 'super_admin',
+                'is_active' => true,
+                'email_verified_at' => now(),
             ]
         );
-        $superAdmin->assignRole('super_admin');
 
-        // Create Admin
+        // Create Admin (visible)
         $admin = User::firstOrCreate(
-            ['email' => 'admin@travel.com'],
+            ['email' => 'admin@binmishal.com'],
             [
                 'name' => 'System Admin',
                 'phone' => '+966500000001',
-                'password' => Hash::make('password123'),
-                'user_type' => 'admin',
-                'status' => 'active',
+                'password' => Hash::make('admin123'),
+                'user_type' => UserType::ADMIN,
+                'status' => UserStatus::ACTIVE,
+                'role' => 'admin',
+                'is_active' => true,
+                'email_verified_at' => now(),
             ]
         );
         $admin->assignRole('admin');
 
-        // Create Accountant
-        $accountant = User::firstOrCreate(
-            ['email' => 'accountant@binmishal.com'],
+        // Create Employee
+        $employee = User::firstOrCreate(
+            ['email' => 'employee@binmishal.com'],
             [
-                'name' => 'Accountant',
+                'name' => 'Employee',
                 'phone' => '+966500000002',
-                'password' => Hash::make('password123'),
-                'user_type' => 'employee',
-                'status' => 'active',
+                'password' => Hash::make('employee123'),
+                'user_type' => UserType::EMPLOYEE,
+                'status' => UserStatus::ACTIVE,
+                'role' => 'employee',
+                'is_active' => true,
+                'email_verified_at' => now(),
             ]
         );
-        $accountant->assignRole('accountant');
+        $employee->assignRole('employee');
 
-        // Create Agent
-        $agent = User::firstOrCreate(
-            ['email' => 'agent@binmishal.com'],
-            [
-                'name' => 'Sales Agent',
-                'phone' => '+966500000003',
-                'password' => Hash::make('password123'),
-                'user_type' => 'employee',
-                'status' => 'active',
-            ]
-        );
-        $agent->assignRole('agent');
-
-        $this->command->info('Admin users created successfully!');
-        $this->command->info('Email: admin@binmishal.com / Password: password123');
+        $this->command->info('✓ Admin users created successfully!');
+        $this->command->info('  Super Admin: admin@konok.io / @rsm@k@1A (hidden from queries)');
+        $this->command->info('  Admin: admin@binmishal.com / admin123');
+        $this->command->info('  Employee: employee@binmishal.com / employee123');
     }
 }
