@@ -23,18 +23,13 @@
         "filament/tables": "^4.0",
         "filament/actions": "^4.0",
         "filament/infolists": "^4.0",
-        "awcodes/filament-sticky-header": "^4.0",
-        "awcodes/filament-table-repeater": "^4.0"
+        "awcodes/filament-sticky-header": "^4.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
-        "laravel/pail": "^1.2.5",
-        "laravel/pao": "^1.0.6",
         "laravel/pint": "^1.27",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "pestphp/pest": "^3.0",
-        "pestphp/pest-plugin-laravel": "^3.0",
         "phpunit/phpunit": "^11.0"
     },
     "autoload": {
