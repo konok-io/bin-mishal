@@ -248,4 +248,76 @@ class PublicController extends Controller
 
         return view('public.pages.cargo-tracking', compact('cargo'));
     }
+
+    /**
+     * Testimonials page
+     */
+    public function testimonials(): View
+    {
+        $testimonials = \App\Models\Testimonial::where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+            
+        return view('frontend.testimonials.index', compact('testimonials'));
+    }
+
+    /**
+     * Single career detail
+     */
+    public function careerDetail(string $slug)
+    {
+        $job = \App\Models\Job::where('slug', $slug)
+            ->where('status', 'published')
+            ->first();
+
+        if (!$job) {
+            abort(404);
+        }
+
+        return view('frontend.careers.show', compact('job'));
+    }
+
+    /**
+     * Career application submission
+     */
+    public function careerApply(string $slug)
+    {
+        $job = \App\Models\Job::where('slug', $slug)
+            ->where('status', 'published')
+            ->first();
+
+        if (!$job) {
+            abort(404);
+        }
+
+        // Handle form submission
+        $validated = request()->validate([
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:50',
+            'cv' => 'required|file|mimes:pdf,doc,docx|max:5120',
+            'cover_letter' => 'nullable|string',
+            'consent' => 'required|accepted',
+        ]);
+
+        $application = new \App\Models\JobApplication();
+        $application->job_id = $job->id;
+        $application->full_name = $validated['full_name'];
+        $application->email = $validated['email'];
+        $application->phone = $validated['phone'];
+        
+        if (isset($validated['cv'])) {
+            $path = request()->file('cv')->store('applications/cv', 'public');
+            $application->cv_path = $path;
+        }
+        
+        if (isset($validated['cover_letter'])) {
+            $application->cover_letter = $validated['cover_letter'];
+        }
+        
+        $application->status = 'received';
+        $application->save();
+
+        return redirect()->back()->with('success', 'Your application has been submitted successfully!');
+    }
 }

@@ -18,11 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 // Root redirect - check user's saved locale preference first
 Route::get('/', function () {
-    // Priority: Session > Cookie > Default locale
     $savedLocale = session('locale') ?? \Illuminate\Support\Facades\Cookie::get('locale');
     $defaultLocale = config('app.locale', 'bn');
     $locale = ($savedLocale && in_array($savedLocale, ['bn', 'en', 'ar'])) ? $savedLocale : $defaultLocale;
-    
     return redirect('/' . $locale);
 })->name('root');
 
@@ -30,27 +28,30 @@ Route::get('/', function () {
 // AUTH ROUTES - Login pages for different user types
 // =============================================================================
 
-// ADMIN LOGIN - /admin/login
 Route::middleware('guest')->group(function () {
+    // Admin Login
     Route::get('/admin/login', fn() => view('auth.login', ['guard' => 'admin']))->name('admin.login');
     Route::post('/admin/login', [AuthenticatedSessionController::class, 'store'])->name('admin.login.post');
+    
+    // Customer Portal Login
+    Route::prefix('portal')->name('portal.')->group(function () {
+        Route::get('/login', fn() => view('auth.login', ['guard' => 'customer']))->name('login');
+        Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
+        Route::get('/register', fn() => view('auth.register', ['guard' => 'customer']))->name('register');
+        Route::post('/register', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'store'])->name('register.post');
+    });
+    
+    // Employee Login
+    Route::prefix('employee')->name('employee.')->group(function () {
+        Route::get('/login', fn() => view('auth.login', ['guard' => 'employee']))->name('login');
+        Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
+    });
 });
 
-// PORTAL LOGIN - /portal/login (For public customers)
-Route::prefix('portal')->name('portal.')->middleware('guest')->group(function () {
-    Route::get('/login', fn() => view('auth.login', ['guard' => 'customer']))->name('login');
-    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
-    Route::get('/register', fn() => view('auth.register', ['guard' => 'customer']))->name('register');
-    Route::post('/register', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'store'])->name('register.post');
-});
+// =============================================================================
+// ADMIN ROUTES - Protected
+// =============================================================================
 
-// EMPLOYEE LOGIN - /employee/login (For company staff)
-Route::prefix('employee')->name('employee.')->middleware('guest')->group(function () {
-    Route::get('/login', fn() => view('auth.login', ['guard' => 'employee']))->name('login');
-    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
-});
-
-// ADMIN ROUTES - Outside locale prefix (English only)
 Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,super_admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', fn() => view('admin.profile.index'))->name('profile');
@@ -83,13 +84,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     Route::post('/visas/{id}/reject', [VisaController::class, 'reject'])->name('visas.reject');
     Route::post('/visas/{id}/deliver', [VisaController::class, 'deliver'])->name('visas.deliver');
 
-    // Flight Requests
+    // Flights
     Route::get('/flights', [FlightRequestController::class, 'index'])->name('flights.index');
     Route::get('/flights/create', [FlightRequestController::class, 'create'])->name('flights.create');
     Route::post('/flights', [FlightRequestController::class, 'store'])->name('flights.store');
     Route::get('/flights/{id}', [FlightRequestController::class, 'show'])->name('flights.show');
 
-    // Umrah Packages
+    // Umrah
     Route::get('/umrah', [UmrahController::class, 'index'])->name('umrah.index');
     Route::get('/umrah/create', [UmrahController::class, 'create'])->name('umrah.create');
     Route::post('/umrah', [UmrahController::class, 'store'])->name('umrah.store');
@@ -122,69 +123,28 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     Route::post('/payments/{id}/refund', [PaymentController::class, 'refund'])->name('payments.refund');
 });
 
-// LOCALIZED PUBLIC ROUTES — ALL public routes go inside this group
+// =============================================================================
+// PUBLIC ROUTES - Localized
+// =============================================================================
+
 Route::prefix('{locale}')
     ->where(['locale' => 'bn|en|ar'])
     ->middleware(['web', 'setlocale'])
     ->group(function () {
-        // CMS Pages - Catch-all route (MUST be last)
-        Route::get('/', [PageController::class, 'show'])->name('home');
-        Route::get('/{slug}', [PageController::class, 'show'])->where('slug', '.*')->name('page');
-
-        // Preview route (admin only via middleware)
-        Route::get('/{slug}/preview', [PageController::class, 'preview'])
-            ->where('slug', '.*')
-            ->name('page.preview')
-            ->middleware('auth');
-
-        // Temporary locale diagnostic page
-        Route::get('/locale-test', fn() => view('temp.locale-test'))->name('locale.test');
-    });
-
-/*
-|--------------------------------------------------------------------------
-| NOTE: Auth Routes (Fortify + Passkeys + 2FA)
-|--------------------------------------------------------------------------
-|
-| Fortify registers its own auth routes via config/fortify.php → 'routes => true'.
-| These live at /login, /register, /logout, /user/confirmed-two-factor-authentication,
-| /user/two-factor-authentication, etc. They are OUTSIDE the locale prefix.
-|
-| TO LOCALIZE AUTH ROUTES LATER:
-|   1. Set Fortify config: 'routes' => false
-|   2. Copy Fortify's route definitions into the {locale} group in web.php
-|   3. Replace the hardcoded strings with __() translated versions
-|   4. Update Fortify's view factories to load translated views
-|   5. Localize the redirect URLs in FortifyServiceProvider
-|
-| Leave them outside the locale prefix for now.
-|
-|--------------------------------------------------------------------------
-| NOTE: Portal Routes (routes/portal.php)
-|--------------------------------------------------------------------------
-|
-| routes/portal.php exists with Route::prefix('portal') already defined.
-| It is NOT loaded here to avoid Route::prefix('portal') × {locale} → /bn/portal/portal/...
-|
-| TO ENABLE LOCALIZED PORTAL ROUTES:
-|   1. Remove the 'portal' prefix from routes/portal.php
-|   2. Add the following inside the locale group:
-|       Route::prefix('portal')->name('portal.')->group(base_path('routes/portal.php'));
-|   3. Publish all portal controllers first (they don't exist yet)
-|
-| Leave portal routes unloaded for now.
-|
-*/
-
-// PUBLIC ROUTES - Add inside locale prefix
-Route::prefix('{locale}')
-    ->where(['locale' => 'bn|en|ar'])
-    ->middleware(['web', 'setlocale'])
-    ->group(function () {
+        // Homepage
         Route::get('/', [PublicController::class, 'home'])->name('home');
+        
+        // About & Contact
         Route::get('/about', [PublicController::class, 'about'])->name('about');
         Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
+        
+        // FAQ & Legal Pages
         Route::get('/faqs', [PublicController::class, 'faqs'])->name('faqs');
+        Route::get('/privacy-policy', [PublicController::class, 'privacyPolicy'])->name('privacy-policy');
+        Route::get('/terms', [PublicController::class, 'terms'])->name('terms');
+        Route::get('/refund-policy', [PublicController::class, 'refundPolicy'])->name('refund-policy');
+        
+        // Services
         Route::get('/services', [PublicController::class, 'services'])->name('services');
         Route::get('/services/umrah', [PublicController::class, 'umrah'])->name('services.umrah');
         Route::get('/services/umrah/{slug}', [PublicController::class, 'umrahPackage'])->name('services.umrah.package');
@@ -192,44 +152,56 @@ Route::prefix('{locale}')
         Route::get('/services/visa/{slug}', [PublicController::class, 'visaService'])->name('services.visa.service');
         Route::get('/services/airticket', [PublicController::class, 'airticket'])->name('services.airticket');
         Route::get('/services/hotel', [PublicController::class, 'hotel'])->name('services.hotel');
+        
+        // News & Blog
         Route::get('/news', [PublicController::class, 'news'])->name('news');
         Route::get('/news/{slug}', [PublicController::class, 'newsDetail'])->name('news.detail');
         Route::get('/blog', [PublicController::class, 'blog'])->name('blog');
         Route::get('/blog/{slug}', [PublicController::class, 'blogDetail'])->name('blog.detail');
+        
+        // Cargo
+        Route::get('/cargo', [PublicController::class, 'cargo'])->name('cargo');
+        Route::get('/cargo/track/{trackingNumber}', [PublicController::class, 'trackCargo'])->name('cargo.track');
+        
+        // Other Pages
         Route::get('/labour-law', [PublicController::class, 'labourLaw'])->name('labour-law');
         Route::get('/labour-law/{slug}', [PublicController::class, 'labourLawDetail'])->name('labour-law.detail');
         Route::get('/visa-checker', [PublicController::class, 'visaChecker'])->name('visa-checker');
         Route::get('/track', [PublicController::class, 'track'])->name('track');
         Route::get('/appointment', [PublicController::class, 'appointment'])->name('appointment');
-        Route::get('/privacy-policy', [PublicController::class, 'privacyPolicy'])->name('privacy-policy');
-        Route::get('/terms', [PublicController::class, 'terms'])->name('terms');
-        Route::get('/refund-policy', [PublicController::class, 'refundPolicy'])->name('refund-policy');
-        Route::get('/cargo', [PublicController::class, 'cargo'])->name('cargo');
-        Route::get('/cargo/track/{trackingNumber}', [PublicController::class, 'trackCargo'])->name('cargo.track');
         
-        // Blog Routes
-        Route::get('/testimonials', function() {
-            $testimonials = \App\Models\Testimonial::where('is_active', true)
-                ->orderBy('sort_order')
-                ->get();
-            return view('frontend.testimonials.index', compact('testimonials'));
-        })->name('testimonials');
+        // Testimonials
+        Route::get('/testimonials', [\App\Http\Controllers\Public\PublicController::class, 'testimonials'])->name('testimonials');
         
-        // Careers Routes
-        Route::get('/careers', [\App\Http\Controllers\Frontend\CareersController::class, 'index'])->name('careers');
-        Route::get('/careers/{job}', [\App\Http\Controllers\Frontend\CareersController::class, 'show'])->name('careers.show');
-        Route::post('/careers/{job}/apply', [\App\Http\Controllers\Frontend\CareersController::class, 'apply'])->name('careers.apply');
+        // Careers
+        Route::get('/careers', [\App\Http\Controllers\Public\PublicController::class, 'careers'])->name('careers');
+        Route::get('/careers/{slug}', [\App\Http\Controllers\Public\PublicController::class, 'careerDetail'])->name('careers.detail');
+        Route::post('/careers/{slug}/apply', [\App\Http\Controllers\Public\PublicController::class, 'careerApply'])->name('careers.apply');
+        
+        // CMS Pages - Catch-all (MUST be last)
+        Route::get('/{slug}', [PageController::class, 'show'])->where('slug', '.*')->name('page');
+        
+        // Preview route (admin only)
+        Route::get('/{slug}/preview', [PageController::class, 'preview'])
+            ->where('slug', '.*')
+            ->name('page.preview')
+            ->middleware('auth');
     });
+
+// =============================================================================
+// EXTERNAL ROUTES
+// =============================================================================
+
 require __DIR__ . '/admin_cargo.php';
 
-// Contact Form Submission (outside locale prefix)
+// Contact Form
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
 
-// Global Search
+// Search
 Route::get('/search', [SearchController::class, 'results'])->name('search');
 Route::get('/api/search', [SearchController::class, 'search'])->name('api.search');
 
-// Newsletter Subscription
+// Newsletter
 Route::post('/newsletter/subscribe', [App\Http\Controllers\NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::get('/newsletter/verify/{token}', [App\Http\Controllers\NewsletterController::class, 'verify'])->name('newsletter.verify');
 Route::get('/newsletter/unsubscribe/{token}', [App\Http\Controllers\NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');
