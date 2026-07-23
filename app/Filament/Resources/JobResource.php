@@ -18,6 +18,12 @@ class JobResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
     protected static ?string $navigationGroup = 'HR';
     protected static ?string $navigationLabel = 'Job Postings';
+
+    public static function canAccess(): bool
+    {
+        $user = auth()->user();
+        return $user && ($user->hasRole(['super_admin', 'admin', 'hr']) || $user->can('careers.view'));
+    }
     protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form

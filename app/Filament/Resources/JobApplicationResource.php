@@ -20,6 +20,12 @@ class JobApplicationResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
     protected static ?string $navigationGroup = 'HR';
     protected static ?string $navigationLabel = 'Applications';
+
+    public static function canAccess(): bool
+    {
+        $user = auth()->user();
+        return $user && ($user->hasRole(['super_admin', 'admin', 'hr']) || $user->can('applications.view'));
+    }
     protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form

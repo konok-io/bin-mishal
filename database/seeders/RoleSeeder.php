@@ -74,6 +74,17 @@ class RoleSeeder extends Seeder
             'content.create',
             'content.update',
             'content.delete',
+
+            // Careers/HR
+            'careers.view',
+            'careers.create',
+            'careers.update',
+            'careers.delete',
+            'applications.view',
+            'applications.update',
+            'applications.shortlist',
+            'applications.reject',
+            'applications.hire',
         ];
 
         foreach ($permissions as $permission) {
@@ -117,6 +128,15 @@ class RoleSeeder extends Seeder
             'bookings.view',
             'visas.view',
             'invoices.view',
+        ]);
+
+        // HR/Recruiter - Careers module only
+        $hr = Role::firstOrCreate(['name' => 'hr']);
+        $hr->givePermissionTo([
+            'careers.view', 'careers.create', 'careers.update', 'careers.delete',
+            'applications.view', 'applications.update', 'applications.shortlist', 'applications.reject', 'applications.hire',
+            'customers.view', 'customers.create', 'customers.update',
+            'content.view', 'content.create', 'content.update',
         ]);
     }
 }
