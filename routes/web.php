@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\UmrahController;
 use App\Http\Controllers\Admin\VisaController;
 use App\Http\Controllers\CMS\PageController;
+use App\Http\Controllers\Public\PublicController;
 use Illuminate\Support\Facades\Route;
 
 // Root redirect to default locale
@@ -139,3 +140,34 @@ Route::prefix('{locale}')
 | Leave portal routes unloaded for now.
 |
 */
+
+// PUBLIC ROUTES - Add inside locale prefix
+Route::prefix('{locale}')
+    ->where(['locale' => 'bn|en|ar'])
+    ->middleware(['web', 'setlocale'])
+    ->group(function () {
+        Route::get('/', [PublicController::class, 'home'])->name('home');
+        Route::get('/about', [PublicController::class, 'about'])->name('about');
+        Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
+        Route::get('/faqs', [PublicController::class, 'faqs'])->name('faqs');
+        Route::get('/careers', [PublicController::class, 'careers'])->name('careers');
+        Route::get('/services', [PublicController::class, 'services'])->name('services');
+        Route::get('/services/umrah', [PublicController::class, 'umrah'])->name('services.umrah');
+        Route::get('/services/umrah/{slug}', [PublicController::class, 'umrahPackage'])->name('services.umrah.package');
+        Route::get('/services/visa', [PublicController::class, 'visa'])->name('services.visa');
+        Route::get('/services/visa/{slug}', [PublicController::class, 'visaService'])->name('services.visa.service');
+        Route::get('/services/airticket', [PublicController::class, 'airticket'])->name('services.airticket');
+        Route::get('/services/hotel', [PublicController::class, 'hotel'])->name('services.hotel');
+        Route::get('/news', [PublicController::class, 'news'])->name('news');
+        Route::get('/news/{slug}', [PublicController::class, 'newsDetail'])->name('news.detail');
+        Route::get('/blog', [PublicController::class, 'blog'])->name('blog');
+        Route::get('/blog/{slug}', [PublicController::class, 'blogDetail'])->name('blog.detail');
+        Route::get('/labour-law', [PublicController::class, 'labourLaw'])->name('labour-law');
+        Route::get('/labour-law/{slug}', [PublicController::class, 'labourLawDetail'])->name('labour-law.detail');
+        Route::get('/visa-checker', [PublicController::class, 'visaChecker'])->name('visa-checker');
+        Route::get('/track', [PublicController::class, 'track'])->name('track');
+        Route::get('/appointment', [PublicController::class, 'appointment'])->name('appointment');
+        Route::get('/privacy-policy', [PublicController::class, 'privacyPolicy'])->name('privacy-policy');
+        Route::get('/terms', [PublicController::class, 'terms'])->name('terms');
+        Route::get('/refund-policy', [PublicController::class, 'refundPolicy'])->name('refund-policy');
+    });
