@@ -8,11 +8,9 @@ use App\Filament\Resources\TranslationResource\Pages;
 use App\Models\Translation;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Cache;
 
 class TranslationResource extends Resource
 {
@@ -64,8 +62,7 @@ class TranslationResource extends Resource
                         Forms\Components\Textarea::make('value_ar')
                             ->label('Arabic (العربية)')
                             ->rows(3)
-                            ->columnSpanFull()
-                            ->extraAttributes(['dir' => 'rtl']),
+                            ->columnSpanFull(),
                     ]),
             ]);
     }
@@ -96,8 +93,7 @@ class TranslationResource extends Resource
                 Tables\Columns\TextColumn::make('value_ar')
                     ->label('Arabic')
                     ->limit(40)
-                    ->tooltip(fn($record) => $record->value_ar)
-                    ->html(),
+                    ->tooltip(fn($record) => $record->value_ar),
                 Tables\Columns\BadgeColumn::make('status')
                     ->label('Status')
                     ->colors([
@@ -109,7 +105,7 @@ class TranslationResource extends Resource
                     ->label('Last Seen')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Updated')
                     ->dateTime()
@@ -129,12 +125,6 @@ class TranslationResource extends Resource
                         'missing_ar' => 'Missing Arabic',
                         'needs_review' => 'Needs Review',
                     ]),
-                Tables\Filters\Filter::make('incomplete')
-                    ->label('Missing Translations')
-                    ->query(fn($query) => $query->where('status', '!=', 'complete')),
-                Tables\Filters\Filter::make('recently_added')
-                    ->label('Recently Added')
-                    ->query(fn($query) => $query->where('last_seen_in_code_at', '>=', now()->subDays(7))),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -142,9 +132,6 @@ class TranslationResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\ExportBulkAction::make()
-                        ->exporter(\App\Filament\Exports\TranslationExporter::class),
-                    Tables\Actions\ImportBulkAction::make(),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
@@ -153,12 +140,7 @@ class TranslationResource extends Resource
                     ->label('Sync from Code')
                     ->icon('heroicon-o-arrow-path')
                     ->action(fn() => \Illuminate\Support\Facades\Artisan::call('translations:sync')),
-                Tables\Actions\Action::make('export')
-                    ->label('Export CSV')
-                    ->icon('heroicon-o-document-arrow-down')
-                    ->action(fn() => redirect()->route('filament.resources.translations.export')),
-            ])
-            ->poll('60s');
+            ]);
     }
 
     public static function getRelations(): array
@@ -172,13 +154,6 @@ class TranslationResource extends Resource
             'index' => Pages\ListTranslations::route('/'),
             'create' => Pages\CreateTranslation::route('/create'),
             'edit' => Pages\EditTranslation::route('/{record}/edit'),
-        ];
-    }
-
-    public static function getWidgets(): array
-    {
-        return [
-            TranslationStatsWidget::class,
         ];
     }
 }
