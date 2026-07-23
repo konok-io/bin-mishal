@@ -135,6 +135,18 @@ class LocaleCheck extends Command
             $this->line("  {$label}: <info>{$value}</info>");
         }
 
+        // Enforce: effective default locale must be bn
+        $effectiveDefault = config('app.locale');
+        if ($effectiveDefault !== 'bn') {
+            $this->error("\n  ❌ FATAL: Effective default locale is '{$effectiveDefault}', expected 'bn'.");
+            $this->line("     config/app.php  → locale => env('APP_LOCALE', 'bn')");
+            $this->line("     config/locales.php → default => env('APP_LOCALE', 'bn')");
+            $this->line("     .env.example     → APP_LOCALE=bn");
+            $hasIssues = true;
+        } else {
+            $this->info("\n  ✅ Effective default locale is 'bn'.");
+        }
+
         // Enabled locales detail
         $this->info("\n--- ENABLED LOCALES ---");
         $enabledHeaders = ['code', 'name', 'native', 'dir', 'number_system', 'enabled'];
@@ -157,7 +169,7 @@ class LocaleCheck extends Command
             $this->error("❌ ISSUES FOUND — see above for details");
             return 1;
         } else {
-            $this->info("✅ ALL CHECKS PASSED");
+            $this->info("✅ ALL CHECKS PASSED — default locale is 'bn', all locales complete.");
             return 0;
         }
     }
