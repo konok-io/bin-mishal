@@ -66,6 +66,7 @@ return [
     'umrah' => 'Umrah',
     'visa' => 'Visa',
     'package' => 'Package',
+    'packages' => 'Packages',
     'flight_booking' => 'Flight Booking',
     'hotel_booking' => 'Hotel Booking',
     'visa_processing' => 'Visa Processing',

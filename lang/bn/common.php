@@ -30,4 +30,5 @@ return [
     'cannot_undo' => 'এটি পূর্বাবস্থায় ফেরানো যাবে না!',
     'version' => 'সংস্করণ',
     'copyright' => '© :year বিন মিশাল ট্রাভেল',
+    'all_rights_reserved' => 'সর্বস্বত্ব সংরক্ষিত।',
 ];

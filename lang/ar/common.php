@@ -30,4 +30,5 @@ return [
     'cannot_undo' => 'لا يمكن التراجع عن هذا الإجراء!',
     'version' => 'الإصدار',
     'copyright' => '© :year بن ميثال للسفر',
+    'all_rights_reserved' => 'جميع الحقوق محفوظة.',
 ];

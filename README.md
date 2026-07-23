@@ -67,6 +67,60 @@ docker exec -it binmishal-app php artisan migrate --seed
 - Installation Guide: ./INSTALL.md
 - Deployment Guide: ./DEPLOYMENT.md
 
+## Translation Manager
+
+The platform includes a comprehensive Translation Manager for maintaining multilingual content.
+
+### Running the Translation Sync
+
+After any design update that adds new UI text:
+
+```bash
+# Sync translation keys from code to database
+php artisan translations:sync
+
+# Check for missing translations (used in CI/CD)
+php artisan translations:sync --check
+```
+
+### Admin Panel
+
+Access the Translation Manager at `/admin/filament/resources/translations`:
+
+1. **View All Keys**: See all translation keys with their status
+2. **Filter by Group**: Filter by translation group (app, navigation, home, etc.)
+3. **Find Missing**: Filter by "Missing Translations" to find incomplete keys
+4. **Recently Added**: Filter by "Recently Added" to find new keys from latest code
+5. **Inline Editing**: Click any row to edit all three language values
+6. **Bulk Export**: Select multiple keys and export to CSV
+7. **Bulk Import**: Import translations from CSV for external translation
+
+### Translation Status Meanings
+
+- **Complete**: All three languages (Bengali, English, Arabic) are filled
+- **Missing Bengali**: Bengali translation is empty
+- **Missing English**: English translation is empty
+- **Missing Arabic**: Arabic translation is empty
+- **Needs Review**: No translations filled (new key)
+
+### CI/CD Integration
+
+The translation check runs automatically in CI:
+
+```yaml
+# GitHub Actions workflow (translations.yml)
+- name: Check for Missing Translations
+  run: php artisan translations:sync --check
+```
+
+If this check fails, new translation keys have been added to the code without providing translations in all three languages.
+
+### Translation Hierarchy
+
+1. Database translations (admin-managed) take priority over file translations
+2. File translations in `lang/{locale}/*.php` are used as fallback
+3. If a key is missing from both, the raw key is displayed (never empty)
+
 ## Tech Stack
 
 - Backend: Laravel 12, PHP 8.2

@@ -273,3 +273,50 @@ if (!function_exists('get_direction')) {
         return $config['direction'] ?? 'ltr';
     }
 }
+
+/*
+|--------------------------------------------------------------------------
+| CMS Helper Functions
+|--------------------------------------------------------------------------
+*/
+
+if (!function_exists('setting')) {
+    /**
+     * Get a setting value from the database.
+     *
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    function setting(string $key, mixed $default = null): mixed
+    {
+        return \App\Models\Setting::getValue($key, $default);
+    }
+}
+
+if (!function_exists('cms_setting')) {
+    /**
+     * Get a CMS-specific setting value.
+     *
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    function cms_setting(string $key, mixed $default = null): mixed
+    {
+        return \App\Models\CMS\Setting::getValue($key, $default);
+    }
+}
+
+if (!function_exists('current_url_path')) {
+    /**
+     * Get the current URL path without locale prefix.
+     *
+     * @return string
+     */
+    function current_url_path(): string
+    {
+        $path = request()->path();
+        return preg_replace('/^(bn|en|ar)\//', '', $path);
+    }
+}

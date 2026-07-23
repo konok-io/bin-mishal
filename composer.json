@@ -17,7 +17,15 @@
         "spatie/laravel-activitylog": "^4.8",
         "spatie/laravel-sitemap": "^7.2",
         "barryvdh/laravel-dompdf": "^3.0",
-        "stevebauman/purify": "^6.0"
+        "stevebauman/purify": "^6.0",
+        "filament/filament": "^3.0",
+        "filament/forms": "^3.0",
+        "filament/tables": "^3.0",
+        "filament/actions": "^3.0",
+        "filament/infolists": "^3.0",
+        "filament/layout": "^3.0",
+        "awcodes/filament-sticky-header": "^3.0",
+        "awcodes/filament-table-repeater": "^3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

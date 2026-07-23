@@ -1,0 +1,53 @@
+name: Translation Check
+
+on:
+  pull_request:
+    paths:
+      - 'resources/views/**/*.blade.php'
+      - 'app/**/*.php'
+      - 'lang/**/*.php'
+  push:
+    branches:
+      - main
+      - develop
+  schedule:
+    # Run daily at midnight to catch any missed translations
+    - cron: '0 0 * * *'
+
+jobs:
+  translation-check:
+    name: Check Translations
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: pdo_mysql, mbstring, xml, gd
+          coverage: none
+      
+      - name: Install Dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+        
+      - name: Run Translation Sync
+        run: php artisan translations:sync
+        env:
+          APP_ENV: testing
+          APP_KEY: base64:dGVzdGtleWZvcnRlc3Rpbmdvbmx5bm90cmVhbA==
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ':memory:'
+      
+      - name: Check for Missing Translations
+        id: check
+        run: php artisan translations:sync --check || exit 1
+        
+      - name: Generate Report
+        if: always()
+        run: |
+          echo "## Translation Status" >> $GITHUB_STEP_SUMMARY
+          echo "```" >> $GITHUB_STEP_SUMMARY
+          php artisan translations:sync 2>&1 | tail -20 >> $GITHUB_STEP_SUMMARY
+          echo "```" >> $GITHUB_STEP_SUMMARY

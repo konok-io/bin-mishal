@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\UmrahController;
 use App\Http\Controllers\Admin\VisaController;
+use App\Http\Controllers\CMS\PageController;
 use Illuminate\Support\Facades\Route;
 
 // Root redirect to default locale
@@ -90,10 +91,17 @@ Route::prefix('{locale}')
     ->where(['locale' => 'bn|en|ar'])
     ->middleware(['web', 'setlocale'])
     ->group(function () {
-        // Homepage
-        Route::get('/', fn() => view('welcome'))->name('home');
+        // CMS Pages - Catch-all route (MUST be last)
+        Route::get('/', [PageController::class, 'show'])->name('home');
+        Route::get('/{slug}', [PageController::class, 'show'])->where('slug', '.*')->name('page');
 
-        // Temporary locale diagnostic page (A9)
+        // Preview route (admin only via middleware)
+        Route::get('/{slug}/preview', [PageController::class, 'preview'])
+            ->where('slug', '.*')
+            ->name('page.preview')
+            ->middleware('auth');
+
+        // Temporary locale diagnostic page
         Route::get('/locale-test', fn() => view('temp.locale-test'))->name('locale.test');
     });
 

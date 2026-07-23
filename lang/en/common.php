@@ -30,4 +30,5 @@ return [
     'cannot_undo' => 'This action cannot be undone!',
     'version' => 'Version',
     'copyright' => '© :year Bin Mishal Travel',
+    'all_rights_reserved' => 'All rights reserved.',
 ];

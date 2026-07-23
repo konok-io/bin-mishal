@@ -66,6 +66,7 @@ return [
     'umrah' => 'العمرة',
     'visa' => 'التأشيرة',
     'package' => 'باقة',
+    'packages' => 'الباقات',
     'flight_booking' => 'حجز طيران',
     'hotel_booking' => 'حجز فندق',
     'visa_processing' => 'معالجة التأشيرة',

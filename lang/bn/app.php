@@ -66,6 +66,7 @@ return [
     'umrah' => 'উমরাহ',
     'visa' => 'ভিসা',
     'package' => 'প্যাকেজ',
+    'packages' => 'প্যাকেজসমূহ',
     'flight_booking' => 'ফ্লাইট বুকিং',
     'hotel_booking' => 'হোটেল বুকিং',
     'visa_processing' => 'ভিসা প্রসেসিং',
