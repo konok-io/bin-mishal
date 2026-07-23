@@ -123,6 +123,24 @@
         .top-bar .dropdown-menu {
             z-index: 1040;
             position: absolute;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .top-bar .dropdown-menu .dropdown-item {
+            color: #333;
+            padding: 10px 16px;
+        }
+        .top-bar .dropdown-menu .dropdown-item:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        .top-bar .dropdown-menu .dropdown-item i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        .top-bar .dropdown-menu .dropdown-item:hover i {
+            color: #fff;
         }
         
         /* Auth buttons */

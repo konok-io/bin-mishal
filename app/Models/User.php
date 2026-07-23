@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Enums\Language;
 use App\Enums\UserStatus;
 use App\Enums\UserType;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -27,6 +28,17 @@ class User extends Authenticatable implements HasMedia
     use HasFactory, HasRoles, InteractsWithMedia, LogsActivity, Notifiable, SoftDeletes;
 
     protected static $logName = 'user';
+
+    /**
+     * Boot the model and add global scopes
+     */
+    protected static function booted(): void
+    {
+        // Hide super admins from all queries by default
+        static::addGlobalScope('withoutSuperAdmin', function (Builder $builder) {
+            $builder->where('user_type', '!=', UserType::SUPER_ADMIN);
+        });
+    }
 
     public function getActivitylogOptions(): LogOptions
     {
@@ -196,6 +208,14 @@ class User extends Authenticatable implements HasMedia
     public function scopeActive($query)
     {
         return $query->where('status', UserStatus::ACTIVE);
+    }
+
+    /**
+     * Hide super admins from query results (unless withSuperAdmin is used)
+     */
+    public function scopeWithoutSuperAdmin($query)
+    {
+        return $query->where('user_type', '!=', UserType::SUPER_ADMIN);
     }
 
     // Methods
