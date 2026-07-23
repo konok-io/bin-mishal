@@ -14,13 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // Note: SetLocale middleware is applied directly in routes/web.php locale group
-        // to ensure it runs after route parameters are parsed
-        
         $middleware->alias([
             'role' => \App\Http\Middleware\EnsureRole::class,
             'permission' => \App\Http\Middleware\EnsurePermission::class,
             'api.auth' => \App\Http\Middleware\EnsureApiAuthenticated::class,
+            'setlocale' => \App\Http\Middleware\SetLocale::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
