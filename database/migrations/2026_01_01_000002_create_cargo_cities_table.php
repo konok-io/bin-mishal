@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cargo_cities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('country_id')->nullable()->constrained()->nullOnDelete();
+            $table->unsignedBigInteger('country_id')->nullable(); // 1=Saudi Arabia, 2=Bangladesh
             $table->string('name');
             $table->string('name_bn');
             $table->string('name_ar');
