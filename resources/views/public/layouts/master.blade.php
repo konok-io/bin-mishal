@@ -21,6 +21,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
+        /* Custom Fonts */
+        @font-face {
+            font-family: 'Bangla';
+            src: url('/fonts/bangla.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'English';
+            src: url('/fonts/English.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Arabic';
+            src: url('/fonts/Arabic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
         :root {
             --primary: #006C35;
             --primary-dark: #004d26;
@@ -32,13 +52,25 @@
             --bg-light: #F8FAFC;
             --text-dark: #1E293B;
             --text-muted: #64748B;
-            --font-family: {{ locale_config()['font_family'] ?? "'Inter', sans-serif" }};
             --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
         
+        /* Language-specific fonts */
+        html[lang="bn"] body,
+        html[lang="bn"] * {
+            font-family: 'Bangla', 'Hind Siliguri', sans-serif !important;
+        }
+        html[lang="ar"] body,
+        html[lang="ar"] * {
+            font-family: 'Arabic', 'Noto Sans Arabic', sans-serif !important;
+        }
+        html[lang="en"] body,
+        html[lang="en"] * {
+            font-family: 'English', 'Inter', sans-serif !important;
+        }
+        
         body { 
-            font-family: var(--font-family); 
             color: var(--text-dark);
             background: #fff;
         }

@@ -14,7 +14,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ $title ?? __('app.app_name') }}</title>
 
-        {{-- Per-locale Google Fonts (loaded via Vite's preconnect + link in CSS) --}}
+        {{-- Custom Fonts --}}
+        <style>
+            @font-face {
+                font-family: 'Bangla';
+                src: url('/fonts/bangla.ttf') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'English';
+                src: url('/fonts/English.ttf') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'Arabic';
+                src: url('/fonts/Arabic.ttf') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
+        </style>
+
+        {{-- Per-locale Google Fonts (fallback) --}}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="preload" as="style"
@@ -30,6 +52,22 @@
 
         {{-- Vite assets (builds app.css which includes Tailwind + brand @theme) --}}
         @vite
+
+        {{-- Language-specific font styles --}}
+        <style>
+            html[lang="bn"] body,
+            html[lang="bn"] * {
+                font-family: 'Bangla', 'Hind Siliguri', sans-serif !important;
+            }
+            html[lang="ar"] body,
+            html[lang="ar"] * {
+                font-family: 'Arabic', 'IBM Plex Sans Arabic', sans-serif !important;
+            }
+            html[lang="en"] body,
+            html[lang="en"] * {
+                font-family: 'English', 'Inter', sans-serif !important;
+            }
+        </style>
 
         {{-- Extra head content from child pages --}}
         @isset($head)

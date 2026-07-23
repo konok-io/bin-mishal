@@ -6,7 +6,7 @@
     <title>{{ __('app.app_name') }} - {{ __('home.seo_title') }}</title>
     <meta name="description" content="{{ __('home.seo_description') }}">
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts Fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,6 +25,29 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
+        /* Custom Fonts */
+        @font-face {
+            font-family: 'Bangla';
+            src: url('/fonts/bangla.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'English';
+            src: url('/fonts/English.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Arabic';
+            src: url('/fonts/Arabic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
         :root {
             --primary: #006C35;
             --primary-dark: #004d26;
@@ -42,8 +65,33 @@
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Language-specific fonts */
+        html[lang="bn"] body,
+        html[lang="bn"] {
+            font-family: 'Bangla', 'Hind Siliguri', sans-serif !important;
+        }
+        html[lang="ar"] body,
+        html[lang="ar"] {
+            font-family: 'Arabic', 'Noto Sans Arabic', sans-serif !important;
+        }
+        html[lang="en"] body,
+        html[lang="en"] {
+            font-family: 'English', 'Inter', sans-serif !important;
+        }
+        
+        /* Fallback for mixed content */
+        .bn-text, [lang="bn"] {
+            font-family: 'Bangla', 'Hind Siliguri', sans-serif !important;
+        }
+        .ar-text, [lang="ar"] {
+            font-family: 'Arabic', 'Noto Sans Arabic', sans-serif !important;
+        }
+        .en-text, [lang="en"] {
+            font-family: 'English', 'Inter', sans-serif !important;
+        }
+        
         body { 
-            font-family: var(--font-family); 
             color: var(--text-dark);
             background: #fff;
         }

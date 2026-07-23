@@ -5,6 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title ?? 'Admin Panel' }} - {{ config('app.name') }}</title>
+    
+    <!-- Custom Fonts -->
+    <style>
+        @font-face {
+            font-family: 'Bangla';
+            src: url('/fonts/bangla.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'English';
+            src: url('/fonts/English.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Arabic';
+            src: url('/fonts/Arabic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        html[lang="bn"] body,
+        html[lang="bn"] * {
+            font-family: 'Bangla', 'Hind Siliguri', sans-serif !important;
+        }
+        html[lang="ar"] body,
+        html[lang="ar"] * {
+            font-family: 'Arabic', 'Noto Sans Arabic', sans-serif !important;
+        }
+        html[lang="en"] body,
+        html[lang="en"] * {
+            font-family: 'English', 'Inter', sans-serif !important;
+        }
+    </style>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     @stack('styles')
