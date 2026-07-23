@@ -25,6 +25,7 @@ class Employee extends Model
         'emergency_contact',
         'bank_account',
         'status',
+        'biometric_id',
     ];
 
     protected function casts(): array

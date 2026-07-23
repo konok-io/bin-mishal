@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\V1\VisaController;
 use App\Http\Controllers\Api\FaqApiController;
 use App\Http\Controllers\Api\PostApiController;
 use App\Http\Controllers\Api\TestimonialApiController;
+use App\Http\Controllers\Api\BiometricController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
@@ -190,4 +191,35 @@ Route::prefix('v1')->group(function () {
         // Branches
         Route::get('branches', [MasterDataController::class, 'branches']);
     });
+
+    // Biometric Device Webhook (Public - authenticated by device API key)
+    Route::prefix('biometric')->group(function () {
+        // Webhook endpoint for device push data
+        Route::post('webhook/{deviceId}', [BiometricController::class, 'webhook']);
+        
+        // Get device status
+        Route::get('status', [BiometricController::class, 'status']);
+    });
 });
+
+// Protected Biometric Routes (Admin only)
+Route::prefix('v1/biometric')->middleware(['auth:sanctum', 'role:super_admin,admin,hr'])->group(function () {
+    // Get attendance records
+    Route::get('devices/{deviceId}/records', [BiometricController::class, 'getRecords']);
+    
+    // Get employee attendance summary
+    Route::get('employees/{employeeId}/summary', [BiometricController::class, 'getEmployeeSummary']);
+    
+    // Test device connection
+    Route::get('devices/{deviceId}/test', [BiometricController::class, 'testConnection']);
+    
+    // Sync device
+    Route::post('devices/{deviceId}/sync', [BiometricController::class, 'sync']);
+    
+    // Sync all devices
+    Route::post('sync-all', [BiometricController::class, 'syncAll']);
+    
+    // CSV Import
+    Route::post('devices/{deviceId}/import', [BiometricController::class, 'importCSV']);
+});
+
