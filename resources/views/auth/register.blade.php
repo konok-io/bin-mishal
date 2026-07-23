@@ -6,32 +6,32 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Register - {{ config('app.name') }}</title>
     
-    <!-- Custom Fonts -->
+    <!-- Custom Fonts with Unicode Range -->
     <style>
         @font-face {
-            font-family: 'Bangla';
+            font-family: 'BanglaFont';
             src: url('/fonts/bangla.ttf') format('truetype');
+            unicode-range: U+0980-09FF, U+09E0-09EF, U+200C-200D, U+20B9;
         }
         @font-face {
-            font-family: 'English';
+            font-family: 'EnglishFont';
             src: url('/fonts/English.ttf') format('truetype');
+            unicode-range: U+0000-007F, U+0080-00FF, U+0100-017F, U+1E00-1EFF;
         }
         @font-face {
-            font-family: 'Arabic';
+            font-family: 'ArabicFont';
             src: url('/fonts/Arabic.ttf') format('truetype');
+            unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFF;
         }
         
-        html[lang="bn"] body,
-        html[lang="bn"] * {
-            font-family: 'Bangla', 'Hind Siliguri', sans-serif !important;
+        html[lang="bn"] body {
+            font-family: 'BanglaFont', 'Hind Siliguri', 'EnglishFont', 'ArabicFont', sans-serif;
         }
-        html[lang="ar"] body,
-        html[lang="ar"] * {
-            font-family: 'Arabic', 'Noto Sans Arabic', sans-serif !important;
+        html[lang="ar"] body {
+            font-family: 'ArabicFont', 'Noto Sans Arabic', 'EnglishFont', 'BanglaFont', sans-serif;
         }
-        html[lang="en"] body,
-        html[lang="en"] * {
-            font-family: 'English', 'Inter', sans-serif !important;
+        html[lang="en"] body {
+            font-family: 'EnglishFont', 'Inter', 'BanglaFont', 'ArabicFont', sans-serif;
         }
         
         .register-container {

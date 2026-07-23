@@ -25,27 +25,30 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        /* Custom Fonts */
+        /* Custom Fonts with Unicode Range for Auto-Script Detection */
         @font-face {
-            font-family: 'Bangla';
+            font-family: 'BanglaFont';
             src: url('/fonts/bangla.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
+            unicode-range: U+0980-09FF, U+09E0-09EF, U+200C-200D, U+20B9;
         }
         @font-face {
-            font-family: 'English';
+            font-family: 'EnglishFont';
             src: url('/fonts/English.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
+            unicode-range: U+0000-007F, U+0080-00FF, U+0100-017F, U+1E00-1EFF, U+1F300-1F9FF;
         }
         @font-face {
-            font-family: 'Arabic';
+            font-family: 'ArabicFont';
             src: url('/fonts/Arabic.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
+            unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
         }
         
         :root {
@@ -59,36 +62,28 @@
             --bg-light: #F8FAFC;
             --text-dark: #1E293B;
             --text-muted: #64748B;
-            --font-family: {{ locale_config()['font_family'] ?? "'Inter', sans-serif" }};
             --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Language-specific fonts */
+        /* Bengali pages - Auto-detect script and use appropriate font */
         html[lang="bn"] body,
         html[lang="bn"] {
-            font-family: 'Bangla', 'Hind Siliguri', sans-serif !important;
-        }
-        html[lang="ar"] body,
-        html[lang="ar"] {
-            font-family: 'Arabic', 'Noto Sans Arabic', sans-serif !important;
-        }
-        html[lang="en"] body,
-        html[lang="en"] {
-            font-family: 'English', 'Inter', sans-serif !important;
+            font-family: 'BanglaFont', 'Hind Siliguri', 'EnglishFont', 'ArabicFont', sans-serif;
         }
         
-        /* Fallback for mixed content */
-        .bn-text, [lang="bn"] {
-            font-family: 'Bangla', 'Hind Siliguri', sans-serif !important;
+        /* Arabic pages */
+        html[lang="ar"] body,
+        html[lang="ar"] {
+            font-family: 'ArabicFont', 'Noto Sans Arabic', 'EnglishFont', 'BanglaFont', sans-serif;
         }
-        .ar-text, [lang="ar"] {
-            font-family: 'Arabic', 'Noto Sans Arabic', sans-serif !important;
-        }
-        .en-text, [lang="en"] {
-            font-family: 'English', 'Inter', sans-serif !important;
+        
+        /* English pages */
+        html[lang="en"] body,
+        html[lang="en"] {
+            font-family: 'EnglishFont', 'Inter', 'BanglaFont', 'ArabicFont', sans-serif;
         }
         
         body { 

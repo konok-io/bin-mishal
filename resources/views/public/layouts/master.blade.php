@@ -21,24 +21,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* Custom Fonts */
+        /* Custom Fonts with Unicode Range for Auto-Script Detection */
         @font-face {
-            font-family: 'Bangla';
+            font-family: 'BanglaFont';
             src: url('/fonts/bangla.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
+            unicode-range: U+0980-09FF, U+09E0-09EF, U+200C-200D, U+20B9;
         }
         @font-face {
-            font-family: 'English';
+            font-family: 'EnglishFont';
             src: url('/fonts/English.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
+            unicode-range: U+0000-007F, U+0080-00FF, U+0100-017F, U+1E00-1EFF, U+1F300-1F9FF;
         }
         @font-face {
-            font-family: 'Arabic';
+            font-family: 'ArabicFont';
             src: url('/fonts/Arabic.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
+            unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
         }
         
         :root {
@@ -56,18 +59,17 @@
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
         
-        /* Language-specific fonts */
-        html[lang="bn"] body,
-        html[lang="bn"] * {
-            font-family: 'Bangla', 'Hind Siliguri', sans-serif !important;
+        /* Bengali pages - Auto-detect script */
+        html[lang="bn"] body {
+            font-family: 'BanglaFont', 'Hind Siliguri', 'EnglishFont', 'ArabicFont', sans-serif;
         }
-        html[lang="ar"] body,
-        html[lang="ar"] * {
-            font-family: 'Arabic', 'Noto Sans Arabic', sans-serif !important;
+        /* Arabic pages */
+        html[lang="ar"] body {
+            font-family: 'ArabicFont', 'Noto Sans Arabic', 'EnglishFont', 'BanglaFont', sans-serif;
         }
-        html[lang="en"] body,
-        html[lang="en"] * {
-            font-family: 'English', 'Inter', sans-serif !important;
+        /* English pages */
+        html[lang="en"] body {
+            font-family: 'EnglishFont', 'Inter', 'BanglaFont', 'ArabicFont', sans-serif;
         }
         
         body { 
