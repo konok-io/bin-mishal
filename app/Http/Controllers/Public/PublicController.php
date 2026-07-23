@@ -200,4 +200,28 @@ class PublicController extends Controller
     {
         return view('public.pages.refund-policy');
     }
+
+    /**
+     * Cargo Service
+     */
+    public function cargo(): View
+    {
+        return view('public.pages.cargo');
+    }
+
+    /**
+     * Cargo Tracking Result
+     */
+    public function trackCargo($trackingNumber)
+    {
+        $cargo = \App\Models\Cargo\Cargo::with(['cargoType', 'cargoPackage', 'receiverZone', 'trackingHistory'])
+            ->where('tracking_number', $trackingNumber)
+            ->first();
+
+        if (!$cargo) {
+            return redirect()->back()->with('error', 'Cargo not found with tracking number: ' . $trackingNumber);
+        }
+
+        return view('public.pages.cargo-tracking', compact('cargo'));
+    }
 }

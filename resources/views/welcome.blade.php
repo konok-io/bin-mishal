@@ -322,11 +322,33 @@
     <section class="hero-section">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <h1>{{ __('home.hero_title') }}</h1>
-                    <p>{{ __('home.hero_subtitle') }}</p>
+                <!-- Dynamic Left Content -->
+                <div class="col-lg-5" data-aos="fade-right">
+                    <div id="heroContent">
+                        <!-- Flight Content (Default) -->
+                        <div class="hero-content" data-tab="flight">
+                            <h1>{{ __('home.hero_title') }}</h1>
+                            <p>{{ __('home.hero_subtitle') }}</p>
+                            <div class="hero-features mt-4">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>Best prices on all routes</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>Instant booking confirmation</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>24/7 customer support</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-6" data-aos="fade-left">
+                
+                <!-- Search Widget - Right Side -->
+                <div class="col-lg-7" data-aos="fade-left">
                     <div class="search-widget">
                         <ul class="nav search-tabs mb-3" id="searchTab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -337,6 +359,9 @@
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="visa-tab" data-bs-toggle="tab" data-bs-target="#visa" type="button"><i class="fas fa-passport me-2"></i>Visa</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="cargo-tab" data-bs-toggle="tab" data-bs-target="#cargo" type="button"><i class="fas fa-box me-2"></i>Cargo</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="appt-tab" data-bs-toggle="tab" data-bs-target="#appt" type="button"><i class="fas fa-calendar me-2"></i>Appointment</button>
@@ -404,6 +429,66 @@
                                     </div>
                                 </form>
                             </div>
+                            
+                            <!-- Cargo Tab -->
+                            <div class="tab-pane fade" id="cargo">
+                                <form class="row g-3" id="cargoForm">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Origin City</label>
+                                        <select class="form-select" name="origin" id="cargoOrigin">
+                                            <option value="">Select Origin</option>
+                                            <option value="riyadh">Riyadh</option>
+                                            <option value="jeddah">Jeddah</option>
+                                            <option value="dammam">Dammam</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Destination</label>
+                                        <select class="form-select" name="destination" id="cargoDestination">
+                                            <option value="">Select Destination</option>
+                                            <option value="dhaka">Dhaka</option>
+                                            <option value="chittagong">Chittagong</option>
+                                            <option value="sylhet">Sylhet</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Cargo Type</label>
+                                        <select class="form-select" name="cargo_type" id="cargoType">
+                                            <option value="">Select Type</option>
+                                            <option value="documents">Documents</option>
+                                            <option value="electronics">Electronics</option>
+                                            <option value="clothing">Clothing</option>
+                                            <option value="food">Food Items</option>
+                                            <option value="parcel">Parcel</option>
+                                            <option value="commercial">Commercial Goods</option>
+                                            <option value="household">Household Goods</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Weight (kg)</label>
+                                        <input type="number" class="form-control" name="weight" id="cargoWeight" placeholder="Enter weight" min="0.1">
+                                    </div>
+                                    <div class="col-12" id="cargoPriceResult" style="display: none;">
+                                        <div class="alert alert-info">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <strong>Estimated Price:</strong><br>
+                                                    <small>Delivery: 3-5 Business Days</small>
+                                                </div>
+                                                <div class="text-end">
+                                                    <span class="fs-4 fw-bold text-success" id="cargoPrice">SAR 0.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-search w-100" onclick="calculateCargoPrice()">
+                                            <i class="fas fa-calculator me-2"></i>Calculate Price
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            
                             <div class="tab-pane fade" id="appt">
                                 <form class="row g-3">
                                     <div class="col-md-6">
@@ -826,6 +911,120 @@
         AOS.init({
             duration: 800,
             once: true
+        });
+        
+        // Hero Content Data
+        const heroContent = {
+            flight: {
+                title: "{{ __('home.hero_title') }}",
+                subtitle: "{{ __('home.hero_subtitle') }}",
+                features: [
+                    'Best prices on all routes',
+                    'Instant booking confirmation',
+                    '24/7 customer support'
+                ]
+            },
+            umrah: {
+                title: 'Umrah Packages',
+                subtitle: 'Complete Umrah packages with visa, hotel, transport & guided tours',
+                features: [
+                    'Licensed Umrah operator',
+                    'Premium hotel accommodations',
+                    'Experienced tour guides'
+                ]
+            },
+            visa: {
+                title: 'Visa Processing',
+                subtitle: 'Fast and reliable visa services for Saudi Arabia',
+                features: [
+                    'Quick visa processing',
+                    'Expert documentation help',
+                    '100% approval guidance'
+                ]
+            },
+            cargo: {
+                title: 'Cargo & Logistics',
+                subtitle: 'Ship your goods from Saudi Arabia to Bangladesh safely',
+                features: [
+                    'Door-to-door delivery',
+                    'Real-time tracking',
+                    'Competitive rates'
+                ]
+            },
+            appt: {
+                title: 'Book Appointment',
+                subtitle: 'Schedule your visit to our office for personalized service',
+                features: [
+                    'Flexible scheduling',
+                    'Multiple branches',
+                    'Priority service'
+                ]
+            }
+        };
+        
+        // Dynamic Hero Content
+        document.querySelectorAll('.search-tabs .nav-link').forEach(tab => {
+            tab.addEventListener('shown.bs.tab', function(event) {
+                const tabId = event.target.id.replace('-tab', '');
+                updateHeroContent(tabId);
+            });
+        });
+        
+        function updateHeroContent(tabId) {
+            const content = heroContent[tabId];
+            if (!content) return;
+            
+            const heroDiv = document.getElementById('heroContent');
+            let featuresHtml = '';
+            
+            content.features.forEach(feature => {
+                featuresHtml += `
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-check-circle text-success me-2"></i>
+                        <span>${feature}</span>
+                    </div>
+                `;
+            });
+            
+            heroDiv.innerHTML = `
+                <div class="hero-content" data-tab="${tabId}">
+                    <h1>${content.title}</h1>
+                    <p>${content.subtitle}</p>
+                    <div class="hero-features mt-4">
+                        ${featuresHtml}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Cargo Price Calculator
+        function calculateCargoPrice() {
+            const origin = document.getElementById('cargoOrigin').value;
+            const destination = document.getElementById('cargoDestination').value;
+            const weight = parseFloat(document.getElementById('cargoWeight').value) || 0;
+            
+            if (!origin || !destination || !weight) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Simple pricing calculation (can be made dynamic via API)
+            const baseRate = 15; // SAR per kg
+            const vatRate = 0.15;
+            
+            const shippingCost = weight * baseRate;
+            const vat = shippingCost * vatRate;
+            const total = shippingCost + vat;
+            
+            document.getElementById('cargoPrice').textContent = 'SAR ' + total.toFixed(2);
+            document.getElementById('cargoPriceResult').style.display = 'block';
+        }
+        
+        // Update price on weight change
+        document.getElementById('cargoWeight').addEventListener('input', function() {
+            if (this.value) {
+                calculateCargoPrice();
+            }
         });
     </script>
 </body>

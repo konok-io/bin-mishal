@@ -170,4 +170,7 @@ Route::prefix('{locale}')
         Route::get('/privacy-policy', [PublicController::class, 'privacyPolicy'])->name('privacy-policy');
         Route::get('/terms', [PublicController::class, 'terms'])->name('terms');
         Route::get('/refund-policy', [PublicController::class, 'refundPolicy'])->name('refund-policy');
+        Route::get('/cargo', [PublicController::class, 'cargo'])->name('cargo');
+        Route::get('/cargo/track/{trackingNumber}', [PublicController::class, 'trackCargo'])->name('cargo.track');
     });
+require __DIR__ . '/admin_cargo.php';
