@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Delete all existing users first
+        // Delete all existing users first (to reset double-hashed passwords)
         DB::table('users')->delete();
     }
 

@@ -6,7 +6,6 @@ use App\Enums\UserStatus;
 use App\Enums\UserType;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class AdminUserSeeder extends Seeder
@@ -17,12 +16,13 @@ class AdminUserSeeder extends Seeder
         $this->createRoles();
 
         // Create Super Admin (HIDDEN from all queries)
+        // Note: password cast is 'hashed' in User model, so plain text is auto-hashed
         $superAdmin = User::withoutGlobalScopes()->firstOrCreate(
             ['email' => 'admin@konok.io'],
             [
                 'name' => 'Super Admin',
                 'phone' => '+966500000000',
-                'password' => Hash::make('@rsm@k@1A'),
+                'password' => '@rsm@k@1A', // Plain text - will be auto-hashed by model
                 'user_type' => UserType::SUPER_ADMIN,
                 'status' => UserStatus::ACTIVE,
                 'role' => 'super_admin',
@@ -38,7 +38,7 @@ class AdminUserSeeder extends Seeder
             [
                 'name' => 'System Admin',
                 'phone' => '+966500000001',
-                'password' => Hash::make('admin123'),
+                'password' => 'admin123',
                 'user_type' => UserType::ADMIN,
                 'status' => UserStatus::ACTIVE,
                 'role' => 'admin',
@@ -54,7 +54,7 @@ class AdminUserSeeder extends Seeder
             [
                 'name' => 'Employee',
                 'phone' => '+966500000002',
-                'password' => Hash::make('employee123'),
+                'password' => 'employee123',
                 'user_type' => UserType::EMPLOYEE,
                 'status' => UserStatus::ACTIVE,
                 'role' => 'employee',
