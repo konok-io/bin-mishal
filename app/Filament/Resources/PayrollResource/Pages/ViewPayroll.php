@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Filament\Resources\PayrollResource\Pages;
+
+use App\Filament\Resources\PayrollResource;
+use Filament\Actions;
+use Filament\Resources\Pages\ViewRecord;
+
+class ViewPayroll extends ViewRecord
+{
+    protected static string $resource = PayrollResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\EditAction::make(),
+            Actions\Action::make('download_pdf')
+                ->label('Download PDF')
+                ->icon('heroicon-o-document-arrow-down')
+                ->action(fn() => PayrollResource::downloadPayslip($this->record)),
+        ];
+    }
+}
