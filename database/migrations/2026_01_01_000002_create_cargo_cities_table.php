@@ -11,21 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cargo_cities', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('country_id')->nullable(); // 1=Saudi Arabia, 2=Bangladesh
-            $table->string('name');
-            $table->string('name_bn');
-            $table->string('name_ar');
-            $table->string('code', 10)->nullable();
-            $table->decimal('latitude', 10, 8)->nullable();
-            $table->decimal('longitude', 11, 8)->nullable();
-            $table->boolean('is_active')->default(true);
-            $table->boolean('is_saudi')->default(false);
-            $table->boolean('is_bangladesh')->default(false);
-            $table->integer('sort_order')->default(0);
-            $table->timestamps();
-        });
+        // Skip if table already exists (created by 000000 fix migration)
+        if (!Schema::hasTable('cargo_cities')) {
+            Schema::create('cargo_cities', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('country_id')->nullable()->comment('1=Saudi Arabia, 2=Bangladesh');
+                $table->string('name');
+                $table->string('name_bn');
+                $table->string('name_ar');
+                $table->string('code', 10)->nullable();
+                $table->decimal('latitude', 10, 8)->nullable();
+                $table->decimal('longitude', 11, 8)->nullable();
+                $table->boolean('is_active')->default(true);
+                $table->boolean('is_saudi')->default(false);
+                $table->boolean('is_bangladesh')->default(false);
+                $table->integer('sort_order')->default(0);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

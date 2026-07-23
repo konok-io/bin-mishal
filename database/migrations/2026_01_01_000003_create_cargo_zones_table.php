@@ -11,19 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cargo_zones', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('city_id')->constrained('cargo_cities')->cascadeOnDelete();
-            $table->string('name');
-            $table->string('name_bn');
-            $table->string('name_ar');
-            $table->decimal('delivery_charge', 10, 2)->default(0);
-            $table->integer('min_delivery_days')->default(1);
-            $table->integer('max_delivery_days')->default(3);
-            $table->boolean('is_active')->default(true);
-            $table->integer('sort_order')->default(0);
-            $table->timestamps();
-        });
+        // Skip if tables already exist (they will be created by 000000 fix migration)
+        if (!Schema::hasTable('cargo_zones')) {
+            Schema::create('cargo_zones', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('city_id');
+                $table->string('name');
+                $table->string('name_bn');
+                $table->string('name_ar');
+                $table->decimal('delivery_charge', 10, 2)->default(0);
+                $table->integer('min_delivery_days')->default(1);
+                $table->integer('max_delivery_days')->default(3);
+                $table->boolean('is_active')->default(true);
+                $table->integer('sort_order')->default(0);
+                $table->timestamps();
+            });
+        }
     }
 
     /**
