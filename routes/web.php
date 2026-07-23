@@ -10,14 +10,39 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\UmrahController;
 use App\Http\Controllers\Admin\VisaController;
 use App\Http\Controllers\CMS\PageController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Public\PublicController;
 use Illuminate\Support\Facades\Route;
 
 // Root redirect to default locale
 Route::get('/', fn() => redirect('/' . config('app.locale')))->name('root');
 
+// =============================================================================
+// AUTH ROUTES - Login pages for different user types
+// =============================================================================
+
+// ADMIN LOGIN - /admin/login
+Route::middleware('guest')->group(function () {
+    Route::get('/admin/login', fn() => view('auth.login', ['guard' => 'admin']))->name('admin.login');
+    Route::post('/admin/login', [AuthenticatedSessionController::class, 'store'])->name('admin.login.post');
+});
+
+// PORTAL LOGIN - /portal/login (For public customers)
+Route::prefix('portal')->name('portal.')->middleware('guest')->group(function () {
+    Route::get('/login', fn() => view('auth.login', ['guard' => 'customer']))->name('login');
+    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
+    Route::get('/register', fn() => view('auth.register', ['guard' => 'customer']))->name('register');
+    Route::post('/register', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'store'])->name('register.post');
+});
+
+// EMPLOYEE LOGIN - /employee/login (For company staff)
+Route::prefix('employee')->name('employee.')->middleware('guest')->group(function () {
+    Route::get('/login', fn() => view('auth.login', ['guard' => 'employee']))->name('login');
+    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
+});
+
 // ADMIN ROUTES - Outside locale prefix (English only)
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin,super_admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,super_admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/settings', fn() => view('admin.settings.index'))->name('settings.index');
 

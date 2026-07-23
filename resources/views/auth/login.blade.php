@@ -4,7 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Login - {{ config('app.name') }}</title>
+    <title>
+        @switch($guard ?? 'default')
+            @case('admin')
+                Admin Login
+                @break
+            @case('employee')
+                Employee Login
+                @break
+            @case('customer')
+                Customer Login
+                @break
+            @default
+                Login
+        @endswitch
+        - {{ config('app.name') }}
+    </title>
     
     <!-- Custom Fonts with Unicode Range -->
     <style>
@@ -48,16 +63,36 @@
             border-radius: 16px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
+        
+        /* Guard-specific colors */
+        .guard-admin .login-container { background: linear-gradient(135deg, #1B3A5C 0%, #006C35 100%); }
+        .guard-employee .login-container { background: linear-gradient(135deg, #C8A951 0%, #1B3A5C 100%); }
+        .guard-customer .login-container { background: linear-gradient(135deg, #006C35 0%, #16A34A 100%); }
     </style>
 </head>
-<body>
+<body class="@if(isset($guard))guard-{{ $guard }}@endif">
     <div class="login-container">
         <div class="login-card">
             <div class="card">
                 <div class="card-body p-5">
                     <div class="text-center mb-4">
-                        <h3><i class="bi bi-airplane"></i> {{ config('app.name') }}</h3>
-                        <p class="text-muted">Sign in to your account</p>
+                        @switch($guard ?? 'default')
+                            @case('admin')
+                                <h3><i class="bi bi-shield-lock"></i> Admin Panel</h3>
+                                <p class="text-muted">Sign in to admin dashboard</p>
+                                @break
+                            @case('employee')
+                                <h3><i class="bi bi-people"></i> Employee Portal</h3>
+                                <p class="text-muted">Sign in to employee portal</p>
+                                @break
+                            @case('customer')
+                                <h3><i class="bi bi-person-circle"></i> Customer Portal</h3>
+                                <p class="text-muted">Sign in to your account</p>
+                                @break
+                            @default
+                                <h3><i class="bi bi-airplane"></i> {{ config('app.name') }}</h3>
+                                <p class="text-muted">Sign in to your account</p>
+                        @endswitch
                     </div>
 
                     @if($errors->any())
@@ -74,7 +109,20 @@
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
 
-                    <form method="POST" action="{{ route('login') }}">
+                    {{-- Form action based on guard --}}
+                    @switch($guard ?? 'default')
+                        @case('admin')
+                            <form method="POST" action="{{ route('admin.login.post') }}">
+                            @break
+                        @case('employee')
+                            <form method="POST" action="{{ route('employee.login.post') }}">
+                            @break
+                        @case('customer')
+                            <form method="POST" action="{{ route('portal.login.post') }}">
+                            @break
+                        @default
+                            <form method="POST" action="{{ route('login') }}">
+                    @endswitch
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Email Address</label>
@@ -94,10 +142,20 @@
                         </button>
                     </form>
 
+                    {{-- Show register link only for customer portal --}}
+                    @if(($guard ?? '') === 'customer')
+                        <div class="text-center mt-3">
+                            <p class="text-muted">Don't have an account? 
+                                <a href="{{ route('portal.register') }}">Register</a>
+                            </p>
+                        </div>
+                    @endif
+                    
+                    {{-- Back to website link --}}
                     <div class="text-center mt-3">
-                        <p class="text-muted">Don't have an account? 
-                            <a href="{{ route('register') }}">Register</a>
-                        </p>
+                        <a href="{{ url('/bn') }}" class="text-muted">
+                            <i class="bi bi-house"></i> Back to Website
+                        </a>
                     </div>
                 </div>
             </div>
