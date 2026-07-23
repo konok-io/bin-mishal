@@ -132,7 +132,13 @@ class PublicController extends Controller
      */
     public function blog(): View
     {
-        return view('public.pages.blog');
+        $posts = \App\Models\Content\Post::where('status', 'published')
+            ->where('type', 'blog')
+            ->orderBy('published_at', 'desc')
+            ->limit(20)
+            ->get();
+            
+        return view('frontend.blog.index', compact('posts'));
     }
 
     /**
@@ -140,7 +146,19 @@ class PublicController extends Controller
      */
     public function blogDetail(string $slug): View
     {
-        return view('public.pages.blog-detail', compact('slug'));
+        $post = \App\Models\Content\Post::where('slug', $slug)->first();
+        
+        if (!$post) {
+            abort(404);
+        }
+        
+        $relatedPosts = \App\Models\Content\Post::where('status', 'published')
+            ->where('type', 'blog')
+            ->where('id', '!=', $post->id)
+            ->limit(3)
+            ->get();
+            
+        return view('frontend.blog.show', compact('post', 'relatedPosts'));
     }
 
     /**

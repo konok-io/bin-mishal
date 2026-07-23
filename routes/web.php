@@ -13,6 +13,7 @@ use App\Http\Controllers\CMS\PageController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Public\PublicController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 // Root redirect - check user's saved locale preference first
@@ -184,7 +185,6 @@ Route::prefix('{locale}')
         Route::get('/about', [PublicController::class, 'about'])->name('about');
         Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
         Route::get('/faqs', [PublicController::class, 'faqs'])->name('faqs');
-        Route::get('/careers', [PublicController::class, 'careers'])->name('careers');
         Route::get('/services', [PublicController::class, 'services'])->name('services');
         Route::get('/services/umrah', [PublicController::class, 'umrah'])->name('services.umrah');
         Route::get('/services/umrah/{slug}', [PublicController::class, 'umrahPackage'])->name('services.umrah.package');
@@ -224,3 +224,7 @@ require __DIR__ . '/admin_cargo.php';
 
 // Contact Form Submission (outside locale prefix)
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
+
+// Global Search
+Route::get('/search', [SearchController::class, 'results'])->name('search');
+Route::get('/api/search', [SearchController::class, 'search'])->name('api.search');

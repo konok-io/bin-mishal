@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('cargo')->name('admin.cargo.')->group(function () {
+Route::prefix('cargo')
+    ->name('admin.cargo.')
+    ->middleware(['auth:web', 'role:admin,super_admin'])
+    ->group(function () {
     
     // Dashboard
     Route::get('/', [CargoController::class, 'dashboard'])->name('dashboard');

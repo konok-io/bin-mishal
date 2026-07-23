@@ -320,3 +320,127 @@ if (!function_exists('current_url_path')) {
         return preg_replace('/^(bn|en|ar)\//', '', $path);
     }
 }
+
+/*
+|--------------------------------------------------------------------------
+| Contact Info Helper Functions
+|--------------------------------------------------------------------------
+*/
+
+if (!function_exists('settings')) {
+    /**
+     * Alias for setting() - Get a setting value from the database.
+     *
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    function settings(string $key, mixed $default = null): mixed
+    {
+        return setting($key, $default);
+    }
+}
+
+if (!function_exists('get_contact_info')) {
+    /**
+     * Get all contact information as array.
+     *
+     * @return array
+     */
+    function get_contact_info(): array
+    {
+        return [
+            'email' => setting('contact_email', 'info@binmishal.com'),
+            'phone' => setting('contact_phone', '+966 XX XXX XXXX'),
+            'whatsapp' => setting('contact_whatsapp', '+966 XX XXX XXXX'),
+            'address' => setting('contact_address', 'Saudi Arabia'),
+            'working_hours' => setting('working_hours', 'Sat-Thu: 9AM-6PM'),
+        ];
+    }
+}
+
+if (!function_exists('get_whatsapp_link')) {
+    /**
+     * Generate WhatsApp chat link.
+     *
+     * @param string|null $phone
+     * @param string $message
+     * @return string
+     */
+    function get_whatsapp_link(?string $phone = null, string $message = 'Hello!'): string
+    {
+        $phone = $phone ?? setting('contact_whatsapp', '+966 XX XXX XXXX');
+        $cleanPhone = preg_replace('/[^0-9+]/', '', $phone);
+        $encodedMessage = urlencode($message);
+        
+        return "https://wa.me/{$cleanPhone}?text={$encodedMessage}";
+    }
+}
+
+if (!function_exists('get_video_embed_url')) {
+    /**
+     * Convert YouTube/Vimeo URL to embed URL.
+     *
+     * @param string $url
+     * @return string|null
+     */
+    function get_video_embed_url(string $url): ?string
+    {
+        // YouTube
+        if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $url, $matches)) {
+            return 'https://www.youtube.com/embed/' . $matches[1];
+        }
+        
+        // Vimeo
+        if (preg_match('/vimeo\.com\/(\d+)/', $url, $matches)) {
+            return 'https://player.vimeo.com/video/' . $matches[1];
+        }
+        
+        return null;
+    }
+}
+
+if (!function_exists('get_file_icon')) {
+    /**
+     * Get icon class for file type.
+     *
+     * @param string $extension
+     * @return string
+     */
+    function get_file_icon(string $extension): string
+    {
+        $icons = [
+            'pdf' => 'bi-file-earmark-pdf text-danger',
+            'doc' => 'bi-file-earmark-word text-primary',
+            'docx' => 'bi-file-earmark-word text-primary',
+            'xls' => 'bi-file-earmark-excel text-success',
+            'xlsx' => 'bi-file-earmark-excel text-success',
+            'jpg' => 'bi-file-earmark-image text-info',
+            'jpeg' => 'bi-file-earmark-image text-info',
+            'png' => 'bi-file-earmark-image text-info',
+            'zip' => 'bi-file-earmark-zip text-warning',
+            'rar' => 'bi-file-earmark-zip text-warning',
+        ];
+        
+        return $icons[strtolower($extension)] ?? 'bi-file-earmark text-secondary';
+    }
+}
+
+if (!function_exists('format_file_size')) {
+    /**
+     * Format file size in human-readable format.
+     *
+     * @param int $bytes
+     * @return string
+     */
+    function format_file_size(int $bytes): string
+    {
+        $units = ['B', 'KB', 'MB', 'GB', 'TB'];
+        
+        for ($i = 0; $bytes > 1024 && $i < count($units) - 1; $i++) {
+            $bytes /= 1024;
+        }
+        
+        return round($bytes, 2) . ' ' . $units[$i];
+    }
+}
