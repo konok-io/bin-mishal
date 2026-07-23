@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\UserStatus;
+use App\Enums\UserType;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -13,9 +15,9 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    public function create(): View
+    public function create(Request $request): View
     {
-        return view('auth.register');
+        return view('auth.register', ['guard' => $request->guard ?? 'customer']);
     }
 
     public function store(Request $request): RedirectResponse
@@ -23,25 +25,31 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['nullable', 'string', 'max:20'],
+            'phone' => ['required', 'string', 'max:20'],
+            'iqama_no' => ['required', 'string', 'max:20'],
             'password' => ['required', 'confirmed', 'min:8'],
+            'terms' => ['required', 'accepted'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'iqama_no' => $request->iqama_no,
             'password' => Hash::make($request->password),
-            'user_type' => 'customer',
-            'status' => 'active',
+            'user_type' => UserType::CUSTOMER,
+            'status' => UserStatus::ACTIVE,
+            'preferred_language' => app()->getLocale(),
+            'role' => 'customer',
+            'is_active' => true,
         ]);
 
         $user->assignRole('customer');
 
         event(new Registered($user));
 
-        Auth::login($user);
+        Auth::guard('web')->login($user);
 
-        return redirect()->route('home');
+        return redirect()->to('/' . app()->getLocale());
     }
 }
