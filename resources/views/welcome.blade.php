@@ -107,13 +107,51 @@
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 1020;
+        }
+        .top-bar {
+            position: relative;
+            z-index: 1030;
         }
         .navbar-brand { font-weight: 700; color: var(--primary) !important; font-size: 24px; }
         .navbar-nav .nav-link { color: var(--text-dark); font-weight: 500; padding: 20px 15px; }
         .navbar-nav .nav-link:hover { color: var(--primary); }
         .btn-primary-custom { background: var(--primary); border: none; color: #fff; }
         .btn-primary-custom:hover { background: var(--primary-dark); }
+        
+        /* Login Dropdown in Top Bar */
+        .top-bar .dropdown-menu {
+            z-index: 1040;
+            position: absolute;
+        }
+        
+        /* Auth buttons */
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .auth-buttons .btn-register {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .auth-buttons .btn-register:hover {
+            background: var(--secondary);
+            color: #fff;
+        }
+        .auth-buttons .btn-login {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-weight: 600;
+        }
         
         /* Hero Section */
         .hero-section {
@@ -339,29 +377,40 @@
                     <span><i class="fab fa-whatsapp me-1"></i> +966 XX XXX XXXX</span>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <div class="lang-switcher d-flex align-items-center justify-content-md-end gap-2">
-                        <span>{{ __('common.select_language') }}:</span>
-                        <a href="{{ switch_locale_url('bn') }}" class="btn btn-sm {{ app()->getLocale() == 'bn' ? 'btn-primary' : 'btn-outline-light' }}">বাংলা</a>
-                        <a href="{{ switch_locale_url('en') }}" class="btn btn-sm {{ app()->getLocale() == 'en' ? 'btn-primary' : 'btn-outline-light' }}">English</a>
-                        <a href="{{ switch_locale_url('ar') }}" class="btn btn-sm {{ app()->getLocale() == 'ar' ? 'btn-primary' : 'btn-outline-light' }}">العربية</a>
-                        @if(Route::has('login'))
-                        <div class="dropdown">
-                            <button class="btn btn-sm btn-warning dropdown-toggle ms-2" type="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-person-circle"></i> {{ __('navigation.login') }}
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="{{ route('portal.login') }}">
-                                    <i class="bi bi-people"></i> {{ __('navigation.portal_login') }}
-                                </a></li>
-                                <li><a class="dropdown-item" href="{{ route('employee.login') }}">
-                                    <i class="bi bi-briefcase"></i> {{ __('navigation.employee_login') }}
-                                </a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.login') }}">
-                                    <i class="bi bi-shield-lock"></i> {{ __('navigation.admin_login') }}
-                                </a></li>
-                            </ul>
+                    <div class="d-flex align-items-center justify-content-md-end gap-3 flex-wrap">
+                        <!-- Language Switcher -->
+                        <div class="lang-switcher d-flex align-items-center gap-2">
+                            <span>{{ __('common.select_language') }}:</span>
+                            <a href="{{ switch_locale_url('bn') }}" class="btn btn-sm {{ app()->getLocale() == 'bn' ? 'btn-primary' : 'btn-outline-light' }}">বাংলা</a>
+                            <a href="{{ switch_locale_url('en') }}" class="btn btn-sm {{ app()->getLocale() == 'en' ? 'btn-primary' : 'btn-outline-light' }}">English</a>
+                            <a href="{{ switch_locale_url('ar') }}" class="btn btn-sm {{ app()->getLocale() == 'ar' ? 'btn-primary' : 'btn-outline-light' }}">العربية</a>
                         </div>
-                        @endif
+                        
+                        <!-- Auth Buttons -->
+                        <div class="auth-buttons">
+                            <a href="{{ route('portal.register') }}" class="btn-register">
+                                <i class="bi bi-person-plus"></i> {{ __('navigation.register') }}
+                            </a>
+                            
+                            @if(Route::has('login'))
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-login dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-person-circle"></i> {{ __('navigation.login') }}
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="{{ route('portal.login') }}">
+                                        <i class="bi bi-people"></i> {{ __('navigation.portal_login') }}
+                                    </a></li>
+                                    <li><a class="dropdown-item" href="{{ route('employee.login') }}">
+                                        <i class="bi bi-briefcase"></i> {{ __('navigation.employee_login') }}
+                                    </a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.login') }}">
+                                        <i class="bi bi-shield-lock"></i> {{ __('navigation.admin_login') }}
+                                    </a></li>
+                                </ul>
+                            </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
