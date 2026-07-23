@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             AirlineSeeder::class,
             AirportSeeder::class,
             InvestorServiceSeeder::class,
+            ContentSeeder::class,
         ]);
     }
 }
