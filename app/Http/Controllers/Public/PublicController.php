@@ -46,7 +46,13 @@ class PublicController extends Controller
      */
     public function careers(): View
     {
-        return view('public.pages.careers');
+        $jobs = \App\Models\Job::published()
+            ->orderBy('is_featured', 'desc')
+            ->orderBy('sort_order')
+            ->limit(10)
+            ->get();
+            
+        return view('frontend.careers.index', compact('jobs'));
     }
 
     /**

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\UmrahController;
 use App\Http\Controllers\Admin\VisaController;
 use App\Http\Controllers\CMS\PageController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Public\PublicController;
 use Illuminate\Support\Facades\Route;
 
@@ -213,5 +214,13 @@ Route::prefix('{locale}')
                 ->get();
             return view('frontend.testimonials.index', compact('testimonials'));
         })->name('testimonials');
+        
+        // Careers Routes
+        Route::get('/careers', [\App\Http\Controllers\Frontend\CareersController::class, 'index'])->name('careers');
+        Route::get('/careers/{job}', [\App\Http\Controllers\Frontend\CareersController::class, 'show'])->name('careers.show');
+        Route::post('/careers/{job}/apply', [\App\Http\Controllers\Frontend\CareersController::class, 'apply'])->name('careers.apply');
     });
 require __DIR__ . '/admin_cargo.php';
+
+// Contact Form Submission (outside locale prefix)
+Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');

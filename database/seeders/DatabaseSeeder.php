@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             InvestorServiceSeeder::class,
             ContentSeeder::class,
             NotificationSeeder::class,
+            HomepageSeeder::class,
         ]);
     }
 }
