@@ -343,6 +343,18 @@
                             <input type="tel" class="form-control" id="phone" name="phone" 
                                    value="{{ old('phone') }}" placeholder="Mobile Number" required>
                             <label for="phone"><i class="bi bi-phone me-2"></i>Mobile Number</label>
+                            <div class="form-hint">Include country code (e.g., +966 for Saudi Arabia)</div>
+                        </div>
+                        
+                        <div class="form-floating">
+                            <select class="form-select" id="account_type" name="account_type" required>
+                                <option value="">Select Account Type</option>
+                                <option value="customer" {{ old('account_type') == 'customer' ? 'selected' : '' }}>Customer</option>
+                                <option value="investor" {{ old('account_type') == 'investor' ? 'selected' : '' }}>Investor</option>
+                                <option value="corporate" {{ old('account_type') == 'corporate' ? 'selected' : '' }}>Corporate</option>
+                            </select>
+                            <label for="account_type"><i class="bi bi-building me-2"></i>Account Type</label>
+                            <div class="form-hint">Select how you plan to use our services</div>
                         </div>
                     </div>
                     
