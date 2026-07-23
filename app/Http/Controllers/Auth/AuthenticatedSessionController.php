@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +22,7 @@ class AuthenticatedSessionController extends Controller
             'password' => ['required'],
         ]);
 
-        // Find user without global scopes (to allow super_admin login)
-        $user = User::withoutGlobalScopes()->where('email', $credentials['email'])->first();
-
-        if ($user && Auth::loginUsingId($user->id, $request->boolean('remember'))) {
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
             $user = Auth::user();

@@ -29,17 +29,6 @@ class User extends Authenticatable implements HasMedia
 
     protected static $logName = 'user';
 
-    /**
-     * Boot the model and add global scopes
-     */
-    protected static function booted(): void
-    {
-        // Hide super admins from all queries by default
-        static::addGlobalScope('withoutSuperAdmin', function (Builder $builder) {
-            $builder->where('user_type', '!=', UserType::SUPER_ADMIN);
-        });
-    }
-
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
@@ -208,14 +197,6 @@ class User extends Authenticatable implements HasMedia
     public function scopeActive($query)
     {
         return $query->where('status', UserStatus::ACTIVE);
-    }
-
-    /**
-     * Hide super admins from query results (unless withSuperAdmin is used)
-     */
-    public function scopeWithoutSuperAdmin($query)
-    {
-        return $query->where('user_type', '!=', UserType::SUPER_ADMIN);
     }
 
     // Methods
