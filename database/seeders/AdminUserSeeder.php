@@ -43,7 +43,7 @@ class AdminUserSeeder extends Seeder
                 'name' => 'Accountant',
                 'phone' => '+966500000002',
                 'password' => Hash::make('password123'),
-                'user_type' => 'staff',
+                'user_type' => 'employee',
                 'status' => 'active',
             ]
         );
@@ -56,7 +56,7 @@ class AdminUserSeeder extends Seeder
                 'name' => 'Sales Agent',
                 'phone' => '+966500000003',
                 'password' => Hash::make('password123'),
-                'user_type' => 'staff',
+                'user_type' => 'employee',
                 'status' => 'active',
             ]
         );
