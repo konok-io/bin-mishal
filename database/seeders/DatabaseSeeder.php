@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             AirportSeeder::class,
             InvestorServiceSeeder::class,
             ContentSeeder::class,
+            NotificationSeeder::class,
         ]);
     }
 }

@@ -11,6 +11,9 @@ use App\Http\Controllers\Api\V1\MasterDataController;
 use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\UmrahController;
 use App\Http\Controllers\Api\V1\VisaController;
+use App\Http\Controllers\Api\FaqApiController;
+use App\Http\Controllers\Api\PostApiController;
+use App\Http\Controllers\Api\TestimonialApiController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
@@ -22,6 +25,31 @@ Route::prefix('v1')->group(function () {
             Route::post('register', [AuthController::class, 'register']);
             Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
             Route::post('reset-password', [AuthController::class, 'resetPassword']);
+        });
+        
+        // Public Blog API
+        Route::prefix('blog')->group(function () {
+            Route::get('/', [PostApiController::class, 'index']);
+            Route::get('/featured', [PostApiController::class, 'featured']);
+            Route::get('/categories', [PostApiController::class, 'categories']);
+            Route::get('/{slug}', [PostApiController::class, 'show']);
+            Route::post('/{post}/comments', [PostApiController::class, 'comment']);
+            Route::get('/{post}/related', [PostApiController::class, 'related']);
+        });
+        
+        // Public FAQ API
+        Route::prefix('faqs')->group(function () {
+            Route::get('/', [FaqApiController::class, 'index']);
+            Route::get('/by-category', [FaqApiController::class, 'byCategory']);
+            Route::get('/service/{serviceType}', [FaqApiController::class, 'forService']);
+        });
+        
+        // Public Testimonials API
+        Route::prefix('testimonials')->group(function () {
+            Route::get('/', [TestimonialApiController::class, 'index']);
+            Route::get('/featured', [TestimonialApiController::class, 'featured']);
+            Route::get('/rating', [TestimonialApiController::class, 'rating']);
+            Route::get('/service/{serviceType}', [TestimonialApiController::class, 'byService']);
         });
     });
 

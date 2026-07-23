@@ -205,5 +205,13 @@ Route::prefix('{locale}')
         Route::get('/refund-policy', [PublicController::class, 'refundPolicy'])->name('refund-policy');
         Route::get('/cargo', [PublicController::class, 'cargo'])->name('cargo');
         Route::get('/cargo/track/{trackingNumber}', [PublicController::class, 'trackCargo'])->name('cargo.track');
+        
+        // Blog Routes
+        Route::get('/testimonials', function() {
+            $testimonials = \App\Models\Testimonial::where('is_active', true)
+                ->orderBy('sort_order')
+                ->get();
+            return view('frontend.testimonials.index', compact('testimonials'));
+        })->name('testimonials');
     });
 require __DIR__ . '/admin_cargo.php';
