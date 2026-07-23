@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: binmishal-app
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx.conf:/etc/nginx/sites-available/default
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - binmishal
+
+  mysql:
+    image: mysql:8.0
+    container_name: binmishal-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: binmishal
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - binmishal
+
+  redis:
+    image: redis:7-alpine
+    container_name: binmishal-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - binmishal
+
+  queue:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: binmishal-queue
+    restart: unless-stopped
+    command: php artisan queue:work --sleep=3 --tries=3 --max-time=3600
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - binmishal
+
+  horizon:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: binmishal-horizon
+    restart: unless-stopped
+    command: php artisan horizon
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - binmishal
+
+volumes:
+  mysql_data:
+  redis_data:
+
+networks:
+  binmishal:
+    driver: bridge
