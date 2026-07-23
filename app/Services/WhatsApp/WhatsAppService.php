@@ -12,14 +12,49 @@ class WhatsAppService
     private string $phoneId;
     private string $accessToken;
     private string $apiUrl;
+    private string $appSecret;
     private bool $enabled;
 
     public function __construct()
     {
         $this->enabled = config('binmishal.whatsapp.enabled', false);
-        $this->phoneId = config('binmishal.whatsapp.phone_number');
-        $this->accessToken = config('binmishal.whatsapp.api_token');
+        $this->phoneId = config('binmishal.whatsapp.phone_number_id');
+        $this->accessToken = config('binmishal.whatsapp.access_token');
+        $this->appSecret = config('binmishal.whatsapp.app_secret', '');
         $this->apiUrl = 'https://graph.facebook.com/v18.0';
+    }
+
+    /**
+     * Verify webhook signature from Meta
+     */
+    public function verifyWebhook(string $mode, string $token, string $challenge): array
+    {
+        if ($mode === 'subscribe' && $token === config('binmishal.whatsapp.verify_token')) {
+            return ['success' => true, 'challenge' => $challenge];
+        }
+
+        return ['success' => false, 'error' => 'Invalid verification'];
+    }
+
+    /**
+     * Verify incoming webhook signature
+     * Meta sends X-Hub-Signature-256 header with HMAC SHA256
+     */
+    public function verifySignature(string $payload, ?string $signature): bool
+    {
+        if (!$this->appSecret || !$signature) {
+            Log::warning('WhatsApp: Missing app secret or signature');
+            return false;
+        }
+
+        $expectedSignature = 'sha256=' . hash_hmac('sha256', $payload, $this->appSecret);
+
+        if (!hash_equals($expectedSignature, $signature)) {
+            Log::warning('WhatsApp: Invalid signature');
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -33,6 +68,7 @@ class WhatsAppService
 
         try {
             $response = Http::withToken($this->accessToken)
+                ->timeout(30)
                 ->post("{$this->apiUrl}/{$this->phoneId}/messages", [
                     'messaging_product' => 'whatsapp',
                     'to' => $this->formatPhone($to),
@@ -83,6 +119,7 @@ class WhatsAppService
             }
 
             $response = Http::withToken($this->accessToken)
+                ->timeout(30)
                 ->post("{$this->apiUrl}/{$this->phoneId}/messages", $body);
 
             if ($response->successful()) {
@@ -124,6 +161,7 @@ class WhatsAppService
 
         try {
             $response = Http::withToken($this->accessToken)
+                ->timeout(10)
                 ->post("{$this->apiUrl}/{$this->phoneId}/messages", [
                     'messaging_product' => 'whatsapp',
                     'status' => 'read',
@@ -137,10 +175,16 @@ class WhatsAppService
     }
 
     /**
-     * Handle incoming webhook
+     * Handle incoming webhook with signature verification
      */
-    public function handleWebhook(array $payload): array
+    public function handleWebhook(array $payload, ?string $signature = null): array
     {
+        // Verify signature if provided
+        if ($signature !== null && !$this->verifySignature(json_encode($payload), $signature)) {
+            Log::warning('WhatsApp: Rejected unsigned webhook');
+            return ['type' => 'invalid', 'error' => 'Invalid signature'];
+        }
+
         if (isset($payload['entry'][0]['changes'][0]['value']['messages'][0])) {
             $message = $payload['entry'][0]['changes'][0]['value']['messages'][0];
 
@@ -157,7 +201,7 @@ class WhatsAppService
     }
 
     /**
-     * Format phone number
+     * Format phone number to WhatsApp format
      */
     private function formatPhone(string $phone): string
     {

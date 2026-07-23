@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Crypt;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -56,6 +57,8 @@ class User extends Authenticatable implements HasMedia
         'password',
         'remember_token',
         'otp_code',
+        'passport_no',
+        'iqama_no',
     ];
 
     protected function casts(): array
@@ -71,6 +74,48 @@ class User extends Authenticatable implements HasMedia
             'preferred_language' => Language::class,
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Encrypt PII fields on save
+     */
+    public function setPassportNoAttribute(?string $value): void
+    {
+        $this->attributes['passport_no'] = $value ? Crypt::encryptString($value) : null;
+    }
+
+    /**
+     * Decrypt PII fields on access
+     */
+    public function getPassportNoAttribute(?string $value): ?string
+    {
+        if (!$value) {
+            return null;
+        }
+
+        try {
+            return Crypt::decryptString($value);
+        } catch (\Exception $e) {
+            return $value; // Return as-is if not encrypted (legacy data)
+        }
+    }
+
+    public function setIqamaNoAttribute(?string $value): void
+    {
+        $this->attributes['iqama_no'] = $value ? Crypt::encryptString($value) : null;
+    }
+
+    public function getIqamaNoAttribute(?string $value): ?string
+    {
+        if (!$value) {
+            return null;
+        }
+
+        try {
+            return Crypt::decryptString($value);
+        } catch (\Exception $e) {
+            return $value;
+        }
     }
 
     // Relationships

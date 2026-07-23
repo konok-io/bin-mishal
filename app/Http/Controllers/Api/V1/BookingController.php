@@ -10,12 +10,18 @@ use App\Models\Passenger;
 use App\Models\FlightRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
 
 class BookingController extends ApiController
 {
     public function index(Request $request): JsonResponse
     {
+        // Authorization: Only admins and agents can list all bookings
+        if (!auth()->user()->can('viewAny', Booking::class)) {
+            return $this->error('Unauthorized', 403);
+        }
+
         $query = Booking::with(['customer.user', 'issuedBy', 'passengers']);
 
         if ($request->has('status')) {
@@ -45,7 +51,12 @@ class BookingController extends ApiController
 
     public function store(Request $request): JsonResponse
     {
-        $request->validate([
+        // Authorization check
+        if (!auth()->user()->can('create', Booking::class)) {
+            return $this->error('Unauthorized', 403);
+        }
+
+        $validated = $request->validate([
             'customer_id' => 'required|exists:customers,id',
             'booking_type' => 'required|in:ticket,umrah,visa,package',
             'passenger_count' => 'required|integer|min:1|max:10',
@@ -62,22 +73,25 @@ class BookingController extends ApiController
             'passengers.*.nationality' => 'nullable|string|max:100',
         ]);
 
+        // Server-side total calculation (never trust client amount)
+        $validated['total_amount'] = $this->calculateServerSideTotal($validated);
+
         DB::beginTransaction();
 
         try {
             $booking = Booking::create([
                 'booking_no' => Booking::generateNo(),
-                'customer_id' => $request->customer_id,
-                'booking_type' => $request->booking_type,
-                'passenger_count' => $request->passenger_count,
-                'total_amount' => $request->total_amount,
+                'customer_id' => $validated['customer_id'],
+                'booking_type' => $validated['booking_type'],
+                'passenger_count' => $validated['passenger_count'],
+                'total_amount' => $validated['total_amount'],
                 'paid_amount' => 0,
-                'due_amount' => $request->total_amount,
+                'due_amount' => $validated['total_amount'],
                 'booking_status' => 'pending',
                 'payment_status' => 'unpaid',
             ]);
 
-            foreach ($request->passengers as $passengerData) {
+            foreach ($validated['passengers'] as $passengerData) {
                 $booking->passengers()->create($passengerData);
             }
 
@@ -94,9 +108,28 @@ class BookingController extends ApiController
         }
     }
 
+    private function calculateServerSideTotal(array $data): float
+    {
+        // Calculate total based on business rules
+        $basePrice = match ($data['booking_type']) {
+            'ticket' => 500,
+            'umrah' => 1500,
+            'visa' => 300,
+            'package' => 2000,
+            default => 0,
+        };
+
+        return $basePrice * $data['passenger_count'];
+    }
+
     public function show(int $id): JsonResponse
     {
         $booking = Booking::with(['customer.user', 'issuedBy', 'passengers', 'flightQuote.airline'])->findOrFail($id);
+
+        // Authorization: Check if user can view this booking
+        if (!auth()->user()->can('view', $booking)) {
+            return $this->error('Unauthorized', 403);
+        }
 
         return $this->success($booking);
     }
@@ -104,6 +137,11 @@ class BookingController extends ApiController
     public function update(Request $request, int $id): JsonResponse
     {
         $booking = Booking::findOrFail($id);
+
+        // Authorization
+        if (!auth()->user()->can('update', $booking)) {
+            return $this->error('Unauthorized', 403);
+        }
 
         $request->validate([
             'booking_status' => 'nullable|in:pending,confirmed,issued,cancelled,refunded',
@@ -120,8 +158,17 @@ class BookingController extends ApiController
     {
         $booking = Booking::findOrFail($id);
 
+        // Authorization
+        if (!auth()->user()->can('issue', $booking)) {
+            return $this->error('Unauthorized', 403);
+        }
+
         if ($booking->booking_status === 'issued') {
             return $this->error('Booking is already issued');
+        }
+
+        if (!in_array($booking->payment_status, ['paid', 'partial'])) {
+            return $this->error('Booking must have payment before issuing');
         }
 
         $booking->issue($request->user());
@@ -137,8 +184,17 @@ class BookingController extends ApiController
 
         $booking = Booking::findOrFail($id);
 
+        // Authorization
+        if (!auth()->user()->can('cancel', $booking)) {
+            return $this->error('Unauthorized', 403);
+        }
+
         if ($booking->booking_status === 'cancelled') {
             return $this->error('Booking is already cancelled');
+        }
+
+        if ($booking->booking_status === 'issued') {
+            return $this->error('Cannot cancel an issued booking. Please process a refund instead.');
         }
 
         $booking->cancel($request->reason);
@@ -154,6 +210,11 @@ class BookingController extends ApiController
 
         $booking = Booking::findOrFail($id);
 
+        // Authorization
+        if (!auth()->user()->can('addPayment', $booking)) {
+            return $this->error('Unauthorized', 403);
+        }
+
         $booking->addPayment((float) $request->amount);
 
         return $this->success($booking, 'Payment added successfully');
@@ -162,14 +223,24 @@ class BookingController extends ApiController
     public function passengers(int $id): JsonResponse
     {
         $booking = Booking::findOrFail($id);
-        $passengers = $booking->passengers;
 
-        return $this->success($passengers);
+        // Authorization
+        if (!auth()->user()->can('view', $booking)) {
+            return $this->error('Unauthorized', 403);
+        }
+
+        return $this->success($booking->passengers);
     }
 
     public function updatePassenger(Request $request, int $bookingId, int $passengerId): JsonResponse
     {
         $passenger = Passenger::where('booking_id', $bookingId)->findOrFail($passengerId);
+        $booking = Booking::findOrFail($bookingId);
+
+        // Authorization
+        if (!auth()->user()->can('update', $booking)) {
+            return $this->error('Unauthorized', 403);
+        }
 
         $request->validate([
             'first_name' => 'sometimes|string|max:100',
@@ -196,6 +267,11 @@ class BookingController extends ApiController
 
     public function stats(): JsonResponse
     {
+        // Authorization check
+        if (!auth()->user()->can('viewAny', Booking::class)) {
+            return $this->error('Unauthorized', 403);
+        }
+
         $stats = [
             'total' => Booking::count(),
             'pending' => Booking::where('booking_status', 'pending')->count(),

@@ -15,24 +15,30 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
 
-    // Public Routes
-    Route::prefix('auth')->group(function () {
-        Route::post('login', [AuthController::class, 'login']);
-        Route::post('register', [AuthController::class, 'register']);
+    // Public Routes - with rate limiting
+    Route::middleware('throttle:10,1')->group(function () {
+        Route::prefix('auth')->group(function () {
+            Route::post('login', [AuthController::class, 'login']);
+            Route::post('register', [AuthController::class, 'register']);
+            Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
+            Route::post('reset-password', [AuthController::class, 'resetPassword']);
+        });
     });
 
-    // Public Master Data
-    Route::get('airlines', [MasterDataController::class, 'airlines']);
-    Route::get('airports', [MasterDataController::class, 'airports']);
-    Route::get('countries', [MasterDataController::class, 'countries']);
-    Route::get('cities', [MasterDataController::class, 'cities']);
-    Route::get('visa-types', [MasterDataController::class, 'visaTypes']);
-    Route::get('umrah-packages', [UmrahController::class, 'index']);
-    Route::get('umrah-packages/featured', [UmrahController::class, 'featured']);
-    Route::get('umrah-packages/{id}', [UmrahController::class, 'show']);
+    // Public Master Data - cached
+    Route::middleware('cache.headers:public;max_age=3600')->group(function () {
+        Route::get('airlines', [MasterDataController::class, 'airlines']);
+        Route::get('airports', [MasterDataController::class, 'airports']);
+        Route::get('countries', [MasterDataController::class, 'countries']);
+        Route::get('cities', [MasterDataController::class, 'cities']);
+        Route::get('visa-types', [MasterDataController::class, 'visaTypes']);
+        Route::get('umrah-packages', [MasterDataController::class, 'umrahPackages']);
+        Route::get('umrah-packages/featured', [MasterDataController::class, 'featuredPackages']);
+        Route::get('umrah-packages/{id}', [UmrahController::class, 'show']);
+    });
 
-    // Protected Routes
-    Route::middleware('auth:sanctum')->group(function () {
+    // Protected Routes - rate limited
+    Route::middleware(['auth:sanctum', 'throttle:120,1'])->group(function () {
 
         // Auth
         Route::prefix('auth')->group(function () {

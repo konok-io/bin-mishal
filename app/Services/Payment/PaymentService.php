@@ -7,6 +7,7 @@ namespace App\Services\Payment;
 use App\Models\Payment;
 use App\Models\Invoice;
 use App\Models\Booking;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -24,18 +25,35 @@ class PaymentService
     }
 
     /**
-     * Process Moyasar payment
+     * Process Moyasar payment with idempotency
      */
     public function processMoyasarPayment(float $amount, string $currency, string $description, array $metadata = []): array
     {
+        $idempotencyKey = $metadata['idempotency_key'] ?? null;
+
+        // Check for duplicate payment
+        if ($idempotencyKey) {
+            $existing = Payment::where('idempotency_key', $idempotencyKey)->first();
+            if ($existing) {
+                Log::info("Duplicate payment attempt blocked", ['idempotency_key' => $idempotencyKey]);
+                return [
+                    'success' => true,
+                    'payment_id' => $existing->id,
+                    'status' => $existing->status,
+                    'duplicate' => true,
+                ];
+            }
+        }
+
         try {
             $response = Http::withBasicAuth($this->moyasarApiKey, '')
+                ->timeout(30)
                 ->post('https://api.moyasar.com/v1/payments', [
-                    'amount' => (int) ($amount * 100), // Convert to halalah
+                    'amount' => (int) ($amount * 100),
                     'currency' => $currency,
                     'description' => $description,
                     'callback_url' => route('payment.callback'),
-                    'metadata' => $metadata,
+                    'metadata' => array_merge($metadata, ['idempotency_key' => $idempotencyKey]),
                 ]);
 
             if ($response->successful()) {
@@ -61,12 +79,121 @@ class PaymentService
     }
 
     /**
+     * Handle payment webhook with idempotency
+     */
+    public function handleWebhook(string $gateway, array $payload): array
+    {
+        $transactionId = $payload['transaction_id'] ?? $payload['id'] ?? null;
+
+        if (!$transactionId) {
+            return ['success' => false, 'error' => 'Missing transaction ID'];
+        }
+
+        return DB::transaction(function () use ($gateway, $payload, $transactionId) {
+            // Lock the payment row to prevent race conditions
+            $payment = Payment::where('transaction_id', $transactionId)
+                ->lockForUpdate()
+                ->first();
+
+            if (!$payment) {
+                Log::warning("Webhook: Payment not found", ['transaction_id' => $transactionId]);
+                return ['success' => false, 'error' => 'Payment not found'];
+            }
+
+            // Idempotency check - don't process if already completed
+            if ($payment->status === 'completed') {
+                Log::info("Webhook: Payment already processed", ['transaction_id' => $transactionId]);
+                return ['success' => true, 'status' => 'already_completed'];
+            }
+
+            $newStatus = $this->mapGatewayStatus($gateway, $payload);
+
+            if ($newStatus === 'completed') {
+                $this->completePaymentInternal($payment, $payload);
+            } elseif ($newStatus === 'failed') {
+                $payment->update(['status' => 'failed']);
+            }
+
+            return ['success' => true, 'status' => $newStatus];
+        });
+    }
+
+    private function mapGatewayStatus(string $gateway, array $payload): string
+    {
+        return match ($gateway) {
+            'moyasar' => $this->mapMoyasarStatus($payload['status'] ?? ''),
+            'hyperpay' => $this->mapHyperpayStatus($payload['result']['code'] ?? ''),
+            default => 'pending',
+        };
+    }
+
+    private function mapMoyasarStatus(string $status): string
+    {
+        return match ($status) {
+            'paid' => 'completed',
+            'failed' => 'failed',
+            default => 'pending',
+        };
+    }
+
+    private function mapHyperpayStatus(string $code): string
+    {
+        return match (true) {
+            str_starts_with($code, '000') => 'completed',
+            str_starts_with($code, '800') => 'pending',
+            default => 'failed',
+        };
+    }
+
+    private function completePaymentInternal(Payment $payment, array $payload): void
+    {
+        $gatewayAmount = ($payload['amount'] ?? $payload['amount_paid'] ?? $payment->amount) / 100;
+
+        // Verify amount matches (server-side validation)
+        if (abs($gatewayAmount - (float) $payment->amount) > 0.01) {
+            Log::error("Payment amount mismatch", [
+                'payment_id' => $payment->id,
+                'expected' => $payment->amount,
+                'received' => $gatewayAmount,
+            ]);
+            throw new \Exception('Payment amount mismatch');
+        }
+
+        $payment->update([
+            'status' => 'completed',
+            'paid_at' => now(),
+        ]);
+
+        // Update related invoice
+        if ($payment->invoice) {
+            $invoice = $payment->invoice;
+            $invoice->update([
+                'paid_amount' => $invoice->paid_amount + $payment->amount,
+                'balance' => max(0, $invoice->total - $invoice->paid_amount - $payment->amount),
+            ]);
+
+            if ($invoice->balance <= 0) {
+                $invoice->update(['status' => 'paid']);
+            }
+        }
+
+        // Update related booking
+        if ($payment->booking) {
+            $booking = $payment->booking;
+            $booking->addPayment($payment->amount);
+        }
+
+        Log::info("Payment completed", ['payment_id' => $payment->id]);
+    }
+
+    /**
      * Verify Moyasar payment
      */
     public function verifyMoyasarPayment(string $paymentId): array
     {
         try {
             $response = Http::withBasicAuth($this->moyasarApiKey, '')
+                ->timeout(30)
                 ->get("https://api.moyasar.com/v1/payments/{$paymentId}");
 
             if ($response->successful()) {
@@ -131,7 +258,7 @@ class PaymentService
     }
 
     /**
-     * Record manual payment
+     * Record manual payment with idempotency
      */
     public function recordManualPayment(
         int $customerId,
@@ -140,9 +267,18 @@ class PaymentService
         ?int $invoiceId = null,
         ?int $bookingId = null,
         ?string $transactionId = null,
-        ?string $notes = null
+        ?string $notes = null,
+        ?string $idempotencyKey = null
     ): Payment {
-        $payment = Payment::create([
+        // Check for duplicate
+        if ($idempotencyKey) {
+            $existing = Payment::where('idempotency_key', $idempotencyKey)->first();
+            if ($existing) {
+                return $existing;
+            }
+        }
+
+        return Payment::create([
             'payment_no' => Payment::generateNo(),
             'customer_id' => $customerId,
             'invoice_id' => $invoiceId,
@@ -151,12 +287,12 @@ class PaymentService
             'currency' => 'SAR',
             'method' => $method,
             'transaction_id' => $transactionId,
-            'status' => 'pending',
+            'idempotency_key' => $idempotencyKey,
+            'status' => 'completed',
+            'paid_at' => now(),
             'notes' => $notes,
             'created_by' => auth()->id(),
         ]);
-
-        return $payment;
     }
 
     /**
@@ -164,30 +300,56 @@ class PaymentService
      */
     public function processRefund(Payment $payment, float $amount, ?string $reason = null): bool
     {
-        if ($payment->status !== 'completed') {
-            return false;
-        }
+        return DB::transaction(function () use ($payment, $amount, $reason) {
+            // Lock row
+            $payment = Payment::lockForUpdate()->find($payment->id);
 
-        if ($amount > $payment->amount) {
-            return false;
-        }
+            if ($payment->status !== 'completed') {
+                return false;
+            }
 
-        // Process refund based on original payment method
-        // For now, just mark as refunded
-        $payment->update([
-            'status' => 'refunded',
-            'notes' => $payment->notes . "\nRefund: {$reason}",
-        ]);
+            if ($amount > $payment->amount) {
+                return false;
+            }
 
-        // Update related invoice/booking
-        if ($payment->invoice) {
-            $payment->invoice->update([
-                'paid_amount' => $payment->invoice->paid_amount - $amount,
-                'balance' => $payment->invoice->balance + $amount,
+            // Create refund record
+            $refund = Payment::create([
+                'payment_no' => Payment::generateNo(),
+                'customer_id' => $payment->customer_id,
+                'invoice_id' => $payment->invoice_id,
+                'booking_id' => $payment->booking_id,
+                'amount' => $amount,
+                'currency' => $payment->currency,
+                'method' => 'refund_' . $payment->method,
+                'status' => 'completed',
+                'paid_at' => now(),
+                'notes' => "Refund of payment #{$payment->payment_no}. Reason: {$reason}",
+                'created_by' => auth()->id(),
             ]);
-        }
 
-        return true;
+            // Mark original as refunded
+            $payment->update(['status' => 'refunded']);
+
+            // Update related invoice
+            if ($payment->invoice) {
+                $payment->invoice->update([
+                    'paid_amount' => max(0, $payment->invoice->paid_amount - $amount),
+                    'balance' => $payment->invoice->balance + $amount,
+                ]);
+            }
+
+            // Update related booking
+            if ($payment->booking) {
+                $booking = $payment->booking;
+                $booking->update([
+                    'paid_amount' => max(0, $booking->paid_amount - $amount),
+                    'due_amount' => $booking->due_amount + $amount,
+                ]);
+                $booking->updatePaymentStatus();
+            }
+
+            return true;
+        });
     }
 
     /**
@@ -205,5 +367,23 @@ class PaymentService
             'status' => $payment->status,
             'transaction_id' => $payment->transaction_id,
         ];
+    }
+
+    /**
+     * Complete a payment (for admin interface)
+     */
+    public function completePayment(Payment $payment): bool
+    {
+        return DB::transaction(function () use ($payment) {
+            $payment = Payment::lockForUpdate()->find($payment->id);
+
+            if ($payment->status !== 'pending') {
+                return false;
+            }
+
+            $this->completePaymentInternal($payment, ['amount' => $payment->amount * 100]);
+
+            return true;
+        });
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Crypt;
 
 class Customer extends Model
 {
@@ -31,6 +32,10 @@ class Customer extends Model
         'tags',
     ];
 
+    protected $hidden = [
+        'sponsor_id_no',
+    ];
+
     protected function casts(): array
     {
         return [
@@ -39,6 +44,30 @@ class Customer extends Model
             'lifetime_value' => 'decimal:2',
             'total_bookings' => 'integer',
         ];
+    }
+
+    /**
+     * Encrypt sponsor ID on save
+     */
+    public function setSponsorIdNoAttribute(?string $value): void
+    {
+        $this->attributes['sponsor_id_no'] = $value ? Crypt::encryptString($value) : null;
+    }
+
+    /**
+     * Decrypt sponsor ID on access
+     */
+    public function getSponsorIdNoAttribute(?string $value): ?string
+    {
+        if (!$value) {
+            return null;
+        }
+
+        try {
+            return Crypt::decryptString($value);
+        } catch (\Exception $e) {
+            return $value; // Legacy data
+        }
     }
 
     // Relationships
