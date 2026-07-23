@@ -28,8 +28,10 @@ class CreateFreshAdminUsers extends Command
         }
         $this->info('✓ Roles created');
 
-        // Delete all users
+        // Delete all users (disable FK checks temporarily)
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0');
         User::truncate();
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1');
         $this->info('✓ All users deleted');
 
         // Create Super Admin
