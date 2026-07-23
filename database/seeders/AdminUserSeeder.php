@@ -72,14 +72,9 @@ class AdminUserSeeder extends Seeder
 
     protected function createRoles(): void
     {
-        $roles = [
-            'super_admin' => 'Super Admin',
-            'admin' => 'Admin',
-            'employee' => 'Employee',
-            'customer' => 'Customer',
-        ];
+        $roles = ['super_admin', 'admin', 'employee', 'customer'];
 
-        foreach ($roles as $name => 'label') {
+        foreach ($roles as $name) {
             Role::firstOrCreate(
                 ['name' => $name, 'guard_name' => 'web'],
                 ['name' => $name]
