@@ -19,7 +19,7 @@ class RolePermissionSeeder extends Seeder
             'customer' => 'Customer portal access',
         ];
 
-        foreach ($roles as $name => 'description') {
+        foreach ($roles as $name => $description) {
             Role::firstOrCreate(['name' => $name]);
         }
 
