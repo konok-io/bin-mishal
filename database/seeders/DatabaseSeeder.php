@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             VisaTypeSeeder::class,
             AirlineSeeder::class,
             AirportSeeder::class,
+            InvestorServiceSeeder::class,
         ]);
     }
 }
