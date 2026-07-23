@@ -12,6 +12,7 @@ return new class extends Migration
     {
         Schema::create('activity_log', function (Blueprint $table) {
             $table->id();
+            $table->string('log_name')->default('default');
             $table->foreignId('causer_id')->nullable()->constrained('users')->onDelete('set null');
             $table->string('causer_type')->nullable();
             $table->string('subject_type')->nullable();
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->index('causer_id');
             $table->index(['subject_type', 'subject_id']);
             $table->index('event');
+            $table->index('log_name');
         });
     }
 
