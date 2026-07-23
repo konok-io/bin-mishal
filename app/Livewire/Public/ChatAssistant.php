@@ -66,6 +66,10 @@ class ChatAssistant extends Component
     private function getKeywordResponse(string $message): string
     {
         $message = strtolower($message);
+        
+        // Get dynamic contact info from settings
+        $phone = setting('contact_phone', '+966 XX XXX XXXX');
+        $whatsapp = setting('contact_whatsapp', '+966 XX XXX XXXX');
 
         // Umrah related
         if (str_contains($message, 'umrah')) {
@@ -84,12 +88,12 @@ class ChatAssistant extends Component
 
         // Pricing related
         if (str_contains($message, 'price') || str_contains($message, 'cost') || str_contains($message, 'fee')) {
-            return "Our fees vary by service. For current pricing, please visit our services page or contact us directly via WhatsApp at +966 XX XXX XXXX for accurate quotes.";
+            return "Our fees vary by service. For current pricing, please visit our services page or contact us directly via WhatsApp at {$whatsapp} for accurate quotes.";
         }
 
         // Contact related
         if (str_contains($message, 'contact') || str_contains($message, 'phone') || str_contains($message, 'whatsapp')) {
-            return "You can reach us via:\n📞 Phone: +966 XX XXX XXXX\n📱 WhatsApp: +966 XX XXX XXXX\n📧 Email: info@binmishal.com\n\nWe'd be happy to assist you!";
+            return "You can reach us via:\n📞 Phone: {$phone}\n📱 WhatsApp: {$whatsapp}\n📧 Email: info@binmishal.com\n\nWe'd be happy to assist you!";
         }
 
         // Greetings
@@ -98,7 +102,7 @@ class ChatAssistant extends Component
         }
 
         // Default
-        return "Thank you for your question! For detailed assistance, please contact our team at +966 XX XXX XXXX or WhatsApp us. You can also:\n\n• Visit our Umrah packages: /umrah-packages\n• Request a flight quote: /flights\n• Check visa eligibility: /visa-checker\n• Book an appointment: /appointments";
+        return "Thank you for your question! For detailed assistance, please contact our team at {$phone} or WhatsApp us at {$whatsapp}. You can also:\n\n• Visit our Umrah packages: /umrah-packages\n• Request a flight quote: /flights\n• Check visa eligibility: /visa-checker\n• Book an appointment: /appointments";
     }
 
     public function createLead()
