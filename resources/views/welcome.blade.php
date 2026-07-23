@@ -3,13 +3,33 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ __('app.app_name') }} - {{ __('home.seo_title') }}</title>
-    <meta name="description" content="{{ __('home.seo_description') }}">
+    
+    {{-- Dynamic SEO from CMS --}}
+    @php
+        $siteName = \App\Models\CMS\Setting::getValue('site_name', __('app.app_name'));
+        $metaTitle = \App\Models\CMS\Setting::getValue('meta_title', __('home.seo_title'));
+        $metaDescription = \App\Models\CMS\Setting::getValue('meta_description', __('home.seo_description'));
+        $favicon = \App\Models\CMS\Setting::getValue('favicon');
+    @endphp
+    
+    <title>{{ $siteName }} - {{ $metaTitle }}</title>
+    <meta name="description" content="{{ $metaDescription }}">
+    
+    @if($favicon)
+        <link rel="icon" type="image/x-icon" href="{{ Storage::url($favicon) }}">
+    @endif
     
     <!-- Google Fonts Fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Dynamic Theme Colors from CMS -->
+    @php
+        $primaryColor = \App\Models\CMS\Setting::getValue('primary_color', '#006C35');
+        $secondaryColor = \App\Models\CMS\Setting::getValue('secondary_color', '#C8A951');
+        $accentColor = \App\Models\CMS\Setting::getValue('accent_color', '#1B3A5C');
+    @endphp
     
     <!-- Bootstrap 5 RTL -->
     @if(is_rtl())
@@ -52,10 +72,10 @@
         }
         
         :root {
-            --primary: #006C35;
-            --primary-dark: #004d26;
-            --secondary: #C8A951;
-            --accent: #1B3A5C;
+            --primary: {{ $primaryColor }};
+            --primary-dark: {{ $primaryColor }};
+            --secondary: {{ $secondaryColor }};
+            --accent: {{ $accentColor }};
             --success: #16A34A;
             --warning: #F59E0B;
             --danger: #DC2626;

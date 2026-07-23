@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             BranchSeeder::class,
             SettingSeeder::class,
+            CmsSeeder::class,
             VisaTypeSeeder::class,
             AirlineSeeder::class,
             AirportSeeder::class,
