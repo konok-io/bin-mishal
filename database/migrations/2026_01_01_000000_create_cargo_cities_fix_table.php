@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         // Drop tables in CORRECT order (child tables first, then parent tables)
-        Schema::dropIfExists('cargo_tracking');    // First - has FK to cargos
-        Schema::dropIfExists('cargos');            // Second - has FK to cargo_zones
-        Schema::dropIfExists('cargo_zones');       // Third - has FK to cargo_cities
-        Schema::dropIfExists('cargo_cities');
-        Schema::dropIfExists('cargo_pricing');
+        Schema::dropIfExists('cargo_tracking');    // 1 - has FK to cargos
+        Schema::dropIfExists('cargos');            // 2 - has FK to cargo_zones
+        Schema::dropIfExists('cargo_pricing');     // 3 - has FK to cargo_cities (origin & destination)
+        Schema::dropIfExists('cargo_zones');      // 4 - has FK to cargo_cities
+        Schema::dropIfExists('cargo_cities');      // 5 - parent table
         Schema::dropIfExists('cargo_packages');
         Schema::dropIfExists('cargo_types');
         Schema::dropIfExists('cargo_coupons');
