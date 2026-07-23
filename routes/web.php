@@ -14,8 +14,15 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Public\PublicController;
 use Illuminate\Support\Facades\Route;
 
-// Root redirect to default locale
-Route::get('/', fn() => redirect('/' . config('app.locale')))->name('root');
+// Root redirect - check user's saved locale preference first
+Route::get('/', function () {
+    // Priority: Session > Cookie > Default locale
+    $savedLocale = session('locale') ?? \Illuminate\Support\Facades\Cookie::get('locale');
+    $defaultLocale = config('app.locale', 'bn');
+    $locale = ($savedLocale && in_array($savedLocale, ['bn', 'en', 'ar'])) ? $savedLocale : $defaultLocale;
+    
+    return redirect('/' . $locale);
+})->name('root');
 
 // =============================================================================
 // AUTH ROUTES - Login pages for different user types
