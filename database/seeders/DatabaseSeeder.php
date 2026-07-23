@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             PayrollSeeder::class,
             BiometricSeeder::class,
             ExpenseSeeder::class,
+            AccountingSeeder::class,
         ]);
     }
 }
