@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('log_name')->default('default');
             $table->foreignId('causer_id')->nullable()->constrained('users')->onDelete('set null');
             $table->string('causer_type')->nullable();
+            $table->uuid('batch_uuid')->nullable();
             $table->string('subject_type')->nullable();
             $table->unsignedBigInteger('subject_id')->nullable();
             $table->string('event')->nullable();
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->index(['subject_type', 'subject_id']);
             $table->index('event');
             $table->index('log_name');
+            $table->index('batch_uuid');
         });
     }
 
