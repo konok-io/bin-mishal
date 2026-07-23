@@ -228,3 +228,8 @@ Route::post('/contact/submit', [ContactController::class, 'submit'])->name('cont
 // Global Search
 Route::get('/search', [SearchController::class, 'results'])->name('search');
 Route::get('/api/search', [SearchController::class, 'search'])->name('api.search');
+
+// Newsletter Subscription
+Route::post('/newsletter/subscribe', [App\Http\Controllers\NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+Route::get('/newsletter/verify/{token}', [App\Http\Controllers\NewsletterController::class, 'verify'])->name('newsletter.verify');
+Route::get('/newsletter/unsubscribe/{token}', [App\Http\Controllers\NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');

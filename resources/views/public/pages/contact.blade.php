@@ -2,6 +2,11 @@
 
 @section('title', __('app.contact') . ' - ' . __('app.app_name'))
 
+@php
+$officeLocations = \App\Models\OfficeLocation::active()->orderBy('sort_order')->get();
+$primaryLocation = $officeLocations->where('is_headquarters', true)->first() ?? $officeLocations->first();
+@endphp
+
 @section('content')
 <!-- Page Header -->
 <section class="page-header">
@@ -59,46 +64,129 @@
             <div class="col-lg-5">
                 <div class="card card-custom p-4 mb-4">
                     <h4 class="mb-4">{{ __('home.contact_info') }}</h4>
-                    <div class="mb-4">
-                        <h6><i class="fas fa-map-marker-alt text-primary-custom me-2"></i> Office Address</h6>
-                        <p class="text-muted ms-4">Riyadh, Kingdom of Saudi Arabia<br>Near Al-Masyaf District</p>
-                    </div>
-                    <div class="mb-4">
-                        <h6><i class="fas fa-phone text-primary-custom me-2"></i> Phone</h6>
-                        <p class="text-muted ms-4">+966 XX XXX XXXX<br>+966 XX XXX XXXX</p>
-                    </div>
-                    <div class="mb-4">
-                        <h6><i class="fab fa-whatsapp text-success me-2"></i> WhatsApp</h6>
-                        <p class="text-muted ms-4">+966 XX XXX XXXX</p>
-                    </div>
-                    <div class="mb-4">
-                        <h6><i class="fas fa-envelope text-primary-custom me-2"></i> Email</h6>
-                        <p class="text-muted ms-4">info@binmishal.com<br>support@binmishal.com</p>
-                    </div>
-                    <div>
-                        <h6><i class="fas fa-clock text-primary-custom me-2"></i> Working Hours</h6>
-                        <p class="text-muted ms-4">Saturday - Thursday: 9:00 AM - 6:00 PM<br>Friday: Closed</p>
-                    </div>
+                    
+                    @forelse($officeLocations->take(1) as $location)
+                        <div class="mb-4">
+                            <h6><i class="fas fa-map-marker-alt text-primary-custom me-2"></i> {{ $location->name }}</h6>
+                            <p class="text-muted ms-4">{{ $location->formatted_address }}</p>
+                        </div>
+                        @if($location->phone)
+                            <div class="mb-4">
+                                <h6><i class="fas fa-phone text-primary-custom me-2"></i> Phone</h6>
+                                <p class="text-muted ms-4">{{ $location->phone }}</p>
+                            </div>
+                        @endif
+                        @if($location->whatsapp)
+                            <div class="mb-4">
+                                <h6><i class="fab fa-whatsapp text-success me-2"></i> WhatsApp</h6>
+                                <p class="text-muted ms-4">{{ $location->whatsapp }}</p>
+                            </div>
+                        @endif
+                        @if($location->email)
+                            <div class="mb-4">
+                                <h6><i class="fas fa-envelope text-primary-custom me-2"></i> Email</h6>
+                                <p class="text-muted ms-4">{{ $location->email }}</p>
+                            </div>
+                        @endif
+                        @if($location->working_hours)
+                            <div>
+                                <h6><i class="fas fa-clock text-primary-custom me-2"></i> Working Hours</h6>
+                                <p class="text-muted ms-4">{{ $location->working_hours }}</p>
+                            </div>
+                        @endif
+                    @empty
+                        <div class="mb-4">
+                            <h6><i class="fas fa-map-marker-alt text-primary-custom me-2"></i> Office Address</h6>
+                            <p class="text-muted ms-4">{{ settings('contact_address', 'Riyadh, Kingdom of Saudi Arabia') }}</p>
+                        </div>
+                        <div class="mb-4">
+                            <h6><i class="fas fa-phone text-primary-custom me-2"></i> Phone</h6>
+                            <p class="text-muted ms-4">{{ settings('contact_phone', '+966 XX XXX XXXX') }}</p>
+                        </div>
+                        <div class="mb-4">
+                            <h6><i class="fas fa-envelope text-primary-custom me-2"></i> Email</h6>
+                            <p class="text-muted ms-4">{{ settings('contact_email', 'info@binmishal.com') }}</p>
+                        </div>
+                    @endforelse
                 </div>
                 
                 <!-- Branch Offices -->
+                @if($officeLocations->count() > 1)
+                    <div class="card card-custom p-4">
+                        <h4 class="mb-4">Our Branches</h4>
+                        @foreach($officeLocations as $location)
+                            <div class="mb-3">
+                                <h6 class="text-primary-custom">
+                                    {{ $location->name }}
+                                    @if($location->is_headquarters)
+                                        <span class="badge bg-primary ms-2">HQ</span>
+                                    @endif
+                                </h6>
+                                <p class="text-muted small mb-1">{{ $location->city }}</p>
+                                @if($location->phone)
+                                    <p class="text-muted small mb-0">{{ $location->phone }}</p>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="card card-custom p-4">
+                        <h4 class="mb-4">Our Branches</h4>
+                        <div class="mb-3">
+                            <h6 class="text-primary-custom">Riyadh (Head Office)</h6>
+                            <p class="text-muted small mb-0">+966 XX XXX XXXX</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="text-primary-custom">Jeddah</h6>
+                            <p class="text-muted small mb-0">+966 XX XXX XXXX</p>
+                        </div>
+                        <div>
+                            <h6 class="text-primary-custom">Dammam</h6>
+                            <p class="text-muted small mb-0">+966 XX XXX XXXX</p>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+@if($primaryLocation)
+<section class="py-5 bg-light">
+    <div class="container">
+        <h3 class="text-center mb-4">Find Us on Map</h3>
+        <div class="row">
+            <div class="col-lg-8">
+                <x-google-map 
+                    height="400px"
+                    :lat="$primaryLocation->latitude ?? 24.7136"
+                    :lng="$primaryLocation->longitude ?? 46.6753"
+                    :zoom="$primaryLocation->map_zoom ?? 14"
+                    address="{{ $primaryLocation->formatted_address }}"
+                    :marker-title="$primaryLocation->name"
+                />
+            </div>
+            <div class="col-lg-4">
                 <div class="card card-custom p-4">
-                    <h4 class="mb-4">Our Branches</h4>
-                    <div class="mb-3">
-                        <h6 class="text-primary-custom">Riyadh (Head Office)</h6>
-                        <p class="text-muted small mb-0">+966 XX XXX XXXX</p>
-                    </div>
-                    <div class="mb-3">
-                        <h6 class="text-primary-custom">Jeddah</h6>
-                        <p class="text-muted small mb-0">+966 XX XXX XXXX</p>
-                    </div>
-                    <div>
-                        <h6 class="text-primary-custom">Dammam</h6>
-                        <p class="text-muted small mb-0">+966 XX XXX XXXX</p>
-                    </div>
+                    <h4>{{ $primaryLocation->name }}</h4>
+                    <p><i class="fas fa-map-marker-alt text-success me-2"></i> {{ $primaryLocation->formatted_address }}</p>
+                    @if($primaryLocation->phone)
+                        <p><i class="fas fa-phone text-success me-2"></i> {{ $primaryLocation->phone }}</p>
+                    @endif
+                    @if($primaryLocation->email)
+                        <p><i class="fas fa-envelope text-success me-2"></i> {{ $primaryLocation->email }}</p>
+                    @endif
+                    @if($primaryLocation->working_hours)
+                        <p><i class="fas fa-clock text-success me-2"></i> {{ $primaryLocation->working_hours }}</p>
+                    @endif
+                    <a href="{{ $primaryLocation->google_maps_url }}" target="_blank" class="btn btn-primary-custom mt-3">
+                        <i class="fas fa-directions me-2"></i> Get Directions
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </section>
+@endif
 @endsection
