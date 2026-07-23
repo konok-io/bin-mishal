@@ -302,16 +302,16 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ __('navigation.services') }}</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('services.umrah') }}">{{ __('app.umrah') }} Packages</a></li>
-                                <li><a class="dropdown-item" href="{{ route('services.visa') }}">{{ __('app.visa_processing') }}</a></li>
-                                <li><a class="dropdown-item" href="{{ route('services.airticket') }}">{{ __('app.flight_booking') }}</a></li>
-                                <li><a class="dropdown-item" href="{{ route('services.hotel') }}">{{ __('app.hotel_booking') }}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('services.umrah', ['locale' => app()->getLocale()]) }}">{{ __('app.umrah') }} Packages</a></li>
+                                <li><a class="dropdown-item" href="{{ route('services.visa', ['locale' => app()->getLocale()]) }}">{{ __('app.visa_processing') }}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('services.airticket', ['locale' => app()->getLocale()]) }}">{{ __('app.flight_booking') }}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('services.hotel', ['locale' => app()->getLocale()]) }}">{{ __('app.hotel_booking') }}</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">{{ __('app.about') }}</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('news') }}">News</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">{{ __('app.contact') }}</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-primary-custom text-white ms-2" href="{{ route('appointment') }}">{{ __('navigation.book_now') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('about', ['locale' => app()->getLocale()]) }}">{{ __('app.about') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('news', ['locale' => app()->getLocale()]) }}">News</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('contact', ['locale' => app()->getLocale()]) }}">{{ __('app.contact') }}</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-primary-custom text-white ms-2" href="{{ route('appointment', ['locale' => app()->getLocale()]) }}">{{ __('navigation.book_now') }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -431,7 +431,7 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="0">
-                    <a href="{{ route('services.umrah') }}" class="text-decoration-none">
+                    <a href="{{ route('services.umrah', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-mosque"></i>
                             <h5>{{ __('app.umrah') }}</h5>
@@ -439,7 +439,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="100">
-                    <a href="{{ route('services.visa') }}" class="text-decoration-none">
+                    <a href="{{ route('services.visa', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-passport"></i>
                             <h5>{{ __('app.visa') }}</h5>
@@ -447,7 +447,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="200">
-                    <a href="{{ route('services.airticket') }}" class="text-decoration-none">
+                    <a href="{{ route('services.airticket', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-plane"></i>
                             <h5>{{ __('app.air_ticket') }}</h5>
@@ -455,7 +455,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="300">
-                    <a href="{{ route('services.hotel') }}" class="text-decoration-none">
+                    <a href="{{ route('services.hotel', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-hotel"></i>
                             <h5>{{ __('app.hotel_booking') }}</h5>
@@ -463,7 +463,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="400">
-                    <a href="{{ route('visa-checker') }}" class="text-decoration-none">
+                    <a href="{{ route('visa-checker', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-clipboard-check"></i>
                             <h5>Visa Check</h5>
@@ -471,7 +471,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="500">
-                    <a href="{{ route('track') }}" class="text-decoration-none">
+                    <a href="{{ route('track', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-truck"></i>
                             <h5>Track Order</h5>
@@ -479,7 +479,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="600">
-                    <a href="{{ route('labour-law') }}" class="text-decoration-none">
+                    <a href="{{ route('labour-law', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-gavel"></i>
                             <h5>Labour Law</h5>
@@ -487,7 +487,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="700">
-                    <a href="{{ route('faqs') }}" class="text-decoration-none">
+                    <a href="{{ route('faqs', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-question-circle"></i>
                             <h5>{{ __('app.faq') }}</h5>
@@ -565,7 +565,7 @@
                             </ul>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="package-price">SAR {{ $package['price'] }}</span>
-                                <a href="{{ route('services.umrah') }}" class="btn btn-outline-primary btn-sm">Details</a>
+                                <a href="{{ route('services.umrah', ['locale' => app()->getLocale()]) }}" class="btn btn-outline-primary btn-sm">Details</a>
                             </div>
                         </div>
                     </div>
@@ -573,7 +573,7 @@
                 @endforeach
             </div>
             <div class="text-center mt-5">
-                <a href="{{ route('services.umrah') }}" class="btn btn-primary-custom btn-lg">{{ __('home.all_packages') }} <i class="fas fa-arrow-right ms-2"></i></a>
+                <a href="{{ route('services.umrah', ['locale' => app()->getLocale()]) }}" class="btn btn-primary-custom btn-lg">{{ __('home.all_packages') }} <i class="fas fa-arrow-right ms-2"></i></a>
             </div>
         </div>
     </section>
@@ -626,7 +626,7 @@
                 @endphp
                 @foreach($visas as $visa)
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
-                    <a href="{{ route('services.visa') }}" class="text-decoration-none">
+                    <a href="{{ route('services.visa', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
                         <div class="visa-card h-100">
                             <i class="fas {{ $visa['icon'] }}"></i>
                             <h5 class="mt-3 mb-2">{{ $visa['name'] }}</h5>
@@ -767,21 +767,21 @@
                 <div class="col-lg-2 col-md-6">
                     <h5 class="footer-title">Quick Links</h5>
                     <ul class="footer-links">
-                        <li><a href="{{ route('about') }}">{{ __('app.about') }}</a></li>
-                        <li><a href="{{ route('services.umrah') }}">{{ __('app.umrah') }}</a></li>
-                        <li><a href="{{ route('services.visa') }}">{{ __('app.visa') }}</a></li>
-                        <li><a href="{{ route('contact') }}">{{ __('app.contact') }}</a></li>
-                        <li><a href="{{ route('careers') }}">Careers</a></li>
+                        <li><a href="{{ route('about', ['locale' => app()->getLocale()]) }}">{{ __('app.about') }}</a></li>
+                        <li><a href="{{ route('services.umrah', ['locale' => app()->getLocale()]) }}">{{ __('app.umrah') }}</a></li>
+                        <li><a href="{{ route('services.visa', ['locale' => app()->getLocale()]) }}">{{ __('app.visa') }}</a></li>
+                        <li><a href="{{ route('contact', ['locale' => app()->getLocale()]) }}">{{ __('app.contact') }}</a></li>
+                        <li><a href="{{ route('careers', ['locale' => app()->getLocale()]) }}">Careers</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6">
                     <h5 class="footer-title">Services</h5>
                     <ul class="footer-links">
-                        <li><a href="{{ route('services.airticket') }}">{{ __('app.flight_booking') }}</a></li>
-                        <li><a href="{{ route('services.hotel') }}">{{ __('app.hotel_booking') }}</a></li>
-                        <li><a href="{{ route('visa-checker') }}">Visa Status</a></li>
-                        <li><a href="{{ route('track') }}">Track Order</a></li>
-                        <li><a href="{{ route('faqs') }}">{{ __('app.faq') }}</a></li>
+                        <li><a href="{{ route('services.airticket', ['locale' => app()->getLocale()]) }}">{{ __('app.flight_booking') }}</a></li>
+                        <li><a href="{{ route('services.hotel', ['locale' => app()->getLocale()]) }}">{{ __('app.hotel_booking') }}</a></li>
+                        <li><a href="{{ route('visa-checker', ['locale' => app()->getLocale()]) }}">Visa Status</a></li>
+                        <li><a href="{{ route('track', ['locale' => app()->getLocale()]) }}">Track Order</a></li>
+                        <li><a href="{{ route('faqs', ['locale' => app()->getLocale()]) }}">{{ __('app.faq') }}</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4">
@@ -800,9 +800,9 @@
                         <p class="mb-0 opacity-75">&copy; {{ date('Y') }} {{ __('app.app_name') }}. {{ __('common.all_rights_reserved') }}</p>
                     </div>
                     <div class="col-md-6 text-md-end">
-                        <a href="{{ route('privacy-policy') }}" class="text-white-50 me-3">Privacy Policy</a>
-                        <a href="{{ route('terms') }}" class="text-white-50 me-3">Terms</a>
-                        <a href="{{ route('refund-policy') }}" class="text-white-50">Refund Policy</a>
+                        <a href="{{ route('privacy-policy', ['locale' => app()->getLocale()]) }}" class="text-white-50 me-3">Privacy Policy</a>
+                        <a href="{{ route('terms', ['locale' => app()->getLocale()]) }}" class="text-white-50 me-3">Terms</a>
+                        <a href="{{ route('refund-policy', ['locale' => app()->getLocale()]) }}" class="text-white-50">Refund Policy</a>
                     </div>
                 </div>
             </div>
