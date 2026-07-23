@@ -345,7 +345,22 @@
                         <a href="{{ switch_locale_url('en') }}" class="btn btn-sm {{ app()->getLocale() == 'en' ? 'btn-primary' : 'btn-outline-light' }}">English</a>
                         <a href="{{ switch_locale_url('ar') }}" class="btn btn-sm {{ app()->getLocale() == 'ar' ? 'btn-primary' : 'btn-outline-light' }}">العربية</a>
                         @if(Route::has('login'))
-                        <a href="{{ route('login') }}" class="btn btn-sm btn-warning ms-2">{{ __('navigation.login') }}</a>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-warning dropdown-toggle ms-2" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle"></i> {{ __('navigation.login') }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="{{ route('portal.login') }}">
+                                    <i class="bi bi-people"></i> {{ __('navigation.portal_login') }}
+                                </a></li>
+                                <li><a class="dropdown-item" href="{{ route('employee.login') }}">
+                                    <i class="bi bi-briefcase"></i> {{ __('navigation.employee_login') }}
+                                </a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.login') }}">
+                                    <i class="bi bi-shield-lock"></i> {{ __('navigation.admin_login') }}
+                                </a></li>
+                            </ul>
+                        </div>
                         @endif
                     </div>
                 </div>
