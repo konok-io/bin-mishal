@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Drop tables in CORRECT order (cargos must be dropped BEFORE cargo_zones)
-        Schema::dropIfExists('cargos');           // Drop first - has FK to cargo_zones
-        Schema::dropIfExists('cargo_tracking');    // Then tracking
-        Schema::dropIfExists('cargo_zones');      // Then zones (cargos is already gone)
+        // Drop tables in CORRECT order (child tables first, then parent tables)
+        Schema::dropIfExists('cargo_tracking');    // First - has FK to cargos
+        Schema::dropIfExists('cargos');            // Second - has FK to cargo_zones
+        Schema::dropIfExists('cargo_zones');       // Third - has FK to cargo_cities
         Schema::dropIfExists('cargo_cities');
         Schema::dropIfExists('cargo_pricing');
         Schema::dropIfExists('cargo_packages');
