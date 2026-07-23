@@ -25,7 +25,7 @@ return new class extends Migration
             $table->json('new_values')->nullable();
             $table->ipAddress('ip_address')->nullable();
             $table->string('user_agent')->nullable();
-            $table->timestamp('created_at');
+            $table->timestamps();
             
             $table->index('causer_id');
             $table->index(['subject_type', 'subject_id']);
