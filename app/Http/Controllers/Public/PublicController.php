@@ -132,13 +132,25 @@ class PublicController extends Controller
      */
     public function blog(): View
     {
-        $posts = \App\Models\Content\Post::where('status', 'published')
-            ->where('type', 'blog')
+        $posts = \App\Models\Post::where('is_published', true)
+            ->with(['category', 'author'])
             ->orderBy('published_at', 'desc')
-            ->limit(20)
+            ->paginate(12);
+            
+        $featuredPosts = \App\Models\Post::where('is_published', true)
+            ->where('is_featured', true)
+            ->with(['category', 'author'])
+            ->orderBy('published_at', 'desc')
+            ->limit(3)
             ->get();
             
-        return view('frontend.blog.index', compact('posts'));
+        $categories = \App\Models\PostCategory::where('is_active', true)
+            ->withCount('posts')
+            ->orderBy('posts_count', 'desc')
+            ->limit(8)
+            ->get();
+            
+        return view('frontend.blog.index', compact('posts', 'featuredPosts', 'categories'));
     }
 
     /**
@@ -146,15 +158,28 @@ class PublicController extends Controller
      */
     public function blogDetail(string $slug): View
     {
-        $post = \App\Models\Content\Post::where('slug', $slug)->first();
+        $post = \App\Models\Post::where('slug', $slug)
+            ->where('is_published', true)
+            ->with(['category', 'author', 'tags', 'comments'])
+            ->first();
         
         if (!$post) {
             abort(404);
         }
         
-        $relatedPosts = \App\Models\Content\Post::where('status', 'published')
-            ->where('type', 'blog')
+        // Increment view count
+        $post->increment('view_count');
+        
+        // Get related posts by category
+        $relatedPosts = \App\Models\Post::where('is_published', true)
             ->where('id', '!=', $post->id)
+            ->where(function ($query) use ($post) {
+                $query->where('category_id', $post->category_id)
+                    ->orWhereHas('tags', function ($q) use ($post) {
+                        $q->whereIn('post_tag_id', $post->tags->pluck('id'));
+                    });
+            })
+            ->with(['category', 'author'])
             ->limit(3)
             ->get();
             

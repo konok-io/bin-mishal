@@ -9,12 +9,15 @@ use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\UmrahController;
 use App\Http\Controllers\Admin\VisaController;
-use App\Http\Controllers\CMS\PageController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CMS\PageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Public\PublicController;
+use App\Http\Controllers\RssFeedController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 // Root redirect - check user's saved locale preference first
@@ -47,6 +50,26 @@ Route::middleware('guest')->group(function () {
         Route::get('/login', fn() => view('auth.login', ['guard' => 'employee']))->name('login');
         Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
     });
+});
+
+// =============================================================================
+// PUBLIC FEEDS & SEO ROUTES
+// =============================================================================
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/feed/rss', [RssFeedController::class, 'index'])->name('feed.rss');
+Route::get('/feed/atom', [RssFeedController::class, 'atom'])->name('feed.atom');
+
+// =============================================================================
+// NEWSLETTER ROUTES
+// =============================================================================
+
+Route::prefix('newsletter')->name('newsletter.')->group(function () {
+    Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('subscribe');
+    Route::get('/verify/{token}', [NewsletterController::class, 'verify'])->name('verify');
+    Route::get('/unsubscribe', [NewsletterController::class, 'unsubscribe'])->name('unsubscribe');
+    Route::post('/unsubscribe', [NewsletterController::class, 'unsubscribe']);
+    Route::get('/status', [NewsletterController::class, 'status'])->name('status');
 });
 
 // =============================================================================

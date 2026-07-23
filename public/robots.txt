@@ -1,2 +1,22 @@
+# Bin Mishal Travels - robots.txt
+# Travel, Cargo & Investment Services
+
 User-agent: *
-Disallow:
+Allow: /
+
+# Block admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /employee/
+Disallow: /portal/
+Disallow: /filament/
+Disallow: /_debugbar/
+Disallow: /nova/
+Disallow: /*.json$
+Disallow: /storage/files/
+
+# Sitemap location
+Sitemap: {{ url('/') }}/sitemap.xml
+
+# Crawl delay for polite crawling
+Crawl-delay: 1
