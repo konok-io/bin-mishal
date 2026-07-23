@@ -7,13 +7,17 @@ use App\Enums\UserType;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class AdminUserSeeder extends Seeder
 {
     public function run(): void
     {
+        // Create roles first
+        $this->createRoles();
+
         // Create Super Admin (HIDDEN from all queries)
-        User::withoutGlobalScopes()->firstOrCreate(
+        $superAdmin = User::withoutGlobalScopes()->firstOrCreate(
             ['email' => 'admin@konok.io'],
             [
                 'name' => 'Super Admin',
@@ -26,6 +30,7 @@ class AdminUserSeeder extends Seeder
                 'email_verified_at' => now(),
             ]
         );
+        $superAdmin->assignRole('super_admin');
 
         // Create Admin (visible)
         $admin = User::firstOrCreate(
@@ -63,5 +68,22 @@ class AdminUserSeeder extends Seeder
         $this->command->info('  Super Admin: admin@konok.io / @rsm@k@1A (hidden from queries)');
         $this->command->info('  Admin: admin@binmishal.com / admin123');
         $this->command->info('  Employee: employee@binmishal.com / employee123');
+    }
+
+    protected function createRoles(): void
+    {
+        $roles = [
+            'super_admin' => 'Super Admin',
+            'admin' => 'Admin',
+            'employee' => 'Employee',
+            'customer' => 'Customer',
+        ];
+
+        foreach ($roles as $name => 'label') {
+            Role::firstOrCreate(
+                ['name' => $name, 'guard_name' => 'web'],
+                ['name' => $name]
+            );
+        }
     }
 }
