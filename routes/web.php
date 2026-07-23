@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\VisaController;
 use App\Http\Controllers\CMS\PageController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Public\PublicController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,20 @@ Route::middleware('guest')->group(function () {
         Route::get('/login', fn() => view('auth.login', ['guard' => 'employee']))->name('login');
         Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
     });
+});
+
+// =============================================================================
+// EMPLOYEE DASHBOARD ROUTES - Protected
+// =============================================================================
+
+Route::prefix('{locale}/employee')->name('employee.')->middleware(['auth:web', 'role:employee'])->group(function () {
+    Route::get('/dashboard', [EmployeeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/payslips', [EmployeeController::class, 'payslips'])->name('payslips');
+    Route::get('/payslips/{payroll}/download', [EmployeeController::class, 'downloadPayslip'])->name('payslip.download');
+    Route::get('/attendance', [EmployeeController::class, 'attendance'])->name('attendance');
+    Route::get('/leave', [EmployeeController::class, 'leave'])->name('leave');
+    Route::get('/expenses', [EmployeeController::class, 'expenses'])->name('expenses');
+    Route::post('/expenses', [EmployeeController::class, 'storeExpense'])->name('expenses.store');
 });
 
 // =============================================================================

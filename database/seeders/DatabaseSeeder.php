@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
             ContentSeeder::class,
             NotificationSeeder::class,
             HomepageSeeder::class,
+            PayrollSeeder::class,
+            BiometricSeeder::class,
+            ExpenseSeeder::class,
         ]);
     }
 }
