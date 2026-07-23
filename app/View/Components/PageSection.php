@@ -10,7 +10,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class PageSectionComponent extends Component
+class PageSection extends Component
 {
     public function __construct(
         public PageSection $section,

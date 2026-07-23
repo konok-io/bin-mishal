@@ -10,7 +10,7 @@ use Illuminate\Translation\LoaderInterface;
 use Illuminate\Translation\Translator;
 use Illuminate\Support\ServiceProvider;
 
-class TranslationServiceProvider extends ServiceProvider implements ServiceProvider
+class TranslationServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -22,13 +22,6 @@ class TranslationServiceProvider extends ServiceProvider implements ServiceProvi
             return new DatabaseTranslationLoader(
                 new FileLoader($app['files'], $app['path.lang'])
             );
-        });
-
-        // Override the translator to use our loader
-        $this->app->singleton(Translator::class, function ($app) {
-            $translator = new Translator($app['translation.loader'], $app['config']['app.locale']);
-            $translator->setFallback($app['config']['app.fallback_locale']);
-            return $translator;
         });
     }
 
@@ -56,11 +49,6 @@ class DatabaseTranslationLoader implements LoaderInterface
 
     /**
      * Load the messages for the given locale.
-     *
-     * @param string $locale
-     * @param string $group
-     * @param string|null $namespace
-     * @return array
      */
     public function load($locale, $group, $namespace = null): array
     {
@@ -68,29 +56,33 @@ class DatabaseTranslationLoader implements LoaderInterface
         $lines = $this->fileLoader->load($locale, $group, $namespace);
 
         // Then, overlay with database translations (higher priority)
-        $dbTranslations = Translation::getCachedForLocale($locale);
+        try {
+            $dbTranslations = Translation::getCachedForLocale($locale);
 
-        // Filter for the requested group
-        $groupPrefix = $namespace ? "{$namespace}::" : "";
-        $groupPrefix .= $group . ".";
+            // Filter for the requested group
+            $groupPrefix = $namespace ? "{$namespace}::" : "";
+            $groupPrefix .= $group . ".";
 
-        foreach ($dbTranslations as $key => $value) {
-            // Check if this key belongs to the requested group
-            if (str_starts_with($key, $groupPrefix)) {
-                // Extract the key without the group prefix
-                $shortKey = substr($key, strlen($groupPrefix));
-                
-                // If it's a nested key (contains dots), we need to build the array
-                if (str_contains($shortKey, '.')) {
-                    data_set($lines, $shortKey, $value);
-                } else {
-                    // Simple key
-                    if (!isset($lines[$shortKey]) || $lines[$shortKey] === $shortKey) {
-                        // Only override if the file translation is missing or is the raw key
-                        $lines[$shortKey] = $value;
+            foreach ($dbTranslations as $key => $value) {
+                // Check if this key belongs to the requested group
+                if (str_starts_with($key, $groupPrefix)) {
+                    // Extract the key without the group prefix
+                    $shortKey = substr($key, strlen($groupPrefix));
+
+                    // If it's a nested key (contains dots), we need to build the array
+                    if (str_contains($shortKey, '.')) {
+                        data_set($lines, $shortKey, $value);
+                    } else {
+                        // Simple key
+                        if (!isset($lines[$shortKey]) || $lines[$shortKey] === $shortKey) {
+                            // Only override if the file translation is missing or is the raw key
+                            $lines[$shortKey] = $value;
+                        }
                     }
                 }
             }
+        } catch (\Exception $e) {
+            // If database is not available, just use file translations
         }
 
         return $lines;
@@ -98,10 +90,6 @@ class DatabaseTranslationLoader implements LoaderInterface
 
     /**
      * Add a new namespace to the loader.
-     *
-     * @param string $namespace
-     * @param string $hint
-     * @return void
      */
     public function addNamespace($namespace, $hint): void
     {
@@ -110,10 +98,6 @@ class DatabaseTranslationLoader implements LoaderInterface
 
     /**
      * Add a new JSON namespace to the loader.
-     *
-     * @param string $namespace
-     * @param string $hint
-     * @return void
      */
     public function addJsonPath($hint): void
     {
@@ -122,8 +106,6 @@ class DatabaseTranslationLoader implements LoaderInterface
 
     /**
      * Get an array of all the registered namespaces.
-     *
-     * @return array
      */
     public function namespaces(): array
     {
