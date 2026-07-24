@@ -52,21 +52,21 @@
                     <h6 class="text-muted mb-3">Employment Details</h6>
                     <div class="mb-3">
                         <label for="employee_code" class="form-label">Employee Code <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('employee_code') is-invalid @enderror" id="employee_code" name="employee_code" value="{{ old('employee_code', $employee->employee->employee_code ?? '') }}" required>
+                        <input type="text" class="form-control @error('employee_code') is-invalid @enderror" id="employee_code" name="employee_code" value="{{ old('employee_code', $employee->employee?->employee_code ?? '') }}" required>
                         @error('employee_code')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="designation" class="form-label">Designation <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('designation') is-invalid @enderror" id="designation" name="designation" value="{{ old('designation', $employee->employee->designation ?? '') }}" required>
+                        <input type="text" class="form-control @error('designation') is-invalid @enderror" id="designation" name="designation" value="{{ old('designation', $employee->employee?->designation ?? '') }}" required>
                         @error('designation')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="department" class="form-label">Department</label>
-                        <input type="text" class="form-control @error('department') is-invalid @enderror" id="department" name="department" value="{{ old('department', $employee->employee->department ?? '') }}">
+                        <input type="text" class="form-control @error('department') is-invalid @enderror" id="department" name="department" value="{{ old('department', $employee->employee?->department ?? '') }}">
                         @error('department')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -85,7 +85,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="joining_date" class="form-label">Joining Date</label>
-                        <input type="date" class="form-control @error('joining_date') is-invalid @enderror" id="joining_date" name="joining_date" value="{{ old('joining_date', $employee->employee->joining_date ? $employee->employee->joining_date->format('Y-m-d') : '') }}">
+                        <input type="date" class="form-control @error('joining_date') is-invalid @enderror" id="joining_date" name="joining_date" value="{{ old('joining_date', $employee->employee?->joining_date?->format('Y-m-d') ?? '') }}">
                         @error('joining_date')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -102,25 +102,25 @@
                         <label class="form-label">Salary Type <span class="text-danger">*</span></label>
                         <div class="d-flex gap-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="salary_type" id="salary_monthly" value="monthly" {{ old('salary_type', $employee->employee->salary_type ?? 'monthly') === 'monthly' ? 'checked' : '' }} onchange="toggleSalaryFields()">
+                                <input class="form-check-input" type="radio" name="salary_type" id="salary_monthly" value="monthly" {{ old('salary_type', $employee->employee?->salary_type ?? 'monthly') === 'monthly' ? 'checked' : '' }} onchange="toggleSalaryFields()">
                                 <label class="form-check-label" for="salary_monthly">Monthly</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="salary_type" id="salary_hourly" value="hourly" {{ old('salary_type', $employee->employee->salary_type ?? '') === 'hourly' ? 'checked' : '' }} onchange="toggleSalaryFields()">
+                                <input class="form-check-input" type="radio" name="salary_type" id="salary_hourly" value="hourly" {{ old('salary_type', $employee->employee?->salary_type ?? '') === 'hourly' ? 'checked' : '' }} onchange="toggleSalaryFields()">
                                 <label class="form-check-label" for="salary_hourly">Hourly</label>
                             </div>
                         </div>
                     </div>
                     <div class="mb-3" id="monthly_salary_group">
                         <label for="salary" class="form-label">Monthly Salary (SAR) <span class="text-danger">*</span></label>
-                        <input type="number" step="0.01" class="form-control @error('salary') is-invalid @enderror" id="salary" name="salary" value="{{ old('salary', $employee->employee->salary ?? 0) }}">
+                        <input type="number" step="0.01" class="form-control @error('salary') is-invalid @enderror" id="salary" name="salary" value="{{ old('salary', $employee->employee?->salary ?? 0) }}">
                         @error('salary')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-3 d-none" id="hourly_rate_group">
                         <label for="hourly_rate" class="form-label">Hourly Rate (SAR) <span class="text-danger">*</span></label>
-                        <input type="number" step="0.01" class="form-control @error('hourly_rate') is-invalid @enderror" id="hourly_rate" name="hourly_rate" value="{{ old('hourly_rate', $employee->employee->hourly_rate ?? 0) }}">
+                        <input type="number" step="0.01" class="form-control @error('hourly_rate') is-invalid @enderror" id="hourly_rate" name="hourly_rate" value="{{ old('hourly_rate', $employee->employee?->hourly_rate ?? 0) }}">
                         @error('hourly_rate')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -130,14 +130,14 @@
                     <h6 class="text-muted mb-3">Documents & Status</h6>
                     <div class="mb-3">
                         <label for="iqama_no" class="form-label">Iqama No</label>
-                        <input type="text" class="form-control @error('iqama_no') is-invalid @enderror" id="iqama_no" name="iqama_no" value="{{ old('iqama_no', $employee->employee->iqama_no ?? '') }}">
+                        <input type="text" class="form-control @error('iqama_no') is-invalid @enderror" id="iqama_no" name="iqama_no" value="{{ old('iqama_no', $employee->employee?->iqama_no ?? '') }}">
                         @error('iqama_no')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="passport_no" class="form-label">Passport No</label>
-                        <input type="text" class="form-control @error('passport_no') is-invalid @enderror" id="passport_no" name="passport_no" value="{{ old('passport_no', $employee->employee->passport_no ?? '') }}">
+                        <input type="text" class="form-control @error('passport_no') is-invalid @enderror" id="passport_no" name="passport_no" value="{{ old('passport_no', $employee->employee?->passport_no ?? '') }}">
                         @error('passport_no')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -145,9 +145,9 @@
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
                         <select class="form-select @error('status') is-invalid @enderror" id="status" name="status">
-                            <option value="active" {{ old('status', $employee->employee->status ?? 'active') === 'active' ? 'selected' : '' }}>Active</option>
-                            <option value="inactive" {{ old('status', $employee->employee->status ?? '') === 'inactive' ? 'selected' : '' }}>Inactive</option>
-                            <option value="terminated" {{ old('status', $employee->employee->status ?? '') === 'terminated' ? 'selected' : '' }}>Terminated</option>
+                            <option value="active" {{ old('status', $employee->employee?->status ?? 'active') === 'active' ? 'selected' : '' }}>Active</option>
+                            <option value="inactive" {{ old('status', $employee->employee?->status ?? '') === 'inactive' ? 'selected' : '' }}>Inactive</option>
+                            <option value="terminated" {{ old('status', $employee->employee?->status ?? '') === 'terminated' ? 'selected' : '' }}>Terminated</option>
                         </select>
                         @error('status')
                             <div class="invalid-feedback">{{ $message }}</div>
