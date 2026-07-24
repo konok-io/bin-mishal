@@ -48,6 +48,11 @@ return [
     'remember_me' => 'تذكرني',
     'send_password_reset_link' => 'إرسال رابط استعادة كلمة المرور',
 
+    // Dashboard
+    'admin_dashboard' => 'لوحة تحكم المسؤول',
+    'employee_dashboard' => 'لوحة تحكم الموظف',
+    'my_dashboard' => 'لوحة التحكم الخاصة بي',
+
     // Customer
     'customer' => 'العميل',
     'customers' => 'العملاء',

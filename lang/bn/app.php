@@ -48,6 +48,11 @@ return [
     'remember_me' => 'মনে রাখুন',
     'send_password_reset_link' => 'পাসওয়ার্ড রিসেট লিংক পাঠান',
 
+    // Dashboard
+    'admin_dashboard' => 'অ্যাডমিন ড্যাশবোর্ড',
+    'employee_dashboard' => 'কর্মচারী ড্যাশবোর্ড',
+    'my_dashboard' => 'আমার ড্যাশবোর্ড',
+
     // Customer
     'customer' => 'গ্রাহক',
     'customers' => 'গ্রাহকগণ',

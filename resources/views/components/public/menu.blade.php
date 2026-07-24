@@ -65,5 +65,54 @@
                 @endif
             </li>
         @endforeach
+
+        {{-- Dynamic Dashboard/Login Menu Item --}}
+        @if($loggedInUserType && $dashboardUrl)
+            <li class="menu-item has-children">
+                <a href="{{ $dashboardUrl }}" class="{{ request()->path() === ltrim($dashboardUrl, '/') ? 'is-active' : '' }}">
+                    <span class="menu-icon">
+                        <x-heroicon-s-user-circle class="w-5 h-5" />
+                    </span>
+                    <span class="menu-text">
+                        @switch($loggedInUserType)
+                            @case('admin')
+                                @lang('app.admin_dashboard')
+                            @case('employee')
+                                @lang('app.employee_dashboard')
+                            @case('customer')
+                                @lang('app.my_dashboard')
+                        @endswitch
+                    </span>
+                    <span class="menu-arrow">
+                        <x-heroicon-s-chevron-down class="w-4 h-4" />
+                    </span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="sub-menu-item">
+                        <a href="{{ $dashboardUrl }}">
+                            <span class="menu-text">
+                                @switch($loggedInUserType)
+                                    @case('admin')
+                                        @lang('app.admin_dashboard')
+                                    @case('employee')
+                                        @lang('app.employee_dashboard')
+                                    @case('customer')
+                                        @lang('app.my_dashboard')
+                                @endswitch
+                            </span>
+                        </a>
+                    </li>
+                    <li class="sub-menu-item">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn-logout">
+                                <x-heroicon-o-arrow-right-on-rectangle class="w-4 h-4" />
+                                <span>@lang('app.logout')</span>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        @endif
     </ul>
 @endif

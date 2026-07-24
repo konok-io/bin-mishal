@@ -19,10 +19,14 @@ class PublicMenu extends Component
     public function render(): View|Closure|string
     {
         $items = $this->menuBuilder->renderMenu($this->location);
+        $loggedInUserType = $this->menuBuilder->getLoggedInUserType();
+        $dashboardUrl = $this->menuBuilder->getDashboardUrl();
 
         return view('components.public.menu', [
             'items' => $items,
             'location' => $this->location,
+            'loggedInUserType' => $loggedInUserType,
+            'dashboardUrl' => $dashboardUrl,
         ]);
     }
 }

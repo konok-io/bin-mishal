@@ -48,6 +48,11 @@ return [
     'remember_me' => 'Remember Me',
     'send_password_reset_link' => 'Send Password Reset Link',
 
+    // Dashboard
+    'admin_dashboard' => 'Admin Dashboard',
+    'employee_dashboard' => 'Employee Dashboard',
+    'my_dashboard' => 'My Dashboard',
+
     // Customer
     'customer' => 'Customer',
     'customers' => 'Customers',

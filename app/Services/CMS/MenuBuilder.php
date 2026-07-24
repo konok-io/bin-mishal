@@ -7,6 +7,7 @@ namespace App\Services\CMS;
 use App\Models\CMS\Menu;
 use App\Models\CMS\MenuItem;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class MenuBuilder
 {
@@ -46,6 +47,11 @@ class MenuBuilder
         $result = [];
 
         foreach ($items as $item) {
+            // Skip login menu items if user is already logged in for that guard
+            if ($this->shouldSkipMenuItem($item)) {
+                continue;
+            }
+
             $menuItem = [
                 'id' => $item->id,
                 'title' => $item->translated_title,
@@ -70,6 +76,73 @@ class MenuBuilder
         }
 
         return $result;
+    }
+
+    /**
+     * Check if a menu item should be skipped based on authentication status.
+     */
+    protected function shouldSkipMenuItem(MenuItem $item): bool
+    {
+        $url = ltrim($item->url ?? '', '/');
+
+        // Admin login - skip if admin is logged in
+        if (in_array($url, ['admin', 'admin/login'])) {
+            return Auth::guard('admin')->check();
+        }
+
+        // Employee login - skip if employee is logged in
+        if (in_array($url, ['employee', 'employee/login'])) {
+            return Auth::guard('employee')->check();
+        }
+
+        // Portal login/register - skip if web user is logged in
+        if (in_array($url, ['portal', 'portal/login', 'portal/register'])) {
+            return Auth::guard('web')->check();
+        }
+
+        return false;
+    }
+
+    /**
+     * Get dashboard URL based on user guard.
+     */
+    public function getDashboardUrl(): ?string
+    {
+        if (Auth::guard('admin')->check()) {
+            return '/admin/dashboard';
+        }
+
+        if (Auth::guard('employee')->check()) {
+            $locale = app()->getLocale() ?: config('app.locale', 'bn');
+            return "/{$locale}/employee/dashboard";
+        }
+
+        if (Auth::guard('web')->check()) {
+            $locale = app()->getLocale() ?: config('app.locale', 'bn');
+            return "/{$locale}/portal/dashboard";
+        }
+
+        return null;
+    }
+
+    /**
+     * Get logged in user type for menu display.
+     */
+    public function getLoggedInUserType(): ?string
+    {
+        if (Auth::guard('admin')->check()) {
+            return 'admin';
+        }
+
+        if (Auth::guard('employee')->check()) {
+            return 'employee';
+        }
+
+        if (Auth::guard('web')->check()) {
+            return 'customer';
+        }
+
+        return null;
     }
 
     /**
