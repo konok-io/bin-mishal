@@ -112,7 +112,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     Route::get('/surveillance', [CityTVConnectController::class, 'cameras'])->name('city-tv-connect.cameras');
 });
 
-
 // City TV Connect - Branch Management
 
 // Locale change route (for admin panel)
