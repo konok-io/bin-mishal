@@ -406,7 +406,7 @@
                 </a>
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center gap-2 text-decoration-none text-dark dropdown-toggle" data-bs-toggle="dropdown">
-                        <img src="{{ auth()->user()->getFirstMediaUrl('avatar') ?: 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) . '&background=4F2FE8&color=fff' }}" width="36" height="36" class="rounded-circle object-fit-cover" alt="Avatar">
+                        <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=4F2FE8&color=fff&size=72" width="36" height="36" class="rounded-circle" alt="Avatar">
                         <span class="d-none d-md-inline small fw-semibold">{{ auth()->user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
