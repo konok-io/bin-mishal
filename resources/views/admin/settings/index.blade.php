@@ -50,7 +50,7 @@
                 </a>
             </div>
             <div class="col-md-4">
-                <a href="{{ route('admin.bookings.index') }}" class="btn btn-outline-success w-100">
+                <a href="{{ route('bookings.index') }}" class="btn btn-outline-success w-100">
                     <i class="bi bi-ticket"></i> Manage Bookings
                 </a>
             </div>
