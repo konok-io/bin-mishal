@@ -14,7 +14,7 @@ class SeoSettingSeeder extends Seeder
                 'page' => 'home',
                 'locale' => 'en',
                 'meta_title' => 'Travel Agency - Your Gateway to the World',
-                'meta_description' => 'Book flights, hotels, Umrah packages, and more. Saudi Arabia's trusted travel partner for all your travel needs.',
+                'meta_description' => "Book flights, hotels, Umrah packages, and more. Saudi Arabia's trusted travel partner for all your travel needs.",
                 'meta_keywords' => 'travel, flights, hotels, Umrah, visa, Saudi Arabia',
                 'og_title' => 'Travel Agency - Your Gateway to the World',
                 'og_description' => 'Book flights, hotels, Umrah packages, and more.',
