@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Payroll;
-use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
@@ -12,32 +11,30 @@ class PayrollRecordSeeder extends Seeder
 {
     public function run(): void
     {
-        $employees = Employee::where('status', 'active')->get();
+        $employees = User::role('employee')->get();
 
         if ($employees->isEmpty()) {
             $this->command->info('PayrollRecordSeeder: No employees found. Run EmployeeSeeder first!');
             return;
         }
 
-        $processor = User::first();
-
         foreach ($employees as $employee) {
             $periodStart = Carbon::today()->startOfMonth()->format('Y-m-d');
             $periodEnd = Carbon::today()->endOfMonth()->format('Y-m-d');
             
-            $basicSalary = $employee->salary;
-            $allowances = [
-                'housing' => $basicSalary * 0.25,
-                'transport' => $basicSalary * 0.10,
-                'food' => 300,
-            ];
-            $deductions = [
-                'gosi' => $basicSalary * 0.10,
-                'health_insurance' => 100,
-            ];
-            $bonus = rand(0, 1) ? rand(500, 2000) : 0;
-            $lateDays = rand(0, 3);
-            $lateDeduction = $lateDays * 50;
+            $basicSalary = 25000;
+            $houseRent = $basicSalary * 0.25;
+            $transportAllowance = $basicSalary * 0.10;
+            $medicalAllowance = 2000;
+            $otherAllowances = 1000;
+            $overtimePay = rand(0, 1) ? rand(500, 2000) : 0;
+            $bonuses = rand(0, 1) ? rand(500, 2000) : 0;
+            $taxDeduction = $basicSalary * 0.10;
+            $insuranceDeduction = 500;
+            $otherDeductions = 200;
+
+            $grossSalary = $basicSalary + $houseRent + $transportAllowance + $medicalAllowance + $otherAllowances + $overtimePay + $bonuses;
+            $netSalary = $grossSalary - $taxDeduction - $insuranceDeduction - $otherDeductions;
 
             Payroll::updateOrCreate(
                 [
@@ -47,16 +44,20 @@ class PayrollRecordSeeder extends Seeder
                 [
                     'period_end' => $periodEnd,
                     'basic_salary' => $basicSalary,
-                    'allowances' => $allowances,
-                    'deductions' => $deductions,
-                    'bonus' => $bonus,
-                    'late_days' => $lateDays,
-                    'late_deduction' => $lateDeduction,
-                    'net_salary' => $basicSalary + array_sum($allowances) + $bonus - array_sum($deductions) - $lateDeduction,
+                    'house_rent' => $houseRent,
+                    'transport_allowance' => $transportAllowance,
+                    'medical_allowance' => $medicalAllowance,
+                    'other_allowances' => $otherAllowances,
+                    'overtime_pay' => $overtimePay,
+                    'bonuses' => $bonuses,
+                    'tax_deduction' => $taxDeduction,
+                    'insurance_deduction' => $insuranceDeduction,
+                    'other_deductions' => $otherDeductions,
+                    'gross_salary' => $grossSalary,
+                    'net_salary' => $netSalary,
                     'status' => 'paid',
-                    'processed_by' => $processor ? $processor->id : 1,
-                    'processed_at' => now()->subDays(5),
                     'paid_at' => now()->subDays(3),
+                    'notes' => 'Monthly salary for ' . Carbon::today()->format('F Y'),
                 ]
             );
         }
