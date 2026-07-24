@@ -301,14 +301,16 @@
                                 <td>SAR {{ number_format($booking->total_amount, 0) }}</td>
                                 <td>
                                     @php
-                                        $badgeClass = match($booking->booking_status) {
+                                        $badgeClass = match($booking->booking_status->value) {
                                             'pending' => 'bg-warning',
+                                            'confirmed' => 'bg-info',
                                             'issued' => 'bg-success',
                                             'cancelled' => 'bg-danger',
+                                            'refunded' => 'bg-dark',
                                             default => 'bg-secondary'
                                         };
                                     @endphp
-                                    <span class="badge {{ $badgeClass }}">{{ ucfirst($booking->booking_status) }}</span>
+                                    <span class="badge {{ $badgeClass }}">{{ ucfirst($booking->booking_status->value) }}</span>
                                 </td>
                             </tr>
                             @empty
