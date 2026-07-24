@@ -3,7 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\ExpenseClaim;
-use App\Models\Employee;
+use App\Models\ExpenseType;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 
@@ -11,10 +12,16 @@ class ExpenseClaimSeeder extends Seeder
 {
     public function run(): void
     {
-        $employees = Employee::where('status', 'active')->take(3)->get();
+        $employees = User::role('employee')->take(3)->get();
+        $expenseTypes = ExpenseType::where('is_active', true)->get();
 
         if ($employees->isEmpty()) {
             $this->command->info('ExpenseClaimSeeder: No employees found. Run EmployeeSeeder first!');
+            return;
+        }
+
+        if ($expenseTypes->isEmpty()) {
+            $this->command->info('ExpenseClaimSeeder: No expense types found. Run ExpenseSeeder first!');
             return;
         }
 
@@ -43,13 +50,16 @@ class ExpenseClaimSeeder extends Seeder
                 'amount' => 350.00,
                 'currency' => 'SAR',
                 'payment_type' => 'reimbursable',
-                'status' => 'pending',
+                'status' => 'draft',
             ],
         ];
 
         foreach ($claims as $i => $claimData) {
             $employee = $employees->has($i) ? $employees[$i] : $employees->random();
+            $expenseType = $expenseTypes->random();
+            
             $claimData['employee_id'] = $employee->id;
+            $claimData['expense_type_id'] = $expenseType->id;
             $claimNumber = 'EXP-' . date('Ymd') . '-' . str_pad((string) random_int(1, 9999), 4, '0', STR_PAD_LEFT);
             $claimData['claim_number'] = $claimNumber;
 
