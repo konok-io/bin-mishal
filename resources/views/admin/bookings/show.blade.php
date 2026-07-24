@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-ticket"></i> Booking: {{ $booking->booking_no }}</h1>
-    <a href="{{ route('bookings.index') }}" class="btn btn-secondary">
+    <a href="{{ route('admin.bookings.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>

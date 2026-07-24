@@ -11,7 +11,7 @@
 
 <div class="card">
     <div class="card-header">
-        <form action="{{ route('bookings.index') }}" method="GET" class="row g-3">
+        <form action="{{ route('admin.bookings.index') }}" method="GET" class="row g-3">
             <div class="col-md-4">
                 <input type="text" name="search" class="form-control" placeholder="Search booking number..." value="{{ request('search') }}">
             </div>
