@@ -23,7 +23,7 @@ return new class extends Migration
             
             $table->index(['employee_id', 'punch_time']);
             $table->index(['device_id', 'punch_time']);
-            $table->unique(['device_id', 'employee_bio_id', 'punch_time', 'punch_type']);
+            $table->unique(['device_id', 'employee_bio_id', 'punch_time', 'punch_type'], 'biometric_attendance_unique');
         });
     }
 
