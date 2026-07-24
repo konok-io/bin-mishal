@@ -28,6 +28,33 @@ class DatabaseSeeder extends Seeder
             CityTVConnectSeeder::class,
             ExpenseSeeder::class,
             AccountingSeeder::class,
+            // HR Module Seeders
+            EmployeeSeeder::class,
+            LeaveRequestSeeder::class,
+            AttendanceSeeder::class,
+            PayrollRecordSeeder::class,
+            // Accounting Module Seeders
+            ChartOfAccountSeeder::class,
+            LedgerEntrySeeder::class,
+            ExpenseClaimSeeder::class,
+            // Recruitment Module Seeders
+            JobPostingSeeder::class,
+            JobApplicationSeeder::class,
+            // CMS Module Seeders
+            PageSeeder::class,
+            MenuSeeder::class,
+            BlogPostSeeder::class,
+            TestimonialSeeder::class,
+            GallerySeeder::class,
+            FaqSeeder::class,
+            // Communication Module Seeders
+            ContactMessageSeeder::class,
+            NewsletterSubscriberSeeder::class,
+            CommentSeeder::class,
+            // Settings Seeders
+            SeoSettingSeeder::class,
+            SocialLinkSeeder::class,
+            NoticeSeeder::class,
         ]);
     }
 }
