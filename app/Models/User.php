@@ -131,6 +131,11 @@ class User extends Authenticatable implements HasMedia
     }
 
     // Relationships
+    public function branch(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
     public function customer(): HasOne
     {
         return $this->hasOne(Customer::class);
