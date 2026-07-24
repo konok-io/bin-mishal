@@ -401,15 +401,12 @@
                     <i class="fa-solid fa-moon" id="pcMoon" style="display:none"></i>
                 </button>
 
-                <a href="{{ route('admin.messages.index') }}" class="text-dark position-relative">
+                <a href="/admin/contact-messages" class="text-dark position-relative">
                     <i class="fa-solid fa-bell fs-5"></i>
-                    @if($unread > 0)
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:0.6rem;">{{ $unread }}</span>
-                    @endif
                 </a>
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center gap-2 text-decoration-none text-dark dropdown-toggle" data-bs-toggle="dropdown">
-                        <img src="{{ auth()->user()->avatar_url }}" width="36" height="36" class="rounded-circle object-fit-cover" alt="Avatar">
+                        <img src="{{ auth()->user()->getFirstMediaUrl('avatar') ?: 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) . '&background=4F2FE8&color=fff' }}" width="36" height="36" class="rounded-circle object-fit-cover" alt="Avatar">
                         <span class="d-none d-md-inline small fw-semibold">{{ auth()->user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
