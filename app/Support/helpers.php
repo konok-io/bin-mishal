@@ -35,15 +35,8 @@ if (!function_exists('is_rtl')) {
 if (!function_exists('locale_route')) {
     function locale_route(string $name, array $params = [], ?string $locale = null): string
     {
-        // Try to get locale from multiple sources
-        $locale = $locale ?: app()->getLocale() ?: request()->segment(1) ?: 'bn';
-        
-        // Validate locale - must be bn, en, or ar
-        if (!in_array($locale, ['bn', 'en', 'ar'])) {
-            $locale = 'bn';
-        }
-        
-        $params['locale'] = $locale;
+        // Always ensure locale is set to 'bn' as default
+        $params['locale'] = 'bn';
 
         return route($name, $params);
     }
