@@ -113,7 +113,7 @@ class ChatAssistant extends Component
         }
 
         // Redirect to contact/lead form
-        return redirect()->route('contact');
+        return redirect()->to(locale_route('contact'));
     }
 
     public function render()
