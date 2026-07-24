@@ -469,16 +469,16 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ __('navigation.services') }}</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('services.umrah', ['locale' => app()->getLocale()]) }}">{{ __('app.umrah') }} Packages</a></li>
-                                <li><a class="dropdown-item" href="{{ route('services.visa', ['locale' => app()->getLocale()]) }}">{{ __('app.visa_processing') }}</a></li>
-                                <li><a class="dropdown-item" href="{{ route('services.airticket', ['locale' => app()->getLocale()]) }}">{{ __('app.flight_booking') }}</a></li>
-                                <li><a class="dropdown-item" href="{{ route('services.hotel', ['locale' => app()->getLocale()]) }}">{{ __('app.hotel_booking') }}</a></li>
+                                <li><a class="dropdown-item" href="{{ locale_route('services.umrah') }}">{{ __('app.umrah') }} Packages</a></li>
+                                <li><a class="dropdown-item" href="{{ locale_route('services.visa') }}">{{ __('app.visa_processing') }}</a></li>
+                                <li><a class="dropdown-item" href="{{ locale_route('services.airticket') }}">{{ __('app.flight_booking') }}</a></li>
+                                <li><a class="dropdown-item" href="{{ locale_route('services.hotel') }}">{{ __('app.hotel_booking') }}</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('about', ['locale' => app()->getLocale()]) }}">{{ __('app.about') }}</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('news', ['locale' => app()->getLocale()]) }}">News</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('contact', ['locale' => app()->getLocale()]) }}">{{ __('app.contact') }}</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-primary-custom text-white ms-2" href="{{ route('appointment', ['locale' => app()->getLocale()]) }}">{{ __('navigation.book_now') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ locale_route('about') }}">{{ __('app.about') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ locale_route('news') }}">News</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ locale_route('contact') }}">{{ __('app.contact') }}</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-primary-custom text-white ms-2" href="{{ locale_route('appointment') }}">{{ __('navigation.book_now') }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -683,7 +683,7 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="0">
-                    <a href="{{ route('services.umrah', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
+                    <a href="{{ locale_route('services.umrah') }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-mosque"></i>
                             <h5>{{ __('app.umrah') }}</h5>
@@ -691,7 +691,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="100">
-                    <a href="{{ route('services.visa', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
+                    <a href="{{ locale_route('services.visa') }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-passport"></i>
                             <h5>{{ __('app.visa') }}</h5>
@@ -699,7 +699,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="200">
-                    <a href="{{ route('services.airticket', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
+                    <a href="{{ locale_route('services.airticket') }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-plane"></i>
                             <h5>{{ __('app.air_ticket') }}</h5>
@@ -707,7 +707,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="300">
-                    <a href="{{ route('services.hotel', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
+                    <a href="{{ locale_route('services.hotel') }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-hotel"></i>
                             <h5>{{ __('app.hotel_booking') }}</h5>
@@ -715,7 +715,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="400">
-                    <a href="{{ route('visa-checker', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
+                    <a href="{{ locale_route('visa-checker') }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-clipboard-check"></i>
                             <h5>Visa Check</h5>
@@ -723,7 +723,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="500">
-                    <a href="{{ route('track', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
+                    <a href="{{ locale_route('track') }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-truck"></i>
                             <h5>Track Order</h5>
@@ -731,7 +731,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="600">
-                    <a href="{{ route('labour-law', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
+                    <a href="{{ locale_route('labour-law') }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-gavel"></i>
                             <h5>Labour Law</h5>
@@ -739,7 +739,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="700">
-                    <a href="{{ route('faqs', ['locale' => app()->getLocale()]) }}" class="text-decoration-none">
+                    <a href="{{ locale_route('faqs') }}" class="text-decoration-none">
                         <div class="service-icon-box">
                             <i class="fas fa-question-circle"></i>
                             <h5>{{ __('app.faq') }}</h5>
