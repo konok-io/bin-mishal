@@ -118,7 +118,7 @@ class DashboardController extends Controller
                     ->whereDoesntHave('attendances', fn($q) => $q->whereDate('punch_date', now()->toDateString()))
                     ->count(),
                 'pending_leave' => Leave::where('status', 'pending')->count(),
-                'pending_payroll' => Payroll::where('status', 'draft')->count(),
+                'pending_payroll' => \Illuminate\Support\Facades\Schema::hasTable('payrolls') ? Payroll::where('status', 'draft')->count() : 0,
             ],
             
             // Expense Claims (Phase 13)
@@ -183,7 +183,7 @@ class DashboardController extends Controller
         $pendingApprovals = [
             'leave_requests' => Leave::where('status', 'pending')->count(),
             'expense_claims' => ExpenseClaim::where('status', 'submitted')->count(),
-            'payroll_batches' => Payroll::where('status', 'draft')->count(),
+            'payroll_batches' => \Illuminate\Support\Facades\Schema::hasTable('payrolls') ? Payroll::where('status', 'draft')->count() : 0,
             'pending_comments' => PostComment::where('is_approved', false)->count(),
             'job_applications' => JobApplication::where('status', 'received')->count(),
         ];

@@ -42,9 +42,9 @@ class EmployeeController extends Controller
         ];
 
         // Latest payslip
-        $latestPayslip = Payroll::where('employee_id', $employee->id)
-            ->orderBy('period_end', 'desc')
-            ->first();
+        $latestPayslip = \Illuminate\Support\Facades\Schema::hasTable('payrolls') 
+            ? Payroll::where('employee_id', $employee->id)->orderBy('period_end', 'desc')->first()
+            : null;
 
         // Leave balance
         $leaveBalance = Leave::where('employee_id', $employee->id)
@@ -77,21 +77,20 @@ class EmployeeController extends Controller
             return redirect()->to(locale_route('home'));
         }
 
-        $payslips = Payroll::where('employee_id', $employee->id)
-            ->orderBy('period_end', 'desc')
-            ->paginate(12);
+        $payslips = \Illuminate\Support\Facades\Schema::hasTable('payrolls') 
+            ? Payroll::where('employee_id', $employee->id)->orderBy('period_end', 'desc')->paginate(12)
+            : collect([]);
 
         // YTD summary
-        $ytdTotal = Payroll::where('employee_id', $employee->id)
-            ->whereYear('period_end', now()->year)
-            ->sum('net_salary');
+        $ytdTotal = \Illuminate\Support\Facades\Schema::hasTable('payrolls')
+            ? Payroll::where('employee_id', $employee->id)->whereYear('period_end', now()->year)->sum('net_salary')
+            : 0;
 
-        $ytdDeductions = Payroll::where('employee_id', $employee->id)
-            ->whereYear('period_end', now()->year)
-            ->get()
-            ->sum(function ($p) {
+        $ytdDeductions = \Illuminate\Support\Facades\Schema::hasTable('payrolls')
+            ? Payroll::where('employee_id', $employee->id)->whereYear('period_end', now()->year)->get()->sum(function ($p) {
                 return array_sum($p->deductions ?? []);
-            });
+            })
+            : 0;
 
         return view('employee.payslips', compact('payslips', 'ytdTotal', 'ytdDeductions'));
     }
