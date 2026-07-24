@@ -44,6 +44,7 @@ class EmployeeControllerAdmin extends Controller
             'joining_date' => 'nullable|date',
             'iqama_no' => 'nullable|string|max:50',
             'passport_no' => 'nullable|string|max:50',
+            'biometric_id' => 'nullable|string|max:50|unique:employees,biometric_id',
             'branch_id' => 'nullable|exists:branches,id',
             'status' => 'required|in:active,inactive,terminated',
         ]);
@@ -75,6 +76,7 @@ class EmployeeControllerAdmin extends Controller
             'hourly_rate' => $request->salary_type === 'hourly' ? $request->hourly_rate : null,
             'iqama_no' => $request->iqama_no,
             'passport_no' => $request->passport_no,
+            'biometric_id' => $request->biometric_id,
             'status' => $request->status,
         ]);
 
@@ -107,6 +109,7 @@ class EmployeeControllerAdmin extends Controller
             'joining_date' => 'nullable|date',
             'iqama_no' => 'nullable|string|max:50',
             'passport_no' => 'nullable|string|max:50',
+            'biometric_id' => 'nullable|string|max:50|unique:employees,biometric_id,' . $employee->id,
             'branch_id' => 'nullable|exists:branches,id',
             'status' => 'required|in:active,inactive,terminated',
         ]);
@@ -139,6 +142,7 @@ class EmployeeControllerAdmin extends Controller
             'hourly_rate' => $request->salary_type === 'hourly' ? $request->hourly_rate : null,
             'iqama_no' => $request->iqama_no,
             'passport_no' => $request->passport_no,
+            'biometric_id' => $request->biometric_id,
             'status' => $request->status,
         ]);
 

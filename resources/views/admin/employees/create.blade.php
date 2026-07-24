@@ -89,6 +89,14 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="mb-3">
+                        <label for="biometric_id" class="form-label">Biometric ID <small class="text-muted">(Fingerprint ID)</small></label>
+                        <input type="text" class="form-control @error('biometric_id') is-invalid @enderror" id="biometric_id" name="biometric_id" value="{{ old('biometric_id') }}" placeholder="e.g., BIO-001">
+                        @error('biometric_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        <small class="text-muted">Unique ID for fingerprint/biometric attendance system</small>
+                    </div>
                 </div>
             </div>
             
