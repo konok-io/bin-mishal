@@ -22,7 +22,7 @@ class FlightRequestSeeder extends Seeder
             [
                 'request_no' => 'FR-240720001',
                 'customer_id' => $customers->first()?->id,
-                'trip_type' => 'round_trip',
+                'trip_type' => 'roundtrip',
                 'from_airport_id' => $airports->first()?->id,
                 'to_airport_id' => $airports->skip(1)->first()?->id,
                 'departure_date' => now()->addDays(45),
@@ -41,7 +41,7 @@ class FlightRequestSeeder extends Seeder
             [
                 'request_no' => 'FR-240720002',
                 'customer_id' => $customers->skip(1)->first()?->id,
-                'trip_type' => 'one_way',
+                'trip_type' => 'oneway',
                 'from_airport_id' => $airports->skip(1)->first()?->id,
                 'to_airport_id' => $airports->skip(2)->first()?->id,
                 'departure_date' => now()->addDays(30),
@@ -60,7 +60,7 @@ class FlightRequestSeeder extends Seeder
             [
                 'request_no' => 'FR-240720003',
                 'customer_id' => $customers->last()?->id,
-                'trip_type' => 'round_trip',
+                'trip_type' => 'roundtrip',
                 'from_airport_id' => $airports->first()?->id,
                 'to_airport_id' => $airports->last()?->id,
                 'departure_date' => now()->addDays(60),
@@ -79,7 +79,7 @@ class FlightRequestSeeder extends Seeder
             [
                 'request_no' => 'FR-240720004',
                 'customer_id' => $customers->first()?->id,
-                'trip_type' => 'multi_city',
+                'trip_type' => 'multicity',
                 'from_airport_id' => $airports->first()?->id,
                 'to_airport_id' => $airports->skip(2)->first()?->id,
                 'departure_date' => now()->addDays(21),
