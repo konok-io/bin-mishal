@@ -8,9 +8,9 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('cargo_trackings', function (Blueprint $table) {
+        Schema::create('cargo_tracking', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cargo_id')->constrained('cargo')->onDelete('cascade');
+            $table->unsignedBigInteger('cargo_id');
             $table->string('status');
             $table->string('status_bn')->nullable();
             $table->string('status_ar')->nullable();
@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('description_bn')->nullable();
             $table->text('description_ar')->nullable();
             $table->string('location')->nullable();
-            $table->foreignId('branch_id')->nullable()->constrained('branches')->onDelete('set null');
-            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->unsignedBigInteger('branch_id')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamp('timestamp');
             $table->boolean('notify_customer')->default(false);
             $table->timestamps();
@@ -30,6 +30,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('cargo_trackings');
+        Schema::dropIfExists('cargo_tracking');
     }
 };
