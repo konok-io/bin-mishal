@@ -23,7 +23,7 @@
         <div class="container">
             <div class="main-nav__content">
                 {{-- Logo --}}
-                <a href="{{ locale_route('home') }}" class="logo">
+                <a href="{{ locale_locale_route('home') }}" class="logo">
                     <span class="logo__text">{{ __('app.app_name') }}</span>
                 </a>
 

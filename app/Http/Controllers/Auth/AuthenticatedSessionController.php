@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
                 return redirect()->intended(route('admin.dashboard'));
             }
 
-            return redirect()->intended(route('home'));
+            return redirect()->intended(locale_route('home'));
         }
 
         return back()->withErrors([

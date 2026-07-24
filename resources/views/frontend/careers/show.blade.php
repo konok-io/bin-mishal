@@ -8,7 +8,7 @@
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
+                <li class="breadcrumb-item"><a href="{{ locale_route('home') }}">@lang('Home')</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('careers') }}">@lang('Careers')</a></li>
                 <li class="breadcrumb-item active">{{ $job->title }}</li>
             </ol>

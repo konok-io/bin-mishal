@@ -21,7 +21,7 @@ class EmployeeController extends Controller
         $employee = $user->employee;
         
         if (!$employee) {
-            return redirect()->route('home');
+            return redirect()->to(locale_route('home'));
         }
 
         // Today's attendance
@@ -74,7 +74,7 @@ class EmployeeController extends Controller
         $employee = $user->employee;
 
         if (!$employee) {
-            return redirect()->route('home');
+            return redirect()->to(locale_route('home'));
         }
 
         $payslips = Payroll::where('employee_id', $employee->id)
@@ -102,7 +102,7 @@ class EmployeeController extends Controller
         $employee = $user->employee;
 
         if (!$employee) {
-            return redirect()->route('home');
+            return redirect()->to(locale_route('home'));
         }
 
         // Monthly summary
@@ -130,7 +130,7 @@ class EmployeeController extends Controller
         $employee = $user->employee;
 
         if (!$employee) {
-            return redirect()->route('home');
+            return redirect()->to(locale_route('home'));
         }
 
         $leaves = Leave::where('employee_id', $employee->id)
@@ -164,7 +164,7 @@ class EmployeeController extends Controller
         $employee = $user->employee;
 
         if (!$employee) {
-            return redirect()->route('home');
+            return redirect()->to(locale_route('home'));
         }
 
         // Get expense types
@@ -207,7 +207,7 @@ class EmployeeController extends Controller
         $employee = $user->employee;
 
         if (!$employee) {
-            return redirect()->route('home');
+            return redirect()->to(locale_route('home'));
         }
 
         $validated = $request->validate([

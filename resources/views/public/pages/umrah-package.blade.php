@@ -22,7 +22,7 @@ $package = \App\Models\UmrahPackage::where('slug', $slug)->orWhere('id', $slug)-
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('Home')</a></li>
+                <li class="breadcrumb-item"><a href="{{ locale_route('home') }}">@lang('Home')</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('services.umrah') }}">@lang('Umrah Packages')</a></li>
                 <li class="breadcrumb-item active">{{ $package->name }}</li>
             </ol>

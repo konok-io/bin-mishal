@@ -20,7 +20,7 @@
                         <p class="text-muted">{{ $message }}</p>
                     @endif
                     
-                    <a href="{{ route('home') }}" class="btn btn-primary mt-3">
+                    <a href="{{ locale_route('home') }}" class="btn btn-primary mt-3">
                         {{ __('Go to Homepage') }}
                     </a>
                 </div>

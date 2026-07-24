@@ -7,7 +7,7 @@
             <div class="footer-grid">
                 {{-- Column 1: About --}}
                 <div class="footer-col footer-col--about">
-                    <a href="{{ locale_route('home') }}" class="footer-logo">
+                    <a href="{{ locale_locale_route('home') }}" class="footer-logo">
                         {{ __('app.app_name') }}
                     </a>
                     <p class="footer-about__text">

@@ -13,7 +13,7 @@
                     </div>
                     <h2 class="mb-3">@lang('Invalid Link')</h2>
                     <p class="text-muted">{{ $message ?? __('This link is invalid or has expired.') }}</p>
-                    <a href="{{ route('home') }}" class="btn btn-success mt-3">
+                    <a href="{{ locale_route('home') }}" class="btn btn-success mt-3">
                         <i class="bi bi-house"></i> @lang('Go to Homepage')
                     </a>
                 </div>

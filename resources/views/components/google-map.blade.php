@@ -19,7 +19,7 @@
                 <p class="text-muted small">
                     @lang('Google Maps API key not configured.')
                     <br>
-                    <a href="{{ route('home') }}">@lang('Contact us for location details.')</a>
+                    <a href="{{ locale_route('home') }}">@lang('Contact us for location details.')</a>
                 </p>
             </div>
             @if($address)

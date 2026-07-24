@@ -14,7 +14,7 @@
                     <h2 class="mb-3">@lang('Unsubscribed')</h2>
                     <p class="text-muted">{{ $message ?? __('You have been unsubscribed from our newsletter.') }}</p>
                     <p class="text-muted small">@lang("We're sorry to see you go. You can subscribe again anytime.")</p>
-                    <a href="{{ route('home') }}" class="btn btn-success mt-3">
+                    <a href="{{ locale_route('home') }}" class="btn btn-success mt-3">
                         <i class="bi bi-house"></i> @lang('Go to Homepage')
                     </a>
                 </div>

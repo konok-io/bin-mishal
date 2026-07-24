@@ -21,7 +21,7 @@
                         <p class="text-muted">{{ __('The unsubscribe link is invalid or has expired.') }}</p>
                     @endif
                     
-                    <a href="{{ route('home') }}" class="btn btn-primary mt-3">
+                    <a href="{{ locale_route('home') }}" class="btn btn-primary mt-3">
                         {{ __('Go to Homepage') }}
                     </a>
                 </div>

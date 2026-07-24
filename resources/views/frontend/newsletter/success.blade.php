@@ -13,7 +13,7 @@
                     </div>
                     <h2 class="mb-3">@lang('Subscription Verified!')</h2>
                     <p class="text-muted">{{ $message ?? __('Thank you! Your subscription has been verified.') }}</p>
-                    <a href="{{ route('home') }}" class="btn btn-success mt-3">
+                    <a href="{{ locale_route('home') }}" class="btn btn-success mt-3">
                         <i class="bi bi-house"></i> @lang('Go to Homepage')
                     </a>
                 </div>
