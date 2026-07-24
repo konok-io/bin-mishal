@@ -9,7 +9,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ locale_route('home') }}">@lang('Home')</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('services') }}">@lang('Services')</a></li>
+                <li class="breadcrumb-item"><a href="{{ locale_route('services') }}">@lang('Services')</a></li>
                 <li class="breadcrumb-item active">@lang('Visa Services')</li>
             </ol>
         </nav>
@@ -121,7 +121,7 @@
             <a href="{{ locale_route('contact') }}" class="btn btn-light btn-lg">
                 <i class="bi bi-chat-dots"></i> @lang('Contact Us')
             </a>
-            <a href="{{ route('appointment') }}" class="btn btn-outline-light btn-lg">
+            <a href="{{ locale_route('appointment') }}" class="btn btn-outline-light btn-lg">
                 <i class="bi bi-calendar"></i> @lang('Book Appointment')
             </a>
         </div>

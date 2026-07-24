@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <i class="bi bi-search" style="font-size: 4rem; color: #ccc;"></i>
                             <h3 class="mt-3">@lang('No results found')</h3>
                             <p>@lang('Try different keywords or browse our services.')</p>
-                            <a href="{{ route('services') }}" class="btn btn-success mt-3">@lang('Browse Services')</a>
+                            <a href="{{ locale_route('services') }}" class="btn btn-success mt-3">@lang('Browse Services')</a>
                         </div>
                     `;
                 }

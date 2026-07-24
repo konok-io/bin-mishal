@@ -9,7 +9,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ locale_route('home') }}">@lang('Home')</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('services') }}">@lang('Services')</a></li>
+                <li class="breadcrumb-item"><a href="{{ locale_route('services') }}">@lang('Services')</a></li>
                 <li class="breadcrumb-item active">@lang('Hotel Booking')</li>
             </ol>
         </nav>

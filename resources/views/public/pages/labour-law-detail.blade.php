@@ -8,7 +8,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ locale_route('home') }}">@lang('Home')</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('labour-law') }}">@lang('Labour Law')</a></li>
+                <li class="breadcrumb-item"><a href="{{ locale_route('labour-law') }}">@lang('Labour Law')</a></li>
                 <li class="breadcrumb-item active">{{ $slug }}</li>
             </ol>
         </nav>
@@ -16,7 +16,7 @@
         <div class="law-content">
             <h1 class="mb-4">{{ ucwords(str_replace('-', ' ', $slug)) }}</h1>
             <p>@lang('Detailed information about this topic coming soon.')</p>
-            <a href="{{ route('labour-law') }}" class="btn btn-success mt-3">@lang('Back to Labour Law')</a>
+            <a href="{{ locale_route('labour-law') }}" class="btn btn-success mt-3">@lang('Back to Labour Law')</a>
         </div>
     </div>
 </section>

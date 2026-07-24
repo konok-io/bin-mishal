@@ -13,7 +13,7 @@ $visaType = \App\Models\VisaType::where('slug', $slug)->orWhere('id', $slug)->fi
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ locale_route('home') }}">@lang('Home')</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('services.visa') }}">@lang('Visa Services')</a></li>
+                <li class="breadcrumb-item"><a href="{{ locale_route('services.visa') }}">@lang('Visa Services')</a></li>
                 <li class="breadcrumb-item active">{{ $visaType->name ?? $slug }}</li>
             </ol>
         </nav>

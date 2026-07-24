@@ -24,7 +24,7 @@
                         <h5 class="mb-0"><i class="bi bi-funnel"></i> @lang('Filter Jobs')</h5>
                     </div>
                     <div class="card-body">
-                        <form method="GET" action="{{ route('careers') }}">
+                        <form method="GET" action="{{ locale_route('careers') }}">
                             <div class="mb-3">
                                 <label class="form-label">@lang('Search')</label>
                                 <input type="text" name="search" class="form-control" 
@@ -68,7 +68,7 @@
                             </button>
                             
                             @if(request()->anyFilled(['search', 'department', 'type', 'location']))
-                            <a href="{{ route('careers') }}" class="btn btn-outline-secondary w-100 mt-2">
+                            <a href="{{ locale_route('careers') }}" class="btn btn-outline-secondary w-100 mt-2">
                                 @lang('Clear Filters')
                             </a>
                             @endif
@@ -126,7 +126,7 @@
                     <h4 class="mt-3">@lang('No jobs found')</h4>
                     <p>@lang('Try adjusting your filters or check back later for new opportunities.')</p>
                     @if(request()->anyFilled(['search', 'department', 'type', 'location']))
-                    <a href="{{ route('careers') }}" class="btn btn-success">
+                    <a href="{{ locale_route('careers') }}" class="btn btn-success">
                         @lang('Clear Filters')
                     </a>
                     @endif

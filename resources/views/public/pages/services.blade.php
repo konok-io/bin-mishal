@@ -23,7 +23,7 @@
                     </div>
                     <h3>@lang('Umrah Packages')</h3>
                     <p>@lang('Complete Umrah packages including visa, accommodation, transportation, and guided tours.')</p>
-                    <a href="{{ route('services.umrah') }}" class="btn btn-success">@lang('View Packages') <i class="bi bi-arrow-right"></i></a>
+                    <a href="{{ locale_route('services.umrah') }}" class="btn btn-success">@lang('View Packages') <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
                     </div>
                     <h3>@lang('Visa Services')</h3>
                     <p>@lang('Professional visa processing for Saudi Arabia, UAE, and other destinations.')</p>
-                    <a href="{{ route('services.visa') }}" class="btn btn-success">@lang('Learn More') <i class="bi bi-arrow-right"></i></a>
+                    <a href="{{ locale_route('services.visa') }}" class="btn btn-success">@lang('Learn More') <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
 
@@ -47,7 +47,7 @@
                     </div>
                     <h3>@lang('Air Tickets')</h3>
                     <p>@lang('Competitive fares on all major airlines. Book flights to Saudi Arabia, Bangladesh, and worldwide.')</p>
-                    <a href="{{ route('services.airticket') }}" class="btn btn-success">@lang('Book Now') <i class="bi bi-arrow-right"></i></a>
+                    <a href="{{ locale_route('services.airticket') }}" class="btn btn-success">@lang('Book Now') <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                     </div>
                     <h3>@lang('Hotel Booking')</h3>
                     <p>@lang('Premium hotels near Haram in Makkah and Madinah. Budget to luxury options available.')</p>
-                    <a href="{{ route('services.hotel') }}" class="btn btn-success">@lang('View Hotels') <i class="bi bi-arrow-right"></i></a>
+                    <a href="{{ locale_route('services.hotel') }}" class="btn btn-success">@lang('View Hotels') <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
 
@@ -71,7 +71,7 @@
                     </div>
                     <h3>@lang('Cargo Service')</h3>
                     <p>@lang('Reliable air and sea cargo services between Saudi Arabia and Bangladesh. Door-to-door delivery.')</p>
-                    <a href="{{ route('cargo') }}" class="btn btn-success">@lang('Learn More') <i class="bi bi-arrow-right"></i></a>
+                    <a href="{{ locale_route('cargo') }}" class="btn btn-success">@lang('Learn More') <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
 

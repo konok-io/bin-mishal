@@ -9,7 +9,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ locale_route('home') }}">@lang('Home')</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('careers') }}">@lang('Careers')</a></li>
+                <li class="breadcrumb-item"><a href="{{ locale_route('careers') }}">@lang('Careers')</a></li>
                 <li class="breadcrumb-item active">{{ $job->title }}</li>
             </ol>
         </nav>
@@ -144,7 +144,7 @@
                                 <div class="form-check">
                                     <input type="checkbox" name="consent" class="form-check-input" id="consent" required>
                                     <label class="form-check-label" for="consent">
-                                        @lang('I agree to the') <a href="{{ route('privacy-policy') }}" target="_blank">@lang('Privacy Policy')</a> 
+                                        @lang('I agree to the') <a href="{{ locale_route('privacy-policy') }}" target="_blank">@lang('Privacy Policy')</a> 
                                         @lang('and consent to the processing of my personal data for recruitment purposes.')
                                     </label>
                                 </div>

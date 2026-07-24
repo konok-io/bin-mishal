@@ -7,7 +7,7 @@
             </h5>
             <p class="cookie-message mb-0">
                 @lang('We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept", you consent to our use of cookies.')
-                <a href="{{ route('privacy-policy') }}" class="text-white text-decoration-underline">@lang('Privacy Policy')</a>
+                <a href="{{ locale_route('privacy-policy') }}" class="text-white text-decoration-underline">@lang('Privacy Policy')</a>
             </p>
         </div>
         <div class="cookie-actions">

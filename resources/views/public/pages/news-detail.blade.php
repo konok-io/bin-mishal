@@ -12,7 +12,7 @@ $post = \App\Models\Content\Post::where('slug', $slug)->orWhere('id', $slug)->fi
     <div class="container text-center">
         <i class="bi bi-exclamation-triangle text-warning" style="font-size: 4rem;"></i>
         <h2 class="mt-3">@lang('Article Not Found')</h2>
-        <a href="{{ route('news') }}" class="btn btn-success mt-3">@lang('Back to News')</a>
+        <a href="{{ locale_route('news') }}" class="btn btn-success mt-3">@lang('Back to News')</a>
     </div>
 </section>
 @else
@@ -42,7 +42,7 @@ $post = \App\Models\Content\Post::where('slug', $slug)->orWhere('id', $slug)->fi
             </div>
             
             <footer class="article-footer">
-                <a href="{{ route('news') }}" class="btn btn-outline-secondary">
+                <a href="{{ locale_route('news') }}" class="btn btn-outline-secondary">
                     <i class="bi bi-arrow-left"></i> @lang('Back to News')
                 </a>
             </footer>

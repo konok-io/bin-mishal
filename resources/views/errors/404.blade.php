@@ -29,25 +29,25 @@
                     <div class="col-md-8">
                         <div class="row g-3">
                             <div class="col-6 col-md-3">
-                                <a href="{{ route('services') }}" class="quick-link">
+                                <a href="{{ locale_route('services') }}" class="quick-link">
                                     <i class="bi bi-grid"></i>
                                     <span>@lang('Services')</span>
                                 </a>
                             </div>
                             <div class="col-6 col-md-3">
-                                <a href="{{ route('services.umrah') }}" class="quick-link">
+                                <a href="{{ locale_route('services.umrah') }}" class="quick-link">
                                     <i class="bi bi-kaaba"></i>
                                     <span>@lang('Umrah')</span>
                                 </a>
                             </div>
                             <div class="col-6 col-md-3">
-                                <a href="{{ route('cargo') }}" class="quick-link">
+                                <a href="{{ locale_route('cargo') }}" class="quick-link">
                                     <i class="bi bi-truck"></i>
                                     <span>@lang('Cargo')</span>
                                 </a>
                             </div>
                             <div class="col-6 col-md-3">
-                                <a href="{{ route('careers') }}" class="quick-link">
+                                <a href="{{ locale_route('careers') }}" class="quick-link">
                                     <i class="bi bi-briefcase"></i>
                                     <span>@lang('Careers')</span>
                                 </a>

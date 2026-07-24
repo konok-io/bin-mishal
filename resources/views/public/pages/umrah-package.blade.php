@@ -13,7 +13,7 @@ $package = \App\Models\UmrahPackage::where('slug', $slug)->orWhere('id', $slug)-
         <i class="bi bi-exclamation-triangle text-warning" style="font-size: 4rem;"></i>
         <h2 class="mt-3">@lang('Package Not Found')</h2>
         <p>@lang('The requested Umrah package could not be found.')</p>
-        <a href="{{ route('services.umrah') }}" class="btn btn-success">@lang('Back to Packages')</a>
+        <a href="{{ locale_route('services.umrah') }}" class="btn btn-success">@lang('Back to Packages')</a>
     </div>
 </section>
 @else
@@ -23,7 +23,7 @@ $package = \App\Models\UmrahPackage::where('slug', $slug)->orWhere('id', $slug)-
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ locale_route('home') }}">@lang('Home')</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('services.umrah') }}">@lang('Umrah Packages')</a></li>
+                <li class="breadcrumb-item"><a href="{{ locale_route('services.umrah') }}">@lang('Umrah Packages')</a></li>
                 <li class="breadcrumb-item active">{{ $package->name }}</li>
             </ol>
         </nav>
