@@ -21,8 +21,8 @@ use App\Models\Payroll;
 use App\Models\PostComment;
 use App\Models\User;
 use App\Models\VisaApplication;
-use App\Models\CMS\Cargo;
-use App\Models\CMS\InvestorApplication;
+use App\Models\Cargo\Cargo;
+use App\Models\InvestorApplication;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
