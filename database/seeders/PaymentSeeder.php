@@ -59,7 +59,7 @@ class PaymentSeeder extends Seeder
                 'invoice_id' => $invoices->first()?->id,
                 'amount' => 2000.00,
                 'currency' => 'SAR',
-                'method' => 'online',
+                'method' => 'bank_transfer',
                 'transaction_id' => 'TXN456789123',
                 'status' => 'completed',
                 'paid_at' => now()->subDays(1),
