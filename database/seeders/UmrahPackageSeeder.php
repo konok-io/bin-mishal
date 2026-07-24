@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-amespace Database\Seeders;
+namespace Database\Seeders;
 
 use App\Models\UmrahPackage;
 use Illuminate\Database\Seeder;
