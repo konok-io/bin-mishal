@@ -7,17 +7,17 @@
         <h1 class="h4 mb-1">{{ $cityTVConnect->name }}</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('city-tv-connect.index') }}">City TV Connect</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.city-tv-connect.index') }}">City TV Connect</a></li>
                 <li class="breadcrumb-item active">Details</li>
             </ol>
         </nav>
     </div>
     <div>
-        <a href="{{ route('city-tv-connect.edit', $cityTVConnect->id) }}" class="btn btn-admin-primary">
+        <a href="{{ route('admin.city-tv-connect.edit', $cityTVConnect->id) }}" class="btn btn-admin-primary">
             <i class="fas fa-edit me-2"></i>Edit
         </a>
-        <a href="{{ route('city-tv-connect.index') }}" class="btn btn-secondary">
+        <a href="{{ route('admin.city-tv-connect.index') }}" class="btn btn-secondary">
             <i class="fas fa-arrow-left me-2"></i>Back
         </a>
     </div>
@@ -87,10 +87,10 @@
                 <h5 class="mb-0"><i class="fas fa-cog me-2"></i>Quick Actions</h5>
             </div>
             <div class="card-body-custom">
-                <a href="{{ route('city-tv-connect.cameras') }}" class="btn btn-primary w-100 mb-2" target="_blank">
+                <a href="{{ route('admin.city-tv-connect.cameras') }}" class="btn btn-primary w-100 mb-2" target="_blank">
                     <i class="fas fa-video me-2"></i>View Live Cameras
                 </a>
-                <form action="{{ route('city-tv-connect.destroy', $cityTVConnect->id) }}" method="POST">
+                <form action="{{ route('admin.city-tv-connect.destroy', $cityTVConnect->id) }}" method="POST">
                     @csrf @method('DELETE')
                     <button type="submit" class="btn btn-danger w-100" onclick="return confirm('Delete this branch?')">
                         <i class="fas fa-trash me-2"></i>Delete Branch

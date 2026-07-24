@@ -3,7 +3,7 @@
 @section('content')
 <div class="admin-page-header d-flex justify-content-between align-items-center">
     <h1 class="h4 mb-0">Attendance</h1>
-    <a href="{{ route('attendance.create') }}" class="btn btn-primary">
+    <a href="{{ route('admin.attendance.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-circle"></i> Record Attendance
     </a>
 </div>

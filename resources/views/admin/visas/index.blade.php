@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-passport"></i> Visa Applications</h1>
-    <a href="{{ route('visas.create') }}" class="btn btn-primary">
+    <a href="{{ route('admin.visas.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> New Application
     </a>
 </div>
 
 <div class="card">
     <div class="card-header">
-        <form action="{{ route('visas.index') }}" method="GET" class="row g-3">
+        <form action="{{ route('admin.visas.index') }}" method="GET" class="row g-3">
             <div class="col-md-3">
                 <select name="status" class="form-select">
                     <option value="">All Status</option>
@@ -64,7 +64,7 @@
                     </td>
                     <td>{{ $app->created_at->format('d M Y') }}</td>
                     <td>
-                        <a href="{{ route('visas.show', $app->id) }}" class="btn btn-sm btn-info">
+                        <a href="{{ route('admin.visas.show', $app->id) }}" class="btn btn-sm btn-info">
                             <i class="bi bi-eye"></i>
                         </a>
                     </td>

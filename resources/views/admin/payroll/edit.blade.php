@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-wallet2"></i> Edit Payroll</h1>
-    <a href="{{ route('payroll.index') }}" class="btn btn-secondary">
+    <a href="{{ route('admin.payroll.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
 
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('payroll.update', $payroll->id) }}" method="POST">
+        <form action="{{ route('admin.payroll.update', $payroll->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
@@ -96,7 +96,7 @@
             </div>
 
             <div class="d-flex justify-content-end">
-                <a href="{{ route('payroll.index') }}" class="btn btn-secondary me-2">Cancel</a>
+                <a href="{{ route('admin.payroll.index') }}" class="btn btn-secondary me-2">Cancel</a>
                 <button type="submit" class="btn btn-primary">Update Payroll</button>
             </div>
         </form>

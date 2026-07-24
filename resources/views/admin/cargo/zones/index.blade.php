@@ -7,7 +7,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h1 class="h3 mb-0 text-gray-800">Zones - {{ $city->name }}</h1>
-            <a href="{{ route('cargo.cities') }}" class="text-decoration-none">&larr; Back to Cities</a>
+            <a href="{{ route('admin.cargo.cities') }}" class="text-decoration-none">&larr; Back to Cities</a>
         </div>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
             <i class="fas fa-plus"></i> Add Zone
@@ -42,7 +42,7 @@
                                 <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#editModal{{ $zone->id }}">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <form action="{{ route('cargo.zones.destroy', $zone->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('admin.cargo.zones.destroy', $zone->id) }}" method="POST" class="d-inline">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">
                                         <i class="fas fa-trash"></i>
@@ -54,7 +54,7 @@
                         <div class="modal fade" id="editModal{{ $zone->id }}" tabindex="-1">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="{{ route('cargo.zones.update', $zone->id) }}" method="POST">
+                                    <form action="{{ route('admin.cargo.zones.update', $zone->id) }}" method="POST">
                                         @csrf @method('PUT')
                                         <div class="modal-header"><h5 class="modal-title">Edit Zone</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
                                         <div class="modal-body">
@@ -85,7 +85,7 @@
 <div class="modal fade" id="createModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('cargo.zones.store') }}" method="POST">
+            <form action="{{ route('admin.cargo.zones.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="city_id" value="{{ $city->id }}">
                 <div class="modal-header"><h5 class="modal-title">Add Zone</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>

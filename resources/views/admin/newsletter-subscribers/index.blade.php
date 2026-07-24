@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-envelope"></i> Newsletter Subscribers</h1>
-    <a href="{{ route('newsletter-subscribers.export') }}" class="btn btn-success">
+    <a href="{{ route('admin.newsletter-subscribers.export') }}" class="btn btn-success">
         <i class="bi bi-download"></i> Export CSV
     </a>
 </div>
 
 <div class="card">
     <div class="card-header">
-        <form action="{{ route('newsletter-subscribers.index') }}" method="GET" class="row g-3">
+        <form action="{{ route('admin.newsletter-subscribers.index') }}" method="GET" class="row g-3">
             <div class="col-md-4">
                 <input type="text" name="search" class="form-control" placeholder="Search by email..." value="{{ request('search') }}">
             </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-3">
                 <button type="submit" class="btn btn-secondary"><i class="bi bi-search"></i> Filter</button>
-                <a href="{{ route('newsletter-subscribers.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> Clear</a>
+                <a href="{{ route('admin.newsletter-subscribers.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> Clear</a>
             </div>
         </form>
     </div>
@@ -57,17 +57,17 @@
                         <td>{{ $subscriber->unsubscribed_at ? $subscriber->unsubscribed_at->format('M d, Y') : '-' }}</td>
                         <td>
                             @if($subscriber->is_subscribed)
-                                <form action="{{ route('newsletter-subscribers.unsubscribe', $subscriber->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('admin.newsletter-subscribers.unsubscribe', $subscriber->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-warning">Unsubscribe</button>
                                 </form>
                             @else
-                                <form action="{{ route('newsletter-subscribers.subscribe', $subscriber->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('admin.newsletter-subscribers.subscribe', $subscriber->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-success">Subscribe</button>
                                 </form>
                             @endif
-                            <form action="{{ route('newsletter-subscribers.destroy', $subscriber->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('admin.newsletter-subscribers.destroy', $subscriber->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">

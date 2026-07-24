@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-newspaper"></i> Blog Posts</h1>
-    <a href="{{ route('blog-posts.create') }}" class="btn btn-primary">
+    <a href="{{ route('admin.blog-posts.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> Add Post
     </a>
 </div>
 
 <div class="card">
     <div class="card-header">
-        <form action="{{ route('blog-posts.index') }}" method="GET" class="row g-3">
+        <form action="{{ route('admin.blog-posts.index') }}" method="GET" class="row g-3">
             <div class="col-md-4">
                 <input type="text" name="search" class="form-control" placeholder="Search posts..." value="{{ request('search') }}">
             </div>
@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-4">
                 <button type="submit" class="btn btn-secondary"><i class="bi bi-search"></i> Filter</button>
-                <a href="{{ route('blog-posts.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> Clear</a>
+                <a href="{{ route('admin.blog-posts.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> Clear</a>
             </div>
         </form>
     </div>
@@ -85,10 +85,10 @@
                             <a href="{{ route('blog.show', $post->slug) }}" target="_blank" class="btn btn-sm btn-info">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            <a href="{{ route('blog-posts.edit', $post->id) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('admin.blog-posts.edit', $post->id) }}" class="btn btn-sm btn-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <form action="{{ route('blog-posts.destroy', $post->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('admin.blog-posts.destroy', $post->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">

@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-wallet2"></i> Payroll Details</h1>
-    <a href="{{ route('payroll.index') }}" class="btn btn-secondary">
+    <a href="{{ route('admin.payroll.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
@@ -126,11 +126,11 @@
                 <h5 class="mb-0">Actions</h5>
             </div>
             <div class="card-body">
-                <a href="{{ route('payroll.edit', $payroll->id) }}" class="btn btn-warning w-100 mb-2">
+                <a href="{{ route('admin.payroll.edit', $payroll->id) }}" class="btn btn-warning w-100 mb-2">
                     <i class="bi bi-pencil"></i> Edit Payroll
                 </a>
                 @if($payroll->status !== 'paid')
-                    <form action="{{ route('payroll.destroy', $payroll->id) }}" method="POST">
+                    <form action="{{ route('admin.payroll.destroy', $payroll->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger w-100" onclick="return confirm('Are you sure you want to delete this payroll record?')">

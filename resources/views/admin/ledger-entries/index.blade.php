@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-journal-text"></i> Ledger Entries</h1>
-    <a href="{{ route('ledger-entries.create') }}" class="btn btn-primary">
+    <a href="{{ route('admin.ledger-entries.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> Add Entry
     </a>
 </div>
 
 <div class="card">
     <div class="card-header">
-        <form action="{{ route('ledger-entries.index') }}" method="GET" class="row g-3">
+        <form action="{{ route('admin.ledger-entries.index') }}" method="GET" class="row g-3">
             <div class="col-md-3">
                 <input type="text" name="search" class="form-control" placeholder="Search description or reference..." value="{{ request('search') }}">
             </div>
@@ -41,7 +41,7 @@
             </div>
             <div class="col-md-1">
                 <button type="submit" class="btn btn-secondary"><i class="bi bi-search"></i></button>
-                <a href="{{ route('ledger-entries.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i></a>
+                <a href="{{ route('admin.ledger-entries.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i></a>
             </div>
         </form>
     </div>
@@ -78,14 +78,14 @@
                         <td>{{ Str::limit($entry->description, 40) }}</td>
                         <td>{{ $entry->reference ?? '-' }}</td>
                         <td>
-                            <a href="{{ route('ledger-entries.show', $entry->id) }}" class="btn btn-sm btn-info">
+                            <a href="{{ route('admin.ledger-entries.show', $entry->id) }}" class="btn btn-sm btn-info">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            <a href="{{ route('ledger-entries.edit', $entry->id) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('admin.ledger-entries.edit', $entry->id) }}" class="btn btn-sm btn-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             @if(!$entry->is_locked)
-                                <form action="{{ route('ledger-entries.destroy', $entry->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('admin.ledger-entries.destroy', $entry->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">

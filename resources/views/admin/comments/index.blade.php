@@ -8,7 +8,7 @@
 
 <div class="card">
     <div class="card-header">
-        <form action="{{ route('comments.index') }}" method="GET" class="row g-3">
+        <form action="{{ route('admin.comments.index') }}" method="GET" class="row g-3">
             <div class="col-md-4">
                 <input type="text" name="search" class="form-control" placeholder="Search comments..." value="{{ request('search') }}">
             </div>
@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-3">
                 <button type="submit" class="btn btn-secondary"><i class="bi bi-search"></i> Filter</button>
-                <a href="{{ route('comments.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> Clear</a>
+                <a href="{{ route('admin.comments.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> Clear</a>
             </div>
         </form>
     </div>
@@ -64,7 +64,7 @@
                             <small>{{ $comment->created_at->format('M d, Y') }}</small>
                         </td>
                         <td>
-                            <form action="{{ route('comments.update', $comment->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('admin.comments.update', $comment->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="is_approved" value="{{ $comment->is_approved ? 0 : 1 }}">
@@ -72,7 +72,7 @@
                                     <i class="bi bi-{{ $comment->is_approved ? 'x-circle' : 'check-circle' }}"></i>
                                 </button>
                             </form>
-                            <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('admin.comments.destroy', $comment->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">

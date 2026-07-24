@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-passport"></i> Application: {{ $application->application_no }}</h1>
-    <a href="{{ route('visas.index') }}" class="btn btn-secondary">
+    <a href="{{ route('admin.visas.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
@@ -72,20 +72,20 @@
         <div class="card mb-4">
             <div class="card-body">
                 @if($application->status->value === 'draft')
-                <form action="{{ route('visas.submit', $application->id) }}" method="POST" class="d-inline">
+                <form action="{{ route('admin.visas.submit', $application->id) }}" method="POST" class="d-inline">
                     @csrf
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-send"></i> Submit Application
                     </button>
                 </form>
                 @elseif($application->status->value === 'government_processing')
-                <form action="{{ route('visas.approve', $application->id) }}" method="POST" class="d-inline">
+                <form action="{{ route('admin.visas.approve', $application->id) }}" method="POST" class="d-inline">
                     @csrf
                     <button type="submit" class="btn btn-success">
                         <i class="bi bi-check-circle"></i> Approve
                     </button>
                 </form>
-                <form action="{{ route('visas.reject', $application->id) }}" method="POST" class="d-inline">
+                <form action="{{ route('admin.visas.reject', $application->id) }}" method="POST" class="d-inline">
                     @csrf
                     <input type="text" name="reason" placeholder="Rejection reason" class="form-control d-inline-block w-auto" required>
                     <button type="submit" class="btn btn-danger">
@@ -93,7 +93,7 @@
                     </button>
                 </form>
                 @elseif($application->status->value === 'approved')
-                <form action="{{ route('visas.deliver', $application->id) }}" method="POST" class="d-inline">
+                <form action="{{ route('admin.visas.deliver', $application->id) }}" method="POST" class="d-inline">
                     @csrf
                     <button type="submit" class="btn btn-success">
                         <i class="bi bi-truck"></i> Mark as Delivered

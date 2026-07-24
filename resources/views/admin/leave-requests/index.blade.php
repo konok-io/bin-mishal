@@ -3,7 +3,7 @@
 @section('content')
 <div class="admin-page-header d-flex justify-content-between align-items-center">
     <h1 class="h4 mb-0">Leave Requests</h1>
-    <a href="{{ route('leave-requests.create') }}" class="btn btn-primary">
+    <a href="{{ route('admin.leave-requests.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-circle"></i> New Leave Request
     </a>
 </div>
@@ -50,7 +50,7 @@
                         </td>
                         <td class="text-end">
                             @if($leave->status === 'pending')
-                                <form action="{{ route('leave-requests.approve', $leave->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('admin.leave-requests.approve', $leave->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-success" title="Approve">
                                         <i class="bi bi-check-circle"></i>
@@ -60,7 +60,7 @@
                                     <i class="bi bi-x-circle"></i>
                                 </button>
                             @endif
-                            <form action="{{ route('leave-requests.destroy', $leave->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?')">
+                            <form action="{{ route('admin.leave-requests.destroy', $leave->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete">

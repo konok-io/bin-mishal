@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-fingerprint"></i> Biometric Devices</h1>
-    <a href="{{ route('biometric-devices.create') }}" class="btn btn-primary">
+    <a href="{{ route('admin.biometric-devices.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> Add Device
     </a>
 </div>
 
 <div class="card">
     <div class="card-header">
-        <form action="{{ route('biometric-devices.index') }}" method="GET" class="row g-3">
+        <form action="{{ route('admin.biometric-devices.index') }}" method="GET" class="row g-3">
             <div class="col-md-4">
                 <input type="text" name="search" class="form-control" placeholder="Search by name, device ID, brand..." value="{{ request('search') }}">
             </div>
@@ -35,7 +35,7 @@
             </div>
             <div class="col-md-3">
                 <button type="submit" class="btn btn-secondary"><i class="bi bi-search"></i> Filter</button>
-                <a href="{{ route('biometric-devices.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> Clear</a>
+                <a href="{{ route('admin.biometric-devices.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> Clear</a>
             </div>
         </form>
     </div>
@@ -84,13 +84,13 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('biometric-devices.show', $device->id) }}" class="btn btn-sm btn-info">
+                            <a href="{{ route('admin.biometric-devices.show', $device->id) }}" class="btn btn-sm btn-info">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            <a href="{{ route('biometric-devices.edit', $device->id) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('admin.biometric-devices.edit', $device->id) }}" class="btn btn-sm btn-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <form action="{{ route('biometric-devices.destroy', $device->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('admin.biometric-devices.destroy', $device->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">

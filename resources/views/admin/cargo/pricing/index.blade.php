@@ -47,7 +47,7 @@
                                 <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#editModal{{ $pricing->id }}">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <form action="{{ route('cargo.pricing.destroy', $pricing->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('admin.cargo.pricing.destroy', $pricing->id) }}" method="POST" class="d-inline">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">
                                         <i class="fas fa-trash"></i>
@@ -59,7 +59,7 @@
                         <div class="modal fade" id="editModal{{ $pricing->id }}" tabindex="-1">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="{{ route('cargo.pricing.update', $pricing->id) }}" method="POST">
+                                    <form action="{{ route('admin.cargo.pricing.update', $pricing->id) }}" method="POST">
                                         @csrf @method('PUT')
                                         <div class="modal-header"><h5 class="modal-title">Edit Pricing</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
                                         <div class="modal-body">
@@ -92,7 +92,7 @@
 <div class="modal fade" id="createModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('cargo.pricing.store') }}" method="POST">
+            <form action="{{ route('admin.cargo.pricing.store') }}" method="POST">
                 @csrf
                 <div class="modal-header"><h5 class="modal-title">Add Pricing</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
                 <div class="modal-body">

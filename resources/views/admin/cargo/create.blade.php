@@ -6,12 +6,12 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3 mb-0 text-gray-800">New Cargo Booking</h1>
-        <a href="{{ route('cargo.index') }}" class="btn btn-secondary">
+        <a href="{{ route('admin.cargo.index') }}" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i> Back
         </a>
     </div>
 
-    <form action="{{ route('cargo.store') }}" method="POST">
+    <form action="{{ route('admin.cargo.store') }}" method="POST">
         @csrf
         <div class="row g-4">
             <!-- Sender Info -->

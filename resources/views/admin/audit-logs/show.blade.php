@@ -4,14 +4,14 @@
 <div class="admin-page-header d-flex justify-content-between align-items-center">
     <h1 class="h4 mb-0">Audit Log Details</h1>
     <div class="d-flex gap-2">
-        <form action="{{ route('audit-logs.destroy', $log->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this log?');">
+        <form action="{{ route('admin.audit-logs.destroy', $log->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this log?');">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-outline-danger">
                 <i class="bi bi-trash"></i> Delete
             </button>
         </form>
-        <a href="{{ route('audit-logs.index') }}" class="btn btn-outline-secondary">
+        <a href="{{ route('admin.audit-logs.index') }}" class="btn btn-outline-secondary">
             <i class="bi bi-arrow-left"></i> Back
         </a>
     </div>
@@ -66,7 +66,7 @@
         @endif
 
         <div class="mt-4">
-            <a href="{{ route('audit-logs.index') }}" class="btn btn-outline-secondary">
+            <a href="{{ route('admin.audit-logs.index') }}" class="btn btn-outline-secondary">
                 <i class="bi bi-arrow-left"></i> Back to Logs
             </a>
         </div>

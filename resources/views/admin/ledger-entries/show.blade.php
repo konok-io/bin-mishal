@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-journal-text"></i> Ledger Entry</h1>
-    <a href="{{ route('ledger-entries.index') }}" class="btn btn-secondary">
+    <a href="{{ route('admin.ledger-entries.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
@@ -53,11 +53,11 @@
                 <h5 class="mb-0">Actions</h5>
             </div>
             <div class="card-body">
-                <a href="{{ route('ledger-entries.edit', $ledgerEntry->id) }}" class="btn btn-warning w-100 mb-2">
+                <a href="{{ route('admin.ledger-entries.edit', $ledgerEntry->id) }}" class="btn btn-warning w-100 mb-2">
                     <i class="bi bi-pencil"></i> Edit Entry
                 </a>
                 @if(!$ledgerEntry->is_locked)
-                    <form action="{{ route('ledger-entries.destroy', $ledgerEntry->id) }}" method="POST">
+                    <form action="{{ route('admin.ledger-entries.destroy', $ledgerEntry->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger w-100" onclick="return confirm('Are you sure you want to delete this entry?')">

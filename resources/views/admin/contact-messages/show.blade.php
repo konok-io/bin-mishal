@@ -4,14 +4,14 @@
 <div class="admin-page-header d-flex justify-content-between align-items-center">
     <h1 class="h4 mb-0">Contact Message</h1>
     <div class="d-flex gap-2">
-        <form action="{{ route('contact-messages.destroy', $message->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this message?');">
+        <form action="{{ route('admin.contact-messages.destroy', $message->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this message?');">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-outline-danger">
                 <i class="bi bi-trash"></i> Delete
             </button>
         </form>
-        <a href="{{ route('contact-messages.index') }}" class="btn btn-outline-secondary">
+        <a href="{{ route('admin.contact-messages.index') }}" class="btn btn-outline-secondary">
             <i class="bi bi-arrow-left"></i> Back
         </a>
     </div>
@@ -65,7 +65,7 @@
 
         @if($message->is_read)
         <div class="mt-4">
-            <a href="{{ route('contact-messages.index') }}" class="btn btn-outline-secondary">
+            <a href="{{ route('admin.contact-messages.index') }}" class="btn btn-outline-secondary">
                 <i class="bi bi-arrow-left"></i> Back to Messages
             </a>
         </div>

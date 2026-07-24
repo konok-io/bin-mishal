@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-briefcase"></i> Add Job Posting</h1>
-    <a href="{{ route('job-postings.index') }}" class="btn btn-secondary">
+    <a href="{{ route('admin.job-postings.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
 
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('job-postings.store') }}" method="POST">
+        <form action="{{ route('admin.job-postings.store') }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-md-8 mb-3">
@@ -123,7 +123,7 @@
             </div>
 
             <div class="d-flex justify-content-end">
-                <a href="{{ route('job-postings.index') }}" class="btn btn-secondary me-2">Cancel</a>
+                <a href="{{ route('admin.job-postings.index') }}" class="btn btn-secondary me-2">Cancel</a>
                 <button type="submit" class="btn btn-primary">Save Job</button>
             </div>
         </form>

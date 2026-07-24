@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-receipt"></i> Add Expense Claim</h1>
-    <a href="{{ route('expense-claims.index') }}" class="btn btn-secondary">
+    <a href="{{ route('admin.expense-claims.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
 
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('expense-claims.store') }}" method="POST">
+        <form action="{{ route('admin.expense-claims.store') }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-md-6 mb-3">
@@ -92,7 +92,7 @@
             </div>
 
             <div class="d-flex justify-content-end">
-                <a href="{{ route('expense-claims.index') }}" class="btn btn-secondary me-2">Cancel</a>
+                <a href="{{ route('admin.expense-claims.index') }}" class="btn btn-secondary me-2">Cancel</a>
                 <button type="submit" class="btn btn-primary">Save Claim</button>
             </div>
         </form>

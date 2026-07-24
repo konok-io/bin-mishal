@@ -8,7 +8,7 @@
 
 <div class="card">
     <div class="card-header">
-        <form action="{{ route('contact-messages.index') }}" method="GET" class="row g-3">
+        <form action="{{ route('admin.contact-messages.index') }}" method="GET" class="row g-3">
             <div class="col-md-4">
                 <input type="text" name="search" class="form-control" placeholder="Search messages..." value="{{ request('search') }}">
             </div>
@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-3">
                 <button type="submit" class="btn btn-secondary"><i class="bi bi-search"></i> Filter</button>
-                <a href="{{ route('contact-messages.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> Clear</a>
+                <a href="{{ route('admin.contact-messages.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> Clear</a>
             </div>
         </form>
     </div>
@@ -53,10 +53,10 @@
                         </td>
                         <td>{{ $message->created_at->format('M d, Y') }}</td>
                         <td>
-                            <a href="{{ route('contact-messages.show', $message->id) }}" class="btn btn-sm btn-info">
+                            <a href="{{ route('admin.contact-messages.show', $message->id) }}" class="btn btn-sm btn-info">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            <form action="{{ route('contact-messages.destroy', $message->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('admin.contact-messages.destroy', $message->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">

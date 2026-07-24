@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-person"></i> Lead: {{ $lead->name }}</h1>
-    <a href="{{ route('leads.index') }}" class="btn btn-secondary">
+    <a href="{{ route('admin.leads.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
@@ -56,7 +56,7 @@
         <div class="card">
             <div class="card-header"><h5 class="mb-0">Add Activity</h5></div>
             <div class="card-body">
-                <form action="{{ route('leads.addActivity', $lead->id) }}" method="POST">
+                <form action="{{ route('admin.leads.addActivity', $lead->id) }}" method="POST">
                     @csrf
                     <div class="mb-2">
                         <input type="text" name="activity_type" class="form-control" placeholder="Activity type" required>

@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-person-lines-fill"></i> Leads</h1>
-    <a href="{{ route('leads.create') }}" class="btn btn-primary">
+    <a href="{{ route('admin.leads.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> New Lead
     </a>
 </div>
@@ -47,7 +47,7 @@
                     </td>
                     <td>{{ $lead->follow_up_date?->format('d M') ?? '-' }}</td>
                     <td>
-                        <a href="{{ route('leads.show', $lead->id) }}" class="btn btn-sm btn-info">
+                        <a href="{{ route('admin.leads.show', $lead->id) }}" class="btn btn-sm btn-info">
                             <i class="bi bi-eye"></i>
                         </a>
                     </td>

@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-file-earmark-text"></i> Pages</h1>
-    <a href="{{ route('pages.create') }}" class="btn btn-primary">
+    <a href="{{ route('admin.pages.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> Add Page
     </a>
 </div>
 
 <div class="card">
     <div class="card-header">
-        <form action="{{ route('pages.index') }}" method="GET" class="row g-3">
+        <form action="{{ route('admin.pages.index') }}" method="GET" class="row g-3">
             <div class="col-md-4">
                 <input type="text" name="search" class="form-control" placeholder="Search pages..." value="{{ request('search') }}">
             </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-3">
                 <button type="submit" class="btn btn-secondary"><i class="bi bi-search"></i> Filter</button>
-                <a href="{{ route('pages.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> Clear</a>
+                <a href="{{ route('admin.pages.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> Clear</a>
             </div>
         </form>
     </div>
@@ -56,10 +56,10 @@
                         </td>
                         <td>{{ $page->updated_at->format('M d, Y') }}</td>
                         <td>
-                            <a href="{{ route('pages.edit', $page->id) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('admin.pages.edit', $page->id) }}" class="btn btn-sm btn-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <form action="{{ route('pages.destroy', $page->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('admin.pages.destroy', $page->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">

@@ -3,13 +3,13 @@
 @section('content')
 <div class="admin-page-header d-flex justify-content-between align-items-center">
     <h1 class="h4 mb-0">Edit Notice</h1>
-    <a href="{{ route('notices.index') }}" class="btn btn-outline-secondary">
+    <a href="{{ route('admin.notices.index') }}" class="btn btn-outline-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
 <div class="admin-card">
     <div class="card-body">
-        <form action="{{ route('notices.update', $notice->id) }}" method="POST">
+        <form action="{{ route('admin.notices.update', $notice->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
@@ -93,7 +93,7 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-check-circle"></i> Update Notice
                 </button>
-                <a href="{{ route('notices.index') }}" class="btn btn-outline-secondary">Cancel</a>
+                <a href="{{ route('admin.notices.index') }}" class="btn btn-outline-secondary">Cancel</a>
             </div>
         </form>
     </div>

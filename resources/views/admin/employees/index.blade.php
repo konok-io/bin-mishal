@@ -3,7 +3,7 @@
 @section('content')
 <div class="admin-page-header d-flex justify-content-between align-items-center">
     <h1 class="h4 mb-0">Employees</h1>
-    <a href="{{ route('employees.create') }}" class="btn btn-primary">
+    <a href="{{ route('admin.employees.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-circle"></i> Add Employee
     </a>
 </div>
@@ -61,10 +61,10 @@
                             @endif
                         </td>
                         <td class="text-end">
-                            <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-sm btn-outline-primary">
+                            <a href="{{ route('admin.employees.edit', $employee->id) }}" class="btn btn-sm btn-outline-primary">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?')">
+                            <form action="{{ route('admin.employees.destroy', $employee->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-outline-danger">
@@ -77,7 +77,7 @@
                     <tr>
                         <td colspan="9" class="text-center text-muted py-4">
                             <i class="bi bi-people fs-1 d-block mb-2"></i>
-                            No employees found. <a href="{{ route('employees.create') }}">Add your first employee</a>
+                            No employees found. <a href="{{ route('admin.employees.create') }}">Add your first employee</a>
                         </td>
                     </tr>
                     @endforelse

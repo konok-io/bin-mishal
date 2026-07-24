@@ -45,7 +45,7 @@
     <div class="card-body">
         <div class="row g-3">
             <div class="col-md-4">
-                <a href="{{ route('customers.index') }}" class="btn btn-outline-primary w-100">
+                <a href="{{ route('admin.customers.index') }}" class="btn btn-outline-primary w-100">
                     <i class="bi bi-people"></i> Manage Customers
                 </a>
             </div>
@@ -55,7 +55,7 @@
                 </a>
             </div>
             <div class="col-md-4">
-                <a href="{{ route('visas.index') }}" class="btn btn-outline-warning w-100">
+                <a href="{{ route('admin.visas.index') }}" class="btn btn-outline-warning w-100">
                     <i class="bi bi-passport"></i> Manage Visas
                 </a>
             </div>

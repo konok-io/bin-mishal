@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-airplane"></i> New Flight Request</h1>
-    <a href="{{ route('flights.index') }}" class="btn btn-secondary">
+    <a href="{{ route('admin.flights.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
 
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('flights.store') }}" method="POST">
+        <form action="{{ route('admin.flights.store') }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-md-6 mb-3">

@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-briefcase"></i> {{ $job->title }}</h1>
-    <a href="{{ route('job-postings.index') }}" class="btn btn-secondary">
+    <a href="{{ route('admin.job-postings.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
@@ -69,7 +69,7 @@
                 <ul class="list-group list-group-flush">
                     @forelse($applications as $app)
                         <li class="list-group-item">
-                            <a href="{{ route('job-applications.show', $app->id) }}">{{ $app->full_name }}</a>
+                            <a href="{{ route('admin.job-applications.show', $app->id) }}">{{ $app->full_name }}</a>
                             <br><small class="text-muted">{{ $app->email }}</small>
                         </li>
                     @empty
@@ -84,10 +84,10 @@
                 <h5 class="mb-0">Actions</h5>
             </div>
             <div class="card-body">
-                <a href="{{ route('job-postings.edit', $job->id) }}" class="btn btn-warning w-100 mb-2">
+                <a href="{{ route('admin.job-postings.edit', $job->id) }}" class="btn btn-warning w-100 mb-2">
                     <i class="bi bi-pencil"></i> Edit Job
                 </a>
-                <form action="{{ route('job-postings.destroy', $job->id) }}" method="POST">
+                <form action="{{ route('admin.job-postings.destroy', $job->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger w-100" onclick="return confirm('Are you sure you want to delete this job?')">

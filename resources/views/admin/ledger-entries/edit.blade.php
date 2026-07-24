@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-journal-text"></i> Edit Ledger Entry</h1>
-    <a href="{{ route('ledger-entries.index') }}" class="btn btn-secondary">
+    <a href="{{ route('admin.ledger-entries.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
 
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('ledger-entries.update', $ledgerEntry->id) }}" method="POST">
+        <form action="{{ route('admin.ledger-entries.update', $ledgerEntry->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
@@ -68,7 +68,7 @@
             </div>
 
             <div class="d-flex justify-content-end">
-                <a href="{{ route('ledger-entries.index') }}" class="btn btn-secondary me-2">Cancel</a>
+                <a href="{{ route('admin.ledger-entries.index') }}" class="btn btn-secondary me-2">Cancel</a>
                 <button type="submit" class="btn btn-primary">Update Entry</button>
             </div>
         </form>

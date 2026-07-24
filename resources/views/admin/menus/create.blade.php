@@ -3,13 +3,13 @@
 @section('content')
 <div class="admin-page-header d-flex justify-content-between align-items-center">
     <h1 class="h4 mb-0">Add Menu</h1>
-    <a href="{{ route('menus.index') }}" class="btn btn-outline-secondary">
+    <a href="{{ route('admin.menus.index') }}" class="btn btn-outline-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
 <div class="admin-card">
     <div class="card-body">
-        <form action="{{ route('menus.store') }}" method="POST">
+        <form action="{{ route('admin.menus.store') }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -61,7 +61,7 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-check-circle"></i> Save Menu
                 </button>
-                <a href="{{ route('menus.index') }}" class="btn btn-outline-secondary">Cancel</a>
+                <a href="{{ route('admin.menus.index') }}" class="btn btn-outline-secondary">Cancel</a>
             </div>
         </form>
     </div>

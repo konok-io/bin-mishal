@@ -379,7 +379,7 @@
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5 class="mb-0"><i class="bi bi-box-seam me-2"></i>Recent Cargo Shipments</h5>
-                <a href="{{ route('cargo.index') }}" class="btn btn-sm btn-outline-primary">View All</a>
+                <a href="{{ route('admin.cargo.index') }}" class="btn btn-sm btn-outline-primary">View All</a>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -394,7 +394,7 @@
                         <tbody>
                             @forelse($recentCargo as $cargo)
                             <tr>
-                                <td><a href="{{ route('cargo.show', $cargo->id) }}">{{ $cargo->tracking_number }}</a></td>
+                                <td><a href="{{ route('admin.cargo.show', $cargo->id) }}">{{ $cargo->tracking_number }}</a></td>
                                 <td>{{ $cargo->customer->user->name ?? 'N/A' }}</td>
                                 <td>
                                     @php
@@ -426,7 +426,7 @@
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5 class="mb-0"><i class="bi bi-credit-card me-2"></i>Recent Payments</h5>
-                <a href="{{ route('payments.index') }}" class="btn btn-sm btn-outline-primary">View All</a>
+                <a href="{{ route('admin.payments.index') }}" class="btn btn-sm btn-outline-primary">View All</a>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -442,7 +442,7 @@
                         <tbody>
                             @forelse($recentPayments as $payment)
                             <tr>
-                                <td><a href="{{ route('payments.show', $payment->id) }}">{{ $payment->payment_no }}</a></td>
+                                <td><a href="{{ route('admin.payments.show', $payment->id) }}">{{ $payment->payment_no }}</a></td>
                                 <td>{{ $payment->customer->user->name ?? 'N/A' }}</td>
                                 <td>SAR {{ number_format($payment->amount, 0) }}</td>
                                 <td>{{ $payment->paid_at?->format('d M Y') ?? 'N/A' }}</td>

@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-clock-history"></i> Audit Logs</h1>
-    <a href="{{ route('audit-logs.export') }}" class="btn btn-success">
+    <a href="{{ route('admin.audit-logs.export') }}" class="btn btn-success">
         <i class="bi bi-download"></i> Export
     </a>
 </div>
 
 <div class="card">
     <div class="card-header">
-        <form action="{{ route('audit-logs.index') }}" method="GET" class="row g-3">
+        <form action="{{ route('admin.audit-logs.index') }}" method="GET" class="row g-3">
             <div class="col-md-3">
                 <input type="text" name="search" class="form-control" placeholder="Search logs..." value="{{ request('search') }}">
             </div>
@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-1">
                 <button type="submit" class="btn btn-secondary"><i class="bi bi-search"></i></button>
-                <a href="{{ route('audit-logs.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i></a>
+                <a href="{{ route('admin.audit-logs.index') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i></a>
             </div>
         </form>
     </div>

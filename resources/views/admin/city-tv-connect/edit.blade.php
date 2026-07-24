@@ -7,8 +7,8 @@
         <h1 class="h4 mb-1">Edit Branch</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('city-tv-connect.index') }}">City TV Connect</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.city-tv-connect.index') }}">City TV Connect</a></li>
                 <li class="breadcrumb-item active">Edit</li>
             </ol>
         </nav>
@@ -20,7 +20,7 @@
         <h5 class="mb-0"><i class="fas fa-edit me-2"></i>Branch Information</h5>
     </div>
     <div class="card-body-custom">
-        <form action="{{ route('city-tv-connect.update', $cityTVConnect->id) }}" method="POST">
+        <form action="{{ route('admin.city-tv-connect.update', $cityTVConnect->id) }}" method="POST">
             @csrf @method('PUT')
             
             <div class="row">
@@ -99,7 +99,7 @@
                 <button type="submit" class="btn btn-admin-primary">
                     <i class="fas fa-save me-2"></i>Update Branch
                 </button>
-                <a href="{{ route('city-tv-connect.index') }}" class="btn btn-secondary">
+                <a href="{{ route('admin.city-tv-connect.index') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left me-2"></i>Back
                 </a>
             </div>

@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-person"></i> Customer: {{ $customer->customer_code }}</h1>
-    <a href="{{ route('customers.index') }}" class="btn btn-secondary">
+    <a href="{{ route('admin.customers.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
@@ -99,7 +99,7 @@
                     <tbody>
                         @forelse($customer->visaApplications as $visa)
                         <tr>
-                            <td><a href="{{ route('visas.show', $visa->id) }}">{{ $visa->application_no }}</a></td>
+                            <td><a href="{{ route('admin.visas.show', $visa->id) }}">{{ $visa->application_no }}</a></td>
                             <td>{{ $visa->visaType->name ?? 'N/A' }}</td>
                             <td><span class="badge bg-{{ $visa->status->value === 'approved' ? 'success' : 'warning' }}">{{ $visa->status->label() }}</span></td>
                         </tr>

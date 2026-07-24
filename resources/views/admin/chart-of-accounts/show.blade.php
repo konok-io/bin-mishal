@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-book"></i> {{ $chartOfAccount->code }} - {{ $chartOfAccount->name }}</h1>
-    <a href="{{ route('chart-of-accounts.index') }}" class="btn btn-secondary">
+    <a href="{{ route('admin.chart-of-accounts.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
@@ -94,11 +94,11 @@
                 <h5 class="mb-0">Actions</h5>
             </div>
             <div class="card-body">
-                <a href="{{ route('chart-of-accounts.edit', $chartOfAccount->id) }}" class="btn btn-warning w-100 mb-2">
+                <a href="{{ route('admin.chart-of-accounts.edit', $chartOfAccount->id) }}" class="btn btn-warning w-100 mb-2">
                     <i class="bi bi-pencil"></i> Edit Account
                 </a>
                 @if(!$chartOfAccount->is_system)
-                    <form action="{{ route('chart-of-accounts.destroy', $chartOfAccount->id) }}" method="POST">
+                    <form action="{{ route('admin.chart-of-accounts.destroy', $chartOfAccount->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger w-100" onclick="return confirm('Are you sure you want to delete this account?')">
@@ -120,7 +120,7 @@
             </div>
             <div class="card-body">
                 <p><strong>{{ $chartOfAccount->parent->code }}</strong> - {{ $chartOfAccount->parent->name }}</p>
-                <a href="{{ route('chart-of-accounts.show', $chartOfAccount->parent->id) }}" class="btn btn-sm btn-outline-primary">
+                <a href="{{ route('admin.chart-of-accounts.show', $chartOfAccount->parent->id) }}" class="btn btn-sm btn-outline-primary">
                     View Parent
                 </a>
             </div>

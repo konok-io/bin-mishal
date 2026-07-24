@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-people"></i> Customers</h1>
-    <a href="{{ route('customers.create') }}" class="btn btn-primary">
+    <a href="{{ route('admin.customers.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> Add Customer
     </a>
 </div>
 
 <div class="card">
     <div class="card-header">
-        <form action="{{ route('customers.index') }}" method="GET" class="row g-3">
+        <form action="{{ route('admin.customers.index') }}" method="GET" class="row g-3">
             <div class="col-md-4">
                 <input type="text" name="search" class="form-control" placeholder="Search by name, email..." value="{{ request('search') }}">
             </div>
@@ -44,10 +44,10 @@
                         <td>{{ $customer->company_name ?? '-' }}</td>
                         <td>{{ $customer->assignedTo->name ?? '-' }}</td>
                         <td>
-                            <a href="{{ route('customers.show', $customer->id) }}" class="btn btn-sm btn-info">
+                            <a href="{{ route('admin.customers.show', $customer->id) }}" class="btn btn-sm btn-info">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('admin.customers.edit', $customer->id) }}" class="btn btn-sm btn-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
                         </td>
