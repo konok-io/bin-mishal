@@ -50,6 +50,6 @@ class RegisteredUserController extends Controller
 
         Auth::guard('web')->login($user);
 
-        return redirect()->to('/' . app()->getLocale());
+        return redirect()->intended(locale_route('portal.dashboard'));
     }
 }
