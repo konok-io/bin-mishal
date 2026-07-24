@@ -20,6 +20,8 @@ class Employee extends Model
         'department',
         'joining_date',
         'salary',
+        'salary_type',
+        'hourly_rate',
         'iqama_no',
         'iqama_expiry',
         'passport_no',
@@ -35,7 +37,16 @@ class Employee extends Model
             'joining_date' => 'date',
             'iqama_expiry' => 'date',
             'salary' => 'decimal:2',
+            'hourly_rate' => 'decimal:2',
         ];
+    }
+
+    public function getSalaryDisplayAttribute(): string
+    {
+        if ($this->salary_type === 'hourly') {
+            return 'SAR ' . number_format($this->hourly_rate, 2) . '/hr';
+        }
+        return 'SAR ' . number_format($this->salary, 2) . '/month';
     }
 
     // Relationships
