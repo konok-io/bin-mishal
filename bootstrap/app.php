@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'permission' => \App\Http\Middleware\EnsurePermission::class,
             'api.auth' => \App\Http\Middleware\EnsureApiAuthenticated::class,
             'setlocale' => \App\Http\Middleware\SetLocale::class,
+            'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
