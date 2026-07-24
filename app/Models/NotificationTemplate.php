@@ -32,6 +32,10 @@ class NotificationTemplate extends Model
         'is_active' => 'boolean',
     ];
 
+    protected $attributes = [
+        'channels' => '["email"]',
+    ];
+
     public const TYPE_EMAIL = 'email';
     public const TYPE_SMS = 'sms';
     public const TYPE_WHATSAPP = 'whatsapp';

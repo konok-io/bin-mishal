@@ -46,7 +46,7 @@ return new class extends Migration
                 $table->longText('body_bn')->nullable();
                 $table->longText('body_ar')->nullable();
                 $table->json('variables')->nullable();
-                $table->json('channels')->default('["email"]');
+                $table->json('channels');
                 $table->boolean('is_active')->default(true);
                 $table->timestamps();
                 $table->index(['event', 'is_active']);
