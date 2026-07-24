@@ -17,7 +17,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="checker-card">
-                    <form method="GET" action="{{ route('contact') }}" class="text-center">
+                    <form method="GET" action="{{ locale_route('contact') }}" class="text-center">
                         <div class="mb-4">
                             <i class="bi bi-search text-success" style="font-size: 3rem;"></i>
                             <h3 class="mt-3">@lang('Check Your Visa Status')</h3>
@@ -43,7 +43,7 @@
                 <div class="mt-4 text-center">
                     <p class="text-muted">
                         <i class="bi bi-info-circle"></i>
-                        @lang('Need assistance?') <a href="{{ route('contact') }}">@lang('Contact us')</a>
+                        @lang('Need assistance?') <a href="{{ locale_route('contact') }}">@lang('Contact us')</a>
                     </p>
                 </div>
             </div>

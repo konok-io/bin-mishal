@@ -95,7 +95,7 @@
     <div class="container text-center">
         <h2>@lang('Need Help Planning Your Trip?')</h2>
         <p class="lead mb-4">@lang('Our team is ready to assist you with personalized travel solutions.')</p>
-        <a href="{{ route('contact') }}" class="btn btn-success btn-lg">
+        <a href="{{ locale_route('contact') }}" class="btn btn-success btn-lg">
             <i class="bi bi-chat-dots"></i> @lang('Contact Us')
         </a>
     </div>

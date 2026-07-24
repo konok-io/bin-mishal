@@ -70,7 +70,7 @@
                             <span><i class="bi bi-currency-dollar"></i> SAR {{ number_format($type['fee']) }}</span>
                         </div>
                         <p>{{ $type['description'] }}</p>
-                        <a href="{{ route('contact') }}" class="btn btn-success">
+                        <a href="{{ locale_route('contact') }}" class="btn btn-success">
                             @lang('Apply Now')
                         </a>
                     </div>
@@ -118,7 +118,7 @@
         <h2>@lang('Need Assistance?')</h2>
         <p class="lead mb-4">@lang('Our visa experts are here to help you every step of the way.')</p>
         <div class="d-flex justify-content-center gap-3">
-            <a href="{{ route('contact') }}" class="btn btn-light btn-lg">
+            <a href="{{ locale_route('contact') }}" class="btn btn-light btn-lg">
                 <i class="bi bi-chat-dots"></i> @lang('Contact Us')
             </a>
             <a href="{{ route('appointment') }}" class="btn btn-outline-light btn-lg">

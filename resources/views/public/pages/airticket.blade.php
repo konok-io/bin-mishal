@@ -22,7 +22,7 @@
 <section class="py-5 bg-light">
     <div class="container">
         <div class="search-form-card">
-            <form method="GET" action="{{ route('contact') }}" class="row g-3">
+            <form method="GET" action="{{ locale_route('contact') }}" class="row g-3">
                 <div class="col-md-3">
                     <label class="form-label">@lang('From')</label>
                     <select name="from" class="form-select" required>

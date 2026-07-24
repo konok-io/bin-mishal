@@ -42,7 +42,7 @@
                         <i class="bi bi-ticket-perforated"></i>
                     </div>
                     <h3>@lang('Track Booking')</h3>
-                    <form method="GET" action="{{ route('contact') }}">
+                    <form method="GET" action="{{ locale_route('contact') }}">
                         <div class="input-group mb-3">
                             <input type="text" name="booking_ref" class="form-control" 
                                    placeholder="@lang('Enter Booking Reference')" required>

@@ -22,7 +22,7 @@
 <section class="py-5 bg-light">
     <div class="container">
         <div class="search-form-card">
-            <form method="GET" action="{{ route('contact') }}" class="row g-3">
+            <form method="GET" action="{{ locale_route('contact') }}" class="row g-3">
                 <div class="col-md-4">
                     <label class="form-label">@lang('City')</label>
                     <select name="city" class="form-select" required>
@@ -71,7 +71,7 @@
                     </div>
                     <h3>5 @lang('Star Hotels')</h3>
                     <p>@lang('Luxury accommodations with premium amenities near Haram')</p>
-                    <a href="{{ route('contact') }}" class="btn btn-outline-success">@lang('View Options')</a>
+                    <a href="{{ locale_route('contact') }}" class="btn btn-outline-success">@lang('View Options')</a>
                 </div>
             </div>
             <div class="col-md-4">
@@ -81,7 +81,7 @@
                     </div>
                     <h3>4 @lang('Star Hotels')</h3>
                     <p>@lang('Comfortable hotels with excellent service and facilities')</p>
-                    <a href="{{ route('contact') }}" class="btn btn-outline-success">@lang('View Options')</a>
+                    <a href="{{ locale_route('contact') }}" class="btn btn-outline-success">@lang('View Options')</a>
                 </div>
             </div>
             <div class="col-md-4">
@@ -91,7 +91,7 @@
                     </div>
                     <h3>3 @lang('Star Hotels')</h3>
                     <p>@lang('Quality budget-friendly options for comfortable stays')</p>
-                    <a href="{{ route('contact') }}" class="btn btn-outline-success">@lang('View Options')</a>
+                    <a href="{{ locale_route('contact') }}" class="btn btn-outline-success">@lang('View Options')</a>
                 </div>
             </div>
         </div>

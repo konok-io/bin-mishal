@@ -122,7 +122,7 @@ $package = \App\Models\UmrahPackage::where('slug', $slug)->orWhere('id', $slug)-
                         </form>
 
                         <div class="text-center mt-3">
-                            <a href="{{ route('contact') }}" class="text-muted">
+                            <a href="{{ locale_route('contact') }}" class="text-muted">
                                 <i class="bi bi-chat-dots"></i> @lang('Need help? Contact us')
                             </a>
                         </div>

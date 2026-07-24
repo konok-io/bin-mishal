@@ -88,7 +88,7 @@
             <div class="col-lg-8 text-center">
                 <h3><i class="bi bi-chat-square-heart text-success"></i> @lang('Share Your Experience')</h3>
                 <p class="text-muted mb-4">@lang("We value your feedback. Let us know about your experience with our services.")</p>
-                <a href="{{ route('contact') }}?type=testimonial" class="btn btn-success btn-lg">
+                <a href="{{ locale_route('contact') }}?type=testimonial" class="btn btn-success btn-lg">
                     <i class="bi bi-pencil-square"></i> @lang('Submit Your Review')
                 </a>
             </div>

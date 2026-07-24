@@ -91,7 +91,7 @@
                     <div class="card-body text-center py-5">
                         <h3><i class="bi bi-chat-dots"></i> @lang("Can't find your answer?")</h3>
                         <p class="mb-4">@lang("We're here to help. Contact us and we'll get back to you shortly.")</p>
-                        <a href="{{ route('contact') }}" class="btn btn-light btn-lg">
+                        <a href="{{ locale_route('contact') }}" class="btn btn-light btn-lg">
                             <i class="bi bi-envelope"></i> @lang('Contact Us')
                         </a>
                     </div>

@@ -34,7 +34,7 @@
 
                 {{-- CTA Button --}}
                 <div class="nav-actions">
-                    <a href="{{ locale_route('contact') }}" class="btn btn-primary">
+                    <a href="{{ locale_locale_route('contact') }}" class="btn btn-primary">
                         {{ __('navigation.book_now') }}
                     </a>
                     
@@ -66,7 +66,7 @@
             
             <div class="nav-mobile__actions">
                 <x-language-switcher />
-                <a href="{{ locale_route('contact') }}" class="btn btn-primary btn-block">
+                <a href="{{ locale_locale_route('contact') }}" class="btn btn-primary btn-block">
                     {{ __('navigation.book_now') }}
                 </a>
             </div>

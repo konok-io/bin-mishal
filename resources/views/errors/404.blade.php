@@ -18,7 +18,7 @@
                 <a href="{{ locale_route('home') }}" class="btn btn-success btn-lg">
                     <i class="bi bi-house"></i> @lang('Go to Homepage')
                 </a>
-                <a href="{{ route('contact') }}" class="btn btn-outline-success btn-lg">
+                <a href="{{ locale_route('contact') }}" class="btn btn-outline-success btn-lg">
                     <i class="bi bi-chat-dots"></i> @lang('Contact Us')
                 </a>
             </div>
