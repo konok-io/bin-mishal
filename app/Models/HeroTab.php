@@ -38,6 +38,7 @@ class HeroTab extends Model
         'subtitle' => 'array',
         'description' => 'array',
         'features' => 'array',
+        'button_text' => 'array',
         'route_params' => 'array',
         'is_active' => 'boolean',
         'show_in_nav' => 'boolean',
