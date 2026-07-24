@@ -234,7 +234,7 @@
     <aside class="admin-sidebar">
         <div class="sidebar-brand d-flex align-items-center justify-content-between w-100">
             <div class="d-flex align-items-center gap-2">
-                <i class="fa-solid fa-circle-nodes site-logo-icon"></i>
+                <i class="fa-solid fa-plane site-logo-icon"></i>
                 <span>{{ config('app.name') }}</span>
             </div>
             <button type="button" class="sidebar-collapse-btn" onclick="toggleSidebarCollapse()" title="Toggle Sidebar">
@@ -378,21 +378,42 @@
             </button>
 
             <div class="ms-auto d-flex align-items-center gap-3">
-                {{-- Language: Google Translate --}}
-                <div class="gtranslate-wrap">
-                    <button type="button" class="gt-btn" onclick="document.body.classList.toggle('gt-open')">
-                        <i class="fa-solid fa-language"></i>
+                {{-- Language Switcher --}}
+                <div class="dropdown">
+                    <button type="button" class="gt-btn" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-globe"></i>
+                        <span class="d-none d-md-inline">{{ strtoupper(app()->getLocale()) }}</span>
                         <i class="fa-solid fa-chevron-down" style="font-size:.7em"></i>
                     </button>
-                    <div id="google_translate_element" style="display:none"></div>
-                    <div class="lang-menu">
-                        <button type="button" onclick="pickLang('en')">English</button>
-                        <button type="button" onclick="pickLang('ar')">العربية</button>
-                        <button type="button" onclick="pickLang('bn')">বাংলা</button>
-                        <button type="button" onclick="pickLang('ur')">اردو</button>
-                        <button type="button" onclick="pickLang('hi')">हिन्दी</button>
-                        <button type="button" onclick="pickLang('tl')">Filipino</button>
-                    </div>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <form action="{{ route('locale.change') }}" method="POST" id="lang-en">
+                                @csrf
+                                <input type="hidden" name="locale" value="en">
+                                <button type="submit" class="dropdown-item {{ app()->getLocale() == 'en' ? 'active' : '' }}">
+                                    <i class="fa-solid fa-check me-2 {{ app()->getLocale() == 'en' ? '' : 'invisible' }}"></i> English
+                                </button>
+                            </form>
+                        </li>
+                        <li>
+                            <form action="{{ route('locale.change') }}" method="POST" id="lang-bn">
+                                @csrf
+                                <input type="hidden" name="locale" value="bn">
+                                <button type="submit" class="dropdown-item {{ app()->getLocale() == 'bn' ? 'active' : '' }}">
+                                    <i class="fa-solid fa-check me-2 {{ app()->getLocale() == 'bn' ? '' : 'invisible' }}"></i> বাংলা
+                                </button>
+                            </form>
+                        </li>
+                        <li>
+                            <form action="{{ route('locale.change') }}" method="POST" id="lang-ar">
+                                @csrf
+                                <input type="hidden" name="locale" value="ar">
+                                <button type="submit" class="dropdown-item {{ app()->getLocale() == 'ar' ? 'active' : '' }}">
+                                    <i class="fa-solid fa-check me-2 {{ app()->getLocale() == 'ar' ? '' : 'invisible' }}"></i> العربية
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
 
                 {{-- Light / dark toggle --}}

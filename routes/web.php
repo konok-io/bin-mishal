@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CMS\PageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Public\PublicController;
 use App\Http\Controllers\RssFeedController;
@@ -94,6 +95,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', fn() => view('admin.profile.index'))->name('profile');
     Route::get('/settings', fn() => view('admin.settings.index'))->name('settings.index');
+    
+    // CRUD Routes
+    Route::resource('customers', CustomerController::class)->names(['index' => 'customers.index', 'create' => 'customers.create', 'store' => 'customers.store', 'show' => 'customers.show', 'edit' => 'customers.edit', 'update' => 'customers.update', 'destroy' => 'customers.destroy']);
+    Route::resource('leads', LeadController::class)->names(['index' => 'leads.index', 'create' => 'leads.create', 'store' => 'leads.store', 'show' => 'leads.show', 'edit' => 'leads.edit', 'update' => 'leads.update', 'destroy' => 'leads.destroy']);
+    Route::resource('bookings', BookingController::class)->names(['index' => 'bookings.index', 'create' => 'bookings.create', 'store' => 'bookings.store', 'show' => 'bookings.show', 'edit' => 'bookings.edit', 'update' => 'bookings.update', 'destroy' => 'bookings.destroy']);
+    Route::resource('visas', VisaController::class)->names(['index' => 'visas.index', 'create' => 'visas.create', 'store' => 'visas.store', 'show' => 'visas.show', 'edit' => 'visas.edit', 'update' => 'visas.update', 'destroy' => 'visas.destroy']);
+    Route::resource('flights', FlightRequestController::class)->names(['index' => 'flights.index', 'create' => 'flights.create', 'store' => 'flights.store', 'show' => 'flights.show', 'edit' => 'flights.edit', 'update' => 'flights.update', 'destroy' => 'flights.destroy']);
+    Route::resource('umrah', UmrahController::class)->names(['index' => 'umrah.index', 'create' => 'umrah.create', 'store' => 'umrah.store', 'show' => 'umrah.show', 'edit' => 'umrah.edit', 'update' => 'umrah.update', 'destroy' => 'umrah.destroy']);
+    Route::resource('invoices', InvoiceController::class)->names(['index' => 'invoices.index', 'create' => 'invoices.create', 'store' => 'invoices.store', 'show' => 'invoices.show', 'edit' => 'invoices.edit', 'update' => 'invoices.update', 'destroy' => 'invoices.destroy']);
+    Route::resource('payments', PaymentController::class)->names(['index' => 'payments.index', 'create' => 'payments.create', 'store' => 'payments.store', 'show' => 'payments.show', 'edit' => 'payments.edit', 'update' => 'payments.update', 'destroy' => 'payments.destroy']);
+});
 
     // Customers
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
@@ -160,6 +172,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     Route::post('/payments/{id}/complete', [PaymentController::class, 'complete'])->name('payments.complete');
     Route::post('/payments/{id}/refund', [PaymentController::class, 'refund'])->name('payments.refund');
 });
+
+// Locale change route (for admin panel)
+Route::post('/locale/change', [LocaleController::class, 'change'])->name('locale.change');
 
 // =============================================================================
 // PUBLIC ROUTES - Localized
