@@ -5,7 +5,12 @@ declare(strict_types=1);
 if (!function_exists('current_locale')) {
     function current_locale(): string
     {
-        return app()->getLocale();
+        $locale = app()->getLocale();
+        // Validate locale - must be bn, en, or ar, default to 'bn'
+        if (empty($locale) || !in_array($locale, ['bn', 'en', 'ar'])) {
+            $locale = 'bn';
+        }
+        return $locale;
     }
 }
 
@@ -20,6 +25,10 @@ if (!function_exists('locale_config')) {
     function locale_config(?string $locale = null): ?array
     {
         $locale = $locale ?? app()->getLocale();
+        // Validate locale - must be bn, en, or ar, default to 'bn'
+        if (empty($locale) || !in_array($locale, ['bn', 'en', 'ar'])) {
+            $locale = 'bn';
+        }
         return config("locales.enabled.{$locale}");
     }
 }
@@ -27,6 +36,11 @@ if (!function_exists('locale_config')) {
 if (!function_exists('is_rtl')) {
     function is_rtl(?string $locale = null): bool
     {
+        $locale = $locale ?: app()->getLocale();
+        // Validate locale - must be bn, en, or ar, default to 'bn'
+        if (empty($locale) || !in_array($locale, ['bn', 'en', 'ar'])) {
+            $locale = 'bn';
+        }
         $config = locale_config($locale);
         return ($config['direction'] ?? 'ltr') === 'rtl';
     }
@@ -78,6 +92,10 @@ if (!function_exists('localize')) {
     function localize(string $path): string
     {
         $locale = app()->getLocale();
+        // Validate locale - must be bn, en, or ar, default to 'bn'
+        if (empty($locale) || !in_array($locale, ['bn', 'en', 'ar'])) {
+            $locale = 'bn';
+        }
         return url("{$locale}/{$path}");
     }
 }
@@ -86,6 +104,10 @@ if (!function_exists('getLocalizedURL')) {
     function getLocalizedURL(string $url, ?string $locale = null): string
     {
         $locale = $locale ?? app()->getLocale();
+        // Validate locale - must be bn, en, or ar, default to 'bn'
+        if (empty($locale) || !in_array($locale, ['bn', 'en', 'ar'])) {
+            $locale = 'bn';
+        }
         $parsed = parse_url($url);
         $path = $parsed['path'] ?? '';
         $path = preg_replace('#^/(bn|en|ar)/#', '/', $path);
