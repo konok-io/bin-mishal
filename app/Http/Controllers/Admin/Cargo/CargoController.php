@@ -199,7 +199,7 @@ class CargoController extends Controller
 
         $filename = 'cargo-export-' . date('Y-m-d') . '.csv';
         
-        headers = [
+        $headers = [
             'Content-Type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename="' . $filename . '"',
         ];
