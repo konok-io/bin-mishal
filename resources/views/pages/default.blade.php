@@ -12,7 +12,7 @@
     {{-- Page Content Sections --}}
     <div class="page-content">
         @forelse($sections as $section)
-            <x-page-section :section="$section" />
+            <x-page-section-component :section="$section" />
         @empty
             <div class="container py-16 text-center">
                 <p class="text-gray-500">{{ __('cms.page_under_construction') }}</p>
