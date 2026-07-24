@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             HomepageSeeder::class,
             PayrollSeeder::class,
             BiometricSeeder::class,
+            CityTVConnectSeeder::class,
             ExpenseSeeder::class,
             AccountingSeeder::class,
         ]);

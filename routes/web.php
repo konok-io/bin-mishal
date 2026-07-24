@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\CityTVConnectController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FlightRequestController;
@@ -95,7 +96,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', fn() => view('admin.profile.index'))->name('profile');
     Route::get('/settings', fn() => view('admin.settings.index'))->name('settings.index');
-    
+
     // CRUD Routes
     Route::resource('customers', CustomerController::class)->names(['index' => 'customers.index', 'create' => 'customers.create', 'store' => 'customers.store', 'show' => 'customers.show', 'edit' => 'customers.edit', 'update' => 'customers.update', 'destroy' => 'customers.destroy']);
     Route::resource('leads', LeadController::class)->names(['index' => 'leads.index', 'create' => 'leads.create', 'store' => 'leads.store', 'show' => 'leads.show', 'edit' => 'leads.edit', 'update' => 'leads.update', 'destroy' => 'leads.destroy']);
@@ -105,73 +106,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     Route::resource('umrah', UmrahController::class)->names(['index' => 'umrah.index', 'create' => 'umrah.create', 'store' => 'umrah.store', 'show' => 'umrah.show', 'edit' => 'umrah.edit', 'update' => 'umrah.update', 'destroy' => 'umrah.destroy']);
     Route::resource('invoices', InvoiceController::class)->names(['index' => 'invoices.index', 'create' => 'invoices.create', 'store' => 'invoices.store', 'show' => 'invoices.show', 'edit' => 'invoices.edit', 'update' => 'invoices.update', 'destroy' => 'invoices.destroy']);
     Route::resource('payments', PaymentController::class)->names(['index' => 'payments.index', 'create' => 'payments.create', 'store' => 'payments.store', 'show' => 'payments.show', 'edit' => 'payments.edit', 'update' => 'payments.update', 'destroy' => 'payments.destroy']);
+    
+    // City TV Connect - Branch Management
+    Route::resource('city-tv-connect', CityTVConnectController::class)->names(['index' => 'city-tv-connect.index', 'create' => 'city-tv-connect.create', 'store' => 'city-tv-connect.store', 'show' => 'city-tv-connect.show', 'edit' => 'city-tv-connect.edit', 'update' => 'city-tv-connect.update', 'destroy' => 'city-tv-connect.destroy']);
+    Route::get('/surveillance', [CityTVConnectController::class, 'cameras'])->name('city-tv-connect.cameras');
 });
 
-    // Customers
-    Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
-    Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.create');
-    Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
-    Route::get('/customers/{id}', [CustomerController::class, 'show'])->name('customers.show');
-    Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
-    Route::put('/customers/{id}', [CustomerController::class, 'update'])->name('customers.update');
-    Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 
-    // Bookings
-    Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
-    Route::get('/bookings/create', [BookingController::class, 'create'])->name('bookings.create');
-    Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
-    Route::get('/bookings/{id}', [BookingController::class, 'show'])->name('bookings.show');
-    Route::post('/bookings/{id}/issue', [BookingController::class, 'issue'])->name('bookings.issue');
-    Route::post('/bookings/{id}/cancel', [BookingController::class, 'cancel'])->name('bookings.cancel');
-
-    // Visas
-    Route::get('/visas', [VisaController::class, 'index'])->name('visas.index');
-    Route::get('/visas/create', [VisaController::class, 'create'])->name('visas.create');
-    Route::post('/visas', [VisaController::class, 'store'])->name('visas.store');
-    Route::get('/visas/{id}', [VisaController::class, 'show'])->name('visas.show');
-    Route::post('/visas/{id}/submit', [VisaController::class, 'submit'])->name('visas.submit');
-    Route::post('/visas/{id}/approve', [VisaController::class, 'approve'])->name('visas.approve');
-    Route::post('/visas/{id}/reject', [VisaController::class, 'reject'])->name('visas.reject');
-    Route::post('/visas/{id}/deliver', [VisaController::class, 'deliver'])->name('visas.deliver');
-
-    // Flights
-    Route::get('/flights', [FlightRequestController::class, 'index'])->name('flights.index');
-    Route::get('/flights/create', [FlightRequestController::class, 'create'])->name('flights.create');
-    Route::post('/flights', [FlightRequestController::class, 'store'])->name('flights.store');
-    Route::get('/flights/{id}', [FlightRequestController::class, 'show'])->name('flights.show');
-
-    // Umrah
-    Route::get('/umrah', [UmrahController::class, 'index'])->name('umrah.index');
-    Route::get('/umrah/create', [UmrahController::class, 'create'])->name('umrah.create');
-    Route::post('/umrah', [UmrahController::class, 'store'])->name('umrah.store');
-    Route::get('/umrah/{id}', [UmrahController::class, 'show'])->name('umrah.show');
-    Route::get('/umrah/{id}/edit', [UmrahController::class, 'edit'])->name('umrah.edit');
-    Route::put('/umrah/{id}', [UmrahController::class, 'update'])->name('umrah.update');
-
-    // Leads
-    Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
-    Route::get('/leads/create', [LeadController::class, 'create'])->name('leads.create');
-    Route::post('/leads', [LeadController::class, 'store'])->name('leads.store');
-    Route::get('/leads/{id}', [LeadController::class, 'show'])->name('leads.show');
-    Route::put('/leads/{id}', [LeadController::class, 'update'])->name('leads.update');
-    Route::post('/leads/{id}/convert', [LeadController::class, 'convert'])->name('leads.convert');
-    Route::post('/leads/{id}/activities', [LeadController::class, 'addActivity'])->name('leads.addActivity');
-
-    // Invoices
-    Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
-    Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
-    Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoices.store');
-    Route::get('/invoices/{id}', [InvoiceController::class, 'show'])->name('invoices.show');
-    Route::post('/invoices/{id}/send', [InvoiceController::class, 'send'])->name('invoices.send');
-
-    // Payments
-    Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
-    Route::get('/payments/create', [PaymentController::class, 'create'])->name('payments.create');
-    Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
-    Route::get('/payments/{id}', [PaymentController::class, 'show'])->name('payments.show');
-    Route::post('/payments/{id}/complete', [PaymentController::class, 'complete'])->name('payments.complete');
-    Route::post('/payments/{id}/refund', [PaymentController::class, 'refund'])->name('payments.refund');
-});
+// City TV Connect - Branch Management
 
 // Locale change route (for admin panel)
 Route::post('/locale/change', [LocaleController::class, 'change'])->name('locale.change');

@@ -367,6 +367,14 @@
             <a href="/admin/audit-logs" class="nav-link">
                 <i class="fa-solid fa-shield-alt"></i><span>Audit Logs</span>
             </a>
+
+            <div class="nav-section-title"><span>City TV Connect</span></div>
+            <a href="{{ route('admin.city-tv-connect.index') }}" class="nav-link {{ request()->routeIs('admin.city-tv-connect.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-satellite-dish"></i><span>Branch Management</span>
+            </a>
+            <a href="{{ route('admin.city-tv-connect.cameras') }}" class="nav-link" target="_blank">
+                <i class="fa-solid fa-video"></i><span>Live Cameras</span>
+            </a>
         </nav>
     </aside>
 
