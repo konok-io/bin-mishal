@@ -16,9 +16,9 @@ class JobApplicationSeeder extends Seeder
             return;
         }
         $apps = [
-            ['full_name' => 'Ahmed Al-Rashid', 'email' => 'ahmed.alrashid@email.com', 'phone' => '+966501234567', 'cover_letter' => 'I am excited to apply for this position.', 'status' => 'received', 'applied_at' => now()->subDays(5)],
-            ['full_name' => 'Fatima Hassan', 'email' => 'fatima.hassan@email.com', 'phone' => '+966502345678', 'cover_letter' => 'My background makes me a perfect fit.', 'status' => 'shortlisted', 'applied_at' => now()->subDays(3)],
-            ['full_name' => 'Mohammad Ali', 'email' => 'mohammad.ali@email.com', 'phone' => '+966503456789', 'cover_letter' => 'I have extensive experience.', 'status' => 'received', 'applied_at' => now()->subDays(2)],
+            ['full_name' => 'Ahmed Al-Rashid', 'email' => 'ahmed.alrashid@email.com', 'phone' => '+966501234567', 'cover_letter' => 'I am excited to apply for this position.', 'cv_path' => 'cvs/sample-cv-1.pdf', 'status' => 'received', 'applied_at' => now()->subDays(5)],
+            ['full_name' => 'Fatima Hassan', 'email' => 'fatima.hassan@email.com', 'phone' => '+966502345678', 'cover_letter' => 'My background makes me a perfect fit.', 'cv_path' => 'cvs/sample-cv-2.pdf', 'status' => 'shortlisted', 'applied_at' => now()->subDays(3)],
+            ['full_name' => 'Mohammad Ali', 'email' => 'mohammad.ali@email.com', 'phone' => '+966503456789', 'cover_letter' => 'I have extensive experience.', 'cv_path' => 'cvs/sample-cv-3.pdf', 'status' => 'received', 'applied_at' => now()->subDays(2)],
         ];
         foreach ($apps as $i => $appData) {
             $job = $jobs->has($i) ? $jobs[$i] : $jobs->random();
