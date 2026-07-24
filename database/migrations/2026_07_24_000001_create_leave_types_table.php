@@ -8,29 +8,24 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('leaves', function (Blueprint $table) {
+        Schema::create('leave_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('leave_type_id')->nullable()->constrained()->nullOnDelete();
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->integer('total_days');
-            $table->text('reason')->nullable();
-            $table->enum('status', ['pending', 'approved', 'rejected', 'cancelled'])->default('pending');
-            $table->foreignId('approved_by')->nullable()->constrained('users')->nullOnDelete();
-            $table->timestamp('approved_at')->nullable();
-            $table->text('rejection_reason')->nullable();
-            $table->text('admin_notes')->nullable();
+            $table->string('name');
+            $table->string('name_bn')->nullable();
+            $table->string('color')->default('#007bff');
+            $table->integer('default_days')->default(0);
+            $table->boolean('paid')->default(true);
+            $table->boolean('carry_forward')->default(false);
+            $table->integer('max_carry_forward')->default(0);
+            $table->boolean('requires_approval')->default(true);
+            $table->integer('sort_order')->default(0);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
-            $table->softDeletes();
-
-            $table->index(['employee_id', 'status']);
-            $table->index(['start_date', 'end_date']);
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('leaves');
+        Schema::dropIfExists('leave_types');
     }
 };

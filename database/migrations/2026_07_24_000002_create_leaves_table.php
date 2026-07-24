@@ -8,24 +8,30 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('leave_types', function (Blueprint $table) {
+        Schema::create('leaves', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('name_bn')->nullable();
-            $table->string('color')->default('#007bff');
-            $table->integer('default_days')->default(0);
-            $table->boolean('paid')->default(true);
-            $table->boolean('carry_forward')->default(false);
-            $table->integer('max_carry_forward')->default(0);
-            $table->boolean('requires_approval')->default(true);
-            $table->integer('sort_order')->default(0);
-            $table->boolean('is_active')->default(true);
+            $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('leave_type_id')->nullable();
+            $table->string('leave_type')->nullable();
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->integer('total_days')->default(1);
+            $table->text('reason')->nullable();
+            $table->string('status')->default('pending');
+            $table->unsignedBigInteger('approved_by')->nullable();
+            $table->timestamp('approved_at')->nullable();
+            $table->text('rejection_reason')->nullable();
+            $table->text('admin_notes')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->index(['employee_id', 'status']);
+            $table->index(['start_date', 'end_date']);
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('leave_types');
+        Schema::dropIfExists('leaves');
     }
 };
