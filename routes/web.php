@@ -138,6 +138,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     // HR - Employees
     Route::resource('employees', EmployeeControllerAdmin::class);
     Route::resource('leave-requests', LeaveRequestController::class);
+    Route::post('/leave-requests/{leave}/approve', [LeaveRequestController::class, 'approve'])->name('leave-requests.approve');
+    Route::post('/leave-requests/{leave}/reject', [LeaveRequestController::class, 'reject'])->name('leave-requests.reject');
     Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
     Route::get('payroll', [PayrollControllerAdmin::class, 'index'])->name('payroll.index');
     Route::get('biometric-devices', [BiometricDeviceController::class, 'index'])->name('biometric-devices.index');
