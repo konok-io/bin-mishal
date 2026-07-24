@@ -34,7 +34,7 @@
                     <td>{{ $lead->source ?? '-' }}</td>
                     <td>
                         @php
-                            $statusClass = match($lead->status) {
+                            $statusClass = match($lead->status->value) {
                                 'new' => 'bg-primary',
                                 'contacted' => 'bg-info',
                                 'qualified' => 'bg-success',
@@ -43,7 +43,7 @@
                                 default => 'bg-secondary'
                             };
                         @endphp
-                        <span class="badge {{ $statusClass }}">{{ ucfirst($lead->status) }}</span>
+                        <span class="badge {{ $statusClass }}">{{ $lead->status->label() }}</span>
                     </td>
                     <td>{{ $lead->follow_up_date?->format('d M') ?? '-' }}</td>
                     <td>
