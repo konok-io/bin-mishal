@@ -55,6 +55,8 @@ class DatabaseSeeder extends Seeder
             SeoSettingSeeder::class,
             SocialLinkSeeder::class,
             NoticeSeeder::class,
+            AuditLogSeeder::class,
+            TranslationSeeder::class,
             // CRM & Booking Module Seeders
             CustomerSeeder::class,
             LeadSeeder::class,
