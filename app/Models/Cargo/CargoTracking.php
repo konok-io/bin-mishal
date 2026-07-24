@@ -11,6 +11,8 @@ class CargoTracking extends Model
 {
     use HasFactory;
 
+    protected $table = 'cargo_tracking';
+
     protected $fillable = [
         'cargo_id',
         'status',

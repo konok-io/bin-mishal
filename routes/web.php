@@ -173,7 +173,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     // Cargo Management
     Route::prefix('cargo')->name('cargo.')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'dashboard'])->name('dashboard');
-        Route::get('/index', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'index'])->name('index');
+        Route::get('/all', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'index'])->name('index');
         Route::get('/create', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'create'])->name('create');
         Route::post('/', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'store'])->name('store');
         Route::get('/{cargo}', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'show'])->name('show');
