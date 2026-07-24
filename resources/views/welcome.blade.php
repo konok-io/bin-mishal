@@ -426,7 +426,7 @@
                         
                         <!-- Auth Buttons -->
                         <div class="auth-buttons">
-                            <a href="{{ locale_locale_route('portal.register') }}" class="btn-register">
+                            <a href="{{ locale_route('portal.register') }}" class="btn-register">
                                 <i class="bi bi-person-plus"></i> {{ __('navigation.register') }}
                             </a>
                             

@@ -440,7 +440,7 @@
                             <form method="POST" action="{{ locale_route('employee.login.post') }}">
                             @break
                         @case('customer')
-                            <form method="POST" action="{{ locale_locale_route('portal.login.post') }}">
+                            <form method="POST" action="{{ locale_route('portal.login.post') }}">
                             @break
                         @default
                             <form method="POST" action="{{ route('login') }}">
@@ -477,7 +477,7 @@
                     @if(($guard ?? '') === 'customer')
                         <div class="register-section">
                             <p>Don't have an account?</p>
-                            <a href="{{ locale_locale_route('portal.register') }}" class="btn-register">
+                            <a href="{{ locale_route('portal.register') }}" class="btn-register">
                                 <i class="bi bi-person-plus"></i>
                                 Create Account
                             </a>
