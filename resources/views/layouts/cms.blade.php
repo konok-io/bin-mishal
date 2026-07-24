@@ -52,7 +52,7 @@
         </noscript>
 
         {{-- Vite --}}
-        @vite
+        @vite('resources/js/app.js')
 
         {{-- Theme CSS Variables --}}
         @stack('theme-variables')

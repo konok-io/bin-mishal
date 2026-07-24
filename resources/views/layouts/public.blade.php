@@ -54,7 +54,7 @@
         </noscript>
 
         {{-- Vite assets (builds app.css which includes Tailwind + brand @theme) --}}
-        @vite
+        @vite('resources/js/app.js')
 
         {{-- Language-specific font styles --}}
         <style>
