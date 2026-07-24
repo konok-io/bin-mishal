@@ -72,9 +72,9 @@
                         @forelse($customer->bookings as $booking)
                         <tr>
                             <td><a href="{{ route('admin.bookings.show', $booking->id) }}">{{ $booking->booking_no }}</a></td>
-                            <td>{{ ucfirst($booking->booking_type) }}</td>
+                            <td>{{ $booking->booking_type->label() }}</td>
                             <td>SAR {{ number_format($booking->total_amount, 2) }}</td>
-                            <td><span class="badge bg-{{ $booking->booking_status === 'issued' ? 'success' : 'warning' }}">{{ ucfirst($booking->booking_status) }}</span></td>
+                            <td><span class="badge bg-{{ $booking->booking_status->value === 'issued' ? 'success' : 'warning' }}">{{ $booking->booking_status->label() }}</span></td>
                         </tr>
                         @empty
                         <tr><td colspan="4" class="text-center text-muted">No bookings</td></tr>
@@ -101,7 +101,7 @@
                         <tr>
                             <td><a href="{{ route('admin.visas.show', $visa->id) }}">{{ $visa->application_no }}</a></td>
                             <td>{{ $visa->visaType->name ?? 'N/A' }}</td>
-                            <td><span class="badge bg-{{ $visa->status === 'approved' ? 'success' : 'warning' }}">{{ ucfirst($visa->status) }}</span></td>
+                            <td><span class="badge bg-{{ $visa->status->value === 'approved' ? 'success' : 'warning' }}">{{ $visa->status->label() }}</span></td>
                         </tr>
                         @empty
                         <tr><td colspan="3" class="text-center text-muted">No visa applications</td></tr>

@@ -11,4 +11,18 @@ enum VisaStatus: string
     case APPROVED = 'approved';
     case REJECTED = 'rejected';
     case DELIVERED = 'delivered';
+
+    public function label(): string
+    {
+        return match ($this) {
+            self::DRAFT => __('Draft'),
+            self::SUBMITTED => __('Submitted'),
+            self::DOCUMENT_PENDING => __('Document Pending'),
+            self::UNDER_REVIEW => __('Under Review'),
+            self::GOVERNMENT_PROCESSING => __('Government Processing'),
+            self::APPROVED => __('Approved'),
+            self::REJECTED => __('Rejected'),
+            self::DELIVERED => __('Delivered'),
+        };
+    }
 }

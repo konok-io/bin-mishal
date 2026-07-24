@@ -45,15 +45,19 @@
                         <th>Status:</th>
                         <td>
                             @php
-                                $statusClass = match($application->status) {
+                                $statusClass = match($application->status->value) {
                                     'draft' => 'bg-secondary',
                                     'submitted' => 'bg-info',
+                                    'document_pending' => 'bg-warning',
+                                    'under_review' => 'bg-primary',
+                                    'government_processing' => 'bg-info',
                                     'approved' => 'bg-success',
                                     'rejected' => 'bg-danger',
-                                    default => 'bg-warning'
+                                    'delivered' => 'bg-success',
+                                    default => 'bg-secondary'
                                 };
                             @endphp
-                            <span class="badge {{ $statusClass }}">{{ ucfirst(str_replace('_', ' ', $application->status)) }}</span>
+                            <span class="badge {{ $statusClass }}">{{ $application->status->label() }}</span>
                         </td>
                     </tr>
                     <tr>
@@ -67,14 +71,14 @@
         <!-- Status Actions -->
         <div class="card mb-4">
             <div class="card-body">
-                @if($application->status === 'draft')
+                @if($application->status->value === 'draft')
                 <form action="{{ route('admin.visas.submit', $application->id) }}" method="POST" class="d-inline">
                     @csrf
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-send"></i> Submit Application
                     </button>
                 </form>
-                @elseif($application->status === 'government_processing')
+                @elseif($application->status->value === 'government_processing')
                 <form action="{{ route('admin.visas.approve', $application->id) }}" method="POST" class="d-inline">
                     @csrf
                     <button type="submit" class="btn btn-success">
@@ -88,7 +92,7 @@
                         <i class="bi bi-x-circle"></i> Reject
                     </button>
                 </form>
-                @elseif($application->status === 'approved')
+                @elseif($application->status->value === 'approved')
                 <form action="{{ route('admin.visas.deliver', $application->id) }}" method="POST" class="d-inline">
                     @csrf
                     <button type="submit" class="btn btn-success">

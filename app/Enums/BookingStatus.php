@@ -11,4 +11,15 @@ enum BookingStatus: string
     case ISSUED = 'issued';
     case CANCELLED = 'cancelled';
     case REFUNDED = 'refunded';
+
+    public function label(): string
+    {
+        return match ($this) {
+            self::PENDING => __('Pending'),
+            self::CONFIRMED => __('Confirmed'),
+            self::ISSUED => __('Issued'),
+            self::CANCELLED => __('Cancelled'),
+            self::REFUNDED => __('Refunded'),
+        };
+    }
 }

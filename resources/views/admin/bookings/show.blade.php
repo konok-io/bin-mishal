@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <th>Type:</th>
-                        <td><span class="badge bg-secondary">{{ ucfirst($booking->booking_type) }}</span></td>
+                        <td><span class="badge bg-secondary">{{ $booking->booking_type->label() }}</span></td>
                     </tr>
                     <tr>
                         <th>Passengers:</th>
@@ -49,14 +49,16 @@
                         <th>Status:</th>
                         <td>
                             @php
-                                $statusClass = match($booking->booking_status) {
+                                $statusClass = match($booking->booking_status->value) {
                                     'pending' => 'bg-warning',
+                                    'confirmed' => 'bg-info',
                                     'issued' => 'bg-success',
                                     'cancelled' => 'bg-danger',
+                                    'refunded' => 'bg-dark',
                                     default => 'bg-secondary'
                                 };
                             @endphp
-                            <span class="badge {{ $statusClass }}">{{ ucfirst($booking->booking_status) }}</span>
+                            <span class="badge {{ $statusClass }}">{{ $booking->booking_status->label() }}</span>
                         </td>
                     </tr>
                     <tr>

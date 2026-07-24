@@ -23,7 +23,7 @@
                     <tr><th>Email:</th><td>{{ $lead->email ?? '-' }}</td></tr>
                     <tr><th>Service Interest:</th><td>{{ $lead->service_interest ?? '-' }}</td></tr>
                     <tr><th>Source:</th><td>{{ $lead->source ?? '-' }}</td></tr>
-                    <tr><th>Status:</th><td><span class="badge bg-primary">{{ ucfirst($lead->status) }}</span></td></tr>
+                    <tr><th>Status:</th><td><span class="badge bg-primary">{{ $lead->status->label() }}</span></td></tr>
                     <tr><th>Follow Up:</th><td>{{ $lead->follow_up_date?->format('d M Y') ?? '-' }}</td></tr>
                     <tr><th>Assigned To:</th><td>{{ $lead->assignedTo->name ?? '-' }}</td></tr>
                 </table>

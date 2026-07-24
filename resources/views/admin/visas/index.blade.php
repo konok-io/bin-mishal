@@ -48,15 +48,19 @@
                     <td>SAR {{ number_format($app->total_amount, 2) }}</td>
                     <td>
                         @php
-                            $statusClass = match($app->status) {
+                            $statusClass = match($app->status->value) {
                                 'draft' => 'bg-secondary',
                                 'submitted' => 'bg-info',
+                                'document_pending' => 'bg-warning',
+                                'under_review' => 'bg-primary',
+                                'government_processing' => 'bg-info',
                                 'approved' => 'bg-success',
                                 'rejected' => 'bg-danger',
-                                default => 'bg-warning'
+                                'delivered' => 'bg-success',
+                                default => 'bg-secondary'
                             };
                         @endphp
-                        <span class="badge {{ $statusClass }}">{{ ucfirst(str_replace('_', ' ', $app->status)) }}</span>
+                        <span class="badge {{ $statusClass }}">{{ $app->status->label() }}</span>
                     </td>
                     <td>{{ $app->created_at->format('d M Y') }}</td>
                     <td>
