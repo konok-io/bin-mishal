@@ -280,7 +280,7 @@
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5 class="mb-0"><i class="bi bi-clock-history me-2"></i>Recent Bookings</h5>
-                <a href="{{ route('bookings.index') }}" class="btn btn-sm btn-outline-primary">View All</a>
+                <a href="{{ route('admin.bookings.index') }}" class="btn btn-sm btn-outline-primary">View All</a>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -296,7 +296,7 @@
                         <tbody>
                             @forelse($recentBookings as $booking)
                             <tr>
-                                <td><a href="{{ route('bookings.show', $booking->id) }}">{{ $booking->booking_no }}</a></td>
+                                <td><a href="{{ route('admin.bookings.show', $booking->id) }}">{{ $booking->booking_no }}</a></td>
                                 <td>{{ $booking->customer->user->name ?? 'N/A' }}</td>
                                 <td>SAR {{ number_format($booking->total_amount, 0) }}</td>
                                 <td>

@@ -71,7 +71,7 @@
                     <tbody>
                         @forelse($customer->bookings as $booking)
                         <tr>
-                            <td><a href="{{ route('bookings.show', $booking->id) }}">{{ $booking->booking_no }}</a></td>
+                            <td><a href="{{ route('admin.bookings.show', $booking->id) }}">{{ $booking->booking_no }}</a></td>
                             <td>{{ $booking->booking_type->label() }}</td>
                             <td>SAR {{ number_format($booking->total_amount, 2) }}</td>
                             <td><span class="badge bg-{{ $booking->booking_status->value === 'issued' ? 'success' : 'warning' }}">{{ $booking->booking_status->label() }}</span></td>
