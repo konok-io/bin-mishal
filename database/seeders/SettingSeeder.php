@@ -49,6 +49,21 @@ class SettingSeeder extends Seeder
 
             // Maintenance
             ['key' => 'maintenance_mode', 'value' => '0', 'group' => 'system', 'type' => 'boolean'],
+
+            // WhatsApp Widget (Phase 16)
+            ['key' => 'whatsapp_widget_enabled', 'value' => '1', 'group' => 'widgets', 'type' => 'boolean', 'label' => 'Enable WhatsApp Button'],
+            ['key' => 'whatsapp_widget_number', 'value' => '966500000100', 'group' => 'widgets', 'type' => 'text', 'label' => 'WhatsApp Number (with country code, no +)'],
+            ['key' => 'whatsapp_widget_message', 'value' => "Hi, I'm interested in your services.", 'group' => 'widgets', 'type' => 'text', 'label' => 'Default Message'],
+            ['key' => 'whatsapp_widget_position', 'value' => 'left', 'group' => 'widgets', 'type' => 'select', 'label' => 'Position'],
+            ['key' => 'whatsapp_widget_color', 'value' => '#25D366', 'group' => 'widgets', 'type' => 'text'],
+
+            // AI Chat Widget (Phase 16)
+            ['key' => 'chat_widget_enabled', 'value' => '1', 'group' => 'widgets', 'type' => 'boolean', 'label' => 'Enable AI Chat Assistant'],
+            ['key' => 'chat_widget_position', 'value' => 'right', 'group' => 'widgets', 'type' => 'select', 'label' => 'Position'],
+            ['key' => 'chat_widget_welcome', 'value' => 'Assalamu Alaikum! Welcome to Bin Mishal Travel. How can I help you today?', 'group' => 'widgets', 'type' => 'textarea', 'label' => 'Welcome Message'],
+            ['key' => 'chat_widget_greeting', 'value' => 'Wa Alaikum Assalam! How can I assist you?', 'group' => 'widgets', 'type' => 'text'],
+            ['key' => 'chat_business_hours', 'value' => 'Sat-Thu: 9AM-9PM', 'group' => 'widgets', 'type' => 'text', 'label' => 'Business Hours'],
+            ['key' => 'chat_offline_message', 'value' => "We're currently offline. Please leave a message or contact us via WhatsApp.", 'group' => 'widgets', 'type' => 'textarea', 'label' => 'Offline Message'],
         ];
 
         foreach ($settings as $setting) {

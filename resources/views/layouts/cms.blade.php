@@ -95,6 +95,11 @@
             @endif
         @endif
 
+        {{-- Floating Widgets (WhatsApp + AI Chat) - Only on non-admin pages --}}
+        @if(!request()->is('admin/*') && !request()->is('api/*'))
+            @livewire('public.floating-widgets')
+        @endif
+
         {{-- Page-specific scripts --}}
         @isset($scripts)
             {!! $scripts !!}
