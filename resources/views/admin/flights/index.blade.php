@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-airplane"></i> Flight Requests</h1>
-    <a href="{{ route('admin.flights.create') }}" class="btn btn-primary">
+    <a href="{{ route('flights.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> New Request
     </a>
 </div>
@@ -44,7 +44,7 @@
                         <span class="badge {{ $statusClass }}">{{ ucfirst($req->status) }}</span>
                     </td>
                     <td>
-                        <a href="{{ route('admin.flights.show', $req->id) }}" class="btn btn-sm btn-info">
+                        <a href="{{ route('flights.show', $req->id) }}" class="btn btn-sm btn-info">
                             <i class="bi bi-eye"></i>
                         </a>
                     </td>

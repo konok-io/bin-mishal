@@ -1,0 +1,70 @@
+@extends('layouts.admin')
+@section('title', 'Edit Menu')
+@section('content')
+<div class="admin-page-header d-flex justify-content-between align-items-center">
+    <h1 class="h4 mb-0">Edit Menu</h1>
+    <a href="{{ route('menus.index') }}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Back
+    </a>
+</div>
+<div class="admin-card">
+    <div class="card-body">
+        <form action="{{ route('menus.update', $menu->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $menu->name) }}" required>
+                        @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="slug" class="form-label">Slug <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{ old('slug', $menu->slug) }}" required>
+                        @error('slug')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location <span class="text-danger">*</span></label>
+                        <select class="form-select @error('location') is-invalid @enderror" id="location" name="location" required>
+                            <option value="">Select Location</option>
+                            @foreach($locations as $key => $label)
+                                <option value="{{ $key }}" {{ old('location', $menu->location) == $key ? 'selected' : '' }}>{{ $label }}</option>
+                            @endforeach
+                        </select>
+                        @error('location')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" id="status" name="status" value="1" {{ old('status', $menu->status) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="status">Active</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="2">{{ old('description', $menu->description) }}</textarea>
+            </div>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-check-circle"></i> Update Menu
+                </button>
+                <a href="{{ route('menus.index') }}" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection

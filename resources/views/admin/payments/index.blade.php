@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-credit-card"></i> Payments</h1>
-    <a href="{{ route('admin.payments.create') }}" class="btn btn-primary">
+    <a href="{{ route('payments.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> Record Payment
     </a>
 </div>
@@ -44,7 +44,7 @@
                     </td>
                     <td>{{ $payment->paid_at?->format('d M Y') ?? $payment->created_at->format('d M Y') }}</td>
                     <td>
-                        <a href="{{ route('admin.payments.show', $payment->id) }}" class="btn btn-sm btn-info">
+                        <a href="{{ route('payments.show', $payment->id) }}" class="btn btn-sm btn-info">
                             <i class="bi bi-eye"></i>
                         </a>
                     </td>

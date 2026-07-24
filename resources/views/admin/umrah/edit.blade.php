@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-pencil"></i> Edit Umrah Package</h1>
-    <a href="{{ route('admin.umrah.index') }}" class="btn btn-secondary">
+    <a href="{{ route('umrah.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
 
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('admin.umrah.update', $package->id) }}" method="POST">
+        <form action="{{ route('umrah.update', $package->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">

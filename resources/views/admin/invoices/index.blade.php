@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-receipt"></i> Invoices</h1>
-    <a href="{{ route('admin.invoices.create') }}" class="btn btn-primary">
+    <a href="{{ route('invoices.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> New Invoice
     </a>
 </div>
@@ -47,7 +47,7 @@
                     </td>
                     <td>{{ $invoice->issue_date?->format('d M Y') }}</td>
                     <td>
-                        <a href="{{ route('admin.invoices.show', $invoice->id) }}" class="btn btn-sm btn-info">
+                        <a href="{{ route('invoices.show', $invoice->id) }}" class="btn btn-sm btn-info">
                             <i class="bi bi-eye"></i>
                         </a>
                     </td>

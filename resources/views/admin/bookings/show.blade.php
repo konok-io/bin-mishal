@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-ticket"></i> Booking: {{ $booking->booking_no }}</h1>
-    <a href="{{ route('admin.bookings.index') }}" class="btn btn-secondary">
+    <a href="{{ route('bookings.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
@@ -102,13 +102,13 @@
         @if($booking->booking_status === 'pending')
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('admin.bookings.issue', $booking->id) }}" method="POST" class="d-inline">
+                <form action="{{ route('bookings.issue', $booking->id) }}" method="POST" class="d-inline">
                     @csrf
                     <button type="submit" class="btn btn-success">
                         <i class="bi bi-check-circle"></i> Issue Booking
                     </button>
                 </form>
-                <form action="{{ route('admin.bookings.cancel', $booking->id) }}" method="POST" class="d-inline">
+                <form action="{{ route('bookings.cancel', $booking->id) }}" method="POST" class="d-inline">
                     @csrf
                     <input type="text" name="reason" placeholder="Cancellation reason" class="form-control d-inline-block w-auto" required>
                     <button type="submit" class="btn btn-danger">

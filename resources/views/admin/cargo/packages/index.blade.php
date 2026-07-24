@@ -44,7 +44,7 @@
                                     <i class="fas fa-edit"></i>
                                 </button>
                                 @if($package->cargos()->count() == 0)
-                                <form action="{{ route('admin.cargo.packages.destroy', $package->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('cargo.packages.destroy', $package->id) }}" method="POST" class="d-inline">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">
                                         <i class="fas fa-trash"></i>
@@ -57,7 +57,7 @@
                         <div class="modal fade" id="editModal{{ $package->id }}" tabindex="-1">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="{{ route('admin.cargo.packages.update', $package->id) }}" method="POST">
+                                    <form action="{{ route('cargo.packages.update', $package->id) }}" method="POST">
                                         @csrf @method('PUT')
                                         <div class="modal-header"><h5 class="modal-title">Edit Package</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
                                         <div class="modal-body">
@@ -91,7 +91,7 @@
 <div class="modal fade" id="createModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('admin.cargo.packages.store') }}" method="POST">
+            <form action="{{ route('cargo.packages.store') }}" method="POST">
                 @csrf
                 <div class="modal-header"><h5 class="modal-title">Add Package</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
                 <div class="modal-body">

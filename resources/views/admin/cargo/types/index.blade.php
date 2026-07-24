@@ -44,7 +44,7 @@
                                     <i class="fas fa-edit"></i>
                                 </button>
                                 @if($type->cargos()->count() == 0)
-                                <form action="{{ route('admin.cargo.types.destroy', $type->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('cargo.types.destroy', $type->id) }}" method="POST" class="d-inline">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">
                                         <i class="fas fa-trash"></i>
@@ -58,7 +58,7 @@
                         <div class="modal fade" id="editModal{{ $type->id }}" tabindex="-1">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="{{ route('admin.cargo.types.update', $type->id) }}" method="POST">
+                                    <form action="{{ route('cargo.types.update', $type->id) }}" method="POST">
                                         @csrf @method('PUT')
                                         <div class="modal-header">
                                             <h5 class="modal-title">Edit Type</h5>
@@ -116,7 +116,7 @@
 <div class="modal fade" id="createModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('admin.cargo.types.store') }}" method="POST">
+            <form action="{{ route('cargo.types.store') }}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title">Add Cargo Type</h5>

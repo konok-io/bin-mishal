@@ -142,17 +142,21 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     Route::post('/leave-requests/{leave}/approve', [LeaveRequestController::class, 'approve'])->name('leave-requests.approve');
     Route::post('/leave-requests/{leave}/reject', [LeaveRequestController::class, 'reject'])->name('leave-requests.reject');
     Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
-    Route::get('payroll', [PayrollControllerAdmin::class, 'index'])->name('payroll.index');
-    Route::get('biometric-devices', [BiometricDeviceController::class, 'index'])->name('biometric-devices.index');
+    Route::get('attendance/create', [AttendanceController::class, 'create'])->name('attendance.create');
+    Route::post('attendance', [AttendanceController::class, 'store'])->name('attendance.store');
+    Route::put('attendance/{attendance}', [AttendanceController::class, 'update'])->name('attendance.update');
+    Route::resource('payroll', PayrollControllerAdmin::class)->names(['index' => 'payroll.index', 'create' => 'payroll.create', 'store' => 'payroll.store', 'show' => 'payroll.show', 'edit' => 'payroll.edit', 'update' => 'payroll.update', 'destroy' => 'payroll.destroy']);
+    Route::resource('biometric-devices', BiometricDeviceController::class)->names(['index' => 'biometric-devices.index', 'create' => 'biometric-devices.create', 'store' => 'biometric-devices.store', 'show' => 'biometric-devices.show', 'edit' => 'biometric-devices.edit', 'update' => 'biometric-devices.update', 'destroy' => 'biometric-devices.destroy']);
 
     // Accounting
-    Route::get('chart-of-accounts', [ChartOfAccountController::class, 'index'])->name('chart-of-accounts.index');
-    Route::get('ledger-entries', [LedgerController::class, 'index'])->name('ledger-entries.index');
-    Route::get('expense-claims', [ExpenseClaimController::class, 'index'])->name('expense-claims.index');
+    Route::resource('chart-of-accounts', ChartOfAccountController::class)->names(['index' => 'chart-of-accounts.index', 'create' => 'chart-of-accounts.create', 'store' => 'chart-of-accounts.store', 'show' => 'chart-of-accounts.show', 'edit' => 'chart-of-accounts.edit', 'update' => 'chart-of-accounts.update', 'destroy' => 'chart-of-accounts.destroy']);
+    Route::get('chart-of-accounts/initialize', [ChartOfAccountController::class, 'initializeSystemAccounts'])->name('chart-of-accounts.initialize');
+    Route::resource('ledger-entries', LedgerController::class)->names(['index' => 'ledger-entries.index', 'create' => 'ledger-entries.create', 'store' => 'ledger-entries.store', 'show' => 'ledger-entries.show', 'edit' => 'ledger-entries.edit', 'update' => 'ledger-entries.update', 'destroy' => 'ledger-entries.destroy']);
+    Route::resource('expense-claims', ExpenseClaimController::class)->names(['index' => 'expense-claims.index', 'create' => 'expense-claims.create', 'store' => 'expense-claims.store', 'show' => 'expense-claims.show', 'edit' => 'expense-claims.edit', 'update' => 'expense-claims.update', 'destroy' => 'expense-claims.destroy']);
 
     // Recruitment
-    Route::get('job-postings', [JobPostingController::class, 'index'])->name('job-postings.index');
-    Route::get('job-applications', [JobApplicationController::class, 'index'])->name('job-applications.index');
+    Route::resource('job-postings', JobPostingController::class)->names(['index' => 'job-postings.index', 'create' => 'job-postings.create', 'store' => 'job-postings.store', 'show' => 'job-postings.show', 'edit' => 'job-postings.edit', 'update' => 'job-postings.update', 'destroy' => 'job-postings.destroy']);
+    Route::resource('job-applications', JobApplicationController::class)->names(['index' => 'job-applications.index', 'create' => 'job-applications.create', 'store' => 'job-applications.store', 'show' => 'job-applications.show', 'edit' => 'job-applications.edit', 'update' => 'job-applications.update', 'destroy' => 'job-applications.destroy']);
 
     // CMS
     Route::resource('pages', PageControllerAdmin::class);
@@ -163,16 +167,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     Route::resource('faqs', FaqController::class);
 
     // Support
-    Route::get('contact-messages', [ContactMessageController::class, 'index'])->name('contact-messages.index');
-    Route::get('newsletter-subscribers', [NewsletterSubscriberController::class, 'index'])->name('newsletter-subscribers.index');
-    Route::get('comments', [CommentController::class, 'index'])->name('comments.index');
+    Route::resource('contact-messages', ContactMessageController::class)->only(['index', 'show', 'destroy']);
+    Route::resource('newsletter-subscribers', NewsletterSubscriberController::class);
+    Route::resource('comments', CommentController::class)->only(['index', 'update', 'destroy']);
 
     // Settings
-    Route::get('seo-settings', [SeoSettingController::class, 'index'])->name('seo-settings.index');
-    Route::get('social-links', [SocialLinkController::class, 'index'])->name('social-links.index');
-    Route::get('notices', [NoticeController::class, 'index'])->name('notices.index');
-    Route::get('translations', [TranslationController::class, 'index'])->name('translations.index');
-    Route::get('audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
+    Route::resource('seo-settings', SeoSettingController::class);
+    Route::resource('social-links', SocialLinkController::class);
+    Route::resource('notices', NoticeController::class);
+    Route::resource('translations', TranslationController::class);
+    Route::resource('audit-logs', AuditLogController::class)->only(['index', 'show', 'destroy']);
+    Route::get('/audit-logs/export', [AuditLogController::class, 'export'])->name('audit-logs.export');
 
     // Cargo Management
     Route::prefix('cargo')->name('cargo.')->group(function () {

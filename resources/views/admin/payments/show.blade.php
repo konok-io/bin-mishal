@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-credit-card"></i> Payment: {{ $payment->payment_no }}</h1>
-    <a href="{{ route('admin.payments.index') }}" class="btn btn-secondary">
+    <a href="{{ route('payments.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
@@ -23,14 +23,14 @@
         </table>
 
         @if($payment->status === 'pending')
-        <form action="{{ route('admin.payments.complete', $payment->id) }}" method="POST" class="d-inline">
+        <form action="{{ route('payments.complete', $payment->id) }}" method="POST" class="d-inline">
             @csrf
             <button type="submit" class="btn btn-success">
                 <i class="bi bi-check-circle"></i> Mark as Complete
             </button>
         </form>
         @elseif($payment->status === 'completed')
-        <form action="{{ route('admin.payments.refund', $payment->id) }}" method="POST" class="d-inline">
+        <form action="{{ route('payments.refund', $payment->id) }}" method="POST" class="d-inline">
             @csrf
             <button type="submit" class="btn btn-danger">
                 <i class="bi bi-arrow-left"></i> Refund

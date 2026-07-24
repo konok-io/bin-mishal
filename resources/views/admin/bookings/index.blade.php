@@ -4,14 +4,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-ticket-perforated"></i> Bookings</h1>
-    <a href="{{ route('admin.bookings.create') }}" class="btn btn-primary">
+    <a href="{{ route('bookings.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> New Booking
     </a>
 </div>
 
 <div class="card">
     <div class="card-header">
-        <form action="{{ route('admin.bookings.index') }}" method="GET" class="row g-3">
+        <form action="{{ route('bookings.index') }}" method="GET" class="row g-3">
             <div class="col-md-4">
                 <input type="text" name="search" class="form-control" placeholder="Search booking number..." value="{{ request('search') }}">
             </div>
@@ -67,7 +67,7 @@
                         </td>
                         <td>{{ $booking->created_at->format('d M Y') }}</td>
                         <td>
-                            <a href="{{ route('admin.bookings.show', $booking->id) }}" class="btn btn-sm btn-info">
+                            <a href="{{ route('bookings.show', $booking->id) }}" class="btn btn-sm btn-info">
                                 <i class="bi bi-eye"></i>
                             </a>
                         </td>

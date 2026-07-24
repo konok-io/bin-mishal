@@ -4,7 +4,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><i class="bi bi-person"></i> Customer: {{ $customer->customer_code }}</h1>
-    <a href="{{ route('admin.customers.index') }}" class="btn btn-secondary">
+    <a href="{{ route('customers.index') }}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
 </div>
@@ -71,7 +71,7 @@
                     <tbody>
                         @forelse($customer->bookings as $booking)
                         <tr>
-                            <td><a href="{{ route('admin.bookings.show', $booking->id) }}">{{ $booking->booking_no }}</a></td>
+                            <td><a href="{{ route('bookings.show', $booking->id) }}">{{ $booking->booking_no }}</a></td>
                             <td>{{ $booking->booking_type->label() }}</td>
                             <td>SAR {{ number_format($booking->total_amount, 2) }}</td>
                             <td><span class="badge bg-{{ $booking->booking_status->value === 'issued' ? 'success' : 'warning' }}">{{ $booking->booking_status->label() }}</span></td>
@@ -99,7 +99,7 @@
                     <tbody>
                         @forelse($customer->visaApplications as $visa)
                         <tr>
-                            <td><a href="{{ route('admin.visas.show', $visa->id) }}">{{ $visa->application_no }}</a></td>
+                            <td><a href="{{ route('visas.show', $visa->id) }}">{{ $visa->application_no }}</a></td>
                             <td>{{ $visa->visaType->name ?? 'N/A' }}</td>
                             <td><span class="badge bg-{{ $visa->status->value === 'approved' ? 'success' : 'warning' }}">{{ $visa->status->label() }}</span></td>
                         </tr>

@@ -10,13 +10,13 @@
             <span class="badge bg-primary fs-6">{{ $cargo->tracking_number }}</span>
         </div>
         <div>
-            <a href="{{ route('admin.cargo.invoice', $cargo->id) }}" class="btn btn-success" target="_blank">
+            <a href="{{ route('cargo.invoice', $cargo->id) }}" class="btn btn-success" target="_blank">
                 <i class="fas fa-file-invoice"></i> Invoice
             </a>
-            <a href="{{ route('admin.cargo.label', $cargo->id) }}" class="btn btn-info" target="_blank">
+            <a href="{{ route('cargo.label', $cargo->id) }}" class="btn btn-info" target="_blank">
                 <i class="fas fa-tag"></i> Label
             </a>
-            <a href="{{ route('admin.cargo.index') }}" class="btn btn-secondary">
+            <a href="{{ route('cargo.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
         </div>
@@ -206,7 +206,7 @@
 <div class="modal fade" id="statusModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('admin.cargo.status', $cargo->id) }}" method="POST">
+            <form action="{{ route('cargo.status', $cargo->id) }}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title">Update Status</h5>

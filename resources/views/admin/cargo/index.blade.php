@@ -7,10 +7,10 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3 mb-0 text-gray-800">Cargo Bookings</h1>
         <div>
-            <a href="{{ route('admin.cargo.create') }}" class="btn btn-primary">
+            <a href="{{ route('cargo.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> New Booking
             </a>
-            <a href="{{ route('admin.cargo.export') }}" class="btn btn-success">
+            <a href="{{ route('cargo.export') }}" class="btn btn-success">
                 <i class="fas fa-download"></i> Export
             </a>
         </div>
@@ -120,10 +120,10 @@
                             <td>{{ $cargo->created_at->format('d M Y') }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('admin.cargo.show', $cargo->id) }}" class="btn btn-sm btn-info" title="View">
+                                    <a href="{{ route('cargo.show', $cargo->id) }}" class="btn btn-sm btn-info" title="View">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('admin.cargo.invoice', $cargo->id) }}" class="btn btn-sm btn-success" title="Invoice" target="_blank">
+                                    <a href="{{ route('cargo.invoice', $cargo->id) }}" class="btn btn-sm btn-success" title="Invoice" target="_blank">
                                         <i class="fas fa-file-invoice"></i>
                                     </a>
                                 </div>

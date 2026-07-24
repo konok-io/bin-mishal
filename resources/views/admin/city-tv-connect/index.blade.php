@@ -7,16 +7,16 @@
         <h1 class="h4 mb-1">City TV Connect - Branch Management</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li class="breadcrumb-item active">City TV Connect</li>
             </ol>
         </nav>
     </div>
     <div>
-        <a href="{{ route('admin.city-tv-connect.create') }}" class="btn btn-admin-primary">
+        <a href="{{ route('city-tv-connect.create') }}" class="btn btn-admin-primary">
             <i class="fas fa-plus me-2"></i>Add Branch
         </a>
-        <a href="{{ route('admin.city-tv-connect.cameras') }}" class="btn btn-secondary ms-2" target="_blank">
+        <a href="{{ route('city-tv-connect.cameras') }}" class="btn btn-secondary ms-2" target="_blank">
             <i class="fas fa-video me-2"></i>Live Cameras
         </a>
     </div>
@@ -67,13 +67,13 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('admin.city-tv-connect.show', $branch->id) }}" class="btn btn-sm btn-outline-primary">
+                            <a href="{{ route('city-tv-connect.show', $branch->id) }}" class="btn btn-sm btn-outline-primary">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <a href="{{ route('admin.city-tv-connect.edit', $branch->id) }}" class="btn btn-sm btn-outline-secondary">
+                            <a href="{{ route('city-tv-connect.edit', $branch->id) }}" class="btn btn-sm btn-outline-secondary">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="{{ route('admin.city-tv-connect.destroy', $branch->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('city-tv-connect.destroy', $branch->id) }}" method="POST" class="d-inline">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this branch?')">
                                     <i class="fas fa-trash"></i>
@@ -85,7 +85,7 @@
                     <tr>
                         <td colspan="6" class="text-center py-4">
                             <p class="text-muted mb-0">No branches configured yet.</p>
-                            <a href="{{ route('admin.city-tv-connect.create') }}">Add your first branch</a>
+                            <a href="{{ route('city-tv-connect.create') }}">Add your first branch</a>
                         </td>
                     </tr>
                     @endforelse
