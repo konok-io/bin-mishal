@@ -40,7 +40,7 @@ Route::middleware('guest')->group(function () {
     // Customer Portal Login
     Route::prefix('portal')->name('portal.')->group(function () {
         Route::get('/login', fn() => view('auth.login', ['guard' => 'customer']))->name('login');
-        Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
+        Route::post('/login', [AuthenticatedSessionController::class, 'storeCustomer'])->name('login.post');
         Route::get('/register', fn() => view('auth.register', ['guard' => 'customer']))->name('register');
         Route::post('/register', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'store'])->name('register.post');
     });
@@ -48,7 +48,7 @@ Route::middleware('guest')->group(function () {
     // Employee Login
     Route::prefix('employee')->name('employee.')->group(function () {
         Route::get('/login', fn() => view('auth.login', ['guard' => 'employee']))->name('login');
-        Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
+        Route::post('/login', [AuthenticatedSessionController::class, 'storeEmployee'])->name('login.post');
     });
 });
 
