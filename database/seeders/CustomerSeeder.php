@@ -127,10 +127,22 @@ class CustomerSeeder extends Seeder
         ];
 
         foreach ($customers as $data) {
-            $user = User::updateOrCreate(
-                ['email' => $data['user']['email']],
-                $data['user']
-            );
+            // Check if user with this email already exists
+            $existingUser = User::where('email', $data['user']['email'])->first();
+            
+            if (!$existingUser) {
+                // Check if phone already exists
+                $phoneExists = User::where('phone', $data['user']['phone'])->exists();
+                if ($phoneExists) {
+                    // Generate unique phone
+                    $data['user']['phone'] = '+9665' . rand(10000000, 99999999);
+                    $data['user']['whatsapp'] = $data['user']['phone'];
+                }
+                
+                $user = User::create($data['user']);
+            } else {
+                $user = $existingUser;
+            }
 
             Customer::updateOrCreate(
                 ['user_id' => $user->id],
