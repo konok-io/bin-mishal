@@ -437,10 +437,10 @@
                             <form method="POST" action="{{ route('admin.login.post') }}">
                             @break
                         @case('employee')
-                            <form method="POST" action="{{ route('employee.login.post') }}">
+                            <form method="POST" action="{{ locale_route('employee.login.post') }}">
                             @break
                         @case('customer')
-                            <form method="POST" action="{{ route('portal.login.post') }}">
+                            <form method="POST" action="{{ locale_route('portal.login.post') }}">
                             @break
                         @default
                             <form method="POST" action="{{ route('login') }}">

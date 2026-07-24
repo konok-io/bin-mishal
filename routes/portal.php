@@ -10,7 +10,7 @@ use App\Http\Controllers\Portal\VisaController;
 use Illuminate\Support\Facades\Route;
 
 // Customer Portal Routes (Authenticated Customers)
-Route::prefix('portal')->name('portal.')->middleware(['auth', 'role:customer'])->group(function () {
+Route::prefix('{locale}/portal')->where(['locale' => 'bn|en|ar'])->name('portal.')->middleware(['auth', 'role:customer'])->group(function () {
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

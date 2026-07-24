@@ -25,6 +25,7 @@ class AuthenticatedSessionController extends Controller
 
         if (Auth::guard('admin')->attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
+            // Admin stays in English (no locale prefix)
             return redirect()->intended(route('admin.dashboard'));
         }
 
@@ -35,6 +36,8 @@ class AuthenticatedSessionController extends Controller
 
     public function storeEmployee(Request $request): RedirectResponse
     {
+        $locale = $request->route('locale') ?? app()->getLocale() ?? 'bn';
+        
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -42,7 +45,7 @@ class AuthenticatedSessionController extends Controller
 
         if (Auth::guard('employee')->attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended(locale_route('employee.dashboard'));
+            return redirect()->intended(route('employee.dashboard', ['locale' => $locale]));
         }
 
         return back()->withErrors([
@@ -52,6 +55,8 @@ class AuthenticatedSessionController extends Controller
 
     public function storeCustomer(Request $request): RedirectResponse
     {
+        $locale = $request->route('locale') ?? app()->getLocale() ?? 'bn';
+        
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -59,7 +64,7 @@ class AuthenticatedSessionController extends Controller
 
         if (Auth::guard('web')->attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended(locale_route('portal.dashboard'));
+            return redirect()->intended(route('portal.dashboard', ['locale' => $locale]));
         }
 
         return back()->withErrors([
