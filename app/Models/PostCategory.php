@@ -7,12 +7,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
+use Illuminate\Support\Str;
 
 class PostCategory extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory;
 
     protected $fillable = [
         'name',
@@ -33,11 +32,19 @@ class PostCategory extends Model
         'sort_order' => 'integer',
     ];
 
-    public function getSlugOptions(): SlugOptions
+    protected static function booted(): void
     {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
+        static::creating(function (PostCategory $category) {
+            if (empty($category->slug)) {
+                $category->slug = Str::slug($category->name);
+            }
+        });
+
+        static::updating(function (PostCategory $category) {
+            if ($category->isDirty('name') && !$category->isDirty('slug')) {
+                $category->slug = Str::slug($category->name);
+            }
+        });
     }
 
     public function posts(): HasMany
