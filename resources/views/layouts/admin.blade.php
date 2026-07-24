@@ -61,10 +61,25 @@
                         <i class="bi bi-speedometer2 me-2"></i> Dashboard
                     </a>
                 </li>
+                
+                <!-- CRM Section -->
+                <li class="nav-item mt-3">
+                    <span class="nav-link text-muted small text-uppercase fw-bold">CRM</span>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link text-white {{ request()->routeIs('admin.customers.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.customers.index') }}">
                         <i class="bi bi-people me-2"></i> Customers
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white {{ request()->routeIs('admin.leads.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.leads.index') }}">
+                        <i class="bi bi-person-lines-fill me-2"></i> Leads
+                    </a>
+                </li>
+                
+                <!-- Bookings Section -->
+                <li class="nav-item mt-3">
+                    <span class="nav-link text-muted small text-uppercase fw-bold">Bookings</span>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white {{ request()->routeIs('admin.bookings.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.bookings.index') }}">
@@ -87,9 +102,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white {{ request()->routeIs('admin.leads.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.leads.index') }}">
-                        <i class="bi bi-person-lines-fill me-2"></i> Leads
+                    <a class="nav-link text-white {{ request()->routeIs('admin.cargo.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.cargo.index') }}">
+                        <i class="bi bi-box-seam me-2"></i> Cargo
                     </a>
+                </li>
+                
+                <!-- Finance Section -->
+                <li class="nav-item mt-3">
+                    <span class="nav-link text-muted small text-uppercase fw-bold">Finance</span>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white {{ request()->routeIs('admin.invoices.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.invoices.index') }}">
@@ -101,9 +121,159 @@
                         <i class="bi bi-credit-card me-2"></i> Payments
                     </a>
                 </li>
+                
+                <!-- HR Section -->
+                <li class="nav-item mt-3">
+                    <span class="nav-link text-muted small text-uppercase fw-bold">HR</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/employees">
+                        <i class="bi bi-person-badge me-2"></i> Employees
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/leaves">
+                        <i class="bi bi-calendar-check me-2"></i> Leave Requests
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/attendance">
+                        <i class="bi bi-clock-history me-2"></i> Attendance
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/payrolls">
+                        <i class="bi bi-wallet2 me-2"></i> Payroll
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/biometric-devices">
+                        <i class="bi bi-fingerprint me-2"></i> Biometric Devices
+                    </a>
+                </li>
+                
+                <!-- Accounting Section -->
+                <li class="nav-item mt-3">
+                    <span class="nav-link text-muted small text-uppercase fw-bold">Accounting</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/chart-of-accounts">
+                        <i class="bi bi-bank me-2"></i> Chart of Accounts
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/ledger-entries">
+                        <i class="bi bi-journal-text me-2"></i> Ledger Entries
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/expense-claims">
+                        <i class="bi bi-receipt me-2"></i> Expense Claims
+                    </a>
+                </li>
+                
+                <!-- HR/Recruitment Section -->
+                <li class="nav-item mt-3">
+                    <span class="nav-link text-muted small text-uppercase fw-bold">Recruitment</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/jobs">
+                        <i class="bi bi-briefcase me-2"></i> Job Postings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/job-applications">
+                        <i class="bi bi-person-plus me-2"></i> Job Applications
+                    </a>
+                </li>
+                
+                <!-- CMS Section -->
+                <li class="nav-item mt-3">
+                    <span class="nav-link text-muted small text-uppercase fw-bold">CMS</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/pages">
+                        <i class="bi bi-file-earmark-text me-2"></i> Pages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/menus">
+                        <i class="bi bi-list-ul me-2"></i> Menus
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/posts">
+                        <i class="bi bi-newspaper me-2"></i> Blog Posts
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/testimonials">
+                        <i class="bi bi-chat-quote me-2"></i> Testimonials
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/gallery">
+                        <i class="bi bi-images me-2"></i> Gallery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/faqs">
+                        <i class="bi bi-question-circle me-2"></i> FAQs
+                    </a>
+                </li>
+                
+                <!-- Contact & Support -->
+                <li class="nav-item mt-3">
+                    <span class="nav-link text-muted small text-uppercase fw-bold">Support</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/contact-messages">
+                        <i class="bi bi-envelope me-2"></i> Contact Messages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/newsletter-subscribers">
+                        <i class="bi bi-mailbox me-2"></i> Newsletter
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/post-comments">
+                        <i class="bi bi-chat-left-text me-2"></i> Comments
+                    </a>
+                </li>
+                
+                <!-- Settings Section -->
+                <li class="nav-item mt-3">
+                    <span class="nav-link text-muted small text-uppercase fw-bold">Settings</span>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link text-white {{ request()->routeIs('admin.settings.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.settings.index') }}">
                         <i class="bi bi-gear me-2"></i> Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/seo-settings">
+                        <i class="bi bi-search me-2"></i> SEO Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/social-links">
+                        <i class="bi bi-share me-2"></i> Social Links
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/notices">
+                        <i class="bi bi-megaphone me-2"></i> Notices
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/translations">
+                        <i class="bi bi-translate me-2"></i> Translations
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/audit-logs">
+                        <i class="bi bi-shield-check me-2"></i> Audit Logs
                     </a>
                 </li>
             </ul>
