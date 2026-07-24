@@ -325,7 +325,7 @@
                     <div class="alert alert-success mb-4">{{ session('success') }}</div>
                 @endif
 
-                <form method="POST" action="{{ locale_route('portal.register.post') }}">
+                <form method="POST" action="{{ locale_locale_route('portal.register.post') }}">
                     @csrf
                     
                     <div class="form-section">
@@ -419,7 +419,7 @@
                 
                 <div class="login-section">
                     <p>Already have an account?</p>
-                    <a href="{{ locale_route('portal.login') }}" class="btn-login-link">
+                    <a href="{{ locale_locale_route('portal.login') }}" class="btn-login-link">
                         <i class="bi bi-box-arrow-in-right"></i>
                         Sign In
                     </a>

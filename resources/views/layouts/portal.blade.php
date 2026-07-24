@@ -11,7 +11,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('portal.dashboard') }}">
+            <a class="navbar-brand" href="{{ locale_route('portal.dashboard') }}">
                 <i class="bi bi-airplane"></i> {{ config('app.name') }}
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -20,19 +20,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('portal.dashboard') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ locale_route('portal.dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('portal.bookings.index') }}">Bookings</a>
+                        <a class="nav-link" href="{{ locale_route('portal.bookings.index') }}">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('portal.visas.index') }}">Visas</a>
+                        <a class="nav-link" href="{{ locale_route('portal.visas.index') }}">Visas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('portal.appointments.index') }}">Appointments</a>
+                        <a class="nav-link" href="{{ locale_route('portal.appointments.index') }}">Appointments</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('portal.documents.index') }}">Documents</a>
+                        <a class="nav-link" href="{{ locale_route('portal.documents.index') }}">Documents</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -41,7 +41,7 @@
                             <i class="bi bi-person-circle"></i> {{ auth()->user()->name }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{ route('portal.profile') }}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ locale_route('portal.profile') }}">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">

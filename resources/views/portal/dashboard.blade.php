@@ -112,7 +112,7 @@
                                         </td>
                                         <td>SAR {{ number_format($booking['total'], 2) }}</td>
                                         <td>
-                                            <a href="{{ route('portal.bookings.show', $booking['id']) }}" class="btn btn-sm btn-outline-primary">
+                                            <a href="{{ locale_route('portal.bookings.show', $booking['id']) }}" class="btn btn-sm btn-outline-primary">
                                                 View
                                             </a>
                                         </td>
@@ -134,16 +134,16 @@
                 </div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
-                        <a href="{{ route('portal.bookings.index') }}" class="btn btn-outline-primary">
+                        <a href="{{ locale_route('portal.bookings.index') }}" class="btn btn-outline-primary">
                             <i class="bi bi-airplane me-2"></i> My Bookings
                         </a>
-                        <a href="{{ route('portal.visas.index') }}" class="btn btn-outline-primary">
+                        <a href="{{ locale_route('portal.visas.index') }}" class="btn btn-outline-primary">
                             <i class="bi bi-file-text me-2"></i> My Visas
                         </a>
-                        <a href="{{ route('portal.appointments.create') }}" class="btn btn-outline-primary">
+                        <a href="{{ locale_route('portal.appointments.create') }}" class="btn btn-outline-primary">
                             <i class="bi bi-calendar-plus me-2"></i> Book Appointment
                         </a>
-                        <a href="{{ route('portal.documents.create') }}" class="btn btn-outline-primary">
+                        <a href="{{ locale_route('portal.documents.create') }}" class="btn btn-outline-primary">
                             <i class="bi bi-upload me-2"></i> Upload Document
                         </a>
                     </div>

@@ -426,7 +426,7 @@
                         
                         <!-- Auth Buttons -->
                         <div class="auth-buttons">
-                            <a href="{{ route('portal.register') }}" class="btn-register">
+                            <a href="{{ locale_locale_route('portal.register') }}" class="btn-register">
                                 <i class="bi bi-person-plus"></i> {{ __('navigation.register') }}
                             </a>
                             
@@ -436,7 +436,7 @@
                                     <i class="bi bi-person-circle"></i> {{ __('navigation.login') }}
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="{{ route('portal.login') }}">
+                                    <li><a class="dropdown-item" href="{{ locale_route('portal.login') }}">
                                         <i class="bi bi-people"></i> {{ __('navigation.portal_login') }}
                                     </a></li>
                                     <li><a class="dropdown-item" href="{{ route('employee.login') }}">
