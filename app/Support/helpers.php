@@ -33,19 +33,13 @@ if (!function_exists('is_rtl')) {
 }
 
 if (!function_exists('locale_route')) {
-function locale_route(string $name, array $params = [], ?string $locale = null): string
+    function locale_route(string $name, array $params = [], ?string $locale = null): string
     {
-        // Use provided locale, or try app(), or use hardcoded 'bn' as final fallback
-        if ($locale === null || $locale === '') {
-            try {
-                $locale = app()->getLocale();
-            } catch (\Throwable $e) {
-                $locale = null;
-            }
-        }
+        // GUARANTEED fallback to 'bn' - never return null or empty
+        $locale = $locale ?: (function_exists('app') && app()->bound('translator') ? app()->getLocale() : null) ?: 'bn';
         
-        // Final fallback to 'bn'
-        if (empty($locale)) {
+        // Validate locale
+        if (!in_array($locale, ['bn', 'en', 'ar'])) {
             $locale = 'bn';
         }
         
