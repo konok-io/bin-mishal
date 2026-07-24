@@ -169,6 +169,55 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     Route::get('notices', [NoticeController::class, 'index'])->name('notices.index');
     Route::get('translations', [TranslationController::class, 'index'])->name('translations.index');
     Route::get('audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
+
+    // Cargo Management
+    Route::prefix('cargo')->name('cargo.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'dashboard'])->name('dashboard');
+        Route::get('/index', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'store'])->name('store');
+        Route::get('/{cargo}', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'show'])->name('show');
+        Route::post('/{cargo}/status', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'updateStatus'])->name('status');
+        Route::get('/{cargo}/invoice', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'invoice'])->name('invoice');
+        Route::get('/{cargo}/label', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'label'])->name('label');
+        Route::get('/export', [\App\Http\Controllers\Admin\Cargo\CargoController::class, 'export'])->name('export');
+
+        // Cargo Types
+        Route::get('/types', [\App\Http\Controllers\Admin\Cargo\CargoTypeController::class, 'index'])->name('types');
+        Route::post('/types', [\App\Http\Controllers\Admin\Cargo\CargoTypeController::class, 'store'])->name('types.store');
+        Route::put('/types/{type}', [\App\Http\Controllers\Admin\Cargo\CargoTypeController::class, 'update'])->name('types.update');
+        Route::delete('/types/{type}', [\App\Http\Controllers\Admin\Cargo\CargoTypeController::class, 'destroy'])->name('types.destroy');
+
+        // Cargo Packages
+        Route::get('/packages', [\App\Http\Controllers\Admin\Cargo\CargoPackageController::class, 'index'])->name('packages');
+        Route::post('/packages', [\App\Http\Controllers\Admin\Cargo\CargoPackageController::class, 'store'])->name('packages.store');
+        Route::put('/packages/{package}', [\App\Http\Controllers\Admin\Cargo\CargoPackageController::class, 'update'])->name('packages.update');
+        Route::delete('/packages/{package}', [\App\Http\Controllers\Admin\Cargo\CargoPackageController::class, 'destroy'])->name('packages.destroy');
+
+        // Cargo Cities
+        Route::get('/cities', [\App\Http\Controllers\Admin\Cargo\CargoCityController::class, 'index'])->name('cities');
+        Route::post('/cities', [\App\Http\Controllers\Admin\Cargo\CargoCityController::class, 'store'])->name('cities.store');
+        Route::put('/cities/{city}', [\App\Http\Controllers\Admin\Cargo\CargoCityController::class, 'update'])->name('cities.update');
+        Route::delete('/cities/{city}', [\App\Http\Controllers\Admin\Cargo\CargoCityController::class, 'destroy'])->name('cities.destroy');
+
+        // Cargo Zones
+        Route::get('/cities/{city}/zones', [\App\Http\Controllers\Admin\Cargo\CargoZoneController::class, 'index'])->name('zones');
+        Route::post('/zones', [\App\Http\Controllers\Admin\Cargo\CargoZoneController::class, 'store'])->name('zones.store');
+        Route::put('/zones/{zone}', [\App\Http\Controllers\Admin\Cargo\CargoZoneController::class, 'update'])->name('zones.update');
+        Route::delete('/zones/{zone}', [\App\Http\Controllers\Admin\Cargo\CargoZoneController::class, 'destroy'])->name('zones.destroy');
+
+        // Cargo Coupons
+        Route::get('/coupons', [\App\Http\Controllers\Admin\Cargo\CargoCouponController::class, 'index'])->name('coupons');
+        Route::post('/coupons', [\App\Http\Controllers\Admin\Cargo\CargoCouponController::class, 'store'])->name('coupons.store');
+        Route::put('/coupons/{coupon}', [\App\Http\Controllers\Admin\Cargo\CargoCouponController::class, 'update'])->name('coupons.update');
+        Route::delete('/coupons/{coupon}', [\App\Http\Controllers\Admin\Cargo\CargoCouponController::class, 'destroy'])->name('coupons.destroy');
+
+        // Cargo Pricing
+        Route::get('/pricing', [\App\Http\Controllers\Admin\Cargo\CargoPricingController::class, 'index'])->name('pricing');
+        Route::post('/pricing', [\App\Http\Controllers\Admin\Cargo\CargoPricingController::class, 'store'])->name('pricing.store');
+        Route::put('/pricing/{pricing}', [\App\Http\Controllers\Admin\Cargo\CargoPricingController::class, 'update'])->name('pricing.update');
+        Route::delete('/pricing/{pricing}', [\App\Http\Controllers\Admin\Cargo\CargoPricingController::class, 'destroy'])->name('pricing.destroy');
+    });
 });
 
 // Locale change route (for admin panel)
@@ -242,8 +291,6 @@ Route::prefix('{locale}')
 // =============================================================================
 // EXTERNAL ROUTES
 // =============================================================================
-
-require __DIR__ . '/admin_cargo.php';
 
 // Contact Form
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
