@@ -35,8 +35,20 @@ if (!function_exists('is_rtl')) {
 if (!function_exists('locale_route')) {
 function locale_route(string $name, array $params = [], ?string $locale = null): string
     {
-        // Always use a default locale if none provided
-        $locale = $locale ?: config('locales.default', 'bn');
+        // Get locale - check app(), then config(), then hardcoded fallback
+        if ($locale === null) {
+            $locale = app()->getLocale();
+        }
+        if ($locale === null) {
+            try {
+                $locale = config('locales.default', 'bn');
+            } catch (\Throwable $e) {
+                $locale = 'bn';
+            }
+        }
+        if ($locale === null) {
+            $locale = 'bn';
+        }
         
         // Ensure locale is always in params
         $params['locale'] = $locale;
