@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->integer('sort_order')->default(0);
             $table->boolean('is_active')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
         
@@ -48,6 +49,7 @@ return new class extends Migration
             $table->boolean('is_saudi')->default(false);
             $table->boolean('is_bangladesh')->default(false);
             $table->integer('sort_order')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
         
@@ -62,6 +64,7 @@ return new class extends Migration
             $table->integer('max_delivery_days')->default(7);
             $table->boolean('is_active')->default(true);
             $table->integer('sort_order')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
         
@@ -79,6 +82,7 @@ return new class extends Migration
             $table->decimal('base_price', 10, 2)->default(0);
             $table->boolean('is_active')->default(true);
             $table->integer('sort_order')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
         
@@ -94,6 +98,7 @@ return new class extends Migration
             $table->decimal('base_price', 10, 2)->default(0);
             $table->decimal('vat_percentage', 5, 2)->default(15);
             $table->boolean('is_active')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
         
@@ -127,6 +132,7 @@ return new class extends Migration
             $table->timestamp('pickup_date')->nullable();
             $table->timestamp('estimated_delivery')->nullable();
             $table->timestamp('delivered_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
         
@@ -137,6 +143,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('location')->nullable();
             $table->timestamp('timestamp')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
         
@@ -153,6 +160,7 @@ return new class extends Migration
             $table->timestamp('valid_from')->nullable();
             $table->timestamp('valid_until')->nullable();
             $table->boolean('is_active')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
         
@@ -160,6 +168,7 @@ return new class extends Migration
             $table->id();
             $table->string('key')->unique();
             $table->text('value')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
