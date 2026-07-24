@@ -55,6 +55,16 @@ class DatabaseSeeder extends Seeder
             SeoSettingSeeder::class,
             SocialLinkSeeder::class,
             NoticeSeeder::class,
+            // CRM & Booking Module Seeders
+            CustomerSeeder::class,
+            LeadSeeder::class,
+            BookingSeeder::class,
+            VisaApplicationSeeder::class,
+            FlightRequestSeeder::class,
+            UmrahPackageSeeder::class,
+            CargoSeeder::class,
+            InvoiceSeeder::class,
+            PaymentSeeder::class,
         ]);
     }
 }
