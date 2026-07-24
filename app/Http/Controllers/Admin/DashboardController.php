@@ -192,22 +192,26 @@ class DashboardController extends Controller
         $totalPendingApprovals = array_sum($pendingApprovals);
 
         // Top Services by Bookings
-        $topServices = Booking::select('service_type')
-            ->where('created_at', '>=', $startDate)
-            ->groupBy('service_type')
-            ->selectRaw('COUNT(*) as count, service_type')
-            ->orderByDesc('count')
-            ->limit(5)
-            ->get();
+        $topServices = \Illuminate\Support\Facades\Schema::hasColumn('bookings', 'service_type')
+            ? Booking::select('service_type')
+                ->where('created_at', '>=', $startDate)
+                ->groupBy('service_type')
+                ->selectRaw('COUNT(*) as count, service_type')
+                ->orderByDesc('count')
+                ->limit(5)
+                ->get()
+            : collect([]);
 
         // Revenue by Service Type
-        $revenueByService = Booking::where('booking_status', 'issued')
-            ->where('created_at', '>=', $startDate)
-            ->select('service_type')
-            ->selectRaw('SUM(total_amount) as total')
-            ->groupBy('service_type')
-            ->get()
-            ->pluck('total', 'service_type');
+        $revenueByService = \Illuminate\Support\Facades\Schema::hasColumn('bookings', 'service_type')
+            ? Booking::where('booking_status', 'issued')
+                ->where('created_at', '>=', $startDate)
+                ->select('service_type')
+                ->selectRaw('SUM(total_amount) as total')
+                ->groupBy('service_type')
+                ->get()
+                ->pluck('total', 'service_type')
+            : collect([]);
 
         return view('admin.dashboard.index', compact(
             'stats', 
