@@ -10,7 +10,7 @@
             <p class="text-muted mb-0">View and download your salary slips</p>
         </div>
         <div class="col-md-6 text-end">
-            <a href="{{ route('employee.dashboard') }}" class="btn btn-outline-secondary">
+            <a href="{{ locale_route('employee.dashboard') }}" class="btn btn-outline-secondary">
                 <i class="bi bi-arrow-left"></i> Back to Dashboard
             </a>
         </div>
@@ -69,7 +69,7 @@
                                     </td>
                                     <td>
                                         @if($payroll->status === 'paid' || $payroll->status === 'approved')
-                                            <a href="{{ route('employee.payslip.download', $payroll->id) }}" 
+                                            <a href="{{ locale_route('employee.payslip.download', $payroll->id) }}" 
                                                class="btn btn-sm btn-success">
                                                 <i class="bi bi-download"></i> PDF
                                             </a>

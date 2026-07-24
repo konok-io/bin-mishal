@@ -439,7 +439,7 @@
                                     <li><a class="dropdown-item" href="{{ locale_route('portal.login') }}">
                                         <i class="bi bi-people"></i> {{ __('navigation.portal_login') }}
                                     </a></li>
-                                    <li><a class="dropdown-item" href="{{ route('employee.login') }}">
+                                    <li><a class="dropdown-item" href="{{ locale_route('employee.login') }}">
                                         <i class="bi bi-briefcase"></i> {{ __('navigation.employee_login') }}
                                     </a></li>
                                     <li><a class="dropdown-item" href="{{ route('admin.login') }}">

@@ -10,7 +10,7 @@
             <p class="text-muted mb-0">Apply and track your leave requests</p>
         </div>
         <div class="col-md-6 text-end">
-            <a href="{{ route('employee.dashboard') }}" class="btn btn-outline-secondary">
+            <a href="{{ locale_route('employee.dashboard') }}" class="btn btn-outline-secondary">
                 <i class="bi bi-arrow-left"></i> Back to Dashboard
             </a>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyLeaveModal">
@@ -137,7 +137,7 @@
                 <h5 class="modal-title"><i class="bi bi-airplane me-2"></i>Apply for Leave</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form action="{{ route('employee.leave.apply') }}" method="POST">
+            <form action="{{ locale_route('employee.leave.apply') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">

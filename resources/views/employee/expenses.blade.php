@@ -127,7 +127,7 @@
 <div class="modal fade" id="newExpenseModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form action="{{ route('employee.expenses.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ locale_route('employee.expenses.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title">New Expense Claim</h5>

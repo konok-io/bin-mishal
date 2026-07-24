@@ -10,7 +10,7 @@
             <p class="text-muted mb-0">{{ now()->format('l, F j, Y') }}</p>
         </div>
         <div class="col-md-4 text-end">
-            <a href="{{ route('employee.profile') }}" class="btn btn-outline-primary">
+            <a href="{{ locale_route('employee.profile') }}" class="btn btn-outline-primary">
                 <i class="bi bi-person"></i> My Profile
             </a>
         </div>
@@ -114,7 +114,7 @@
                     <hr>
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="text-muted small">Working days: {{ $attendanceStats['total'] ?? 0 }}</span>
-                        <a href="{{ route('employee.attendance') }}" class="btn btn-sm btn-outline-primary">View Details</a>
+                        <a href="{{ locale_route('employee.attendance') }}" class="btn btn-sm btn-outline-primary">View Details</a>
                     </div>
                 </div>
             </div>
@@ -125,7 +125,7 @@
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between align-items-center">
                     <h5 class="mb-0"><i class="bi bi-airplane me-2"></i>Recent Leave Requests</h5>
-                    <a href="{{ route('employee.leave') }}" class="btn btn-sm btn-outline-primary">Apply Leave</a>
+                    <a href="{{ locale_route('employee.leave') }}" class="btn btn-sm btn-outline-primary">Apply Leave</a>
                 </div>
                 <div class="card-body">
                     @forelse($recentLeaves ?? [] as $leave)
@@ -153,7 +153,7 @@
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between align-items-center">
                     <h5 class="mb-0"><i class="bi bi-receipt me-2"></i>Latest Payslip</h5>
-                    <a href="{{ route('employee.payslips') }}" class="btn btn-sm btn-outline-primary">All Payslips</a>
+                    <a href="{{ locale_route('employee.payslips') }}" class="btn btn-sm btn-outline-primary">All Payslips</a>
                 </div>
                 <div class="card-body">
                     @if($latestPayslipRecord)
@@ -164,7 +164,7 @@
                                     {{ date('F Y', mktime(0, 0, 0, $latestPayslipRecord->payroll_month, 1)) }}
                                 </small>
                             </div>
-                            <a href="{{ route('employee.payslip.download', $latestPayslipRecord->id) }}" class="btn btn-success btn-sm">
+                            <a href="{{ locale_route('employee.payslip.download', $latestPayslipRecord->id) }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-download"></i> Download PDF
                             </a>
                         </div>

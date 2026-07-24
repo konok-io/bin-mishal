@@ -10,7 +10,7 @@
             <p class="text-muted mb-0">Track your daily attendance records</p>
         </div>
         <div class="col-md-6 text-end">
-            <a href="{{ route('employee.dashboard') }}" class="btn btn-outline-secondary">
+            <a href="{{ locale_route('employee.dashboard') }}" class="btn btn-outline-secondary">
                 <i class="bi bi-arrow-left"></i> Back to Dashboard
             </a>
         </div>
