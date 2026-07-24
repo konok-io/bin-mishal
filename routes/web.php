@@ -129,6 +129,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     Route::resource('umrah', UmrahController::class)->names(['index' => 'umrah.index', 'create' => 'umrah.create', 'store' => 'umrah.store', 'show' => 'umrah.show', 'edit' => 'umrah.edit', 'update' => 'umrah.update', 'destroy' => 'umrah.destroy']);
     Route::resource('invoices', InvoiceController::class)->names(['index' => 'invoices.index', 'create' => 'invoices.create', 'store' => 'invoices.store', 'show' => 'invoices.show', 'edit' => 'invoices.edit', 'update' => 'invoices.update', 'destroy' => 'invoices.destroy']);
     Route::resource('payments', PaymentController::class)->names(['index' => 'payments.index', 'create' => 'payments.create', 'store' => 'payments.store', 'show' => 'payments.show', 'edit' => 'payments.edit', 'update' => 'payments.update', 'destroy' => 'payments.destroy']);
+    Route::post('/payments/{payment}/refund', [PaymentController::class, 'refund'])->name('payments.refund');
     
     // City TV Connect - Branch Management
     Route::resource('city-tv-connect', CityTVConnectController::class)->names(['index' => 'city-tv-connect.index', 'create' => 'city-tv-connect.create', 'store' => 'city-tv-connect.store', 'show' => 'city-tv-connect.show', 'edit' => 'city-tv-connect.edit', 'update' => 'city-tv-connect.update', 'destroy' => 'city-tv-connect.destroy']);
