@@ -43,19 +43,119 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Sidebar Styles */
+        .admin-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            background: #1e293b;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+        .sidebar-header {
+            position: sticky;
+            top: 0;
+            background: #1e293b;
+            z-index: 10;
+            padding: 1rem;
+            border-bottom: 1px solid #334155;
+        }
+        .sidebar-menu {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-bottom: 1rem;
+        }
+        /* Hide scrollbar but keep functionality */
+        .sidebar-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar-menu::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sidebar-menu::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 3px;
+        }
+        .sidebar-menu::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        /* Firefox hide scrollbar */
+        .sidebar-menu {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        /* Menu Item Styles */
+        .sidebar-menu .nav-link {
+            color: #cbd5e1 !important;
+            padding: 0.65rem 1rem;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        .sidebar-menu .nav-link:hover {
+            color: #ffffff !important;
+            background: rgba(255,255,255,0.1);
+            border-left-color: #3b82f6;
+        }
+        .sidebar-menu .nav-link.active,
+        .sidebar-menu .nav-link:focus {
+            color: #ffffff !important;
+            background: rgba(59, 130, 246, 0.2);
+            border-left-color: #3b82f6;
+        }
+        .sidebar-menu .section-title {
+            color: #64748b !important;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 1rem 1rem 0.5rem;
+            margin: 0;
+        }
+        .sidebar-menu .bi {
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content Area */
+        .admin-main {
+            margin-left: 260px;
+            min-height: 100vh;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 991.98px) {
+            .admin-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            .admin-sidebar.show {
+                transform: translateX(0);
+            }
+            .admin-main {
+                margin-left: 0;
+            }
+        }
+    </style>
     @stack('styles')
 </head>
 <body>
     <div class="d-flex">
         <!-- Sidebar -->
-        <nav class="bg-dark text-white sidebar flex-shrink-0" style="width: 250px; min-height: 100vh;">
-            <div class="p-3 border-bottom border-secondary">
-                <h5 class="mb-0">
-                    <i class="bi bi-airplane"></i> {{ config('app.name') }}
+        <nav class="admin-sidebar">
+            <div class="sidebar-header">
+                <h5 class="mb-0 text-white fw-bold">
+                    <i class="bi bi-airplane text-primary"></i> {{ config('app.name') }}
                 </h5>
-                <small class="text-muted">Admin Panel</small>
+                <small class="text-secondary">Admin Panel</small>
             </div>
-            <ul class="nav flex-column py-2">
+            <ul class="nav flex-column py-2 sidebar-menu">
                 <li class="nav-item">
                     <a class="nav-link text-white {{ request()->routeIs('admin.dashboard') ? 'active bg-primary' : '' }}" href="{{ route('admin.dashboard') }}">
                         <i class="bi bi-speedometer2 me-2"></i> Dashboard
@@ -63,8 +163,8 @@
                 </li>
                 
                 <!-- CRM Section -->
-                <li class="nav-item mt-3">
-                    <span class="nav-link text-muted small text-uppercase fw-bold">CRM</span>
+                <li class="nav-item">
+                    <p class="section-title mb-1">CRM</p>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white {{ request()->routeIs('admin.customers.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.customers.index') }}">
@@ -78,8 +178,8 @@
                 </li>
                 
                 <!-- Bookings Section -->
-                <li class="nav-item mt-3">
-                    <span class="nav-link text-muted small text-uppercase fw-bold">Bookings</span>
+                <li class="nav-item">
+                    <p class="section-title mb-1">Bookings</p>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white {{ request()->routeIs('admin.bookings.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.bookings.index') }}">
@@ -108,8 +208,8 @@
                 </li>
                 
                 <!-- Finance Section -->
-                <li class="nav-item mt-3">
-                    <span class="nav-link text-muted small text-uppercase fw-bold">Finance</span>
+                <li class="nav-item">
+                    <p class="section-title mb-1">Finance</p>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white {{ request()->routeIs('admin.invoices.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.invoices.index') }}">
@@ -123,8 +223,8 @@
                 </li>
                 
                 <!-- HR Section -->
-                <li class="nav-item mt-3">
-                    <span class="nav-link text-muted small text-uppercase fw-bold">HR</span>
+                <li class="nav-item">
+                    <p class="section-title mb-1">HR</p>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/admin/employees">
@@ -153,8 +253,8 @@
                 </li>
                 
                 <!-- Accounting Section -->
-                <li class="nav-item mt-3">
-                    <span class="nav-link text-muted small text-uppercase fw-bold">Accounting</span>
+                <li class="nav-item">
+                    <p class="section-title mb-1">Accounting</p>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/admin/chart-of-accounts">
@@ -173,8 +273,8 @@
                 </li>
                 
                 <!-- HR/Recruitment Section -->
-                <li class="nav-item mt-3">
-                    <span class="nav-link text-muted small text-uppercase fw-bold">Recruitment</span>
+                <li class="nav-item">
+                    <p class="section-title mb-1">Recruitment</p>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/admin/jobs">
@@ -188,8 +288,8 @@
                 </li>
                 
                 <!-- CMS Section -->
-                <li class="nav-item mt-3">
-                    <span class="nav-link text-muted small text-uppercase fw-bold">CMS</span>
+                <li class="nav-item">
+                    <p class="section-title mb-1">CMS</p>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/admin/pages">
@@ -223,8 +323,8 @@
                 </li>
                 
                 <!-- Contact & Support -->
-                <li class="nav-item mt-3">
-                    <span class="nav-link text-muted small text-uppercase fw-bold">Support</span>
+                <li class="nav-item">
+                    <p class="section-title mb-1">Support</p>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/admin/contact-messages">
@@ -243,8 +343,8 @@
                 </li>
                 
                 <!-- Settings Section -->
-                <li class="nav-item mt-3">
-                    <span class="nav-link text-muted small text-uppercase fw-bold">Settings</span>
+                <li class="nav-item">
+                    <p class="section-title mb-1">Settings</p>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white {{ request()->routeIs('admin.settings.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.settings.index') }}">
@@ -280,11 +380,11 @@
         </nav>
 
         <!-- Main Content -->
-        <div class="flex-grow-1">
+        <div class="admin-main">
             <!-- Top Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-4">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-4 shadow-sm">
                 <div class="container-fluid">
-                    <button class="btn btn-outline-secondary" id="sidebarToggle">
+                    <button class="btn btn-outline-secondary d-lg-none" id="sidebarToggle" onclick="toggleSidebar()">
                         <i class="bi bi-list"></i>
                     </button>
                     <div class="navbar-nav ms-auto">
@@ -323,7 +423,30 @@
         </div>
     </div>
 
+    <!-- Mobile Overlay -->
+    <div class="sidebar-overlay d-none" onclick="toggleSidebar()"></div>
+    
+    <style>
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+    </style>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.admin-sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('d-none');
+        }
+    </script>
     @stack('scripts')
 </body>
 </html>
