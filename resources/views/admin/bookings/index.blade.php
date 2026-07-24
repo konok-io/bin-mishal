@@ -49,20 +49,21 @@
                     <tr>
                         <td><strong>{{ $booking->booking_no }}</strong></td>
                         <td>{{ $booking->customer->user->name ?? 'N/A' }}</td>
-                        <td><span class="badge bg-secondary">{{ ucfirst($booking->booking_type) }}</span></td>
+                        <td><span class="badge bg-secondary">{{ $booking->booking_type->label() }}</span></td>
                         <td>SAR {{ number_format($booking->total_amount, 2) }}</td>
                         <td>SAR {{ number_format($booking->paid_amount, 2) }}</td>
                         <td>
                             @php
-                                $statusClass = match($booking->booking_status) {
+                                $statusClass = match($booking->booking_status->value) {
                                     'pending' => 'bg-warning',
                                     'confirmed' => 'bg-info',
                                     'issued' => 'bg-success',
                                     'cancelled' => 'bg-danger',
+                                    'refunded' => 'bg-dark',
                                     default => 'bg-secondary'
                                 };
                             @endphp
-                            <span class="badge {{ $statusClass }}">{{ ucfirst($booking->booking_status) }}</span>
+                            <span class="badge {{ $statusClass }}">{{ ucfirst($booking->booking_status->value) }}</span>
                         </td>
                         <td>{{ $booking->created_at->format('d M Y') }}</td>
                         <td>
