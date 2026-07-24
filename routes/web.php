@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\NewsletterSubscriberController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\PageControllerAdmin;
+use App\Http\Controllers\Admin\SeoSettingController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PayrollControllerAdmin;
 use App\Http\Controllers\Admin\SocialLinkController;
