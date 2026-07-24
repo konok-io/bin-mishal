@@ -9,12 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory;
 
     protected $fillable = [
         'title',
@@ -49,11 +48,19 @@ class Post extends Model
         'reading_time' => 'integer',
     ];
 
-    public function getSlugOptions(): SlugOptions
+    protected static function booted(): void
     {
-        return SlugOptions::create()
-            ->generateSlugsFrom('title')
-            ->saveSlugsTo('slug');
+        static::creating(function (Post $post) {
+            if (empty($post->slug)) {
+                $post->slug = Str::slug($post->title);
+            }
+        });
+
+        static::updating(function (Post $post) {
+            if ($post->isDirty('title') && !$post->isDirty('slug')) {
+                $post->slug = Str::slug($post->title);
+            }
+        });
     }
 
     public function getRouteKeyName(): string
