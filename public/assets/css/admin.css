@@ -1,0 +1,715 @@
+/* =========================================================
+   Portfolio CMS — Admin Panel Theme
+   ========================================================= */
+
+/* English Font - Default website font */
+@font-face {
+  font-family: 'English';
+  src: url('/fonts/English.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bangla Font for Google Translate */
+@font-face {
+  font-family: 'Bangla';
+  src: url('/fonts/bangla.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Arabic Font - includes English characters for RTL mode */
+@font-face {
+  font-family: 'Arabic';
+  src: url('/fonts/Arabic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Urdu Font */
+@font-face {
+  font-family: 'Urdu';
+  src: url('/fonts/Urdu.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Hindi Font */
+@font-face {
+  font-family: 'Hindi';
+  src: url('/fonts/Hindi.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply English font to text elements (exclude icons) */
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body p,
+body span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi"]):not([class*="icon"]):not([data-icon]),
+body a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]),
+body li,
+body td,
+body th,
+body label,
+body button,
+body input,
+body textarea,
+body select,
+body div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="btn"]):not([class*="nav"]):not([class*="icon"]) {
+  font-family: 'English', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+/* Apply Bangla font to text elements (exclude icons) */
+body.TEWGTB-BANGLA h1,
+body.TEWGTB-BANGLA h2,
+body.TEWGTB-BANGLA h3,
+body.TEWGTB-BANGLA h4,
+body.TEWGTB-BANGLA h5,
+body.TEWGTB-BANGLA h6,
+body.TEWGTB-BANGLA p,
+body.TEWGTB-BANGLA span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]):not([class*="icon"]),
+body.TEWGTB-BANGLA a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]),
+body.TEWGTB-BANGLA li,
+body.TEWGTB-BANGLA td:not(:has(i)):not(:has([class*="fa-"])):not(:has([class*="fab"])):not(:has([class*="fas"])):not(:has([class*="far"])),
+body.TEWGTB-BANGLA th:not(:has(i)):not(:has([class*="fa-"])):not(:has([class*="fab"])):not(:has([class*="fas"])):not(:has([class*="far"])),
+body.TEWGTB-BANGLA label,
+body.TEWGTB-BANGLA button:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-BANGLA input:not(:has(i)),
+body.TEWGTB-BANGLA textarea,
+body.TEWGTB-BANGLA select,
+body.TEWGTB-BANGLA div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]):not([class*="icon"]):not([class*="btn"]):not([class*="nav"]),
+body.TEWGTB-BANGLA .translated-ltr,
+body.TEWGTB-BANGLA .translated-rtl,
+body.TEWGTB-BANGLA .goog-inline-block,
+body.TEWGTB-BANGLA .goog-text-highlight:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-BANGLA .goog-te-gadget span:not([class*="fa-"]),
+body.TEWGTB-BANGLA font[face],
+body.TEWGTB-BANGLA .nav-link:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-BANGLA .nav-link span:not([class*="fa-"]),
+body.TEWGTB-BANGLA .stat-value,
+body.TEWGTB-BANGLA .stat-card,
+body.TEWGTB-BANGLA .stat-label,
+body.TEWGTB-BANGLA .card-title,
+body.TEWGTB-BANGLA .card-body,
+body.TEWGTB-BANGLA .card-text,
+body.TEWGTB-BANGLA .admin-sidebar > *:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-BANGLA .admin-sidebar > * > *:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-BANGLA .admin-content > *:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-BANGLA .page-title,
+body.TEWGTB-BANGLA .admin-page-header,
+body.TEWGTB-BANGLA .admin-card,
+body.TEWGTB-BANGLA .widget,
+body.TEWGTB-BANGLA [class*="widget"],
+body.TEWGTB-BANGLA .small,
+body.TEWGTB-BANGLA small,
+body.TEWGTB-BANGLA .text-muted,
+body.TEWGTB-BANGLA .breadcrumb,
+body.TEWGTB-BANGLA .breadcrumb-item,
+body.TEWGTB-BANGLA .table,
+body.TEWGTB-BANGLA .table *:not(i):not([class*="fa-"]),
+body.TEWGTB-BANGLA .form-label,
+body.TEWGTB-BANGLA .btn,
+body.admin-body.TEWGTB-BANGLA,
+body.admin-login-wrap.TEWGTB-BANGLA {
+  font-family: 'Bangla', 'Noto Sans Bengali', 'English', sans-serif !important;
+}
+
+/* Apply Arabic font to text elements (exclude icons) when Arabic/RTL selected */
+body.TEWGTB-ARABIC h1,
+body.TEWGTB-ARABIC h2,
+body.TEWGTB-ARABIC h3,
+body.TEWGTB-ARABIC h4,
+body.TEWGTB-ARABIC h5,
+body.TEWGTB-ARABIC h6,
+body.TEWGTB-ARABIC p,
+body.TEWGTB-ARABIC span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]):not([class*="icon"]),
+body.TEWGTB-ARABIC a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]),
+body.TEWGTB-ARABIC li,
+body.TEWGTB-ARABIC td:not(:has(i)):not(:has([class*="fa-"])):not(:has([class*="fab"])):not(:has([class*="fas"])):not(:has([class*="far"])),
+body.TEWGTB-ARABIC th:not(:has(i)):not(:has([class*="fa-"])):not(:has([class*="fab"])):not(:has([class*="fas"])):not(:has([class*="far"])),
+body.TEWGTB-ARABIC label,
+body.TEWGTB-ARABIC button:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-ARABIC input:not(:has(i)),
+body.TEWGTB-ARABIC textarea,
+body.TEWGTB-ARABIC select,
+body.TEWGTB-ARABIC div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]):not([class*="icon"]):not([class*="btn"]):not([class*="nav"]),
+body.TEWGTB-ARABIC .translated-ltr,
+body.TEWGTB-ARABIC .translated-rtl,
+body.TEWGTB-ARABIC .goog-inline-block,
+body.TEWGTB-ARABIC .goog-text-highlight:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-ARABIC .goog-te-gadget span:not([class*="fa-"]),
+body.TEWGTB-ARABIC font[face],
+body.TEWGTB-ARABIC .nav-link:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-ARABIC .nav-link span:not([class*="fa-"]),
+body.TEWGTB-ARABIC .stat-value,
+body.TEWGTB-ARABIC .stat-card,
+body.TEWGTB-ARABIC .stat-label,
+body.TEWGTB-ARABIC .card-title,
+body.TEWGTB-ARABIC .card-body,
+body.TEWGTB-ARABIC .card-text,
+body.TEWGTB-ARABIC .admin-sidebar > *:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-ARABIC .admin-sidebar > * > *:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-ARABIC .admin-content > *:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-ARABIC .page-title,
+body.TEWGTB-ARABIC .admin-page-header,
+body.TEWGTB-ARABIC .admin-card,
+body.TEWGTB-ARABIC .widget,
+body.TEWGTB-ARABIC [class*="widget"],
+body.TEWGTB-ARABIC .small,
+body.TEWGTB-ARABIC small,
+body.TEWGTB-ARABIC .text-muted,
+body.TEWGTB-ARABIC .breadcrumb,
+body.TEWGTB-ARABIC .breadcrumb-item,
+body.TEWGTB-ARABIC .table,
+body.TEWGTB-ARABIC .table *:not(i):not([class*="fa-"]),
+body.TEWGTB-ARABIC .form-label,
+body.TEWGTB-ARABIC .btn,
+body.admin-body.TEWGTB-ARABIC,
+body.admin-login-wrap.TEWGTB-ARABIC {
+  font-family: 'Arabic', 'English', sans-serif !important;
+}
+
+/* Apply Urdu font */
+body.TEWGTB-URDU h1,
+body.TEWGTB-URDU h2,
+body.TEWGTB-URDU h3,
+body.TEWGTB-URDU h4,
+body.TEWGTB-URDU h5,
+body.TEWGTB-URDU h6,
+body.TEWGTB-URDU p,
+body.TEWGTB-URDU span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]):not([class*="icon"]),
+body.TEWGTB-URDU a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]),
+body.TEWGTB-URDU li,
+body.TEWGTB-URDU td:not(:has(i)):not(:has([class*="fa-"])):not(:has([class*="fab"])):not(:has([class*="fas"])):not(:has([class*="far"])),
+body.TEWGTB-URDU th:not(:has(i)):not(:has([class*="fa-"])):not(:has([class*="fab"])):not(:has([class*="fas"])):not(:has([class*="far"])),
+body.TEWGTB-URDU label,
+body.TEWGTB-URDU button:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-URDU input:not(:has(i)),
+body.TEWGTB-URDU textarea,
+body.TEWGTB-URDU select,
+body.TEWGTB-URDU div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]):not([class*="icon"]):not([class*="btn"]):not([class*="nav"]),
+body.TEWGTB-URDU .translated-ltr,
+body.TEWGTB-URDU .translated-rtl,
+body.TEWGTB-URDU .goog-inline-block,
+body.TEWGTB-URDU .goog-text-highlight:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-URDU .goog-te-gadget span:not([class*="fa-"]),
+body.TEWGTB-URDU font[face],
+body.TEWGTB-URDU .nav-link:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-URDU .nav-link span:not([class*="fa-"]),
+body.TEWGTB-URDU .stat-value,
+body.TEWGTB-URDU .stat-card,
+body.TEWGTB-URDU .stat-label,
+body.TEWGTB-URDU .card-title,
+body.TEWGTB-URDU .card-body,
+body.TEWGTB-URDU .card-text,
+body.TEWGTB-URDU .admin-sidebar > *:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-URDU .admin-sidebar > * > *:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-URDU .admin-content > *:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-URDU .page-title,
+body.TEWGTB-URDU .admin-page-header,
+body.TEWGTB-URDU .admin-card,
+body.TEWGTB-URDU .widget,
+body.TEWGTB-URDU [class*="widget"],
+body.TEWGTB-URDU .small,
+body.TEWGTB-URDU small,
+body.TEWGTB-URDU .text-muted,
+body.TEWGTB-URDU .breadcrumb,
+body.TEWGTB-URDU .breadcrumb-item,
+body.TEWGTB-URDU .table,
+body.TEWGTB-URDU .table *:not(i):not([class*="fa-"]),
+body.TEWGTB-URDU .form-label,
+body.TEWGTB-URDU .btn,
+body.admin-body.TEWGTB-URDU,
+body.admin-login-wrap.TEWGTB-URDU {
+  font-family: 'Urdu', 'Arabic', 'English', sans-serif !important;
+}
+
+/* Apply Hindi font */
+body.TEWGTB-HINDI h1,
+body.TEWGTB-HINDI h2,
+body.TEWGTB-HINDI h3,
+body.TEWGTB-HINDI h4,
+body.TEWGTB-HINDI h5,
+body.TEWGTB-HINDI h6,
+body.TEWGTB-HINDI p,
+body.TEWGTB-HINDI span:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]):not([class*="icon"]),
+body.TEWGTB-HINDI a:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]),
+body.TEWGTB-HINDI li,
+body.TEWGTB-HINDI td:not(:has(i)):not(:has([class*="fa-"])):not(:has([class*="fab"])):not(:has([class*="fas"])):not(:has([class*="far"])),
+body.TEWGTB-HINDI th:not(:has(i)):not(:has([class*="fa-"])):not(:has([class*="fab"])):not(:has([class*="fas"])):not(:has([class*="far"])),
+body.TEWGTB-HINDI label,
+body.TEWGTB-HINDI button:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-HINDI input:not(:has(i)),
+body.TEWGTB-HINDI textarea,
+body.TEWGTB-HINDI select,
+body.TEWGTB-HINDI div:not([class*="fa"]):not([class*="fab"]):not([class*="fas"]):not([class*="far"]):not([class*="flaticon"]):not([class*="fi-"]):not([class*="icon"]):not([class*="btn"]):not([class*="nav"]),
+body.TEWGTB-HINDI .translated-ltr,
+body.TEWGTB-HINDI .translated-rtl,
+body.TEWGTB-HINDI .goog-inline-block,
+body.TEWGTB-HINDI .goog-text-highlight:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-HINDI .goog-te-gadget span:not([class*="fa-"]),
+body.TEWGTB-HINDI font[face],
+body.TEWGTB-HINDI .nav-link:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-HINDI .nav-link span:not([class*="fa-"]),
+body.TEWGTB-HINDI .stat-value,
+body.TEWGTB-HINDI .stat-card,
+body.TEWGTB-HINDI .stat-label,
+body.TEWGTB-HINDI .card-title,
+body.TEWGTB-HINDI .card-body,
+body.TEWGTB-HINDI .card-text,
+body.TEWGTB-HINDI .admin-sidebar > *:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-HINDI .admin-sidebar > * > *:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-HINDI .admin-content > *:not(:has(i)):not(:has([class*="fa-"])),
+body.TEWGTB-HINDI .page-title,
+body.TEWGTB-HINDI .admin-page-header,
+body.TEWGTB-HINDI .admin-card,
+body.TEWGTB-HINDI .widget,
+body.TEWGTB-HINDI [class*="widget"],
+body.TEWGTB-HINDI .small,
+body.TEWGTB-HINDI small,
+body.TEWGTB-HINDI .text-muted,
+body.TEWGTB-HINDI .breadcrumb,
+body.TEWGTB-HINDI .breadcrumb-item,
+body.TEWGTB-HINDI .table,
+body.TEWGTB-HINDI .table *:not(i):not([class*="fa-"]),
+body.TEWGTB-HINDI .form-label,
+body.TEWGTB-HINDI .btn,
+body.admin-body.TEWGTB-HINDI,
+body.admin-login-wrap.TEWGTB-HINDI {
+  font-family: 'Hindi', 'English', sans-serif !important;
+}
+
+/* Google Translate highlight */
+.goog-text-highlight,
+.goog-text-highlight * {
+  font-family: 'Arabic', 'English', 'Cairo', 'Noto Sans Arabic', 'Bangla', 'Noto Sans Bengali', sans-serif !important;
+}
+
+:root {
+  --admin-primary: #2563EB;
+  --admin-primary-dark: #1d4ed8;
+  --admin-secondary: #0F172A;
+  --admin-accent: #F97316;
+  --admin-sidebar-width: 260px;
+  --admin-bg: #f1f5f9;
+  --admin-border: #e2e8f0;
+  --admin-radius: 12px;
+}
+
+body.admin-body,
+body.admin-login-wrap {
+  background-color: var(--admin-bg);
+  font-family: 'English', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #1e293b;
+}
+
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ---------------- Sidebar ---------------- */
+.admin-sidebar {
+  width: var(--admin-sidebar-width);
+  background: var(--admin-secondary);
+  color: #cbd5e1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 1040;
+  transition: transform 0.3s ease;
+}
+.admin-sidebar .sidebar-brand {
+  flex-shrink: 0;
+}
+.admin-sidebar .nav {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.admin-sidebar .nav::-webkit-scrollbar{display:none}
+.admin-sidebar .nav{-ms-overflow-style:none;scrollbar-width:none}
+.admin-sidebar .sidebar-brand {
+  height: 64px;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.15rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.admin-sidebar .sidebar-brand i {
+  color: var(--admin-primary);
+}
+.admin-sidebar .nav-section-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  padding: 1.1rem 1.5rem 0.4rem;
+  font-weight: 700;
+}
+.admin-sidebar .nav-link {
+  color: #cbd5e1;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-left: 3px solid transparent;
+  transition: all 0.15s ease;
+}
+.admin-sidebar .nav-link i {
+  width: 18px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+.admin-sidebar .nav-link:hover {
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+}
+.admin-sidebar .nav-link.active {
+  background: rgba(37, 99, 235, 0.15);
+  color: #fff;
+  border-left-color: var(--admin-primary);
+}
+
+/* ---------------- Topbar ---------------- */
+.admin-content {
+  margin-left: var(--admin-sidebar-width);
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.admin-topbar {
+  background: #fff;
+  border-bottom: 1px solid var(--admin-border);
+  height: 64px;
+  padding: 0 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.admin-topbar .sidebar-toggle-btn {
+  display: none;
+  border: none;
+  background: transparent;
+  font-size: 1.25rem;
+}
+.admin-main {
+  padding: 1.75rem;
+  flex: 1;
+}
+
+.admin-page-header {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.admin-page-header h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--admin-secondary);
+}
+.admin-breadcrumb {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* ---------------- Cards ---------------- */
+.admin-card {
+  background: #fff;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+}
+.admin-card .card-header-custom {
+  padding: 1.1rem 1.4rem;
+  border-bottom: 1px solid var(--admin-border);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.admin-card .card-body-custom {
+  padding: 1.4rem;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+  padding: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+  transition: all 0.2s ease;
+}
+.stat-card:hover {
+  box-shadow: 0 10px 30px rgba(15,23,42,0.07);
+  transform: translateY(-3px);
+}
+.stat-card .stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.stat-card .stat-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--admin-secondary);
+  line-height: 1.1;
+}
+.stat-card .stat-label {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* ---------------- Buttons ---------------- */
+.btn-admin-primary {
+  background-color: var(--admin-primary);
+  border-color: var(--admin-primary);
+  color: #fff;
+  font-weight: 600;
+}
+.btn-admin-primary:hover {
+  background-color: var(--admin-primary-dark);
+  border-color: var(--admin-primary-dark);
+  color: #fff;
+}
+.btn-admin-accent {
+  background-color: var(--admin-accent);
+  border-color: var(--admin-accent);
+  color: #fff;
+  font-weight: 600;
+}
+.btn-admin-accent:hover {
+  color: #fff;
+  filter: brightness(0.95);
+}
+
+/* ---------------- Tables ---------------- */
+.table-admin thead th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+  font-weight: 700;
+  border-bottom: 1px solid var(--admin-border);
+  background: #f8fafc;
+}
+.table-admin td {
+  vertical-align: middle;
+  font-size: 0.9rem;
+}
+.table-admin img.thumb {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ---------------- Forms ---------------- */
+.form-label-admin {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+.required-star { color: var(--admin-accent); }
+
+/* ---------------- Login ---------------- */
+.admin-login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0F172A 0%, #1e293b 60%, #2563EB 130%);
+  padding: 2rem;
+}
+.admin-login-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2.75rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 991.98px) {
+  .admin-sidebar { transform: translateX(-100%); }
+  .admin-sidebar.show { transform: translateX(0); }
+  .admin-content { margin-left: 0; }
+  .admin-topbar .sidebar-toggle-btn { display: inline-flex; align-items:center; justify-content:center; }
+}
+
+/* ===== RTL: sidebar on the right, content shifted right ===== */
+[dir="rtl"] .admin-sidebar { left: auto; right: 0; }
+[dir="rtl"] .admin-content { margin-left: 0; margin-right: var(--admin-sidebar-width); }
+[dir="rtl"] .admin-topbar { padding: 0 1.5rem; }
+[dir="rtl"] .sidebar-brand { flex-direction: row; }
+@media (max-width: 991.98px) {
+  [dir="rtl"] .admin-sidebar { transform: translateX(100%); }
+  [dir="rtl"] .admin-sidebar.show { transform: translateX(0); }
+  [dir="rtl"] .admin-content { margin-right: 0; }
+}
+
+/* =========================================================
+   ICON FONT PRESERVATION - Ensures Font Awesome icons work
+   with all language fonts
+   ========================================================= */
+
+/* Force Font Awesome font on all icon elements - override language fonts */
+[class*="fa-"],
+[class*="fa "],
+[class*="fab"],
+[class*="fas"],
+[class*="far"],
+[class*="flaticon"],
+[class*="fi-"],
+[class*="icon-"],
+i[class],
+.fa,
+.fab,
+.fas,
+.far,
+.flaticon,
+[class*="material-icons"],
+[class*="material-symbols"] {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome", var(--fa-style-family, "Font Awesome 6 Free") !important;
+  font-weight: var(--fa-style, 900) !important;
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Ensure icons inside language-specific elements also use icon font */
+body.TEWGTB-BANGLA i,
+body.TEWGTB-BANGLA [class*="fa-"],
+body.TEWGTB-BANGLA [class*="fab"],
+body.TEWGTB-BANGLA [class*="fas"],
+body.TEWGTB-BANGLA [class*="far"],
+body.TEWGTB-BANGLA .fa,
+body.TEWGTB-BANGLA .fab,
+body.TEWGTB-BANGLA .fas,
+body.TEWGTB-BANGLA .far,
+body.TEWGTB-ARABIC i,
+body.TEWGTB-ARABIC [class*="fa-"],
+body.TEWGTB-ARABIC [class*="fab"],
+body.TEWGTB-ARABIC [class*="fas"],
+body.TEWGTB-ARABIC [class*="far"],
+body.TEWGTB-ARABIC .fa,
+body.TEWGTB-ARABIC .fab,
+body.TEWGTB-ARABIC .fas,
+body.TEWGTB-ARABIC .far,
+body.TEWGTB-URDU i,
+body.TEWGTB-URDU [class*="fa-"],
+body.TEWGTB-URDU [class*="fab"],
+body.TEWGTB-URDU [class*="fas"],
+body.TEWGTB-URDU [class*="far"],
+body.TEWGTB-URDU .fa,
+body.TEWGTB-URDU .fab,
+body.TEWGTB-URDU .fas,
+body.TEWGTB-URDU .far,
+body.TEWGTB-HINDI i,
+body.TEWGTB-HINDI [class*="fa-"],
+body.TEWGTB-HINDI [class*="fab"],
+body.TEWGTB-HINDI [class*="fas"],
+body.TEWGTB-HINDI [class*="far"],
+body.TEWGTB-HINDI .fa,
+body.TEWGTB-HINDI .fab,
+body.TEWGTB-HINDI .fas,
+body.TEWGTB-HINDI .far {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+  font-weight: 900 !important;
+  font-style: normal !important;
+}
+
+/* Fix for buttons with icons - ensure icon font in buttons */
+.btn i,
+.btn [class*="fa-"],
+.btn [class*="fab"],
+.btn [class*="fas"],
+.btn [class*="far"],
+button i,
+button [class*="fa-"],
+button [class*="fab"],
+button [class*="fas"],
+button [class*="far"],
+a i,
+a [class*="fa-"],
+a [class*="fab"],
+a [class*="fas"],
+a [class*="far"] {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+  font-weight: 900 !important;
+}
+
+/* Ensure dropdown items with icons preserve font */
+.dropdown-item i,
+.dropdown-item [class*="fa-"],
+.dropdown-item [class*="fab"],
+.dropdown-item [class*="fas"],
+.dropdown-item [class*="far"],
+.nav-link i,
+.nav-link [class*="fa-"],
+.nav-link [class*="fab"],
+.nav-link [class*="fas"],
+.nav-link [class*="far"] {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+  font-weight: 900 !important;
+}
+
+/* Admin sidebar icons */
+.admin-sidebar i,
+.admin-sidebar [class*="fa-"],
+.admin-sidebar [class*="fab"],
+.admin-sidebar [class*="fas"],
+.admin-sidebar [class*="far"],
+.admin-sidebar .fa,
+.admin-sidebar .fab,
+.admin-sidebar .fas,
+.admin-sidebar .far {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+  font-weight: 900 !important;
+}
+
+/* Table icons */
+.table i,
+.table [class*="fa-"],
+.table [class*="fab"],
+.table [class*="fas"],
+.table [class*="far"] {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+  font-weight: 900 !important;
+}

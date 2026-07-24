@@ -6,447 +6,493 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title ?? 'Admin Panel' }} - {{ config('app.name') }}</title>
     
-    <!-- Custom Fonts with Unicode Range -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
+    
     <style>
-        @font-face {
-            font-family: 'BanglaFont';
-            src: url('/fonts/bangla.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            unicode-range: U+0980-09FF, U+09E0-09EF, U+200C-200D, U+20B9;
-        }
-        @font-face {
-            font-family: 'EnglishFont';
-            src: url('/fonts/English.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            unicode-range: U+0000-007F, U+0080-00FF, U+0100-017F, U+1E00-1EFF;
-        }
-        @font-face {
-            font-family: 'ArabicFont';
-            src: url('/fonts/Arabic.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFF;
+        :root {
+            --admin-primary: #4F2FE8;
+            --admin-primary-dark: #3B21C9;
+            --admin-secondary: #0F172A;
+            --admin-accent: #F59E0B;
+            --admin-bg: #F1F5F9;
+            --admin-border: #E2E8F0;
+            --admin-text: #334155;
+            --admin-sidebar-width: 260px;
+            --admin-radius: 10px;
         }
         
-        html[lang="bn"] body {
-            font-family: 'BanglaFont', 'Hind Siliguri', 'EnglishFont', 'ArabicFont', sans-serif;
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--admin-bg);
         }
-        html[lang="ar"] body {
-            font-family: 'ArabicFont', 'Noto Sans Arabic', 'EnglishFont', 'BanglaFont', sans-serif;
+        
+        .admin-wrapper {
+            display: flex;
+            min-height: 100vh;
         }
-        html[lang="en"] body {
-            font-family: 'EnglishFont', 'Inter', 'BanglaFont', 'ArabicFont', sans-serif;
-        }
-    </style>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        /* Sidebar Styles */
+        
+        /* Sidebar */
         .admin-sidebar {
             position: fixed;
             top: 0;
             left: 0;
-            width: 260px;
+            width: var(--admin-sidebar-width);
             height: 100vh;
-            background: #1e293b;
+            background: var(--admin-secondary);
             display: flex;
             flex-direction: column;
             z-index: 1000;
+            transition: width 0.3s ease;
         }
-        .sidebar-header {
-            position: sticky;
-            top: 0;
-            background: #1e293b;
-            z-index: 10;
-            padding: 1rem;
-            border-bottom: 1px solid #334155;
+        
+        .sidebar-brand {
+            padding: 1.2rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            min-height: 64px;
         }
-        .sidebar-menu {
+        
+        .sidebar-brand span {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .sidebar-collapse-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.25);
+            cursor: pointer;
+            padding: 5px 7px;
+            border-radius: 5px;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        
+        .sidebar-collapse-btn:hover {
+            background: var(--admin-primary);
+            border-color: transparent;
+        }
+        
+        .admin-sidebar .nav {
             flex: 1;
             overflow-y: auto;
-            overflow-x: hidden;
-            padding-bottom: 1rem;
+            padding: 1rem 0.75rem;
         }
-        /* Hide scrollbar but keep functionality */
-        .sidebar-menu::-webkit-scrollbar {
-            width: 6px;
+        
+        .admin-sidebar .nav::-webkit-scrollbar {
+            width: 4px;
         }
-        .sidebar-menu::-webkit-scrollbar-track {
+        
+        .admin-sidebar .nav::-webkit-scrollbar-track {
             background: transparent;
         }
-        .sidebar-menu::-webkit-scrollbar-thumb {
-            background: #475569;
-            border-radius: 3px;
-        }
-        .sidebar-menu::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
-        }
-        /* Firefox hide scrollbar */
-        .sidebar-menu {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+        
+        .admin-sidebar .nav::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
         }
         
-        /* Menu Item Styles */
-        .sidebar-menu .nav-link {
-            color: #cbd5e1 !important;
-            padding: 0.65rem 1rem;
-            border-left: 3px solid transparent;
+        .admin-sidebar .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.7rem 1rem;
+            color: #CBD5E1 !important;
+            text-decoration: none;
+            border-radius: 8px;
             transition: all 0.2s ease;
+            margin-bottom: 2px;
             font-size: 0.9rem;
         }
-        .sidebar-menu .nav-link:hover {
-            color: #ffffff !important;
+        
+        .admin-sidebar .nav-link:hover {
             background: rgba(255,255,255,0.1);
-            border-left-color: #3b82f6;
+            color: #fff !important;
         }
-        .sidebar-menu .nav-link.active,
-        .sidebar-menu .nav-link:focus {
-            color: #ffffff !important;
-            background: rgba(59, 130, 246, 0.2);
-            border-left-color: #3b82f6;
+        
+        .admin-sidebar .nav-link.active {
+            background: var(--admin-primary);
+            color: #fff !important;
         }
-        .sidebar-menu .section-title {
-            color: #64748b !important;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 1rem 1rem 0.5rem;
-            margin: 0;
-        }
-        .sidebar-menu .bi {
+        
+        .admin-sidebar .nav-link i {
+            font-size: 1rem;
             width: 20px;
             text-align: center;
+            flex-shrink: 0;
         }
         
-        /* Main Content Area */
-        .admin-main {
-            margin-left: 260px;
+        .nav-section-title {
+            padding: 1rem 1rem 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748B;
+        }
+        
+        /* Main Content */
+        .admin-content {
+            margin-left: var(--admin-sidebar-width);
+            flex: 1;
             min-height: 100vh;
+            transition: margin-left 0.3s ease;
         }
         
-        /* Mobile Responsive */
+        /* Topbar */
+        .admin-topbar {
+            background: var(--admin-secondary);
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-toggle-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.25);
+            cursor: pointer;
+            padding: 8px 10px;
+            border-radius: 6px;
+            color: #fff;
+            display: none;
+        }
+        
+        .admin-topbar .user-dropdown .dropdown-toggle {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .admin-topbar .dropdown-menu {
+            margin-top: 0.5rem;
+        }
+        
+        /* Admin Main */
+        .admin-main {
+            padding: 1.5rem;
+        }
+        
+        .admin-page-header {
+            margin-bottom: 1.5rem;
+        }
+        
+        .admin-page-header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--admin-secondary);
+            margin: 0;
+        }
+        
+        /* Cards */
+        .admin-card {
+            background: #fff;
+            border: 1px solid var(--admin-border);
+            border-radius: var(--admin-radius);
+        }
+        
+        .stat-card {
+            background: #fff;
+            border: 1px solid var(--admin-border);
+            border-radius: var(--admin-radius);
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            height: 100%;
+            transition: all 0.2s ease;
+        }
+        
+        .stat-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        
+        .stat-card .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .stat-card .stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--admin-secondary);
+            line-height: 1.2;
+        }
+        
+        .stat-card .stat-label {
+            font-size: 0.8rem;
+            color: #64748B;
+        }
+        
+        /* Mobile */
         @media (max-width: 991.98px) {
             .admin-sidebar {
                 transform: translateX(-100%);
-                transition: transform 0.3s ease;
             }
             .admin-sidebar.show {
                 transform: translateX(0);
             }
-            .admin-main {
+            .admin-content {
                 margin-left: 0;
+            }
+            .sidebar-toggle-btn {
+                display: flex;
             }
         }
     </style>
     @stack('styles')
 </head>
-<body>
-    <div class="d-flex">
-        <!-- Sidebar -->
-        <nav class="admin-sidebar">
-            <div class="sidebar-header">
-                <h5 class="mb-0 text-white fw-bold">
-                    <i class="bi bi-airplane text-primary"></i> {{ config('app.name') }}
-                </h5>
-                <small class="text-secondary">Admin Panel</small>
-            </div>
-            <ul class="nav flex-column py-2 sidebar-menu">
-                <li class="nav-item">
-                    <a class="nav-link text-white {{ request()->routeIs('admin.dashboard') ? 'active bg-primary' : '' }}" href="{{ route('admin.dashboard') }}">
-                        <i class="bi bi-speedometer2 me-2"></i> Dashboard
-                    </a>
-                </li>
-                
-                <!-- CRM Section -->
-                <li class="nav-item">
-                    <p class="section-title mb-1">CRM</p>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white {{ request()->routeIs('admin.customers.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.customers.index') }}">
-                        <i class="bi bi-people me-2"></i> Customers
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white {{ request()->routeIs('admin.leads.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.leads.index') }}">
-                        <i class="bi bi-person-lines-fill me-2"></i> Leads
-                    </a>
-                </li>
-                
-                <!-- Bookings Section -->
-                <li class="nav-item">
-                    <p class="section-title mb-1">Bookings</p>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white {{ request()->routeIs('admin.bookings.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.bookings.index') }}">
-                        <i class="bi bi-ticket-perforated me-2"></i> Bookings
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white {{ request()->routeIs('admin.visas.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.visas.index') }}">
-                        <i class="bi bi-passport me-2"></i> Visa Applications
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white {{ request()->routeIs('admin.flights.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.flights.index') }}">
-                        <i class="bi bi-airplane me-2"></i> Flight Requests
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white {{ request()->routeIs('admin.umrah.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.umrah.index') }}">
-                        <i class="bi bi-building me-2"></i> Umrah Packages
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white {{ request()->routeIs('admin.cargo.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.cargo.index') }}">
-                        <i class="bi bi-box-seam me-2"></i> Cargo
-                    </a>
-                </li>
-                
-                <!-- Finance Section -->
-                <li class="nav-item">
-                    <p class="section-title mb-1">Finance</p>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white {{ request()->routeIs('admin.invoices.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.invoices.index') }}">
-                        <i class="bi bi-receipt me-2"></i> Invoices
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white {{ request()->routeIs('admin.payments.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.payments.index') }}">
-                        <i class="bi bi-credit-card me-2"></i> Payments
-                    </a>
-                </li>
-                
-                <!-- HR Section -->
-                <li class="nav-item">
-                    <p class="section-title mb-1">HR</p>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/employees">
-                        <i class="bi bi-person-badge me-2"></i> Employees
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/leaves">
-                        <i class="bi bi-calendar-check me-2"></i> Leave Requests
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/attendance">
-                        <i class="bi bi-clock-history me-2"></i> Attendance
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/payrolls">
-                        <i class="bi bi-wallet2 me-2"></i> Payroll
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/biometric-devices">
-                        <i class="bi bi-fingerprint me-2"></i> Biometric Devices
-                    </a>
-                </li>
-                
-                <!-- Accounting Section -->
-                <li class="nav-item">
-                    <p class="section-title mb-1">Accounting</p>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/chart-of-accounts">
-                        <i class="bi bi-bank me-2"></i> Chart of Accounts
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/ledger-entries">
-                        <i class="bi bi-journal-text me-2"></i> Ledger Entries
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/expense-claims">
-                        <i class="bi bi-receipt me-2"></i> Expense Claims
-                    </a>
-                </li>
-                
-                <!-- HR/Recruitment Section -->
-                <li class="nav-item">
-                    <p class="section-title mb-1">Recruitment</p>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/jobs">
-                        <i class="bi bi-briefcase me-2"></i> Job Postings
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/job-applications">
-                        <i class="bi bi-person-plus me-2"></i> Job Applications
-                    </a>
-                </li>
-                
-                <!-- CMS Section -->
-                <li class="nav-item">
-                    <p class="section-title mb-1">CMS</p>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/pages">
-                        <i class="bi bi-file-earmark-text me-2"></i> Pages
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/menus">
-                        <i class="bi bi-list-ul me-2"></i> Menus
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/posts">
-                        <i class="bi bi-newspaper me-2"></i> Blog Posts
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/testimonials">
-                        <i class="bi bi-chat-quote me-2"></i> Testimonials
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/gallery">
-                        <i class="bi bi-images me-2"></i> Gallery
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/faqs">
-                        <i class="bi bi-question-circle me-2"></i> FAQs
-                    </a>
-                </li>
-                
-                <!-- Contact & Support -->
-                <li class="nav-item">
-                    <p class="section-title mb-1">Support</p>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/contact-messages">
-                        <i class="bi bi-envelope me-2"></i> Contact Messages
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/newsletter-subscribers">
-                        <i class="bi bi-mailbox me-2"></i> Newsletter
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/post-comments">
-                        <i class="bi bi-chat-left-text me-2"></i> Comments
-                    </a>
-                </li>
-                
-                <!-- Settings Section -->
-                <li class="nav-item">
-                    <p class="section-title mb-1">Settings</p>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white {{ request()->routeIs('admin.settings.*') ? 'active bg-primary' : '' }}" href="{{ route('admin.settings.index') }}">
-                        <i class="bi bi-gear me-2"></i> Settings
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/seo-settings">
-                        <i class="bi bi-search me-2"></i> SEO Settings
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/social-links">
-                        <i class="bi bi-share me-2"></i> Social Links
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/notices">
-                        <i class="bi bi-megaphone me-2"></i> Notices
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/translations">
-                        <i class="bi bi-translate me-2"></i> Translations
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/admin/audit-logs">
-                        <i class="bi bi-shield-check me-2"></i> Audit Logs
-                    </a>
-                </li>
-            </ul>
-        </nav>
+<body class="admin-body">
 
-        <!-- Main Content -->
-        <div class="admin-main">
-            <!-- Top Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-4 shadow-sm">
-                <div class="container-fluid">
-                    <button class="btn btn-outline-secondary d-lg-none" id="sidebarToggle" onclick="toggleSidebar()">
-                        <i class="bi bi-list"></i>
-                    </button>
-                    <div class="navbar-nav ms-auto">
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-person-circle me-1"></i> {{ auth()->user()->name }}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="bi bi-user me-2"></i>Profile</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <form action="{{ route('logout') }}" method="POST">@csrf
-                                        <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right me-2"></i>Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+<div class="admin-wrapper">
 
-            <!-- Page Content -->
-            <main class="p-4">
-                @if(session('success'))
-                    <div class="alert alert-success alert-dismissible fade show">{{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
-                @endif
-                @if(session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show">{{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
-                @endif
-                @yield('content')
-            </main>
+    {{-- ============ SIDEBAR ============ --}}
+    <aside class="admin-sidebar">
+        <div class="sidebar-brand">
+            <span><i class="fas fa-plane me-2"></i>{{ config('app.name') }}</span>
+            <button type="button" class="sidebar-collapse-btn" onclick="toggleSidebarCollapse()">
+                <i class="fas fa-chevron-left" id="sidebarCollapseIcon"></i>
+                <i class="fas fa-chevron-right" id="sidebarExpandIcon" style="display:none"></i>
+            </button>
         </div>
+
+        <nav class="nav flex-column pb-4">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <i class="fas fa-gauge"></i><span>Dashboard</span>
+            </a>
+
+            <div class="nav-section-title"><span>CRM</span></div>
+            <a href="{{ route('admin.customers.index') }}" class="nav-link {{ request()->routeIs('admin.customers.*') ? 'active' : '' }}">
+                <i class="fas fa-users"></i><span>Customers</span>
+            </a>
+            <a href="{{ route('admin.leads.index') }}" class="nav-link {{ request()->routeIs('admin.leads.*') ? 'active' : '' }}">
+                <i class="fas fa-user-lines"></i><span>Leads</span>
+            </a>
+
+            <div class="nav-section-title"><span>Bookings</span></div>
+            <a href="{{ route('admin.bookings.index') }}" class="nav-link {{ request()->routeIs('admin.bookings.*') ? 'active' : '' }}">
+                <i class="fas fa-ticket"></i><span>Bookings</span>
+            </a>
+            <a href="{{ route('admin.visas.index') }}" class="nav-link {{ request()->routeIs('admin.visas.*') ? 'active' : '' }}">
+                <i class="fas fa-passport"></i><span>Visa Applications</span>
+            </a>
+            <a href="{{ route('admin.flights.index') }}" class="nav-link {{ request()->routeIs('admin.flights.*') ? 'active' : '' }}">
+                <i class="fas fa-plane"></i><span>Flight Requests</span>
+            </a>
+            <a href="{{ route('admin.umrah.index') }}" class="nav-link {{ request()->routeIs('admin.umrah.*') ? 'active' : '' }}">
+                <i class="fas fa-building"></i><span>Umrah Packages</span>
+            </a>
+            <a href="{{ route('admin.cargo.index') }}" class="nav-link {{ request()->routeIs('admin.cargo.*') ? 'active' : '' }}">
+                <i class="fas fa-box"></i><span>Cargo</span>
+            </a>
+
+            <div class="nav-section-title"><span>Finance</span></div>
+            <a href="{{ route('admin.invoices.index') }}" class="nav-link {{ request()->routeIs('admin.invoices.*') ? 'active' : '' }}">
+                <i class="fas fa-file-invoice"></i><span>Invoices</span>
+            </a>
+            <a href="{{ route('admin.payments.index') }}" class="nav-link {{ request()->routeIs('admin.payments.*') ? 'active' : '' }}">
+                <i class="fas fa-credit-card"></i><span>Payments</span>
+            </a>
+
+            <div class="nav-section-title"><span>HR</span></div>
+            <a href="/admin/employees" class="nav-link">
+                <i class="fas fa-id-badge"></i><span>Employees</span>
+            </a>
+            <a href="/admin/leaves" class="nav-link">
+                <i class="fas fa-calendar-check"></i><span>Leave Requests</span>
+            </a>
+            <a href="/admin/attendance" class="nav-link">
+                <i class="fas fa-clock"></i><span>Attendance</span>
+            </a>
+            <a href="/admin/payrolls" class="nav-link">
+                <i class="fas fa-wallet"></i><span>Payroll</span>
+            </a>
+            <a href="/admin/biometric-devices" class="nav-link">
+                <i class="fas fa-fingerprint"></i><span>Biometric Devices</span>
+            </a>
+
+            <div class="nav-section-title"><span>Accounting</span></div>
+            <a href="/admin/chart-of-accounts" class="nav-link">
+                <i class="fas fa-university"></i><span>Chart of Accounts</span>
+            </a>
+            <a href="/admin/ledger-entries" class="nav-link">
+                <i class="fas fa-book"></i><span>Ledger Entries</span>
+            </a>
+            <a href="/admin/expense-claims" class="nav-link">
+                <i class="fas fa-receipt"></i><span>Expense Claims</span>
+            </a>
+
+            <div class="nav-section-title"><span>Recruitment</span></div>
+            <a href="/admin/jobs" class="nav-link">
+                <i class="fas fa-briefcase"></i><span>Job Postings</span>
+            </a>
+            <a href="/admin/job-applications" class="nav-link">
+                <i class="fas fa-user-plus"></i><span>Job Applications</span>
+            </a>
+
+            <div class="nav-section-title"><span>CMS</span></div>
+            <a href="/admin/pages" class="nav-link">
+                <i class="fas fa-file-alt"></i><span>Pages</span>
+            </a>
+            <a href="/admin/menus" class="nav-link">
+                <i class="fas fa-list"></i><span>Menus</span>
+            </a>
+            <a href="/admin/posts" class="nav-link">
+                <i class="fas fa-newspaper"></i><span>Blog Posts</span>
+            </a>
+            <a href="/admin/testimonials" class="nav-link">
+                <i class="fas fa-comment"></i><span>Testimonials</span>
+            </a>
+            <a href="/admin/gallery" class="nav-link">
+                <i class="fas fa-images"></i><span>Gallery</span>
+            </a>
+            <a href="/admin/faqs" class="nav-link">
+                <i class="fas fa-question-circle"></i><span>FAQs</span>
+            </a>
+
+            <div class="nav-section-title"><span>Support</span></div>
+            <a href="/admin/contact-messages" class="nav-link">
+                <i class="fas fa-envelope"></i><span>Contact Messages</span>
+            </a>
+            <a href="/admin/newsletter-subscribers" class="nav-link">
+                <i class="fas fa-mailbox"></i><span>Newsletter</span>
+            </a>
+            <a href="/admin/post-comments" class="nav-link">
+                <i class="fas fa-comment-alt"></i><span>Comments</span>
+            </a>
+
+            <div class="nav-section-title"><span>Settings</span></div>
+            <a href="{{ route('admin.settings.index') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
+                <i class="fas fa-cog"></i><span>Settings</span>
+            </a>
+            <a href="/admin/seo-settings" class="nav-link">
+                <i class="fas fa-search"></i><span>SEO Settings</span>
+            </a>
+            <a href="/admin/social-links" class="nav-link">
+                <i class="fas fa-share-alt"></i><span>Social Links</span>
+            </a>
+            <a href="/admin/notices" class="nav-link">
+                <i class="fas fa-bullhorn"></i><span>Notices</span>
+            </a>
+            <a href="/admin/translations" class="nav-link">
+                <i class="fas fa-language"></i><span>Translations</span>
+            </a>
+            <a href="/admin/audit-logs" class="nav-link">
+                <i class="fas fa-shield-alt"></i><span>Audit Logs</span>
+            </a>
+        </nav>
+    </aside>
+
+    {{-- ============ MAIN CONTENT ============ --}}
+    <div class="admin-content">
+        {{-- Topbar --}}
+        <header class="admin-topbar">
+            <button type="button" class="sidebar-toggle-btn" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="user-dropdown dropdown">
+                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="fas fa-id-badge me-2"></i>Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">@csrf
+                            <button type="submit" class="dropdown-item"><i class="fas fa-right-from-bracket me-2"></i>Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        {{-- Main --}}
+        <main class="admin-main">
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show">{{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show">{{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+            @yield('content')
+        </main>
     </div>
+</div>
 
-    <!-- Mobile Overlay -->
-    <div class="sidebar-overlay d-none" onclick="toggleSidebar()"></div>
-    
-    <style>
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-        }
-    </style>
+{{-- Mobile Overlay --}}
+<div class="sidebar-overlay d-none" onclick="toggleSidebar()"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.querySelector('.admin-sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
-            sidebar.classList.toggle('show');
-            overlay.classList.toggle('d-none');
+{{-- Scripts --}}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function toggleSidebar() {
+    const sidebar = document.querySelector('.admin-sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    sidebar.classList.toggle('show');
+    overlay.classList.toggle('d-none');
+}
+
+function toggleSidebarCollapse() {
+    const sidebar = document.querySelector('.admin-sidebar');
+    const collapseIcon = document.getElementById('sidebarCollapseIcon');
+    const expandIcon = document.getElementById('sidebarExpandIcon');
+    if (sidebar) {
+        sidebar.classList.toggle('collapsed');
+        if (sidebar.classList.contains('collapsed')) {
+            if (collapseIcon) collapseIcon.style.display = 'none';
+            if (expandIcon) expandIcon.style.display = 'inline';
+            localStorage.setItem('sidebar-collapsed', 'true');
+        } else {
+            if (collapseIcon) collapseIcon.style.display = 'inline';
+            if (expandIcon) expandIcon.style.display = 'none';
+            localStorage.setItem('sidebar-collapsed', 'false');
         }
-    </script>
-    @stack('scripts')
+    }
+}
+
+// Restore collapsed state
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.admin-sidebar');
+    const collapseIcon = document.getElementById('sidebarCollapseIcon');
+    const expandIcon = document.getElementById('sidebarExpandIcon');
+    if (localStorage.getItem('sidebar-collapsed') === 'true' && sidebar) {
+        sidebar.classList.add('collapsed');
+        if (collapseIcon) collapseIcon.style.display = 'none';
+        if (expandIcon) expandIcon.style.display = 'inline';
+    }
+});
+</script>
+@stack('scripts')
 </body>
 </html>
