@@ -238,3 +238,7 @@ Route::post('/contact/submit', [ContactController::class, 'submit'])->name('cont
 // Search
 Route::get('/search', [SearchController::class, 'results'])->name('search');
 Route::get('/api/search', [SearchController::class, 'search'])->name('api.search');
+
+
+// Include portal routes
+require __DIR__.'/portal.php';
