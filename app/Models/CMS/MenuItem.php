@@ -137,6 +137,11 @@ class MenuItem extends Model
     {
         $locale = app()->getLocale();
 
+        // Check if this is a special non-localized URL (admin, employee portal, etc.)
+        if ($this->url && $this->isNonLocalizedUrl($this->url)) {
+            return '/' . ltrim($this->url, '/');
+        }
+
         return match ($this->type) {
             self::TYPE_INTERNAL => $this->url ? "/{$locale}" . ltrim($this->url, '/') : null,
             self::TYPE_EXTERNAL => $this->url,
@@ -146,6 +151,32 @@ class MenuItem extends Model
             self::TYPE_CUSTOM => $this->url ? "/{$locale}" . ltrim($this->url, '/') : null,
             default => null,
         };
+    }
+
+    /**
+     * Check if URL should NOT have locale prefix
+     */
+    protected function isNonLocalizedUrl(string $url): bool
+    {
+        $nonLocalizedPaths = [
+            'admin',
+            'admin/login',
+            'employee',
+            'employee/login',
+            'portal',
+            'portal/login',
+            'portal/register',
+        ];
+
+        $url = ltrim($url, '/');
+
+        foreach ($nonLocalizedPaths as $path) {
+            if ($url === $path || str_starts_with($url, $path . '/')) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     protected function buildRouteUrl(string $locale): ?string
