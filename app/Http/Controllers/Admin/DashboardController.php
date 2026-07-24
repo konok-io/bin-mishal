@@ -143,7 +143,9 @@ class DashboardController extends Controller
             // Blog/Content (Phase 7)
             'content' => [
                 'pending_comments' => PostComment::where('is_approved', false)->count(),
-                'newsletter_subscribers' => NewsletterSubscriber::where('status', 'active')->count(),
+                'newsletter_subscribers' => \Illuminate\Support\Facades\Schema::hasColumn('newsletter_subscribers', 'status') 
+                    ? NewsletterSubscriber::where('status', 'active')->count() 
+                    : NewsletterSubscriber::count(),
                 'new_subscribers' => NewsletterSubscriber::where('created_at', '>=', $startDate)->count(),
             ],
             
