@@ -1,21 +1,44 @@
 <?php
 
+use App\Http\Controllers\Admin\AttendanceController;
+use App\Http\Controllers\Admin\AuditLogController;
+use App\Http\Controllers\Admin\BiometricDeviceController;
+use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\ChartOfAccountController;
 use App\Http\Controllers\Admin\CityTVConnectController;
+use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EmployeeControllerAdmin;
+use App\Http\Controllers\Admin\ExpenseClaimController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FlightRequestController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\InvoiceController;
+use App\Http\Controllers\Admin\JobApplicationController;
+use App\Http\Controllers\Admin\JobPostingController;
 use App\Http\Controllers\Admin\LeadController;
+use App\Http\Controllers\Admin\LedgerController;
+use App\Http\Controllers\Admin\LeaveRequestController;
+use App\Http\Controllers\Admin\LocaleController;
+use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Admin\NewsletterSubscriberController;
+use App\Http\Controllers\Admin\NoticeController;
+use App\Http\Controllers\Admin\PageControllerAdmin;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\PayrollControllerAdmin;
+use App\Http\Controllers\Admin\SocialLinkController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\Admin\UmrahController;
 use App\Http\Controllers\Admin\VisaController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CMS\PageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\LocaleController;
-use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Public\PublicController;
 use App\Http\Controllers\RssFeedController;
 use App\Http\Controllers\SearchController;
@@ -110,9 +133,43 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     // City TV Connect - Branch Management
     Route::resource('city-tv-connect', CityTVConnectController::class)->names(['index' => 'city-tv-connect.index', 'create' => 'city-tv-connect.create', 'store' => 'city-tv-connect.store', 'show' => 'city-tv-connect.show', 'edit' => 'city-tv-connect.edit', 'update' => 'city-tv-connect.update', 'destroy' => 'city-tv-connect.destroy']);
     Route::get('/surveillance', [CityTVConnectController::class, 'cameras'])->name('city-tv-connect.cameras');
-});
 
-// City TV Connect - Branch Management
+    // HR - Employees
+    Route::resource('employees', EmployeeControllerAdmin::class);
+    Route::resource('leave-requests', LeaveRequestController::class);
+    Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+    Route::get('payroll', [PayrollControllerAdmin::class, 'index'])->name('payroll.index');
+    Route::get('biometric-devices', [BiometricDeviceController::class, 'index'])->name('biometric-devices.index');
+
+    // Accounting
+    Route::get('chart-of-accounts', [ChartOfAccountController::class, 'index'])->name('chart-of-accounts.index');
+    Route::get('ledger-entries', [LedgerController::class, 'index'])->name('ledger-entries.index');
+    Route::get('expense-claims', [ExpenseClaimController::class, 'index'])->name('expense-claims.index');
+
+    // Recruitment
+    Route::get('job-postings', [JobPostingController::class, 'index'])->name('job-postings.index');
+    Route::get('job-applications', [JobApplicationController::class, 'index'])->name('job-applications.index');
+
+    // CMS
+    Route::resource('pages', PageControllerAdmin::class);
+    Route::resource('menus', MenuController::class);
+    Route::resource('blog-posts', BlogPostController::class);
+    Route::resource('testimonials', TestimonialController::class);
+    Route::resource('gallery', GalleryController::class);
+    Route::resource('faqs', FaqController::class);
+
+    // Support
+    Route::get('contact-messages', [ContactMessageController::class, 'index'])->name('contact-messages.index');
+    Route::get('newsletter-subscribers', [NewsletterSubscriberController::class, 'index'])->name('newsletter-subscribers.index');
+    Route::get('comments', [CommentController::class, 'index'])->name('comments.index');
+
+    // Settings
+    Route::get('seo-settings', [SeoSettingController::class, 'index'])->name('seo-settings.index');
+    Route::get('social-links', [SocialLinkController::class, 'index'])->name('social-links.index');
+    Route::get('notices', [NoticeController::class, 'index'])->name('notices.index');
+    Route::get('translations', [TranslationController::class, 'index'])->name('translations.index');
+    Route::get('audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
+});
 
 // Locale change route (for admin panel)
 Route::post('/locale/change', [LocaleController::class, 'change'])->name('locale.change');

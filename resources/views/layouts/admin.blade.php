@@ -282,69 +282,69 @@
             </a>
 
             <div class="nav-section-title"><span>HR</span></div>
-            <a href="/admin/employees" class="nav-link">
+            <a href="{{ route('admin.employees.index') }}" class="nav-link {{ request()->routeIs('admin.employees.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-id-badge"></i><span>Employees</span>
             </a>
-            <a href="/admin/leaves" class="nav-link">
+            <a href="{{ route('admin.leave-requests.index') }}" class="nav-link {{ request()->routeIs('admin.leave-requests.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-calendar-check"></i><span>Leave Requests</span>
             </a>
-            <a href="/admin/attendance" class="nav-link">
+            <a href="{{ route('admin.attendance.index') }}" class="nav-link {{ request()->routeIs('admin.attendance.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-clock"></i><span>Attendance</span>
             </a>
-            <a href="/admin/payrolls" class="nav-link">
+            <a href="{{ route('admin.payroll.index') }}" class="nav-link {{ request()->routeIs('admin.payroll.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-wallet"></i><span>Payroll</span>
             </a>
-            <a href="/admin/biometric-devices" class="nav-link">
+            <a href="{{ route('admin.biometric-devices.index') }}" class="nav-link {{ request()->routeIs('admin.biometric-devices.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-fingerprint"></i><span>Biometric Devices</span>
             </a>
 
             <div class="nav-section-title"><span>Accounting</span></div>
-            <a href="/admin/chart-of-accounts" class="nav-link">
+            <a href="{{ route('admin.chart-of-accounts.index') }}" class="nav-link {{ request()->routeIs('admin.chart-of-accounts.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-university"></i><span>Chart of Accounts</span>
             </a>
-            <a href="/admin/ledger-entries" class="nav-link">
+            <a href="{{ route('admin.ledger-entries.index') }}" class="nav-link {{ request()->routeIs('admin.ledger-entries.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-book"></i><span>Ledger Entries</span>
             </a>
-            <a href="/admin/expense-claims" class="nav-link">
+            <a href="{{ route('admin.expense-claims.index') }}" class="nav-link {{ request()->routeIs('admin.expense-claims.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-receipt"></i><span>Expense Claims</span>
             </a>
 
             <div class="nav-section-title"><span>Recruitment</span></div>
-            <a href="/admin/jobs" class="nav-link">
+            <a href="{{ route('admin.job-postings.index') }}" class="nav-link {{ request()->routeIs('admin.job-postings.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-briefcase"></i><span>Job Postings</span>
             </a>
-            <a href="/admin/job-applications" class="nav-link">
+            <a href="{{ route('admin.job-applications.index') }}" class="nav-link {{ request()->routeIs('admin.job-applications.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-user-plus"></i><span>Job Applications</span>
             </a>
 
             <div class="nav-section-title"><span>CMS</span></div>
-            <a href="/admin/pages" class="nav-link">
+            <a href="{{ route('admin.pages.index') }}" class="nav-link {{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-file-alt"></i><span>Pages</span>
             </a>
-            <a href="/admin/menus" class="nav-link">
+            <a href="{{ route('admin.menus.index') }}" class="nav-link {{ request()->routeIs('admin.menus.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-list"></i><span>Menus</span>
             </a>
-            <a href="/admin/posts" class="nav-link">
+            <a href="{{ route('admin.blog-posts.index') }}" class="nav-link {{ request()->routeIs('admin.blog-posts.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-newspaper"></i><span>Blog Posts</span>
             </a>
-            <a href="/admin/testimonials" class="nav-link">
+            <a href="{{ route('admin.testimonials.index') }}" class="nav-link {{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-comment"></i><span>Testimonials</span>
             </a>
-            <a href="/admin/gallery" class="nav-link">
+            <a href="{{ route('admin.gallery.index') }}" class="nav-link {{ request()->routeIs('admin.gallery.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-images"></i><span>Gallery</span>
             </a>
-            <a href="/admin/faqs" class="nav-link">
+            <a href="{{ route('admin.faqs.index') }}" class="nav-link {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-question-circle"></i><span>FAQs</span>
             </a>
 
             <div class="nav-section-title"><span>Support</span></div>
-            <a href="/admin/contact-messages" class="nav-link">
+            <a href="{{ route('admin.contact-messages.index') }}" class="nav-link {{ request()->routeIs('admin.contact-messages.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-envelope"></i><span>Contact Messages</span>
             </a>
-            <a href="/admin/newsletter-subscribers" class="nav-link">
+            <a href="{{ route('admin.newsletter-subscribers.index') }}" class="nav-link {{ request()->routeIs('admin.newsletter-subscribers.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-mailbox"></i><span>Newsletter</span>
             </a>
-            <a href="/admin/post-comments" class="nav-link">
+            <a href="{{ route('admin.comments.index') }}" class="nav-link {{ request()->routeIs('admin.comments.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-comment-alt"></i><span>Comments</span>
             </a>
 
@@ -352,19 +352,19 @@
             <a href="{{ route('admin.settings.index') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-cog"></i><span>Settings</span>
             </a>
-            <a href="/admin/seo-settings" class="nav-link">
+            <a href="{{ route('admin.seo-settings.index') }}" class="nav-link {{ request()->routeIs('admin.seo-settings.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-search"></i><span>SEO Settings</span>
             </a>
-            <a href="/admin/social-links" class="nav-link">
+            <a href="{{ route('admin.social-links.index') }}" class="nav-link {{ request()->routeIs('admin.social-links.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-share-alt"></i><span>Social Links</span>
             </a>
-            <a href="/admin/notices" class="nav-link">
+            <a href="{{ route('admin.notices.index') }}" class="nav-link {{ request()->routeIs('admin.notices.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-bullhorn"></i><span>Notices</span>
             </a>
-            <a href="/admin/translations" class="nav-link">
+            <a href="{{ route('admin.translations.index') }}" class="nav-link {{ request()->routeIs('admin.translations.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-language"></i><span>Translations</span>
             </a>
-            <a href="/admin/audit-logs" class="nav-link">
+            <a href="{{ route('admin.audit-logs.index') }}" class="nav-link {{ request()->routeIs('admin.audit-logs.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-shield-alt"></i><span>Audit Logs</span>
             </a>
 
