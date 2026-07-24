@@ -129,15 +129,15 @@ class DashboardController extends Controller
             
             // Accounting (Phase 14)
             'accounting' => [
-                'total_income' => LedgerEntry::where('type', 'income')
-                    ->where('created_at', '>=', $startDate)
-                    ->sum('amount'),
-                'total_expense' => LedgerEntry::where('type', 'expense')
-                    ->where('created_at', '>=', $startDate)
-                    ->sum('amount'),
-                'net_profit' => LedgerEntry::where('created_at', '>=', $startDate)
-                    ->selectRaw('SUM(CASE WHEN type = "income" THEN amount ELSE -amount END) as net')
-                    ->value('net') ?? 0,
+                'total_income' => \Illuminate\Support\Facades\Schema::hasColumn('ledger_entries', 'type') 
+                    ? LedgerEntry::where('type', 'income')->where('created_at', '>=', $startDate)->sum('amount')
+                    : 0,
+                'total_expense' => \Illuminate\Support\Facades\Schema::hasColumn('ledger_entries', 'type')
+                    ? LedgerEntry::where('type', 'expense')->where('created_at', '>=', $startDate)->sum('amount')
+                    : 0,
+                'net_profit' => \Illuminate\Support\Facades\Schema::hasColumn('ledger_entries', 'type')
+                    ? LedgerEntry::where('created_at', '>=', $startDate)->selectRaw('SUM(CASE WHEN type = "income" THEN amount ELSE -amount END) as net')->value('net') ?? 0
+                    : 0,
             ],
             
             // Blog/Content (Phase 7)
