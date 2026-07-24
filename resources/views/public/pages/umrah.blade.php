@@ -100,7 +100,7 @@
                         <span class="price">SAR {{ number_format($package->price) }}</span>
                         <span class="per-person">@lang('per person')</span>
                     </div>
-                    <a href="{{ route('services.umrah.package', $package->slug ?? $package->id) }}" class="btn btn-success mt-3">
+                    <a href="{{ locale_route('services.umrah.package', $package->slug ?? $package->id) }}" class="btn btn-success mt-3">
                         @lang('View Details')
                     </a>
                 </div>

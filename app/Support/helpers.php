@@ -36,9 +36,28 @@ if (!function_exists('locale_route')) {
     function locale_route(string $name, array $params = [], ?string $locale = null): string
     {
         // Always ensure locale is set to 'bn' as default
-        $params['locale'] = 'bn';
+        // Use the provided locale or default to 'bn'
+        $locale = $locale ?: app()->getLocale() ?: 'bn';
+        
+        // Validate locale - must be bn, en, or ar
+        if (!in_array($locale, ['bn', 'en', 'ar'])) {
+            $locale = 'bn';
+        }
+        
+        $params['locale'] = $locale;
 
-        return route($name, $params);
+        try {
+            return route($name, $params);
+        } catch (\Illuminate\Routing\Exceptions\UrlGenerationException $e) {
+            // If route generation fails due to missing parameters, 
+            // try with bn as fallback locale
+            if (!isset($params['locale']) || $params['locale'] !== 'bn') {
+                $params['locale'] = 'bn';
+                return route($name, $params);
+            }
+            // If still failing, throw the original exception
+            throw $e;
+        }
     }
 }
 

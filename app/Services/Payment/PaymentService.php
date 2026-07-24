@@ -46,13 +46,14 @@ class PaymentService
         }
 
         try {
+            $callbackUrl = url('/api/payment/moyasar/callback');
             $response = Http::withBasicAuth($this->moyasarApiKey, '')
                 ->timeout(30)
                 ->post('https://api.moyasar.com/v1/payments', [
                     'amount' => (int) ($amount * 100),
                     'currency' => $currency,
                     'description' => $description,
-                    'callback_url' => route('payment.callback'),
+                    'callback_url' => $callbackUrl,
                     'metadata' => array_merge($metadata, ['idempotency_key' => $idempotencyKey]),
                 ]);
 

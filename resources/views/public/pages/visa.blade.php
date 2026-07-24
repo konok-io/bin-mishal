@@ -41,7 +41,7 @@
                         <span><i class="bi bi-currency-dollar"></i> SAR {{ number_format($type->fee ?? 0) }}</span>
                     </div>
                     <p>{{ Str::limit($type->description, 100) }}</p>
-                    <a href="{{ route('services.visa.service', $type->slug ?? $type->id) }}" class="btn btn-success">
+                    <a href="{{ locale_route('services.visa.service', $type->slug ?? $type->id) }}" class="btn btn-success">
                         @lang('Apply Now')
                     </a>
                 </div>

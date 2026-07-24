@@ -11,7 +11,11 @@ class EnsureRole
     public function handle(Request $request, Closure $next, string ...$roles): Response
     {
         if (!$request->user()) {
-            return redirect()->route('login');
+            // Redirect to admin login if accessing admin routes, otherwise to root
+            if ($request->is('admin/*')) {
+                return redirect()->route('admin.login');
+            }
+            return redirect()->to('/');
         }
 
         foreach ($roles as $role) {

@@ -36,7 +36,7 @@ class FlightSearchWidget extends Component
     {
         $this->validate();
 
-        return redirect()->route('flight-request.create', [
+        return redirect()->to(locale_route('flight-request.create', [
             'trip_type' => $this->tripType,
             'from_airport' => $this->fromAirport,
             'to_airport' => $this->toAirport,
@@ -46,7 +46,7 @@ class FlightSearchWidget extends Component
             'children' => $this->children,
             'infants' => $this->infants,
             'cabin_class' => $this->cabinClass,
-        ]);
+        ]));
     }
 
     public function render()

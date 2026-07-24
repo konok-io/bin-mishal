@@ -97,7 +97,7 @@ class VisaEligibilityChecker extends Component
     public function applyForVisa(int $visaTypeId)
     {
         // Save as lead and redirect to application
-        return redirect()->route('visa.application.create', ['type' => $visaTypeId]);
+        return redirect()->to(locale_route('visa.application.create', ['type' => $visaTypeId]));
     }
 
     public function render()

@@ -36,7 +36,7 @@
                         </span>
                         <h3>{{ $post->title }}</h3>
                         <p>{{ Str::limit(strip_tags($post->content), 120) }}</p>
-                        <a href="{{ route('news.detail', $post->slug ?? $post->id) }}" class="btn btn-success btn-sm">
+                        <a href="{{ locale_route('news.detail', $post->slug ?? $post->id) }}" class="btn btn-success btn-sm">
                             @lang('Read More')
                         </a>
                     </div>

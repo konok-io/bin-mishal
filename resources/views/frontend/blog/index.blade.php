@@ -39,7 +39,7 @@
                             </div>
                             <h2 class="blog-title">{{ $post->title }}</h2>
                             <p class="blog-excerpt">{{ $post->excerpt }}</p>
-                            <a href="{{ route('blog.show', $post->slug) }}" class="btn btn-outline-success">
+                            <a href="{{ locale_route('blog.show', $post->slug) }}" class="btn btn-outline-success">
                                 @lang('Read More') <i class="bi bi-arrow-right"></i>
                             </a>
                         </div>
@@ -60,13 +60,13 @@
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <a href="{{ route('blog.index') }}" class="text-decoration-none">
+                                <a href="{{ locale_route('blog.index') }}" class="text-decoration-none">
                                     @lang('All Posts')
                                 </a>
                             </li>
                             @foreach($categories as $category)
                             <li class="list-group-item">
-                                <a href="{{ route('blog.index', ['category' => $category->slug]) }}" class="text-decoration-none">
+                                <a href="{{ locale_route('blog.index', ['category' => $category->slug]) }}" class="text-decoration-none">
                                     <i class="bi bi-folder"></i> {{ $category->name }}
                                     <span class="badge bg-secondary float-end">{{ $category->posts_count }}</span>
                                 </a>
@@ -88,7 +88,7 @@
                             <img src="{{ $featured->featured_image }}" class="rounded me-3" style="width: 60px; height: 60px; object-fit: cover;" alt="">
                             @endif
                             <div>
-                                <a href="{{ route('blog.show', $featured->slug) }}" class="text-decoration-none fw-bold">
+                                <a href="{{ locale_route('blog.show', $featured->slug) }}" class="text-decoration-none fw-bold">
                                     {{ Str::limit($featured->title, 50) }}
                                 </a>
                                 <small class="text-muted d-block">{{ $featured->published_at?->format('M d, Y') }}</small>

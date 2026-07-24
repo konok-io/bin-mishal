@@ -51,7 +51,7 @@ class SearchController extends Controller
                     return [
                         'type' => 'service',
                         'title' => $item->name,
-                        'url' => route('services.umrah.package', $item->slug ?? $item->id),
+                        'url' => locale_route('services.umrah.package', $item->slug ?? $item->id),
                         'image' => $item->image,
                         'price' => $item->price,
                     ];
@@ -70,12 +70,12 @@ class SearchController extends Controller
                 ->select('id', 'title', 'slug', 'featured_image', 'type')
                 ->limit(5)
                 ->get()
-                ->map(function ($item) {
+                ->map(function ($item) use ($locale) {
                     $route = $item->type === 'news' ? 'news.detail' : 'blog.detail';
                     return [
                         'type' => $item->type,
                         'title' => $item->title,
-                        'url' => route($route, $item->slug ?? $item->id),
+                        'url' => locale_route($route, $item->slug ?? $item->id),
                         'image' => $item->featured_image,
                     ];
                 });
@@ -98,7 +98,7 @@ class SearchController extends Controller
                         'type' => 'job',
                         'title' => $item->title,
                         'subtitle' => $item->department . ' - ' . $item->location,
-                        'url' => route('careers.show', $item->slug ?? $item->id),
+                        'url' => locale_route('careers.show', $item->slug ?? $item->id),
                     ];
                 });
             
@@ -142,7 +142,7 @@ class SearchController extends Controller
                         'type' => 'faq',
                         'title' => Str::limit($item->question, 50),
                         'subtitle' => Str::limit($item->answer, 80),
-                        'url' => route('faqs'),
+                        'url' => locale_route('faqs'),
                     ];
                 });
             
@@ -164,7 +164,7 @@ class SearchController extends Controller
                         'type' => 'visa',
                         'title' => $item->name,
                         'subtitle' => 'SAR ' . number_format($item->fee ?? 0),
-                        'url' => route('services.visa.service', $item->slug ?? $item->id),
+                        'url' => locale_route('services.visa.service', $item->slug ?? $item->id),
                     ];
                 });
             

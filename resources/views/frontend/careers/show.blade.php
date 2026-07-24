@@ -90,7 +90,7 @@
                 <div class="apply-section mt-5" id="apply">
                     <h3><i class="bi bi-send text-success"></i> @lang('Apply for this Position')</h3>
                     
-                    <form method="POST" action="{{ route('careers.apply', $job->slug ?? $job->id) }}" 
+                    <form method="POST" action="{{ locale_route('careers.apply', $job->slug ?? $job->id) }}" 
                           enctype="multipart/form-data" class="apply-form mt-4">
                         @csrf
 

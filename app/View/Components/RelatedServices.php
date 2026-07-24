@@ -61,11 +61,11 @@ class RelatedServices extends Component
         };
 
         $route = match ($type) {
-            'umrah' => route('services.umrah.show', ['slug' => $model->slug ?? $model->id]),
-            'visa' => route('services.visa.show', ['slug' => $model->slug ?? $model->id]),
-            'cargo' => route('cargo'),
-            'flight' => route('services.airticket'),
-            'investor' => route('investor'),
+            'umrah' => locale_route('services.umrah.show', ['slug' => $model->slug ?? $model->id]),
+            'visa' => locale_route('services.visa.show', ['slug' => $model->slug ?? $model->id]),
+            'cargo' => locale_route('cargo'),
+            'flight' => locale_route('services.airticket'),
+            'investor' => locale_route('investor'),
             default => '#',
         };
 

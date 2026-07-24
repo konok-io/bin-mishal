@@ -22,7 +22,7 @@
                         <i class="bi bi-truck"></i>
                     </div>
                     <h3>@lang('Track Cargo Shipment')</h3>
-                    <form method="GET" action="{{ route('cargo.track', ':tracking') }}" id="cargo-track-form">
+                    <form method="GET" action="{{ locale_route('cargo.track', ':tracking') }}" id="cargo-track-form">
                         <div class="input-group mb-3">
                             <input type="text" name="tracking_number" class="form-control" 
                                    placeholder="@lang('Enter Tracking Number')" required>
@@ -180,7 +180,7 @@ document.getElementById('cargo-track-form').addEventListener('submit', function(
     e.preventDefault();
     var tracking = this.querySelector('input[name="tracking_number"]').value;
     if (tracking) {
-        window.location.href = '{{ route("cargo.track", ":tracking") }}'.replace(':tracking', tracking);
+        window.location.href = '{{ locale_route("cargo.track", ":tracking") }}'.replace(':tracking', tracking);
     }
 });
 </script>

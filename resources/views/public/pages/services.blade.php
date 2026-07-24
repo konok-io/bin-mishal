@@ -83,7 +83,7 @@
                     </div>
                     <h3>@lang('Investor Services')</h3>
                     <p>@lang('Business setup, investment licenses, MISA services, and company registration in Saudi Arabia.')</p>
-                    <a href="{{ route('services.investor') }}" class="btn btn-success">@lang('Learn More') <i class="bi bi-arrow-right"></i></a>
+                    <a href="{{ locale_route('services.investor') }}" class="btn btn-success">@lang('Learn More') <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
         </div>

@@ -114,7 +114,7 @@
                                 <i class="bi bi-calendar"></i> @lang('Deadline'): {{ $job->deadline->format('M d, Y') }}
                             </p>
                             @endif
-                            <a href="{{ route('careers.show', $job->slug ?? $job->id) }}" class="btn btn-success">
+                            <a href="{{ locale_route('careers.show', $job->slug ?? $job->id) }}" class="btn btn-success">
                                 @lang('View Details') <i class="bi bi-arrow-right"></i>
                             </a>
                         </div>

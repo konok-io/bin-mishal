@@ -49,7 +49,7 @@
                 <div class="article-tags mt-5">
                     <h5>@lang('Tags')</h5>
                     @foreach($post->tags as $tag)
-                    <a href="{{ route('blog.index', ['tag' => $tag->slug]) }}" class="badge bg-secondary text-decoration-none">
+                    <a href="{{ locale_route('blog.index', ['tag' => $tag->slug]) }}" class="badge bg-secondary text-decoration-none">
                         {{ $tag->name }}
                     </a>
                     @endforeach
@@ -85,7 +85,7 @@
                                 @endif
                                 <div class="card-body">
                                     <h6 class="card-title">
-                                        <a href="{{ route('blog.show', $related->slug) }}" class="text-decoration-none text-dark">
+                                        <a href="{{ locale_route('blog.show', $related->slug) }}" class="text-decoration-none text-dark">
                                             {{ Str::limit($related->title, 60) }}
                                         </a>
                                     </h6>
