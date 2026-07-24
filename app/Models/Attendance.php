@@ -21,13 +21,13 @@ class Attendance extends Model
 
     protected $casts = [
         'date' => 'date',
-        'check_in' => 'datetime',
-        'check_out' => 'datetime',
+        'check_in' => 'datetime:H:i:s',
+        'check_out' => 'datetime:H:i:s',
     ];
 
     public function employee(): BelongsTo
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(User::class, 'employee_id');
     }
 
     public function scopeForMonth($query, $year, $month)

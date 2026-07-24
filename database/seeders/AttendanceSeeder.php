@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Attendance;
-use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 
@@ -11,7 +11,7 @@ class AttendanceSeeder extends Seeder
 {
     public function run(): void
     {
-        $employees = Employee::where('status', 'active')->take(5)->get();
+        $employees = User::role('employee')->take(5)->get();
 
         if ($employees->isEmpty()) {
             $this->command->info('AttendanceSeeder: No employees found. Run EmployeeSeeder first!');
@@ -39,8 +39,8 @@ class AttendanceSeeder extends Seeder
                         'date' => $date->format('Y-m-d'),
                     ],
                     [
-                        'check_in' => $checkIn,
-                        'check_out' => $checkOut,
+                        'check_in' => $checkIn->format('H:i:s'),
+                        'check_out' => $checkOut->format('H:i:s'),
                         'status' => 'present',
                         'notes' => null,
                     ]
