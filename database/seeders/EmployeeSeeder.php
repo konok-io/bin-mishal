@@ -6,11 +6,15 @@ use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class EmployeeSeeder extends Seeder
 {
     public function run(): void
     {
+        // Get or create employee role
+        $employeeRole = Role::firstOrCreate(['name' => 'employee'], ['guard_name' => 'web']);
+
         $employees = [
             [
                 'name' => 'Ahmed Hassan',
@@ -112,6 +116,9 @@ class EmployeeSeeder extends Seeder
                     'status' => 'active',
                 ]
             );
+
+            // Assign employee role
+            $user->assignRole($employeeRole);
 
             Employee::updateOrCreate(
                 ['employee_code' => $empData['employee_code']],
