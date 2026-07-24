@@ -22,11 +22,21 @@ class PublicMenu extends Component
         $loggedInUserType = $this->menuBuilder->getLoggedInUserType();
         $dashboardUrl = $this->menuBuilder->getDashboardUrl();
 
+        // Get login URLs for each guard
+        $adminLoginUrl = $this->menuBuilder->getLoginUrl('admin');
+        $employeeLoginUrl = $this->menuBuilder->getLoginUrl('employee');
+        $portalLoginUrl = $this->menuBuilder->getLoginUrl('portal');
+        $portalRegisterUrl = $this->menuBuilder->getRegisterUrl();
+
         return view('components.public.menu', [
             'items' => $items,
             'location' => $this->location,
             'loggedInUserType' => $loggedInUserType,
             'dashboardUrl' => $dashboardUrl,
+            'adminLoginUrl' => $adminLoginUrl,
+            'employeeLoginUrl' => $employeeLoginUrl,
+            'portalLoginUrl' => $portalLoginUrl,
+            'portalRegisterUrl' => $portalRegisterUrl,
         ]);
     }
 }

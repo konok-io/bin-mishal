@@ -85,18 +85,21 @@ class MenuBuilder
     {
         $url = ltrim($item->url ?? '', '/');
 
+        // Remove locale prefix if present
+        $urlWithoutLocale = preg_replace('/^(bn|en|ar)\//', '', $url);
+
         // Admin login - skip if admin is logged in
-        if (in_array($url, ['admin', 'admin/login'])) {
+        if (in_array($urlWithoutLocale, ['admin', 'admin/login', 'admin/'])) {
             return Auth::guard('admin')->check();
         }
 
         // Employee login - skip if employee is logged in
-        if (in_array($url, ['employee', 'employee/login'])) {
+        if (in_array($urlWithoutLocale, ['employee', 'employee/login', 'employee/'])) {
             return Auth::guard('employee')->check();
         }
 
         // Portal login/register - skip if web user is logged in
-        if (in_array($url, ['portal', 'portal/login', 'portal/register'])) {
+        if (in_array($urlWithoutLocale, ['portal', 'portal/login', 'portal/register', 'portal/'])) {
             return Auth::guard('web')->check();
         }
 
@@ -123,6 +126,30 @@ class MenuBuilder
         }
 
         return null;
+    }
+
+    /**
+     * Get login URL based on guard type.
+     */
+    public function getLoginUrl(string $guard): ?string
+    {
+        $locale = app()->getLocale() ?: config('app.locale', 'bn');
+
+        return match ($guard) {
+            'admin' => '/admin/login',
+            'employee' => "/{$locale}/employee/login",
+            'portal', 'customer' => "/{$locale}/portal/login",
+            default => null,
+        };
+    }
+
+    /**
+     * Get register URL for portal.
+     */
+    public function getRegisterUrl(): ?string
+    {
+        $locale = app()->getLocale() ?: config('app.locale', 'bn');
+        return "/{$locale}/portal/register";
     }
 
     /**

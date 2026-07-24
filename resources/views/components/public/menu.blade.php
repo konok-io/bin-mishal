@@ -1,6 +1,14 @@
 {{-- Public Menu Component --}}
 {{-- Usage: <x-public.menu location="header" /> --}}
 
+@php
+    // Define default login URLs if not provided
+    $adminLoginUrl = $adminLoginUrl ?? '/admin/login';
+    $employeeLoginUrl = $employeeLoginUrl ?? '/bn/employee/login';
+    $portalLoginUrl = $portalLoginUrl ?? '/bn/portal/login';
+    $portalRegisterUrl = $portalRegisterUrl ?? '/bn/portal/register';
+@endphp
+
 @if(!empty($items))
     <ul class="menu menu--{{ $location }}">
         @foreach($items as $item)
@@ -66,8 +74,9 @@
             </li>
         @endforeach
 
-        {{-- Dynamic Dashboard/Login Menu Item --}}
+        {{-- Dynamic User Menu (Dashboard or Login) --}}
         @if($loggedInUserType && $dashboardUrl)
+            {{-- Show Dashboard menu when logged in --}}
             <li class="menu-item has-children">
                 <a href="{{ $dashboardUrl }}" class="{{ request()->path() === ltrim($dashboardUrl, '/') ? 'is-active' : '' }}">
                     <span class="menu-icon">
@@ -110,6 +119,41 @@
                                 <span>@lang('app.logout')</span>
                             </button>
                         </form>
+                    </li>
+                </ul>
+            </li>
+        @else
+            {{-- Show Login/Register menu when not logged in --}}
+            <li class="menu-item has-children">
+                <a href="#">
+                    <span class="menu-icon">
+                        <x-heroicon-s-user-circle class="w-5 h-5" />
+                    </span>
+                    <span class="menu-text">@lang('app.login')</span>
+                    <span class="menu-arrow">
+                        <x-heroicon-s-chevron-down class="w-4 h-4" />
+                    </span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="sub-menu-item">
+                        <a href="{{ $adminLoginUrl }}">
+                            <span class="menu-text">@lang('app.admin_dashboard')</span>
+                        </a>
+                    </li>
+                    <li class="sub-menu-item">
+                        <a href="{{ $employeeLoginUrl }}">
+                            <span class="menu-text">@lang('app.employee_dashboard')</span>
+                        </a>
+                    </li>
+                    <li class="sub-menu-item">
+                        <a href="{{ $portalLoginUrl }}">
+                            <span class="menu-text">@lang('app.login') (@lang('app.customer'))</span>
+                        </a>
+                    </li>
+                    <li class="sub-menu-item">
+                        <a href="{{ $portalRegisterUrl }}">
+                            <span class="menu-text">@lang('app.register')</span>
+                        </a>
                     </li>
                 </ul>
             </li>
