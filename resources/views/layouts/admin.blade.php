@@ -253,7 +253,7 @@
                 <i class="fa-solid fa-users"></i><span>Customers</span>
             </a>
             <a href="{{ route('admin.leads.index') }}" class="nav-link {{ request()->routeIs('admin.leads.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-user-lines"></i><span>Leads</span>
+                <i class="fa-solid fa-address-book"></i><span>Leads</span>
             </a>
 
             <div class="nav-section-title"><span>Bookings</span></div>
