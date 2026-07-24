@@ -34,9 +34,9 @@ class LoginViewResponse implements Contract
             return redirect()->intended('/admin/dashboard');
         }
 
-        // For admin guard, redirect to Filament
+        // For admin guard, redirect to Filament dashboard
         if ($this->guard === 'admin') {
-            return redirect()->intended('/admin');
+            return redirect()->intended('/admin/dashboard');
         }
 
         // Default redirect
