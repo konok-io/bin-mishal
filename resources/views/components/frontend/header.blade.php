@@ -160,7 +160,7 @@ $navTabs = Cache::remember('header_nav_tabs', 600, function() {
             <div class="container">
                 <div class="ticker-content">
                     <span class="ticker-badge"><i class="fas fa-bullhorn"></i> @lang('common.announcement')</span>
-                    <span class="ticker-text">{{ $activeNotices->first()->content }}</span>
+                    <span class="ticker-text">{{ $activeNotices->first()->translated_content }}</span>
                 </div>
             </div>
         </div>
