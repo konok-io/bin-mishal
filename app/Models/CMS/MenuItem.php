@@ -106,17 +106,31 @@ class MenuItem extends Model
     public function getTranslatedTitleAttribute(): string
     {
         $locale = app()->getLocale();
-        $title = $this->title[$locale] ?? $this->title['en'] ?? '';
+        $titleData = $this->title;
 
-        return $title;
+        // Ensure titleData is an array before accessing keys
+        if (!is_array($titleData)) {
+            return '';
+        }
+
+        $title = $titleData[$locale] ?? $titleData['en'] ?? '';
+
+        return is_string($title) ? $title : '';
     }
 
     public function getTranslatedDescriptionAttribute(): ?string
     {
         $locale = app()->getLocale();
-        $description = $this->description[$locale] ?? $this->description['en'] ?? null;
+        $descData = $this->description;
 
-        return $description;
+        // Ensure descData is an array before accessing keys
+        if (!is_array($descData)) {
+            return null;
+        }
+
+        $description = $descData[$locale] ?? $descData['en'] ?? null;
+
+        return is_string($description) ? $description : null;
     }
 
     public function getTranslatedBadgeTextAttribute(): ?string
@@ -126,8 +140,16 @@ class MenuItem extends Model
         }
 
         $locale = app()->getLocale();
+        $badgeData = $this->badge_text;
 
-        return $this->badge_text[$locale] ?? $this->badge_text['en'] ?? null;
+        // Ensure badgeData is an array before accessing keys
+        if (!is_array($badgeData)) {
+            return null;
+        }
+
+        $badge = $badgeData[$locale] ?? $badgeData['en'] ?? null;
+
+        return is_string($badge) ? $badge : null;
     }
 
     /**
