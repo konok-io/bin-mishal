@@ -35,6 +35,11 @@ class SettingResource extends BaseResource
         return 1;
     }
 
+    public static function getNavigationGroup(): string
+    {
+        return 'System';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

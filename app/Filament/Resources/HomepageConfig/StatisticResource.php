@@ -20,6 +20,16 @@ class StatisticResource extends BaseResource
 {
     protected static ?string $model = Statistic::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Statistic';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Homepage';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

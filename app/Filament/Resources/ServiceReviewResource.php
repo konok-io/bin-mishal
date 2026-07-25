@@ -15,6 +15,16 @@ class ServiceReviewResource extends BaseResource
 {
     protected static ?string $model = ServiceReview::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Service Review';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'CRM';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

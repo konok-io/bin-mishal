@@ -15,6 +15,16 @@ class DownloadResource extends BaseResource
 {
     protected static ?string $model = Download::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Download';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Content';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

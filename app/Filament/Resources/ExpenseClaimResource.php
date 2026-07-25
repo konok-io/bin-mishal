@@ -20,6 +20,16 @@ class ExpenseClaimResource extends BaseResource
 {
     protected static ?string $model = ExpenseClaim::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Expense Claim';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'HR';
+    }
+
     public static function canAccess(): bool
     {
         $user = auth()->user();

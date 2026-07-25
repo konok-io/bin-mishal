@@ -15,6 +15,16 @@ class SocialLinkResource extends BaseResource
 {
     protected static ?string $model = SocialLink::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Social Link';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'System';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

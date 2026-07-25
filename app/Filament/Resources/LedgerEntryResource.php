@@ -20,6 +20,16 @@ class LedgerEntryResource extends BaseResource
 {
     protected static ?string $model = LedgerEntry::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Ledger Entry';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Accounting';
+    }
+
     public static function canAccess(): bool
     {
         $user = auth()->user();

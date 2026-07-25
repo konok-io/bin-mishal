@@ -16,6 +16,16 @@ class NewsletterSubscriberResource extends BaseResource
 {
     protected static ?string $model = NewsletterSubscriber::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Newsletter Subscriber';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'CRM';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

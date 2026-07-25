@@ -15,6 +15,16 @@ class HeroTabResource extends BaseResource
 {
     protected static ?string $model = HeroTab::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Hero Tab';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Homepage';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

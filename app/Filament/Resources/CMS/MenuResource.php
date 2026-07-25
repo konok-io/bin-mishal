@@ -17,6 +17,16 @@ class MenuResource extends BaseResource
 {
     protected static ?string $model = Menu::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Menu';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Content';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

@@ -15,6 +15,16 @@ class TestimonialResource extends BaseResource
 {
     protected static ?string $model = Testimonial::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Testimonial';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'CRM';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

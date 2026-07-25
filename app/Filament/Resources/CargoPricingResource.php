@@ -15,6 +15,16 @@ class CargoPricingResource extends BaseResource
 {
     protected static ?string $model = CargoPricing::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Cargo Pricing';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Services';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

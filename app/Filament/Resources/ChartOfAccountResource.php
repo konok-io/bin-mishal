@@ -15,6 +15,16 @@ class ChartOfAccountResource extends BaseResource
 {
     protected static ?string $model = ChartOfAccount::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Chart Of Account';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Accounting';
+    }
+
     public static function canAccess(): bool
     {
         $user = auth()->user();

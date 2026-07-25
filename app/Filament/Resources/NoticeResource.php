@@ -15,6 +15,16 @@ class NoticeResource extends BaseResource
 {
     protected static ?string $model = Notice::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Notice';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'HR';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

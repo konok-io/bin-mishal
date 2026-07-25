@@ -15,6 +15,16 @@ class PostResource extends BaseResource
 {
     protected static ?string $model = Post::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Post';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Content';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

@@ -16,6 +16,21 @@ class AuditLogResource extends BaseResource
         return false;
     }
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Audit Logs';
+    }
+
+    public static function getNavigationIcon(): string
+    {
+        return 'heroicon-o-clock';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'System';
+    }
+
     public static function getPages(): array
     {
         return [

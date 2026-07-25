@@ -15,6 +15,16 @@ class ExpenseTypeResource extends BaseResource
 {
     protected static ?string $model = ExpenseType::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Expense Type';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'HR';
+    }
+
     public static function canAccess(): bool
     {
         $user = auth()->user();

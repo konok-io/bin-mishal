@@ -15,6 +15,16 @@ class InvestorServiceResource extends BaseResource
 {
     protected static ?string $model = InvestorService::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Investor Service';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Services';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

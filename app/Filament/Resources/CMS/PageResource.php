@@ -15,6 +15,16 @@ class PageResource extends BaseResource
 {
     protected static ?string $model = Page::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Page';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Content';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

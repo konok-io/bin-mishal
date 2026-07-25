@@ -17,6 +17,16 @@ class ContactMessageResource extends BaseResource
 {
     protected static ?string $model = ContactMessage::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Contact Message';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'CRM';
+    }
+
     public static function getNavigationBadge(): ?string
     {
         $count = ContactMessage::unread()->count();

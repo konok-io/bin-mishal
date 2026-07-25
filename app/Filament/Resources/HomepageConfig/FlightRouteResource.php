@@ -15,6 +15,16 @@ class FlightRouteResource extends BaseResource
 {
     protected static ?string $model = FlightRoute::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Flight Route';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Homepage';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

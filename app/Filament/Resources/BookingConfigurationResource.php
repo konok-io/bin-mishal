@@ -17,6 +17,16 @@ class BookingConfigurationResource extends BaseResource
 {
     protected static ?string $model = BookingConfiguration::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Booking Configuration';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Services';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

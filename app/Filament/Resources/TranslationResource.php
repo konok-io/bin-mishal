@@ -16,6 +16,16 @@ class TranslationResource extends BaseResource
 {
     protected static ?string $model = Translation::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Translation';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'System';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

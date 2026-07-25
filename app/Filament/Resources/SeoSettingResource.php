@@ -15,6 +15,16 @@ class SeoSettingResource extends BaseResource
 {
     protected static ?string $model = SeoSetting::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Seo Setting';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'System';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

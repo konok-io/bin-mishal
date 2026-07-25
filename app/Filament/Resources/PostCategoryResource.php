@@ -15,6 +15,16 @@ class PostCategoryResource extends BaseResource
 {
     protected static ?string $model = PostCategory::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Post Category';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Content';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

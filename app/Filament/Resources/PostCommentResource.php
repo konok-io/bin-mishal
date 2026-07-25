@@ -15,6 +15,16 @@ class PostCommentResource extends BaseResource
 {
     protected static ?string $model = PostComment::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Post Comment';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Content';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

@@ -17,6 +17,16 @@ class JobApplicationResource extends BaseResource
 {
     protected static ?string $model = JobApplication::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Job Application';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'HR';
+    }
+
     public static function canAccess(): bool
     {
         $user = auth()->user();

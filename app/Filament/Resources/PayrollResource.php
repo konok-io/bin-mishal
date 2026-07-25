@@ -15,6 +15,16 @@ class PayrollResource extends BaseResource
 {
     protected static ?string $model = Payroll::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Payroll';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'HR';
+    }
+
     public static function canAccess(): bool
     {
         $user = auth()->user();

@@ -15,6 +15,16 @@ class JobResource extends BaseResource
 {
     protected static ?string $model = Job::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Job';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'HR';
+    }
+
     public static function canAccess(): bool
     {
         $user = auth()->user();

@@ -15,6 +15,16 @@ class NotificationTemplateResource extends BaseResource
 {
     protected static ?string $model = NotificationTemplate::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Notification Template';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'System';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

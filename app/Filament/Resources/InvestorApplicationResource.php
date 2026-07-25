@@ -17,6 +17,16 @@ class InvestorApplicationResource extends BaseResource
 {
     protected static ?string $model = InvestorApplication::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Investor Application';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'CRM';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

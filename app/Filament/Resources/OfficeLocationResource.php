@@ -15,6 +15,16 @@ class OfficeLocationResource extends BaseResource
 {
     protected static ?string $model = OfficeLocation::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Office Location';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'System';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

@@ -15,6 +15,16 @@ class FaqResource extends BaseResource
 {
     protected static ?string $model = Faq::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Faq';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Content';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

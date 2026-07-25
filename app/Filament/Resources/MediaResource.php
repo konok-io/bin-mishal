@@ -16,6 +16,16 @@ class MediaResource extends BaseResource
 {
     protected static ?string $model = Media::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Media';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Media';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

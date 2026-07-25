@@ -15,6 +15,16 @@ class GalleryItemResource extends BaseResource
 {
     protected static ?string $model = GalleryItem::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Gallery Item';
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Content';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema
