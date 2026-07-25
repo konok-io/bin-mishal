@@ -151,7 +151,7 @@
                 <div class="tab-content p-4" id="bookingTabsContent">
                     @foreach(\App\Models\HeroTab::where('is_active', true)->ordered()->take(6)->get() as $index => $tab)
                         <div class="tab-pane fade {{ $index === 0 ? 'show active' : '' }}" id="{{ $tab->tab_key }}" role="tabpanel">
-                            <form action="{{ route('booking.search', ['locale' => app()->getLocale()]) }}" method="GET" class="row g-3">
+                            <form action="{{ route('services.airticket', ['locale' => app()->getLocale()]) }}" method="GET" class="row g-3">
                                 @if($tab->tab_key === 'flight')
                                     <div class="col-md-3"><label class="form-label">From</label><select class="form-select" name="from_city"><option value="">Select</option><option value="riyadh">Riyadh</option><option value="jeddah">Jeddah</option><option value="dammam">Dammam</option></select></div>
                                     <div class="col-md-3"><label class="form-label">To</label><select class="form-select" name="to_city"><option value="">Select</option><option value="dhaka">Dhaka</option><option value="chittagong">Chittagong</option><option value="sylhet">Sylhet</option></select></div>

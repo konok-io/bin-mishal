@@ -83,7 +83,7 @@ $package = \App\Models\UmrahPackage::where('slug', $slug)->orWhere('id', $slug)-
                             <span class="amount">SAR {{ number_format($package->price) }}</span>
                         </div>
 
-                        <form method="POST" action="{{ route('booking.store') }}">
+                        <form method="POST" action="{{ route('bookings.store') }}">
                             @csrf
                             <input type="hidden" name="package_id" value="{{ $package->id }}">
                             
