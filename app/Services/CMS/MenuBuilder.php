@@ -52,19 +52,35 @@ class MenuBuilder
                 continue;
             }
 
+            // Ensure all values are strings or null for safe Blade rendering
+            $title = $item->translated_title;
+            if (is_array($title)) {
+                $title = '';
+            }
+
+            $description = $item->translated_description;
+            if (is_array($description)) {
+                $description = null;
+            }
+
+            $badgeText = $item->translated_badge_text;
+            if (is_array($badgeText)) {
+                $badgeText = null;
+            }
+
             $menuItem = [
-                'id' => $item->id,
-                'title' => $item->translated_title,
-                'description' => $item->translated_description,
+                'id' => (int) $item->id,
+                'title' => (string) $title,
+                'description' => $description,
                 'url' => $item->resolveUrl(),
-                'target' => $item->target,
-                'icon' => $item->icon,
-                'css_class' => $item->css_class,
-                'badge_text' => $item->translated_badge_text,
-                'badge_color' => $item->badge_color,
-                'is_mega' => $item->is_mega,
-                'mega_column' => $item->mega_column,
-                'is_active' => $item->isActive(),
+                'target' => (string) ($item->target ?? ''),
+                'icon' => $item->icon ? (string) $item->icon : null,
+                'css_class' => $item->css_class ? (string) $item->css_class : null,
+                'badge_text' => $badgeText,
+                'badge_color' => $item->badge_color ? (string) $item->badge_color : null,
+                'is_mega' => (bool) $item->is_mega,
+                'mega_column' => (int) ($item->mega_column ?? 0),
+                'is_active' => (bool) $item->isActive(),
                 'children' => [],
             ];
 
