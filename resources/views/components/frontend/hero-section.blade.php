@@ -1,5 +1,15 @@
 <?php
 use App\Models\HeroTab;
+use Illuminate\Support\Facades\Cache;
+
+// Get active tabs with fallback
+$activeTabs = Cache::remember('hero_active_tabs', 600, function() {
+    try {
+        return \App\Models\HeroTab::where('is_active', 1)->orderBy('order')->get() ?? collect();
+    } catch (\Exception $e) {
+        return collect();
+    }
+});
 use App\Models\CMS\Setting;
 ?>
 
@@ -44,7 +54,7 @@ use App\Models\CMS\Setting;
                 <div class="hero-booking-card">
                     <!-- Service Tabs -->
                     <ul class="nav nav-tabs booking-tabs" id="bookingTabs" role="tablist">
-                        @foreach(HeroTab::getActiveTabs() as $index => $tab)
+                        @foreach($activeTabs as $index => $tab)
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link {{ $index === 0 ? 'active' : '' }}" 
                                         id="{{ $tab->tab_key }}-tab" 

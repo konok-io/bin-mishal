@@ -3,6 +3,19 @@ use App\Models\CMS\Menu;
 use App\Models\CMS\MenuItem;
 use App\Models\CMS\Setting;
 use App\Models\HeroTab;
+use Illuminate\Support\Facades\Cache;
+
+// Get HeroTabs with fallback
+$navTabs = Cache::remember('header_nav_tabs', 600, function() {
+    try {
+        return \App\Models\HeroTab::where('is_active', 1)
+            ->where('show_in_nav', 1)
+            ->orderBy('order')
+            ->get() ?? collect();
+    } catch (\Exception $e) {
+        return collect();
+    }
+});
 ?>
 
 <!-- Dynamic Header Component -->
@@ -87,7 +100,7 @@ use App\Models\HeroTab;
                             <i class="fas fa-plane"></i> @lang('nav.services')
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                            @foreach(HeroTab::getNavTabs() as $tab)
+                            @foreach($navTabs as $tab)
                                 <li>
                                     <a class="dropdown-item" href="{{ $tab->button_url_resolved ?? '#' }}">
                                         <i class="{{ $tab->icon ?? 'fas fa-angle-right' }}"></i>

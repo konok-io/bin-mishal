@@ -1,6 +1,13 @@
 {{-- Dynamic Hero Section with Service Tabs --}}
 @php
-    $tabs = \App\Models\HeroTab::getActiveTabs();
+    // Get tabs with fallback to prevent errors
+    $tabs = \Illuminate\Support\Facades\Cache::remember('dynamic_hero_tabs', 600, function() {
+        try {
+            return \App\Models\HeroTab::where('is_active', 1)->orderBy('order')->get() ?? collect();
+        } catch (\Exception $e) {
+            return collect();
+        }
+    });
     $firstTab = $tabs->first();
 @endphp
 

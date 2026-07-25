@@ -1,5 +1,15 @@
 <?php
 use App\Models\HeroTab;
+use Illuminate\Support\Facades\Cache;
+
+// Get active tabs with fallback
+$activeTabs = Cache::remember('services_active_tabs', 600, function() {
+    try {
+        return \App\Models\HeroTab::where('is_active', 1)->orderBy('order')->get() ?? collect();
+    } catch (\Exception $e) {
+        return collect();
+    }
+});
 ?>
 
 <!-- Services Section Component -->
@@ -14,7 +24,7 @@ use App\Models\HeroTab;
         
         <!-- Services Grid -->
         <div class="row g-4">
-            @foreach(HeroTab::getActiveTabs() as $service)
+            @foreach($activeTabs as $service)
                 <div class="col-lg-4 col-md-6">
                     <div class="service-card">
                         <div class="service-icon">
