@@ -223,114 +223,6 @@
       .admin-sidebar .nav{-ms-overflow-style:none;scrollbar-width:none}
       .admin-sidebar .sidebar-brand{height:auto;min-height:64px}
       .admin-sidebar.collapsed .sidebar-brand{height:auto;min-height:64px}
-      
-      /* Sidebar Dynamic Background Shapes */
-      .sidebar-bg-shapes {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        pointer-events: none;
-        z-index: 0;
-        overflow: hidden;
-      }
-      
-      .sidebar-shape {
-        position: absolute;
-        border-radius: 50%;
-        opacity: 0.15;
-      }
-      
-      .sidebar-shape-1 {
-        width: 200px;
-        height: 200px;
-        top: -80px;
-        right: -80px;
-        background: linear-gradient(135deg, #E05522 0%, #C94718 100%);
-      }
-      
-      .sidebar-shape-2 {
-        width: 150px;
-        height: 150px;
-        bottom: -50px;
-        left: -60px;
-        background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
-      }
-      
-      .sidebar-shape-3 {
-        width: 80px;
-        height: 80px;
-        top: 150px;
-        right: -20px;
-        background: linear-gradient(135deg, #E05522 0%, #E05522 100%);
-        opacity: 0.2;
-      }
-      
-      .sidebar-shape-4 {
-        width: 50px;
-        height: 50px;
-        bottom: 200px;
-        left: 10px;
-        background: linear-gradient(135deg, #E05522 0%, #C94718 100%);
-        opacity: 0.25;
-      }
-      
-      .sidebar-shape-5 {
-        width: 100px;
-        height: 100px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-        border: 2px solid rgba(255,255,255,0.08);
-      }
-      
-      .sidebar-shape-6 {
-        width: 60px;
-        height: 60px;
-        bottom: 100px;
-        right: 20px;
-        background: radial-gradient(circle, rgba(224,85,34,0.3) 0%, transparent 70%);
-      }
-      
-      .sidebar-dots {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-        background-size: 20px 20px;
-      }
-      
-      /* Make nav content appear above shapes */
-      .admin-sidebar .sidebar-brand,
-      .admin-sidebar .nav,
-      .admin-sidebar .sidebar-collapse-btn {
-        position: relative;
-        z-index: 1;
-      }
-      
-      /* Dark mode sidebar shapes */
-      [data-theme="dark"] .sidebar-shape-1 {
-        opacity: 0.2;
-      }
-      [data-theme="dark"] .sidebar-shape-2 {
-        opacity: 0.15;
-      }
-      [data-theme="dark"] .sidebar-shape-3 {
-        opacity: 0.3;
-      }
-      [data-theme="dark"] .sidebar-shape-4 {
-        opacity: 0.35;
-      }
-      [data-theme="dark"] .sidebar-shape-5 {
-        border-color: rgba(255,255,255,0.1);
-      }
-      [data-theme="dark"] .sidebar-dots {
-        background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
-      }
     </style>
     @stack('styles')
 </head>
@@ -342,17 +234,6 @@
 
     {{-- ============ SIDEBAR ============ --}}
     <aside class="admin-sidebar">
-        <!-- Dynamic Background Shapes -->
-        <div class="sidebar-bg-shapes">
-            <div class="sidebar-shape sidebar-shape-1"></div>
-            <div class="sidebar-shape sidebar-shape-2"></div>
-            <div class="sidebar-shape sidebar-shape-3"></div>
-            <div class="sidebar-shape sidebar-shape-4"></div>
-            <div class="sidebar-shape sidebar-shape-5"></div>
-            <div class="sidebar-shape sidebar-shape-6"></div>
-            <div class="sidebar-dots"></div>
-        </div>
-        
         <div class="sidebar-brand d-flex align-items-center justify-content-between w-100">
             <div class="d-flex align-items-center gap-2">
                 <i class="fa-solid fa-plane site-logo-icon"></i>
