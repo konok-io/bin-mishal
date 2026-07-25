@@ -19,6 +19,11 @@ class GlobalSettings extends Page
     protected static ?string $title = 'Global Settings';
     protected static ?string $navigationLabel = 'Global Settings';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return true;
+    }
+
     public static function getNavigationGroup(): ?string
     {
         return 'CMS';

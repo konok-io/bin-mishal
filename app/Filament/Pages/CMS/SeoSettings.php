@@ -17,6 +17,11 @@ class SeoSettings extends Page
     protected static ?string $title = 'SEO Settings';
     protected static ?string $navigationLabel = 'SEO Settings';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return true;
+    }
+
     public static function getNavigationGroup(): ?string
     {
         return 'CMS';

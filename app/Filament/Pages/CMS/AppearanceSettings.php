@@ -18,6 +18,11 @@ class AppearanceSettings extends Page
     protected static ?string $title = 'Appearance Settings';
     protected static ?string $navigationLabel = 'Appearance Settings';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return true;
+    }
+
     public static function getNavigationGroup(): ?string
     {
         return 'CMS';
