@@ -125,6 +125,15 @@ class SocialLinkResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\Action::make('toggleVisibility')
+                    ->label('')
+                    ->icon(fn($record) => $record->is_visible ? 'heroicon-o-eye' : 'heroicon-o-eye-slash')
+                    ->color(fn($record) => $record->is_visible ? 'success' : 'gray')
+                    ->action(function (SocialLink $record) {
+                        $record->is_visible = !$record->is_visible;
+                        $record->save();
+                    })
+                    ->tooltip(fn($record) => $record->is_visible ? 'Hide from website' : 'Show on website'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
