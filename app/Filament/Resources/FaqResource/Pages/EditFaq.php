@@ -11,7 +11,6 @@ use Filament\Resources\Pages\EditRecord;
 class EditFaq extends EditRecord
 {
     protected static string $resource = FaqResource::class;
-
     protected function getHeaderActions(): array
     {
         return [

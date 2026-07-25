@@ -11,7 +11,6 @@ use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
-
 class ServiceReviewResource extends BaseResource
 {
     protected static ?string $model = ServiceReview::class;

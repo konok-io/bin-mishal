@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Builder;
 class ListBiometricDevices extends ListRecords
 {
     protected static string $resource = BiometricDeviceResource::class;
-
     protected function getHeaderActions(): array
     {
         return [

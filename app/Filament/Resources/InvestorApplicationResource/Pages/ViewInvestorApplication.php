@@ -11,7 +11,6 @@ use Filament\Actions;
 class ViewInvestorApplication extends ViewRecord
 {
     protected static string $resource = InvestorApplicationResource::class;
-
     protected function getHeaderActions(): array
     {
         return [

@@ -11,7 +11,6 @@ use Filament\Resources\RelationManagers\RelationManagerConfig;
 use Filament\Resources\RelationManagers\RelationGroup;
 use Illuminate\Database\Eloquent\Builder;
 
-class ViewBiometricDevice extends ViewRecord
 {
     protected static string $resource = BiometricDeviceResource::class;
 

@@ -11,7 +11,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateTranslation extends CreateRecord
 {
     protected static string $resource = TranslationResource::class;
-
     protected function afterCreate(): void
     {
         // Clear translation cache

@@ -11,7 +11,6 @@ use Filament\Resources\Pages\ListRecords;
 class ListTrustBadges extends ListRecords
 {
     protected static string $resource = TrustBadgeResource::class;
-
     protected function getHeaderActions(): array
     {
         return [

@@ -11,7 +11,6 @@ use Filament\Resources\Pages\EditRecord;
 class EditHeroTab extends EditRecord
 {
     protected static string $resource = HeroTabResource::class;
-
     protected function getHeaderActions(): array
     {
         return [

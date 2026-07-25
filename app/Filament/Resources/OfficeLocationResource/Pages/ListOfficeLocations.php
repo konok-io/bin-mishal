@@ -11,7 +11,6 @@ class ListOfficeLocations extends ListRecords
     protected static string $resource = OfficeLocationResource::class;
 
     protected function getHeaderActions(): array
-    {
         return [
             Actions\CreateAction::make(),
         ];

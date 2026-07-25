@@ -11,7 +11,6 @@ class ListExpenseTypes extends ListRecords
     protected static string $resource = ExpenseTypeResource::class;
 
     protected function getHeaderActions(): array
-    {
         return [
             Actions\CreateAction::make()
                 ->label('Add Expense Type'),

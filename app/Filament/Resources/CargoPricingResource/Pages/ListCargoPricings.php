@@ -11,7 +11,6 @@ use Filament\Resources\Pages\ListRecords;
 class ListCargoPricings extends ListRecords
 {
     protected static string $resource = CargoPricingResource::class;
-
     protected function getHeaderActions(): array
     {
         return [

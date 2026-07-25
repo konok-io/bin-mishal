@@ -11,7 +11,6 @@ class ViewLedgerEntry extends ViewRecord
     protected static string $resource = LedgerEntryResource::class;
 
     protected function getHeaderActions(): array
-    {
         return [
             Actions\Action::make('view_reference')
                 ->label('View Reference')

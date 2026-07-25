@@ -11,7 +11,6 @@ class ViewNewsletterSubscriber extends ViewRecord
     protected static string $resource = NewsletterSubscriberResource::class;
 
     protected function getHeaderActions(): array
-    {
         return [
             Actions\EditAction::make(),
         ];

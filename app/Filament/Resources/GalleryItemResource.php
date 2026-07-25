@@ -11,7 +11,6 @@ use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
-
 class GalleryItemResource extends BaseResource
 {
     protected static ?string $model = GalleryItem::class;

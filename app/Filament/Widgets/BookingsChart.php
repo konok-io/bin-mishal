@@ -11,7 +11,6 @@ class BookingsChart extends ChartWidget
 {
     protected static ?string $heading = 'Bookings by Service (This Month)';
 
-    protected function getData(): array
     {
         $bookings = Booking::whereMonth('created_at', now()->month)
             ->whereYear('created_at', now()->year)

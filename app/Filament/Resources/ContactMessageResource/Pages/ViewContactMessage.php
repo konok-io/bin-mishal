@@ -11,7 +11,6 @@ use Filament\Resources\Pages\ViewRecord;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\TextEntry;
 use Filament\Schemas\Components\IconEntry;
-use Filament\Schemas\Components\Grid;
 
 class ViewContactMessage extends ViewRecord
 {

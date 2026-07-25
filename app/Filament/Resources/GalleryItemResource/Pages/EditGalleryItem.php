@@ -11,7 +11,6 @@ use Filament\Resources\Pages\EditRecord;
 class EditGalleryItem extends EditRecord
 {
     protected static string $resource = GalleryItemResource::class;
-
     protected function getHeaderActions(): array
     {
         return [

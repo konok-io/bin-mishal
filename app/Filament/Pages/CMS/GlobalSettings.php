@@ -11,7 +11,6 @@ use Filament\Schemas\Schema;
 
 class GlobalSettings extends SettingsPage
 {
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
     protected static ?string $navigationGroup = 'CMS';
     protected static ?string $navigationLabel = 'Global Settings';
     protected static ?string $title = 'Global Settings';

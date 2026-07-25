@@ -11,7 +11,6 @@ use Filament\Tables\Table;
 
 class AuditLogResource extends BaseResource
 {
-    protected static ?string $model = AuditLog::class;
 
     public static function canCreate(): bool
     {

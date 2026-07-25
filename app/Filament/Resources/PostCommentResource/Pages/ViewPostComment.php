@@ -11,7 +11,6 @@ use Filament\Resources\Pages\ViewRecord;
 class ViewPostComment extends ViewRecord
 {
     protected static string $resource = PostCommentResource::class;
-
     protected function getHeaderActions(): array
     {
         return [

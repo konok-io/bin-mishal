@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\On;
 
 class ListLedgerEntries extends ListRecords
-{
     protected static string $resource = LedgerEntryResource::class;
 
     protected function getHeaderActions(): array

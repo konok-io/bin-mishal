@@ -11,7 +11,6 @@ use Filament\Schemas\Components\FileUpload;
 use Filament\Schemas\Components\Select;
 use Filament\Schemas\Components\TextInput;
 use Filament\Resources\Pages\ListRecords;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class ListMedia extends ListRecords

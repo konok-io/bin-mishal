@@ -11,7 +11,6 @@ use App\Models\JobApplication;
 use App\Models\InvestorApplication;
 use App\Models\Content\Comment;
 use Filament\Widgets\Widget;
-use Illuminate\Support\Facades\Auth;
 
 class AdminNotificationCenter extends Widget
 {

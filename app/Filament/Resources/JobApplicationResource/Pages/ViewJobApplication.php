@@ -11,7 +11,6 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\TextEntry;
 use Filament\Schemas\Components\IconEntry;
 use Filament\Schemas\Components\ImageEntry;
-
 class ViewJobApplication extends ViewRecord
 {
     protected static string $resource = JobApplicationResource::class;

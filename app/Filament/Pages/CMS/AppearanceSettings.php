@@ -11,7 +11,6 @@ use Filament\Schemas\Schema;
 
 class AppearanceSettings extends SettingsPage
 {
-    protected static ?string $navigationIcon = 'heroicon-o-paint-brush';
     protected static ?string $navigationGroup = 'CMS';
     protected static ?string $navigationLabel = 'Appearance';
     protected static ?string $title = 'Appearance Settings';

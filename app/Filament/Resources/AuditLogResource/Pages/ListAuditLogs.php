@@ -11,7 +11,6 @@ class ListAuditLogs extends BasePage
 {
     protected static string $resource = \App\Filament\Resources\AuditLogResource::class;
 
-    public static function getPages(): array
     {
         return [
             'index' => ListRecords::route('/'),

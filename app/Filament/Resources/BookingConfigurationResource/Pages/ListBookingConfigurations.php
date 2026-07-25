@@ -11,7 +11,6 @@ use Filament\Resources\Pages\ListRecords;
 class ListBookingConfigurations extends ListRecords
 {
     protected static string $resource = BookingConfigurationResource::class;
-
     protected function getHeaderActions(): array
     {
         return [

@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Builder;
 class ListExpenseClaims extends ListRecords
 {
     protected static string $resource = ExpenseClaimResource::class;
-
     protected function getHeaderActions(): array
     {
         return [

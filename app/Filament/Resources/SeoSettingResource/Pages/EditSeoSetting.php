@@ -11,7 +11,6 @@ use Filament\Resources\Pages\EditRecord;
 class EditSeoSetting extends EditRecord
 {
     protected static string $resource = SeoSettingResource::class;
-
     protected function getHeaderActions(): array
     {
         return [

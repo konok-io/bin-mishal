@@ -11,7 +11,6 @@ use Filament\Widgets\ChartWidget;
 class RevenueChart extends ChartWidget
 {
     protected static ?string $heading = 'Revenue Overview (Last 6 Months)';
-
     protected function getData(): array
     {
         $months = [];

@@ -11,7 +11,6 @@ use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class QuickServiceResource extends BaseResource
 {
     protected static ?string $model = QuickService::class;
 
