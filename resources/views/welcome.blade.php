@@ -357,46 +357,9 @@
     
     @include('components.frontend.testimonials-section')
     
-    <!-- Partners -->
-    <section class="partners-section section-padding bg-light">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-badge">Trusted Partners</span>
-                <h2>Our Partners & Airlines</h2>
-            </div>
-            <div class="partners-slider owl-carousel" data-aos="fade-up">
-                @foreach(['Saudi Arabian Airlines', 'Biman Bangladesh', 'US-Bangla Airlines', 'Flydubai', 'Air Arabia', 'Qatar Airways'] as $partner)
-                    <div class="partner-item text-center p-4">
-                        <i class="fas fa-plane fa-3x text-muted mb-2"></i>
-                        <h6 class="mb-0">{{ $partner }}</h6>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    
     @include('components.frontend.gallery-section')
     @include('components.frontend.faq-section')
     @include('components.frontend.cta-section')
-    
-    <!-- Newsletter -->
-    <section class="newsletter-section py-5" style="background: var(--primary-color);">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 text-white mb-4 mb-lg-0">
-                    <h3 class="mb-2">Subscribe to Newsletter</h3>
-                    <p class="mb-0 opacity-75">Get latest travel deals and updates</p>
-                </div>
-                <div class="col-lg-6">
-                    <form action="{{ route('newsletter.subscribe', ['locale' => app()->getLocale()]) }}" method="POST" class="d-flex gap-2">
-                        @csrf
-                        <input type="email" name="email" class="form-control form-control-lg" placeholder="Your email" required>
-                        <button type="submit" class="btn btn-light btn-lg px-4">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
     
     @include('components.frontend.footer')
     
@@ -417,10 +380,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script>
         AOS.init({ duration: 800, once: true, offset: 100 });
-        $('.partners-slider').owlCarousel({
-            loop: true, margin: 30, nav: false, dots: false, autoplay: true, autoplayTimeout: 3000,
-            responsive: { 0: { items: 2 }, 576: { items: 3 }, 768: { items: 4 }, 992: { items: 6 } }
-        });
     </script>
 </body>
 </html>
