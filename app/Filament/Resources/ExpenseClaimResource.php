@@ -11,10 +11,10 @@ use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Infolists\Infolist;
-use Filament\Infolists\Components\Section;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Components\BadgeEntry;
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\TextEntry;
+use Filament\Schemas\Components\BadgeEntry;
 use Illuminate\Database\Eloquent\Builder;
 
 class ExpenseClaimResource extends BaseResource
@@ -174,9 +174,9 @@ class ExpenseClaimResource extends BaseResource
             ]);
     }
 
-    public static function infolist(Infolist $infolist): Infolist
+    public static function infolist(Schema $schema): Schema
     {
-        return $infolist
+        return $schema
             ->schema([
                 Section::make('Claim Information')
                     ->schema([

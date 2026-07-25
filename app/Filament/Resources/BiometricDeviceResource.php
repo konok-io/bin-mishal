@@ -11,10 +11,10 @@ use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Infolists\Infolist;
-use Filament\Infolists\Components\Section;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Components\IconEntry;
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\TextEntry;
+use Filament\Schemas\Components\IconEntry;
 
 class BiometricDeviceResource extends BaseResource
 {
@@ -225,9 +225,9 @@ class BiometricDeviceResource extends BaseResource
             ]);
     }
 
-    public static function infolist(Infolist $infolist): Infolist
+    public static function infolist(Schema $schema): Schema
     {
-        return $infolist
+        return $schema
             ->schema([
                 Section::make('Device Information')
                     ->schema([

@@ -5,20 +5,20 @@ declare(strict_types=1);
 namespace App\Filament\Resources\JobApplicationResource\Pages;
 
 use App\Filament\Resources\JobApplicationResource;
-use Filament\Infolists\Infolist;
+use Filament\Schemas\Schema;
 use Filament\Resources\Pages\ViewRecord;
-use Filament\Infolists\Components\Section;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Components\IconEntry;
-use Filament\Infolists\Components\ImageEntry;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\TextEntry;
+use Filament\Schemas\Components\IconEntry;
+use Filament\Schemas\Components\ImageEntry;
 
 class ViewJobApplication extends ViewRecord
 {
     protected static string $resource = JobApplicationResource::class;
 
-    public function infolist(Infolist $infolist): Infolist
+    public function infolist(Schema $schema): Schema
     {
-        return $infolist
+        return $schema
             ->schema([
                 Section::make('Applicant Information')
                     ->schema([

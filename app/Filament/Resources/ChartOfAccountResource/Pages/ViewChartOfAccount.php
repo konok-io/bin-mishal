@@ -4,10 +4,10 @@ namespace App\Filament\Resources\ChartOfAccountResource\Pages;
 
 use App\Filament\Resources\ChartOfAccountResource;
 use Filament\Actions;
-use Filament\Infolists\Infolist;
-use Filament\Infolists\Components\Section;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Components\Card;
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\TextEntry;
+use Filament\Schemas\Components\Card;
 use Filament\Resources\Pages\ViewRecord;
 
 class ViewChartOfAccount extends ViewRecord
@@ -21,9 +21,9 @@ class ViewChartOfAccount extends ViewRecord
         ];
     }
 
-    public function infolist(Infolist $infolist): Infolist
+    public function infolist(Schema $schema): Schema
     {
-        return $infolist
+        return $schema
             ->schema([
                 Section::make('Account Details')
                     ->schema([

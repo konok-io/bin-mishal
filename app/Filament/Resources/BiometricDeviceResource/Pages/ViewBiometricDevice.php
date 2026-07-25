@@ -5,7 +5,7 @@ namespace App\Filament\Resources\BiometricDeviceResource\Pages;
 use App\Filament\Resources\BiometricDeviceResource;
 use App\Models\BiometricAttendance;
 use Filament\Actions;
-use Filament\Infolists\Infolist;
+use Filament\Schemas\Schema;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Resources\RelationManagers\RelationManagerConfig;
 use Filament\Resources\RelationManagers\RelationGroup;

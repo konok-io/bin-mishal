@@ -6,12 +6,12 @@ namespace App\Filament\Resources\ContactMessageResource\Pages;
 
 use App\Filament\Resources\ContactMessageResource;
 use Filament\Actions\Action;
-use Filament\Infolists\Infolist;
+use Filament\Schemas\Schema;
 use Filament\Resources\Pages\ViewRecord;
-use Filament\Infolists\Components\Section;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Components\IconEntry;
-use Filament\Infolists\Components\Grid;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\TextEntry;
+use Filament\Schemas\Components\IconEntry;
+use Filament\Schemas\Components\Grid;
 
 class ViewContactMessage extends ViewRecord
 {
@@ -48,9 +48,9 @@ class ViewContactMessage extends ViewRecord
         ];
     }
 
-    public function infolist(Infolist $infolist): Infolist
+    public function infolist(Schema $schema): Schema
     {
-        return $infolist
+        return $schema
             ->schema([
                 Section::make('Sender Information')
                     ->schema([
