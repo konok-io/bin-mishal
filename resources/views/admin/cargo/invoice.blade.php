@@ -8,19 +8,19 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #333; }
         .invoice { max-width: 800px; margin: 0 auto; padding: 20px; }
-        .header { display: flex; justify-content: space-between; margin-bottom: 30px; border-bottom: 2px solid #2F378A; padding-bottom: 20px; }
-        .company h1 { color: #2F378A; font-size: 24px; margin-bottom: 5px; }
+        .header { display: flex; justify-content: space-between; margin-bottom: 30px; border-bottom: 2px solid #343C90; padding-bottom: 20px; }
+        .company h1 { color: #343C90; font-size: 24px; margin-bottom: 5px; }
         .company p { color: #666; font-size: 12px; }
         .invoice-info { text-align: right; }
-        .invoice-info h2 { color: #2F378A; font-size: 20px; }
+        .invoice-info h2 { color: #343C90; font-size: 20px; }
         .invoice-info p { margin-bottom: 5px; }
         .invoice-number { font-size: 18px; font-weight: bold; color: #333; margin-top: 10px; }
         .details { display: flex; justify-content: space-between; margin-bottom: 30px; }
         .box { width: 48%; border: 1px solid #ddd; padding: 15px; border-radius: 5px; }
-        .box h4 { color: #2F378A; margin-bottom: 10px; font-size: 14px; text-transform: uppercase; }
+        .box h4 { color: #343C90; margin-bottom: 10px; font-size: 14px; text-transform: uppercase; }
         .box p { margin-bottom: 5px; }
         table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
-        th { background: #2F378A; color: #fff; padding: 12px; text-align: left; }
+        th { background: #343C90; color: #fff; padding: 12px; text-align: left; }
         td { padding: 12px; border-bottom: 1px solid #ddd; }
         .text-right { text-align: right; }
         .totals { width: 300px; margin-left: auto; }

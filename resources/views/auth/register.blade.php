@@ -33,11 +33,11 @@
         html[lang="en"] body { font-family: 'EnglishFont', 'Inter', sans-serif; }
         
         :root {
-            --primary: #2F378A;
-            --primary-dark: #242E75;
-            --primary-hover: #C94A1C;
-            --secondary: #E25A24;
-            --secondary-dark: #C94A1C;
+            --primary: #343C90;
+            --primary-dark: #252E72;
+            --primary-hover: #C94718;
+            --secondary: #E05522;
+            --secondary-dark: #C94718;
             --accent: #1F2937;
             --success: #16A34A;
             --warning: #F59E0B;

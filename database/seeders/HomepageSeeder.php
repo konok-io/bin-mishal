@@ -17,10 +17,10 @@ class HomepageSeeder extends Seeder
     {
         // Statistics
         $statistics = [
-            ['key' => 'customers', 'label' => 'Happy Customers', 'label_bn' => 'সন্তুষ্ট গ্রাহক', 'label_ar' => 'العملاء السعداء', 'value' => 15000, 'icon' => 'heroicon-o-users', 'color' => '#2F378A'],
-            ['key' => 'tickets', 'label' => 'Tickets Sold', 'label_bn' => 'বিক্রিত টিকিট', 'label_ar' => 'التذاكر المباعة', 'value' => 25000, 'suffix' => '+', 'icon' => 'heroicon-o-ticket', 'color' => '#E25A24'],
+            ['key' => 'customers', 'label' => 'Happy Customers', 'label_bn' => 'সন্তুষ্ট গ্রাহক', 'label_ar' => 'العملاء السعداء', 'value' => 15000, 'icon' => 'heroicon-o-users', 'color' => '#343C90'],
+            ['key' => 'tickets', 'label' => 'Tickets Sold', 'label_bn' => 'বিক্রিত টিকিট', 'label_ar' => 'التذاكر المباعة', 'value' => 25000, 'suffix' => '+', 'icon' => 'heroicon-o-ticket', 'color' => '#E05522'],
             ['key' => 'visas', 'label' => 'Visas Processed', 'label_bn' => 'প্রক্রিয়াকৃত ভিসা', 'label_ar' => 'التأشيرات المعالجة', 'value' => 8500, 'icon' => 'heroicon-o-document-check', 'color' => '#1F2937'],
-            ['key' => 'years', 'label' => 'Years Experience', 'label_bn' => 'বছরের অভিজ্ঞতা', 'label_ar' => 'سنوات الخبرة', 'value' => 15, 'suffix' => '+', 'icon' => 'heroicon-o-star', 'color' => '#E25A24'],
+            ['key' => 'years', 'label' => 'Years Experience', 'label_bn' => 'বছরের অভিজ্ঞতা', 'label_ar' => 'سنوات الخبرة', 'value' => 15, 'suffix' => '+', 'icon' => 'heroicon-o-star', 'color' => '#E05522'],
         ];
 
         foreach ($statistics as $index => $stat) {
@@ -64,10 +64,10 @@ class HomepageSeeder extends Seeder
 
         // Feature Cards
         $featureCards = [
-            ['title' => '24/7 Support', 'title_bn' => '২৪/৭ সহায়তা', 'title_ar' => 'الدعم على مدار الساعة', 'icon' => 'bi bi-headset', 'number' => 24, 'number_suffix' => '/7', 'number_suffix_bn' => '/৭', 'number_suffix_ar' => '/٧', 'description' => 'Always available to help you', 'description_bn' => 'সবসময় আপনাকে সাহায্য করতে প্রস্তুত', 'description_ar' => 'متاح دائمًا لمساعدتك', 'color' => '#2F378A', 'sort_order' => 1],
-            ['title' => 'Best Prices', 'title_bn' => 'সেরা দাম', 'title_ar' => 'أفضل الأسعار', 'icon' => 'bi bi-tag', 'number' => 100, 'number_suffix' => '%', 'number_suffix_bn' => '%', 'number_suffix_ar' => '%', 'description' => 'Competitive pricing guaranteed', 'description_bn' => 'প্রতিযোগিতামূলক মূল্য নিশ্চিত', 'description_ar' => 'أسعار تنافسية مضمونة', 'color' => '#E25A24', 'sort_order' => 2],
+            ['title' => '24/7 Support', 'title_bn' => '২৪/৭ সহায়তা', 'title_ar' => 'الدعم على مدار الساعة', 'icon' => 'bi bi-headset', 'number' => 24, 'number_suffix' => '/7', 'number_suffix_bn' => '/৭', 'number_suffix_ar' => '/٧', 'description' => 'Always available to help you', 'description_bn' => 'সবসময় আপনাকে সাহায্য করতে প্রস্তুত', 'description_ar' => 'متاح دائمًا لمساعدتك', 'color' => '#343C90', 'sort_order' => 1],
+            ['title' => 'Best Prices', 'title_bn' => 'সেরা দাম', 'title_ar' => 'أفضل الأسعار', 'icon' => 'bi bi-tag', 'number' => 100, 'number_suffix' => '%', 'number_suffix_bn' => '%', 'number_suffix_ar' => '%', 'description' => 'Competitive pricing guaranteed', 'description_bn' => 'প্রতিযোগিতামূলক মূল্য নিশ্চিত', 'description_ar' => 'أسعار تنافسية مضمونة', 'color' => '#E05522', 'sort_order' => 2],
             ['title' => 'Easy Booking', 'title_bn' => 'সহজ বুকিং', 'title_ar' => 'الحجز السهل', 'icon' => 'bi bi-calendar-check', 'number' => 3, 'number_suffix' => ' Steps', 'number_suffix_bn' => ' ধাপ', 'number_suffix_ar' => ' خطوات', 'description' => 'Book in just 3 simple steps', 'description_bn' => 'মাত্র ৩টি সহজ ধাপে বুক করুন', 'description_ar' => 'احجز في 3 خطوات بسيطة فقط', 'color' => '#1F2937', 'sort_order' => 3],
-            ['title' => 'Trusted Agency', 'title_bn' => 'বিশ্বস্ত এজেন্সি', 'title_ar' => 'وكالة موثوقة', 'icon' => 'bi bi-shield-check', 'number' => 15, 'number_suffix' => '+ Years', 'number_suffix_bn' => '+ বছর', 'number_suffix_ar' => '+ سنوات', 'description' => 'Years of trusted service', 'description_bn' => 'বছরের বিশ্বস্ত সেবা', 'description_ar' => 'سنوات من الخدمة الموثوقة', 'color' => '#E25A24', 'sort_order' => 4],
+            ['title' => 'Trusted Agency', 'title_bn' => 'বিশ্বস্ত এজেন্সি', 'title_ar' => 'وكالة موثوقة', 'icon' => 'bi bi-shield-check', 'number' => 15, 'number_suffix' => '+ Years', 'number_suffix_bn' => '+ বছর', 'number_suffix_ar' => '+ سنوات', 'description' => 'Years of trusted service', 'description_bn' => 'বছরের বিশ্বস্ত সেবা', 'description_ar' => 'سنوات من الخدمة الموثوقة', 'color' => '#E05522', 'sort_order' => 4],
         ];
 
         foreach ($featureCards as $card) {

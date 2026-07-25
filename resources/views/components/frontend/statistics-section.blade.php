@@ -72,7 +72,7 @@ use App\Models\FeatureCard;
 <style>
 /* Statistics Section */
 .statistics-section {
-    background: linear-gradient(135deg, var(--primary-color, #2F378A) 0%, #242E75 100%);
+    background: linear-gradient(135deg, var(--primary-color, #343C90) 0%, #252E72 100%);
     color: #fff;
     position: relative;
     overflow: hidden;
@@ -124,7 +124,7 @@ use App\Models\FeatureCard;
 }
 
 .stat-card:hover .stat-icon {
-    background: var(--secondary-color, #E25A24);
+    background: var(--secondary-color, #E05522);
     transform: rotate(10deg) scale(1.1);
 }
 
@@ -145,7 +145,7 @@ use App\Models\FeatureCard;
 .stat-suffix {
     font-size: 2rem;
     margin-left: 5px;
-    color: var(--secondary-color, #E25A24);
+    color: var(--secondary-color, #E05522);
 }
 
 .stat-title {

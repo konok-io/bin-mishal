@@ -77,7 +77,7 @@ $activeTabs = Cache::remember('services_active_tabs', 600, function() {
 
 .section-badge {
     display: inline-block;
-    background: linear-gradient(135deg, var(--primary-color, #2F378A), var(--secondary-color, #E25A24));
+    background: linear-gradient(135deg, var(--primary-color, #343C90), var(--secondary-color, #E05522));
     color: #fff;
     padding: 6px 20px;
     border-radius: 25px;
@@ -124,7 +124,7 @@ $activeTabs = Cache::remember('services_active_tabs', 600, function() {
 .service-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, var(--primary-color, #2F378A), #242E75);
+    background: linear-gradient(135deg, var(--primary-color, #343C90), #252E72);
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -140,7 +140,7 @@ $activeTabs = Cache::remember('services_active_tabs', 600, function() {
 
 .service-card:hover .service-icon {
     transform: scale(1.1) rotate(5deg);
-    background: linear-gradient(135deg, var(--secondary-color, #E25A24), #C94A1C);
+    background: linear-gradient(135deg, var(--secondary-color, #E05522), #C94718);
 }
 
 .service-title {
@@ -178,7 +178,7 @@ $activeTabs = Cache::remember('services_active_tabs', 600, function() {
 }
 
 .service-features li i {
-    color: var(--primary-color, #2F378A);
+    color: var(--primary-color, #343C90);
     font-size: 12px;
 }
 
@@ -193,8 +193,8 @@ $activeTabs = Cache::remember('services_active_tabs', 600, function() {
 }
 
 .service-btn:hover {
-    background: var(--primary-color, #2F378A);
-    border-color: var(--primary-color, #2F378A);
+    background: var(--primary-color, #343C90);
+    border-color: var(--primary-color, #343C90);
     color: #fff;
 }
 
@@ -212,7 +212,7 @@ $activeTabs = Cache::remember('services_active_tabs', 600, function() {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary-color, #2F378A), var(--secondary-color, #E25A24));
+    background: linear-gradient(90deg, var(--primary-color, #343C90), var(--secondary-color, #E05522));
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s ease;

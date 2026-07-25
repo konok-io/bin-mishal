@@ -297,19 +297,19 @@ body.admin-login-wrap.TEWGTB-HINDI {
 
 :root {
   /* Bin Mishal Admin Theme Colors */
-  --admin-primary: #2F378A;
-  --admin-primary-dark: #242E75;
-  --admin-secondary: #E25A24;
-  --admin-secondary-dark: #C94A1C;
+  --admin-primary: #343C90;
+  --admin-primary-dark: #252E72;
+  --admin-secondary: #E05522;
+  --admin-secondary-dark: #C94718;
   --admin-accent: #1F2937;
   --admin-sidebar-width: 260px;
   --admin-bg: #F8FAFC;
   --admin-border: #E5E7EB;
   --admin-radius: 12px;
-  --admin-sidebar-bg: #2F378A;
+  --admin-sidebar-bg: #343C90;
   --admin-sidebar-text: #FFFFFF;
-  --admin-sidebar-hover: #E25A24;
-  --admin-sidebar-active-bg: #E25A24;
+  --admin-sidebar-hover: #E05522;
+  --admin-sidebar-active-bg: #E05522;
 }
 
 body.admin-body,
@@ -556,7 +556,7 @@ body.admin-login-wrap {
   font-size: 0.9rem;
 }
 .table-admin tbody tr:hover {
-  background-color: rgba(47, 55, 138, 0.05);
+  background-color: rgba(52, 60, 144, 0.05);
 }
 .table-admin img.thumb {
   width: 46px;
@@ -578,7 +578,7 @@ body.admin-login-wrap {
 .admin-body .form-control:focus,
 .admin-body .form-select:focus {
   border-color: var(--admin-primary);
-  box-shadow: 0 0 0 0.2rem rgba(47, 55, 138, 0.15);
+  box-shadow: 0 0 0 0.2rem rgba(52, 60, 144, 0.15);
 }
 
 /* ---------------- Login ---------------- */
@@ -587,7 +587,7 @@ body.admin-login-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #2F378A 0%, #1F2937 100%);
+  background: linear-gradient(135deg, #343C90 0%, #1F2937 100%);
   padding: 2rem;
 }
 .admin-login-card {
@@ -596,7 +596,7 @@ body.admin-login-wrap {
   padding: 2.75rem;
   width: 100%;
   max-width: 420px;
-  box-shadow: 0 30px 70px rgba(47, 55, 138, 0.3);
+  box-shadow: 0 30px 70px rgba(52, 60, 144, 0.3);
 }
 .admin-login-card .logo {
   color: var(--admin-primary);
@@ -606,7 +606,7 @@ body.admin-login-wrap {
 }
 .admin-login-card .form-control:focus {
   border-color: var(--admin-primary);
-  box-shadow: 0 0 0 0.2rem rgba(47, 55, 138, 0.15);
+  box-shadow: 0 0 0 0.2rem rgba(52, 60, 144, 0.20);
 }
 
 @media (max-width: 991.98px) {

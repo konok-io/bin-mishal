@@ -21,7 +21,7 @@
         
         .header {
             text-align: center;
-            border-bottom: 2px solid #2F378A;
+            border-bottom: 2px solid #343C90;
             padding-bottom: 15px;
             margin-bottom: 20px;
         }
@@ -29,7 +29,7 @@
         .company-name {
             font-size: 24px;
             font-weight: bold;
-            color: #2F378A;
+            color: #343C90;
             margin-bottom: 5px;
         }
         
@@ -43,7 +43,7 @@
             font-size: 18px;
             font-weight: bold;
             margin: 20px 0;
-            color: #2F378A;
+            color: #343C90;
         }
         
         .info-grid {
@@ -80,7 +80,7 @@
         .section-title {
             font-size: 14px;
             font-weight: bold;
-            background: #2F378A;
+            background: #343C90;
             color: white;
             padding: 8px 12px;
             margin-bottom: 0;
@@ -114,7 +114,7 @@
         }
         
         .positive {
-            color: #2F378A;
+            color: #343C90;
         }
         
         .negative {
@@ -126,7 +126,7 @@
         }
         
         .net-table th {
-            background: #2F378A;
+            background: #343C90;
             color: white;
             padding: 12px;
             text-align: right;
@@ -138,11 +138,11 @@
             font-size: 16px;
             font-weight: bold;
             text-align: right;
-            border: 2px solid #2F378A;
+            border: 2px solid #343C90;
         }
         
         .net-salary {
-            color: #E25A24;
+            color: #E05522;
             font-size: 20px;
         }
         

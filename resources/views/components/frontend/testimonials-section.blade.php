@@ -136,7 +136,7 @@ use App\Models\Testimonial;
     align-items: center;
     text-align: center;
     padding-right: 30px;
-    border-right: 2px solid var(--primary-color, #2F378A);
+    border-right: 2px solid var(--primary-color, #343C90);
 }
 
 .author-avatar {
@@ -144,7 +144,7 @@ use App\Models\Testimonial;
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid var(--primary-color, #2F378A);
+    border: 4px solid var(--primary-color, #343C90);
     margin-bottom: 15px;
 }
 
@@ -152,7 +152,7 @@ use App\Models\Testimonial;
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-color, #2F378A), var(--secondary-color, #E25A24));
+    background: linear-gradient(135deg, var(--primary-color, #343C90), var(--secondary-color, #E05522));
     color: #fff;
     font-size: 40px;
     font-weight: 700;
@@ -177,7 +177,7 @@ use App\Models\Testimonial;
 
 .author-info .company {
     font-size: 0.85rem;
-    color: var(--primary-color, #2F378A);
+    color: var(--primary-color, #343C90);
     font-weight: 500;
 }
 
@@ -191,7 +191,7 @@ use App\Models\Testimonial;
     top: -10px;
     left: 0;
     font-size: 50px;
-    color: var(--secondary-color, #E25A24);
+    color: var(--secondary-color, #E05522);
     opacity: 0.3;
 }
 
@@ -225,7 +225,7 @@ use App\Models\Testimonial;
 .carousel-control-next {
     width: 50px;
     height: 50px;
-    background: var(--primary-color, #2F378A);
+    background: var(--primary-color, #343C90);
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
@@ -260,7 +260,7 @@ use App\Models\Testimonial;
 }
 
 .carousel-indicators button.active {
-    background: var(--primary-color, #2F378A);
+    background: var(--primary-color, #343C90);
     width: 30px;
     border-radius: 6px;
 }
@@ -273,7 +273,7 @@ use App\Models\Testimonial;
     
     .testimonial-author {
         border-right: none;
-        border-bottom: 2px solid var(--primary-color, #2F378A);
+        border-bottom: 2px solid var(--primary-color, #343C90);
         padding-right: 0;
         padding-bottom: 25px;
         margin-bottom: 25px;
