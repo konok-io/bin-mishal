@@ -287,6 +287,21 @@ class PublicController extends Controller
     }
 
     /**
+     * Gallery page
+     */
+    public function gallery(): View
+    {
+        $galleryItems = \App\Models\GalleryItem::active()
+            ->orderBy('order')
+            ->get();
+            
+        $photos = $galleryItems->where('type', 'photo');
+        $videos = $galleryItems->where('type', 'video');
+            
+        return view('public.pages.gallery', compact('galleryItems', 'photos', 'videos'));
+    }
+
+    /**
      * Single career detail
      */
     public function careerDetail(string $slug)

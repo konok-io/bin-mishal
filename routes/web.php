@@ -372,6 +372,9 @@ Route::prefix('{locale}')
         // Testimonials
         Route::get('/testimonials', [\App\Http\Controllers\Public\PublicController::class, 'testimonials'])->name('testimonials');
         
+        // Gallery
+        Route::get('/gallery', [\App\Http\Controllers\Public\PublicController::class, 'gallery'])->name('gallery');
+        
         // Careers
         Route::get('/careers', [\App\Http\Controllers\Public\PublicController::class, 'careers'])->name('careers');
         Route::get('/careers/{slug}', [\App\Http\Controllers\Public\PublicController::class, 'careerDetail'])->name('careers.detail');
