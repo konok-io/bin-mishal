@@ -10,7 +10,7 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditDownload extends EditRecord
 {
-    protected static ?string $resource = DownloadResource::class;
+    protected static string $resource = DownloadResource::class;
 
     protected function getHeaderActions(): array
     {

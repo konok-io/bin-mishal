@@ -13,7 +13,7 @@ use Filament\Infolists\Components\IconEntry;
 
 class ViewJob extends ViewRecord
 {
-    protected static ?string $resource = JobResource::class;
+    protected static string $resource = JobResource::class;
 
     public function infolist(Infolist $infolist): Infolist
     {

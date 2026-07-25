@@ -10,7 +10,7 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListNotices extends ListRecords
 {
-    protected static ?string $resource = NoticeResource::class;
+    protected static string $resource = NoticeResource::class;
 
     protected function getHeaderActions(): array
     {

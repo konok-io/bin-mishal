@@ -10,7 +10,7 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListInvestorServices extends ListRecords
 {
-    protected static ?string $resource = InvestorServiceResource::class;
+    protected static string $resource = InvestorServiceResource::class;
 
     protected function getHeaderActions(): array
     {

@@ -10,7 +10,7 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditPostComment extends EditRecord
 {
-    protected static ?string $resource = PostCommentResource::class;
+    protected static string $resource = PostCommentResource::class;
 
     protected function getHeaderActions(): array
     {

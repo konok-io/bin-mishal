@@ -9,5 +9,5 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListInvestorApplications extends ListRecords
 {
-    protected static ?string $resource = InvestorApplicationResource::class;
+    protected static string $resource = InvestorApplicationResource::class;
 }

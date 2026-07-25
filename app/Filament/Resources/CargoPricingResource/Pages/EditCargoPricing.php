@@ -10,7 +10,7 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditCargoPricing extends EditRecord
 {
-    protected static ?string $resource = CargoPricingResource::class;
+    protected static string $resource = CargoPricingResource::class;
 
     protected function getHeaderActions(): array
     {

@@ -10,7 +10,7 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListSeoSettings extends ListRecords
 {
-    protected static ?string $resource = SeoSettingResource::class;
+    protected static string $resource = SeoSettingResource::class;
 
     protected function getHeaderActions(): array
     {

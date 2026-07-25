@@ -10,7 +10,7 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListSocialLinks extends ListRecords
 {
-    protected static ?string $resource = SocialLinkResource::class;
+    protected static string $resource = SocialLinkResource::class;
 
     protected function getHeaderActions(): array
     {

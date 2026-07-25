@@ -9,5 +9,5 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateCargoPricing extends CreateRecord
 {
-    protected static ?string $resource = CargoPricingResource::class;
+    protected static string $resource = CargoPricingResource::class;
 }

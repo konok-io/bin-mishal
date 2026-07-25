@@ -9,5 +9,5 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateNotificationTemplate extends CreateRecord
 {
-    protected static ?string $resource = NotificationTemplateResource::class;
+    protected static string $resource = NotificationTemplateResource::class;
 }

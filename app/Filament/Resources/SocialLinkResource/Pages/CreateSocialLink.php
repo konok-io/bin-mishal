@@ -9,5 +9,5 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateSocialLink extends CreateRecord
 {
-    protected static ?string $resource = SocialLinkResource::class;
+    protected static string $resource = SocialLinkResource::class;
 }

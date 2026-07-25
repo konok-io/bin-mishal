@@ -10,7 +10,7 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListHeroTabs extends ListRecords
 {
-    protected static ?string $resource = HeroTabResource::class;
+    protected static string $resource = HeroTabResource::class;
 
     protected function getHeaderActions(): array
     {

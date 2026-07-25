@@ -9,5 +9,5 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateDownload extends CreateRecord
 {
-    protected static ?string $resource = DownloadResource::class;
+    protected static string $resource = DownloadResource::class;
 }

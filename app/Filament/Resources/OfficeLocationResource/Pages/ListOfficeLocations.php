@@ -8,7 +8,7 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListOfficeLocations extends ListRecords
 {
-    protected static ?string $resource = OfficeLocationResource::class;
+    protected static string $resource = OfficeLocationResource::class;
 
     protected function getHeaderActions(): array
     {

@@ -10,7 +10,7 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListQuickServices extends ListRecords
 {
-    protected static ?string $resource = QuickServiceResource::class;
+    protected static string $resource = QuickServiceResource::class;
 
     protected function getHeaderActions(): array
     {

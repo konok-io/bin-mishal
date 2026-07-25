@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\AuditLogResource\Pages;
 
-use App\Filament\Resources\AuditLogResource;
+use App\Filament\Resources\Pages\BasePage;
 use Filament\Resources\Pages\ListRecords;
 
-class ListAuditLogs extends ListRecords
+class ListAuditLogs extends BasePage
 {
-    protected static ?string $resource = AuditLogResource::class;
+    protected static string $resource = \App\Filament\Resources\AuditLogResource::class;
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListRecords::route('/'),
+        ];
+    }
 }

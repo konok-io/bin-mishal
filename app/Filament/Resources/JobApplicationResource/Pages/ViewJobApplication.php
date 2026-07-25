@@ -14,7 +14,7 @@ use Filament\Infolists\Components\ImageEntry;
 
 class ViewJobApplication extends ViewRecord
 {
-    protected static ?string $resource = JobApplicationResource::class;
+    protected static string $resource = JobApplicationResource::class;
 
     public function infolist(Infolist $infolist): Infolist
     {

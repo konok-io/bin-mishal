@@ -9,5 +9,5 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditBookingConfiguration extends EditRecord
 {
-    protected static ?string $resource = BookingConfigurationResource::class;
+    protected static string $resource = BookingConfigurationResource::class;
 }

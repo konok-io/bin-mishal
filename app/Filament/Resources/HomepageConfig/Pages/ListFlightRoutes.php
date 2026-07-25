@@ -10,7 +10,7 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListFlightRoutes extends ListRecords
 {
-    protected static ?string $resource = FlightRouteResource::class;
+    protected static string $resource = FlightRouteResource::class;
 
     protected function getHeaderActions(): array
     {

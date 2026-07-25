@@ -10,7 +10,7 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditInvestorService extends EditRecord
 {
-    protected static ?string $resource = InvestorServiceResource::class;
+    protected static string $resource = InvestorServiceResource::class;
 
     protected function getHeaderActions(): array
     {

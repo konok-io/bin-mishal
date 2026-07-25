@@ -8,7 +8,7 @@ use Filament\Resources\Pages\ViewRecord;
 
 class ViewOfficeLocation extends ViewRecord
 {
-    protected static ?string $resource = OfficeLocationResource::class;
+    protected static string $resource = OfficeLocationResource::class;
 
     protected function getHeaderActions(): array
     {

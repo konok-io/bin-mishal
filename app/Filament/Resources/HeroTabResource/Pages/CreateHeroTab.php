@@ -9,5 +9,5 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateHeroTab extends CreateRecord
 {
-    protected static ?string $resource = HeroTabResource::class;
+    protected static string $resource = HeroTabResource::class;
 }

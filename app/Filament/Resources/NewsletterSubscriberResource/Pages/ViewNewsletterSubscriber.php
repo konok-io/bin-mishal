@@ -8,7 +8,7 @@ use Filament\Resources\Pages\ViewRecord;
 
 class ViewNewsletterSubscriber extends ViewRecord
 {
-    protected static ?string $resource = NewsletterSubscriberResource::class;
+    protected static string $resource = NewsletterSubscriberResource::class;
 
     protected function getHeaderActions(): array
     {

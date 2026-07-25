@@ -9,5 +9,5 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditInvestorApplication extends EditRecord
 {
-    protected static ?string $resource = InvestorApplicationResource::class;
+    protected static string $resource = InvestorApplicationResource::class;
 }

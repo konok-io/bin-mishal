@@ -9,5 +9,5 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateInvestorService extends CreateRecord
 {
-    protected static ?string $resource = InvestorServiceResource::class;
+    protected static string $resource = InvestorServiceResource::class;
 }

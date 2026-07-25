@@ -15,7 +15,7 @@ use Filament\Infolists\Components\Grid;
 
 class ViewContactMessage extends ViewRecord
 {
-    protected static ?string $resource = ContactMessageResource::class;
+    protected static string $resource = ContactMessageResource::class;
 
     protected function getHeaderActions(): array
     {
