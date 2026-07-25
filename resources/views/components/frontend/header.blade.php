@@ -60,8 +60,8 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
                     
                     <!-- Auth Links -->
                     <div class="auth-links d-none d-lg-flex">
-                        <a href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}" class="me-2">@lang('auth.login')</a>
-                        <a href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}" class="btn btn-sm btn-primary">@lang('auth.register')</a>
+                        <a href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}" class="me-2" title="@lang('auth.login')">@lang('auth.login')</a>
+                        <a href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}" class="btn btn-sm btn-primary" title="@lang('auth.register')">@lang('auth.register')</a>
                     </div>
                 </div>
             </div>
@@ -139,10 +139,10 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
                     
                     <!-- Mobile Auth -->
                     <li class="nav-item d-lg-none mobile-auth">
-                        <a class="nav-link" href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}">@lang('auth.login')</a>
+                        <a class="nav-link" href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}" title="@lang('auth.login')">@lang('auth.login')</a>
                     </li>
                     <li class="nav-item d-lg-none mobile-auth">
-                        <a class="nav-link text-primary" href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}">@lang('auth.register')</a>
+                        <a class="nav-link text-primary" href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}" title="@lang('auth.register')">@lang('auth.register')</a>
                     </li>
                 </ul>
             </div>
