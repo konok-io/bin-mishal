@@ -482,14 +482,39 @@ function getHeroTabIcon($tab) {
 }
 
 .hero-booking-card {
-    background: #fff;
+    background: #343C90;
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
     overflow: hidden;
+    color: #fff;
+}
+
+.hero-booking-card .form-control,
+.hero-booking-card .form-select {
+    background: #fff;
+    color: #1F2937;
+    border: 1px solid #ddd;
+}
+
+.hero-booking-card .form-control:focus,
+.hero-booking-card .form-select:focus {
+    background: #fff;
+    color: #1F2937;
+    border-color: var(--primary-color, #E05522);
+    box-shadow: 0 0 0 0.2rem rgba(224, 85, 34, 0.25);
+}
+
+.hero-booking-card label {
+    color: #fff;
+    font-weight: 500;
+}
+
+.hero-booking-card .btn {
+    color: #fff;
 }
 
 .booking-tabs {
-    background: #f8f9fa;
+    background: rgba(255,255,255,0.1);
     border-bottom: none;
     padding: 15px 15px 0;
 }
@@ -497,7 +522,7 @@ function getHeroTabIcon($tab) {
 .booking-tabs .nav-link {
     border: none;
     border-radius: 10px 10px 0 0;
-    color: #666;
+    color: rgba(255,255,255,0.7);
     font-weight: 500;
     padding: 12px 15px;
     display: flex;
@@ -512,22 +537,22 @@ function getHeroTabIcon($tab) {
 
 .booking-tabs .nav-link.active {
     background: #fff;
-    color: var(--primary-color, #E05522);
+    color: #343C90;
     box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
 }
 
 .booking-tabs .nav-link:hover:not(.active) {
-    color: var(--primary-color, #E05522);
+    color: #fff;
 }
 
 .booking-content {
     padding: 25px;
-    background: #fff;
+    background: transparent;
 }
 
 .form-label {
     font-weight: 500;
-    color: #333;
+    color: #fff;
     font-size: 14px;
     margin-bottom: 6px;
 }
@@ -537,11 +562,15 @@ function getHeroTabIcon($tab) {
     padding: 10px 15px;
     border: 2px solid #e9ecef;
     transition: all 0.3s;
+    background: #fff;
+    color: #1F2937;
 }
 
 .form-control:focus, .form-select:focus {
     border-color: var(--primary-color, #E05522);
-    box-shadow: 0 0 0 3px rgba(0,108,53,0.1);
+    box-shadow: 0 0 0 3px rgba(224, 85, 34, 0.2);
+    background: #fff;
+    color: #1F2937;
 }
 
 .btn-primary {
@@ -551,12 +580,13 @@ function getHeroTabIcon($tab) {
     border-radius: 10px;
     font-weight: 600;
     transition: all 0.3s;
+    color: #fff;
 }
 
 .btn-primary:hover {
     background: #C94718;
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(0,108,53,0.3);
+    box-shadow: 0 5px 20px rgba(224, 85, 34, 0.4);
 }
 
 /* Responsive */
