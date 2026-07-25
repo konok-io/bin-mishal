@@ -107,7 +107,7 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
                     
                     <!-- Services Dropdown (Dynamic from HeroTabs) -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-plane"></i> @lang('nav.services') <i class="fas fa-chevron-down"></i>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
@@ -358,13 +358,15 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     color: #E05522;
 }
 
-/* Dropdown - Simple Hover */
+/* Dropdown - Hover with Animation */
 .navbar-nav .dropdown {
     position: relative;
 }
 
 .navbar-nav .dropdown-menu {
-    display: none;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
     position: absolute;
     border: none;
     border-radius: 12px;
@@ -372,10 +374,17 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     padding: 12px;
     min-width: 200px;
     top: 100%;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
 }
 
-.navbar-nav .dropdown:hover > .dropdown-menu {
-    display: block;
+.navbar-nav .dropdown:hover > .dropdown-menu,
+.navbar-nav .dropdown.show > .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 /* Dropdown Items */
