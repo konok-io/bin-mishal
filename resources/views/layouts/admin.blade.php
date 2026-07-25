@@ -137,6 +137,25 @@
       [data-theme="dark"] .admin-sidebar .nav-link{color:#9B98C7}
       [data-theme="dark"] .admin-sidebar .nav-link:hover{color:#fff;background:rgba(79,47,232,0.25)}
       [data-theme="dark"] .admin-sidebar .nav-link.active{color:#fff;background:linear-gradient(135deg,#4F2FE8,#7C3AED)}
+      /* Dark mode sidebar shapes */
+      [data-theme="dark"] .sidebar-bg-shapes .shape-circle {
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 50%, transparent 70%);
+      }
+      [data-theme="dark"] .shape-1 {
+        background: radial-gradient(circle at 30% 30%, rgba(224,85,34,0.4) 0%, rgba(224,85,34,0.15) 50%, transparent 70%);
+      }
+      [data-theme="dark"] .shape-2 {
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 50%, transparent 70%);
+      }
+      [data-theme="dark"] .shape-3 {
+        background: radial-gradient(circle at 30% 30%, rgba(79,70,229,0.4) 0%, rgba(79,70,229,0.2) 50%, transparent 70%);
+      }
+      [data-theme="dark"] .shape-ring-1 {
+        border-color: rgba(224,85,34,0.2);
+      }
+      [data-theme="dark"] .shape-ring-2 {
+        border-color: rgba(79,70,229,0.25);
+      }
       /* Sidebar collapse styles */
       .admin-sidebar.collapsed{width:70px!important}
       .admin-sidebar.collapsed .sidebar-brand span,
@@ -216,11 +235,92 @@
       body.TEWGTB-ARABIC .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
       body.TEWGTB-URDU .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
       body.TEWGTB-HINDI .admin-sidebar.collapsed ~ .admin-content{margin-left:70px!important}
-      .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
+      .admin-sidebar{display:flex;flex-direction:column;min-height:100vh;position:relative;overflow:hidden}
       .admin-sidebar .nav::-webkit-scrollbar{display:none}
       .admin-sidebar .nav{-ms-overflow-style:none;scrollbar-width:none}
       .admin-sidebar .sidebar-brand{height:auto;min-height:64px}
       .admin-sidebar.collapsed .sidebar-brand{height:auto;min-height:64px}
+      
+      /* Sidebar Dynamic Background Shapes */
+      .sidebar-bg-shapes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+      
+      .sidebar-bg-shapes .shape-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.03) 50%, transparent 70%);
+      }
+      
+      .shape-1 {
+        width: 250px;
+        height: 250px;
+        top: -80px;
+        right: -60px;
+        background: radial-gradient(circle at 30% 30%, rgba(224,85,34,0.3) 0%, rgba(224,85,34,0.1) 50%, transparent 70%);
+      }
+      
+      .shape-2 {
+        width: 180px;
+        height: 180px;
+        bottom: 100px;
+        left: -50px;
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 50%, transparent 70%);
+      }
+      
+      .shape-3 {
+        width: 100px;
+        height: 100px;
+        top: 200px;
+        right: -30px;
+        background: radial-gradient(circle at 30% 30%, rgba(52,60,144,0.4) 0%, rgba(52,60,144,0.15) 50%, transparent 70%);
+      }
+      
+      .shape-4 {
+        width: 60px;
+        height: 60px;
+        bottom: 200px;
+        left: 20px;
+        background: radial-gradient(circle at 30% 30%, rgba(224,85,34,0.25) 0%, rgba(224,85,34,0.08) 50%, transparent 70%);
+      }
+      
+      .sidebar-bg-shapes .shape-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 2px solid rgba(255,255,255,0.08);
+        background: transparent;
+      }
+      
+      .shape-ring-1 {
+        width: 300px;
+        height: 300px;
+        top: -100px;
+        right: -100px;
+        border-color: rgba(224,85,34,0.15);
+      }
+      
+      .shape-ring-2 {
+        width: 200px;
+        height: 200px;
+        bottom: -50px;
+        left: -80px;
+        border-color: rgba(52,60,144,0.2);
+      }
+      
+      /* Make nav content appear above shapes */
+      .admin-sidebar .sidebar-brand,
+      .admin-sidebar .nav,
+      .admin-sidebar .sidebar-collapse-btn {
+        position: relative;
+        z-index: 1;
+      }
     </style>
     @stack('styles')
 </head>
@@ -232,6 +332,16 @@
 
     {{-- ============ SIDEBAR ============ --}}
     <aside class="admin-sidebar">
+        <!-- Dynamic Background Shapes -->
+        <div class="sidebar-bg-shapes">
+            <div class="shape-circle shape-1"></div>
+            <div class="shape-circle shape-2"></div>
+            <div class="shape-circle shape-3"></div>
+            <div class="shape-circle shape-4"></div>
+            <div class="shape-ring shape-ring-1"></div>
+            <div class="shape-ring shape-ring-2"></div>
+        </div>
+        
         <div class="sidebar-brand d-flex align-items-center justify-content-between w-100">
             <div class="d-flex align-items-center gap-2">
                 <i class="fa-solid fa-plane site-logo-icon"></i>
