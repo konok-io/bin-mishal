@@ -13,52 +13,57 @@ $activeTabs = Cache::remember($cacheKey, 600, function() {
     }
 });
 
-// Default tabs if database is empty
-$defaultTabs = [
-    (object)[
+// Default tabs array if database is empty
+$defaultTabsArray = [
+    [
         'tab_key' => 'flight',
         'icon' => 'fas fa-plane',
         'label' => ['en' => 'Flight', 'bn' => 'ফ্লাইট', 'ar' => 'رحلة طيران'],
     ],
-    (object)[
+    [
         'tab_key' => 'umrah',
         'icon' => 'fas fa-kaaba',
         'label' => ['en' => 'Umrah', 'bn' => 'উমরাহ', 'ar' => 'عمرة'],
     ],
-    (object)[
+    [
         'tab_key' => 'visa',
         'icon' => 'fas fa-passport',
         'label' => ['en' => 'Visa', 'bn' => 'ভিসা', 'ar' => 'تأشيرة'],
     ],
-    (object)[
+    [
         'tab_key' => 'cargo',
         'icon' => 'fas fa-box',
         'label' => ['en' => 'Cargo', 'bn' => 'কার্গো', 'ar' => 'شحن'],
     ],
-    (object)[
+    [
         'tab_key' => 'appointment',
         'icon' => 'fas fa-calendar-check',
         'label' => ['en' => 'Appointment', 'bn' => 'অ্যাপয়েন্টমেন্ট', 'ar' => 'موعد'],
     ],
-    (object)[
+    [
         'tab_key' => 'investor',
         'icon' => 'fas fa-chart-line',
         'label' => ['en' => 'Investor', 'bn' => 'বিনিয়োগকারী', 'ar' => 'مستثمر'],
     ],
 ];
 
-// Use default tabs if database is empty
-$displayTabs = (!$activeTabs->isEmpty()) ? $activeTabs : $defaultTabs;
-
 // Helper function for translated label
 function getHeroTabLabel($tab) {
     $locale = app()->getLocale();
-    $label = $tab->label ?? 'Service';
+    $label = is_array($tab) ? ($tab['label'] ?? 'Service') : ($tab->label ?? 'Service');
     if (is_array($label)) {
         return $label[$locale] ?? $label['en'] ?? 'Service';
     }
     return $label;
 }
+
+// Helper function for icon
+function getHeroTabIcon($tab) {
+    return is_array($tab) ? ($tab['icon'] ?? 'fas fa-plane') : ($tab->icon ?? 'fas fa-plane');
+}
+
+// Use database tabs if available, otherwise use default
+$displayTabs = (!$activeTabs->isEmpty()) ? $activeTabs->toArray() : $defaultTabsArray;
 ?>
 
 <!-- Dynamic Hero Section Component -->
@@ -105,12 +110,12 @@ function getHeroTabLabel($tab) {
                         @foreach($displayTabs as $index => $tab)
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link {{ $index === 0 ? 'active' : '' }}" 
-                                        id="{{ $tab->tab_key }}-tab" 
+                                        id="{{ $tab['tab_key'] }}-tab" 
                                         data-bs-toggle="tab" 
-                                        data-bs-target="#{{ $tab->tab_key }}-content"
+                                        data-bs-target="#{{ $tab['tab_key'] }}-content"
                                         type="button" 
                                         role="tab">
-                                    <i class="{{ $tab->icon ?? 'fas fa-plane' }}"></i>
+                                    <i class="{{ $tab['icon'] ?? 'fas fa-plane' }}"></i>
                                     <span>{{ getHeroTabLabel($tab) }}</span>
                                 </button>
                             </li>
