@@ -241,10 +241,14 @@ class HeroTab extends Model
 
     public static function clearCache(): void
     {
+        // Clear all locale-specific caches
         foreach (['bn', 'en', 'ar'] as $locale) {
             Cache::forget("hero_tabs_{$locale}");
             Cache::forget("hero_tabs_nav_{$locale}");
         }
+        // Also clear the legacy cache key (without locale)
+        Cache::forget("header_nav_tabs");
+        Cache::forget("services_active_tabs");
     }
 
     protected static function booted(): void

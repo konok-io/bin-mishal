@@ -135,21 +135,33 @@
     @include('components.frontend.hero-section')
     
     <!-- Booking Search Tabs -->
+    @php
+        $bookingTabs = \Illuminate\Support\Facades\Cache::remember('welcome_booking_tabs_' . app()->getLocale(), 600, function() {
+            try {
+                return \App\Models\HeroTab::where('is_active', true)->ordered()->take(6)->get() ?? collect();
+            } catch (\Exception $e) {
+                return collect();
+            }
+        });
+    @endphp
     <section class="booking-search py-5 bg-light">
         <div class="container">
             <div class="booking-tabs bg-white rounded-4 shadow-lg p-4">
                 <ul class="nav nav-pills mb-4" id="bookingTabs" role="tablist">
-                    @foreach(\App\Models\HeroTab::where('is_active', true)->ordered()->take(6)->get() as $index => $tab)
+                    @foreach($bookingTabs as $index => $tab)
+                        @if($tab instanceof \App\Models\HeroTab)
                         <li class="nav-item" role="presentation">
                             <button class="nav-link {{ $index === 0 ? 'active' : '' }}" id="{{ $tab->tab_key }}-tab" data-bs-toggle="pill" data-bs-target="#{{ $tab->tab_key }}" type="button" role="tab">
                                 <i class="{{ $tab->icon }}"></i>
                                 {{ $tab->translated_label }}
                             </button>
                         </li>
+                        @endif
                     @endforeach
                 </ul>
                 <div class="tab-content p-4" id="bookingTabsContent">
-                    @foreach(\App\Models\HeroTab::where('is_active', true)->ordered()->take(6)->get() as $index => $tab)
+                    @foreach($bookingTabs as $index => $tab)
+                        @if($tab instanceof \App\Models\HeroTab)
                         <div class="tab-pane fade {{ $index === 0 ? 'show active' : '' }}" id="{{ $tab->tab_key }}" role="tabpanel">
                             <form action="{{ route('services.airticket', ['locale' => app()->getLocale()]) }}" method="GET" class="row g-3">
                                 @if($tab->tab_key === 'flight')
@@ -188,6 +200,7 @@
                                 @endif
                             </form>
                         </div>
+                        @endif
                     @endforeach
                 </div>
             </div>

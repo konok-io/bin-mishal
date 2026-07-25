@@ -5,8 +5,9 @@ use App\Models\CMS\Setting;
 use App\Models\HeroTab;
 use Illuminate\Support\Facades\Cache;
 
-// Get HeroTabs with fallback
-$navTabs = Cache::remember('header_nav_tabs', 600, function() {
+// Get HeroTabs with fallback - cache key includes locale for correct translations
+$cacheKey = 'header_nav_tabs_' . app()->getLocale();
+$navTabs = Cache::remember($cacheKey, 600, function() {
     try {
         return \App\Models\HeroTab::where('is_active', 1)
             ->where('show_in_nav', 1)
@@ -101,12 +102,14 @@ $navTabs = Cache::remember('header_nav_tabs', 600, function() {
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
                             @foreach($navTabs as $tab)
+                                @if($tab instanceof \App\Models\HeroTab)
                                 <li>
                                     <a class="dropdown-item" href="{{ $tab->button_url_resolved ?? '#' }}">
                                         <i class="{{ $tab->icon ?? 'fas fa-angle-right' }}"></i>
                                         {{ $tab->translated_label }}
                                     </a>
                                 </li>
+                                @endif
                             @endforeach
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ route('services', ['locale' => app()->getLocale()]) }}">@lang('nav.all_services')</a></li>

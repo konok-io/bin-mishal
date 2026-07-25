@@ -1,16 +1,17 @@
 <?php
 use App\Models\HeroTab;
+use App\Models\CMS\Setting;
 use Illuminate\Support\Facades\Cache;
 
-// Get active tabs with fallback
-$activeTabs = Cache::remember('hero_active_tabs', 600, function() {
+// Get active tabs with fallback - cache key includes locale for correct translations
+$cacheKey = 'hero_active_tabs_' . app()->getLocale();
+$activeTabs = Cache::remember($cacheKey, 600, function() {
     try {
         return \App\Models\HeroTab::where('is_active', 1)->orderBy('order')->get() ?? collect();
     } catch (\Exception $e) {
         return collect();
     }
 });
-use App\Models\CMS\Setting;
 ?>
 
 <!-- Dynamic Hero Section Component -->
@@ -55,6 +56,7 @@ use App\Models\CMS\Setting;
                     <!-- Service Tabs -->
                     <ul class="nav nav-tabs booking-tabs" id="bookingTabs" role="tablist">
                         @foreach($activeTabs as $index => $tab)
+                            @if($tab instanceof \App\Models\HeroTab)
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link {{ $index === 0 ? 'active' : '' }}" 
                                         id="{{ $tab->tab_key }}-tab" 
@@ -66,6 +68,7 @@ use App\Models\CMS\Setting;
                                     <span>{{ $tab->translated_label }}</span>
                                 </button>
                             </li>
+                            @endif
                         @endforeach
                     </ul>
                     

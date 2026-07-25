@@ -1,14 +1,15 @@
 {{-- Dynamic Hero Section with Service Tabs --}}
 @php
-    // Get tabs with fallback to prevent errors
-    $tabs = \Illuminate\Support\Facades\Cache::remember('dynamic_hero_tabs', 600, function() {
+    // Get tabs with fallback to prevent errors - cache key includes locale
+    $cacheKey = 'dynamic_hero_tabs_' . app()->getLocale();
+    $tabs = \Illuminate\Support\Facades\Cache::remember($cacheKey, 600, function() {
         try {
             return \App\Models\HeroTab::where('is_active', 1)->orderBy('order')->get() ?? collect();
         } catch (\Exception $e) {
             return collect();
         }
     });
-    $firstTab = $tabs->first();
+    $firstTab = $tabs->first() instanceof \App\Models\HeroTab ? $tabs->first() : null;
 @endphp
 
 <section class="hero-section" @if($firstTab && $firstTab->image) style="background-image: url('{{ $firstTab->image_url }}'); background-size: cover; background-position: center;" @endif>
@@ -47,6 +48,7 @@
                     {{-- Tab Navigation --}}
                     <ul class="nav nav-tabs search-tabs mb-3" id="heroTabs" role="tablist">
                         @foreach($tabs as $index => $tab)
+                            @if($tab instanceof \App\Models\HeroTab)
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link {{ $index === 0 ? 'active' : '' }}" 
                                         id="{{ $tab->tab_key }}-tab" 
@@ -60,12 +62,14 @@
                                     <span class="d-none d-md-inline">{{ $tab->translated_label }}</span>
                                 </button>
                             </li>
+                            @endif
                         @endforeach
                     </ul>
                     
                     {{-- Tab Content --}}
                     <div class="tab-content p-3" id="heroTabsContent">
                         @foreach($tabs as $index => $tab)
+                            @if($tab instanceof \App\Models\HeroTab)
                             <div class="tab-pane fade {{ $index === 0 ? 'show active' : '' }}" 
                                  id="{{ $tab->tab_key }}-pane" 
                                  role="tabpanel" 
@@ -103,6 +107,7 @@
                                         <p class="text-muted text-center">Coming soon...</p>
                                 @endswitch
                             </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>

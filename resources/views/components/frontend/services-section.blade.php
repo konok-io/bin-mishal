@@ -2,8 +2,9 @@
 use App\Models\HeroTab;
 use Illuminate\Support\Facades\Cache;
 
-// Get active tabs with fallback
-$activeTabs = Cache::remember('services_active_tabs', 600, function() {
+// Get active tabs with fallback - cache key includes locale for correct translations
+$cacheKey = 'services_active_tabs_' . app()->getLocale();
+$activeTabs = Cache::remember($cacheKey, 600, function() {
     try {
         return \App\Models\HeroTab::where('is_active', 1)->orderBy('order')->get() ?? collect();
     } catch (\Exception $e) {
@@ -25,6 +26,7 @@ $activeTabs = Cache::remember('services_active_tabs', 600, function() {
         <!-- Services Grid -->
         <div class="row g-4">
             @foreach($activeTabs as $service)
+                @if($service instanceof \App\Models\HeroTab)
                 <div class="col-lg-4 col-md-6">
                     <div class="service-card">
                         <div class="service-icon">
@@ -52,6 +54,7 @@ $activeTabs = Cache::remember('services_active_tabs', 600, function() {
                         <div class="service-overlay"></div>
                     </div>
                 </div>
+                @endif
             @endforeach
         </div>
         
