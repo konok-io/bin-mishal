@@ -71,13 +71,21 @@ function getHeroTabIcon($tab) {
 
 <!-- Dynamic Hero Section Component -->
 <section class="hero-section" id="heroSection">
-    <!-- Animated Background Elements -->
+    <!-- Professional Background with Light Circles -->
     <div class="hero-bg-wrapper">
+        <!-- Main Gradient Background -->
         <div class="hero-gradient"></div>
-        <div class="hero-shape hero-shape-1"></div>
-        <div class="hero-shape hero-shape-2"></div>
-        <div class="hero-shape hero-shape-3"></div>
-        <div class="hero-particles"></div>
+        
+        <!-- Decorative Light Circles -->
+        <div class="circle circle-lg circle-1"></div>
+        <div class="circle circle-md circle-2"></div>
+        <div class="circle circle-sm circle-3"></div>
+        <div class="circle circle-xs circle-4"></div>
+        <div class="circle circle-lg circle-5"></div>
+        <div class="circle circle-md circle-6"></div>
+        
+        <!-- Subtle Grid Pattern -->
+        <div class="hero-grid"></div>
     </div>
     
     <div class="container">
@@ -422,17 +430,17 @@ function getHeroTabIcon($tab) {
 </section>
 
 <style>
-/* Hero Section Styles - Modern Gradient Design */
+/* Hero Section Styles - Professional Design */
 .hero-section {
-    background: linear-gradient(135deg, #343C90 0%, #E05522 50%, #C94718 100%);
+    background: linear-gradient(160deg, #252E72 0%, #343C90 30%, #E05522 70%, #C94718 100%);
     color: #fff;
-    padding: 80px 0;
+    padding: 100px 0;
     position: relative;
     overflow: hidden;
-    min-height: 650px;
+    min-height: 680px;
 }
 
-/* Animated Background Wrapper */
+/* Background Wrapper */
 .hero-bg-wrapper {
     position: absolute;
     top: 0;
@@ -440,101 +448,128 @@ function getHeroTabIcon($tab) {
     right: 0;
     bottom: 0;
     overflow: hidden;
+    z-index: 1;
 }
 
-/* Main Gradient Overlay */
+/* Main Gradient */
 .hero-gradient {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, 
-        rgba(52, 60, 144, 0.95) 0%, 
-        rgba(224, 85, 34, 0.9) 50%, 
-        rgba(201, 71, 24, 0.85) 100%);
     z-index: 1;
 }
 
-/* Floating Shapes */
-.hero-shape {
+/* Professional Light Circles */
+.circle {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.1;
-    z-index: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 50%, transparent 70%);
+    z-index: 2;
 }
 
-.hero-shape-1 {
-    width: 400px;
-    height: 400px;
-    background: linear-gradient(135deg, #fff 0%, transparent 70%);
-    top: -100px;
-    right: -100px;
-    animation: float1 15s ease-in-out infinite;
+.circle-lg {
+    width: 500px;
+    height: 500px;
 }
 
-.hero-shape-2 {
+.circle-md {
     width: 300px;
     height: 300px;
-    background: linear-gradient(135deg, #E05522 0%, transparent 70%);
-    bottom: -50px;
-    left: -50px;
-    animation: float2 12s ease-in-out infinite;
 }
 
-.hero-shape-3 {
+.circle-sm {
+    width: 150px;
+    height: 150px;
+}
+
+.circle-xs {
+    width: 80px;
+    height: 80px;
+}
+
+/* Circle Positions & Animations */
+.circle-1 {
+    top: -150px;
+    right: -100px;
+    animation: floatSlow 20s ease-in-out infinite;
+}
+
+.circle-2 {
+    bottom: -80px;
+    left: -80px;
+    width: 350px;
+    height: 350px;
+    animation: floatSlow 15s ease-in-out infinite reverse;
+}
+
+.circle-3 {
+    top: 20%;
+    right: 25%;
+    animation: floatSlow 12s ease-in-out infinite;
+    animation-delay: -3s;
+}
+
+.circle-4 {
+    bottom: 25%;
+    right: 10%;
+    animation: floatSlow 10s ease-in-out infinite;
+    animation-delay: -5s;
+}
+
+.circle-5 {
+    top: 40%;
+    left: 5%;
     width: 200px;
     height: 200px;
-    background: linear-gradient(135deg, #343C90 0%, transparent 70%);
-    top: 50%;
-    left: 30%;
-    animation: float3 10s ease-in-out infinite;
+    animation: floatSlow 18s ease-in-out infinite;
+    animation-delay: -8s;
 }
 
-/* Floating Animations */
-@keyframes float1 {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    33% { transform: translate(-30px, 30px) rotate(5deg); }
-    66% { transform: translate(30px, -30px) rotate(-5deg); }
+.circle-6 {
+    bottom: 10%;
+    right: 40%;
+    width: 100px;
+    height: 100px;
+    animation: floatSlow 14s ease-in-out infinite;
+    animation-delay: -2s;
 }
 
-@keyframes float2 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(40px, -40px) scale(1.1); }
-}
-
-@keyframes float3 {
-    0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(20px, -20px); }
-    75% { transform: translate(-20px, 20px); }
-}
-
-/* Particle Effect */
-.hero-particles {
+/* Subtle Grid Pattern */
+.hero-grid {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-image: 
-        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 1px, transparent 1px),
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 1px, transparent 1px),
-        radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 2px, transparent 2px),
-        radial-gradient(circle at 60% 70%, rgba(255,255,255,0.06) 1px, transparent 1px);
-    background-size: 100px 100px, 150px 150px, 80px 80px, 120px 120px;
-    animation: particles 20s linear infinite;
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
     z-index: 0;
 }
 
-@keyframes particles {
-    0% { background-position: 0 0, 0 0, 0 0, 0 0; }
-    100% { background-position: 100px 100px, -150px 150px, -80px -80px, 120px -120px; }
+/* Floating Animation */
+@keyframes floatSlow {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(15px, -20px) scale(1.02);
+    }
+    50% {
+        transform: translate(-10px, 15px) scale(0.98);
+    }
+    75% {
+        transform: translate(20px, 10px) scale(1.01);
+    }
 }
 
 /* Content Wrapper */
 .hero-content-wrapper {
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
 
 .hero-title {
