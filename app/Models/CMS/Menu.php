@@ -82,9 +82,11 @@ class Menu extends Model
     {
         $cacheKey = "menu_location_{$location}_" . app()->getLocale();
 
-        return Cache::remember($cacheKey, self::CACHE_TTL, function () use ($location) {
-            return self::active()->byLocation($location)->first();
+        $data = Cache::remember($cacheKey, self::CACHE_TTL, function () use ($location) {
+            return self::active()->byLocation($location)->first()?->getAttributes();
         });
+
+        return $data ? new self($data) : null;
     }
 
     public static function clearCache(?int $menuId = null): void
