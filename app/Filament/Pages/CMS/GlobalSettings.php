@@ -19,6 +19,8 @@ class GlobalSettings extends Page
     protected static ?string $title = 'Global Settings';
     protected static ?string $navigationLabel = 'Global Settings';
 
+    protected static ?string $navigationGroup = 'CMS';
+
     public static function getNavigationIcon(): ?string
     {
         return 'heroicon-o-cog-6-tooth';

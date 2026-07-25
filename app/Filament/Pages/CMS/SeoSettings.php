@@ -15,7 +15,9 @@ use Filament\Pages\Page;
 class SeoSettings extends Page
 {
     protected static ?string $title = 'SEO Settings';
-    protected static ?string $navigationLabel = 'SEO';
+    protected static ?string $navigationLabel = 'SEO Settings';
+
+    protected static ?string $navigationGroup = 'CMS';
 
     public static function getNavigationIcon(): ?string
     {
