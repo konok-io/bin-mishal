@@ -431,7 +431,7 @@
                 <i class="fa-solid fa-bars"></i>
             </button>
 
-            <div class="d-flex align-items-center gap-3">
+            <div class="d-flex align-items-center gap-3 ms-auto">
                 {{-- Theme Toggle --}}
                 <button class="theme-toggle-btn" onclick="pcToggleTheme()" title="Toggle Theme">
                     <i class="fa-solid fa-sun" id="pcSun"></i>
@@ -450,7 +450,7 @@
                 {{-- User Dropdown --}}
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center gap-2 text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ auth()->user()->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) . '&background=4F2FE8&color=fff' }}" class="rounded-circle object-fit-cover" alt="Avatar" style="width:36px;height:36px">
+                        <img src="{{ auth()->user()->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) . '&background=E05522&color=fff' }}" class="rounded-circle object-fit-cover" alt="Avatar" style="width:36px;height:36px">
                         <span class="d-none d-md-inline small fw-semibold">{{ auth()->user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
