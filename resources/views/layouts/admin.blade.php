@@ -383,6 +383,9 @@
             <a href="{{ route('admin.roles.index') }}" class="nav-link {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-user-shield"></i><span>Roles & Permissions</span>
             </a>
+            <a href="{{ route('admin.integrations.index') }}" class="nav-link {{ request()->routeIs('admin.integrations.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-plug"></i><span>Integrations</span>
+            </a>
 
             <div class="nav-section-title"><span>City TV Connect</span></div>
             <a href="{{ route('admin.city-tv-connect.index') }}" class="nav-link {{ request()->routeIs('admin.city-tv-connect.*') ? 'active' : '' }}">

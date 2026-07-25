@@ -120,6 +120,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', fn() => view('admin.profile.index'))->name('profile');
     Route::get('/settings', fn() => view('admin.settings.index'))->name('settings.index');
+    
+    // Integrations Dashboard (Phase 19)
+    Route::get('/integrations', [\App\Http\Controllers\Admin\IntegrationsController::class, 'index'])->name('integrations.index');
 
     // User Management (Phase 18)
     Route::resource('users', \App\Http\Controllers\Admin\UsersController::class)->names([
