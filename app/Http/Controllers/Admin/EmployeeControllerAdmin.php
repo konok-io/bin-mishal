@@ -83,6 +83,15 @@ class EmployeeControllerAdmin extends Controller
         return redirect()->route('admin.employees.index')->with('success', 'Employee created successfully!');
     }
 
+    public function show($id)
+    {
+        $employee = User::role('employee')
+            ->with(['branch', 'employee'])
+            ->findOrFail($id);
+        
+        return view('admin.employees.show', compact('employee'));
+    }
+
     public function edit($id)
     {
         $employee = User::role('employee')->with('employee')->findOrFail($id);
@@ -92,15 +101,18 @@ class EmployeeControllerAdmin extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = User::role('employee')->findOrFail($id);
+        $user = User::role('employee')->with('employee')->findOrFail($id);
         $employee = $user->employee;
-
-        $validator = Validator::make($request->all(), [
+        
+        // Handle case where Employee record doesn't exist
+        $employeeId = $employee?->id;
+        
+        // Build validation rules with proper employee ID handling
+        $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
             'phone' => 'nullable|string|max:20',
             'password' => 'nullable|min:6|confirmed',
-            'employee_code' => 'required|unique:employees,employee_code,' . $employee->id,
             'designation' => 'required|string|max:255',
             'department' => 'nullable|string|max:255',
             'salary_type' => 'required|in:hourly,monthly',
@@ -109,10 +121,20 @@ class EmployeeControllerAdmin extends Controller
             'joining_date' => 'nullable|date',
             'iqama_no' => 'nullable|string|max:50',
             'passport_no' => 'nullable|string|max:50',
-            'biometric_id' => 'nullable|string|max:50|unique:employees,biometric_id,' . $employee->id,
             'branch_id' => 'nullable|exists:branches,id',
             'status' => 'required|in:active,inactive,terminated',
-        ]);
+        ];
+        
+        // Add unique rules only if employee record exists
+        if ($employee) {
+            $rules['employee_code'] = 'required|unique:employees,employee_code,' . $employee->id;
+            $rules['biometric_id'] = 'nullable|string|max:50|unique:employees,biometric_id,' . $employee->id;
+        } else {
+            $rules['employee_code'] = 'required|unique:employees,employee_code';
+            $rules['biometric_id'] = 'nullable|string|max:50|unique:employees,biometric_id';
+        }
+
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -132,7 +154,8 @@ class EmployeeControllerAdmin extends Controller
 
         $user->update($userData);
 
-        $employee->update([
+        // Handle Employee record - create if doesn't exist, update if exists
+        $employeeData = [
             'employee_code' => $request->employee_code,
             'designation' => $request->designation,
             'department' => $request->department,
@@ -144,7 +167,14 @@ class EmployeeControllerAdmin extends Controller
             'passport_no' => $request->passport_no,
             'biometric_id' => $request->biometric_id,
             'status' => $request->status,
-        ]);
+        ];
+
+        if ($employee) {
+            $employee->update($employeeData);
+        } else {
+            $employeeData['user_id'] = $user->id;
+            Employee::create($employeeData);
+        }
 
         return redirect()->route('admin.employees.index')->with('success', 'Employee updated successfully!');
     }

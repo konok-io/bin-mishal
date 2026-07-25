@@ -62,10 +62,10 @@
                 <tbody>
                     @forelse($entries as $entry)
                     <tr>
-                        <td>{{ $entry->entry_date->format('M d, Y') }}</td>
+                        <td>{{ $entry->entry_date?->format('M d, Y') }}</td>
                         <td>
-                            <strong>{{ $entry->account->code }}</strong><br>
-                            <small class="text-muted">{{ $entry->account->name }}</small>
+                            <strong>{{ $entry->account?->code ?? 'N/A' }}</strong><br>
+                            <small class="text-muted">{{ $entry->account?->name ?? 'N/A' }}</small>
                         </td>
                         <td>
                             @if($entry->entry_type === 'debit')

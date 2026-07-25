@@ -37,12 +37,12 @@
                 <tbody>
                     @forelse($customers as $customer)
                     <tr>
-                        <td><strong>{{ $customer->customer_code }}</strong></td>
-                        <td>{{ $customer->user->name ?? 'N/A' }}</td>
-                        <td>{{ $customer->user->email ?? 'N/A' }}</td>
-                        <td>{{ $customer->user->phone ?? 'N/A' }}</td>
+                        <td><strong>{{ $customer->customer_code ?? 'N/A' }}</strong></td>
+                        <td>{{ $customer->user?->name ?? 'N/A' }}</td>
+                        <td>{{ $customer->user?->email ?? 'N/A' }}</td>
+                        <td>{{ $customer->user?->phone ?? 'N/A' }}</td>
                         <td>{{ $customer->company_name ?? '-' }}</td>
-                        <td>{{ $customer->assignedTo->name ?? '-' }}</td>
+                        <td>{{ $customer->assignedTo?->name ?? '-' }}</td>
                         <td>
                             <a href="{{ route('admin.customers.show', $customer->id) }}" class="btn btn-sm btn-info">
                                 <i class="bi bi-eye"></i>

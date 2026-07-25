@@ -34,11 +34,11 @@
                 <tbody>
                     @forelse($employees as $employee)
                     <tr>
-                        <td>{{ $employee->employee->employee_code ?? 'N/A' }}</td>
+                        <td>{{ $employee->employee?->employee_code ?? 'N/A' }}</td>
                         <td>{{ $employee->name }}</td>
                         <td>{{ $employee->email }}</td>
                         <td>{{ $employee->phone ?? 'N/A' }}</td>
-                        <td>{{ $employee->employee->designation ?? 'N/A' }}</td>
+                        <td>{{ $employee->employee?->designation ?? 'N/A' }}</td>
                         <td>{{ $employee->branch->name ?? 'N/A' }}</td>
                         <td>
                             @if($employee->employee)

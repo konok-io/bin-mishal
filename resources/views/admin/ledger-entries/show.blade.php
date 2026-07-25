@@ -18,8 +18,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <p><strong>Date:</strong> {{ $ledgerEntry->entry_date->format('M d, Y') }}</p>
-                        <p><strong>Account:</strong> {{ $ledgerEntry->account->code }} - {{ $ledgerEntry->account->name }}</p>
+                        <p><strong>Date:</strong> {{ $ledgerEntry->entry_date?->format('M d, Y') ?? 'N/A' }}</p>
+                        <p><strong>Account:</strong> {{ $ledgerEntry->account?->code ?? 'N/A' }} - {{ $ledgerEntry->account?->name ?? 'N/A' }}</p>
                         <p><strong>Type:</strong>
                             @if($ledgerEntry->entry_type === 'debit')
                                 <span class="badge bg-primary">Debit</span>
