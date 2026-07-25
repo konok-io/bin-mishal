@@ -24,32 +24,30 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     <!-- Top Bar -->
     <div class="header-topbar">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <!-- Contact Info -->
-                <div class="topbar-contact d-none d-md-flex">
-                    <a href="tel:{{ Setting::getValue('contact_phone', '+966 XX XXX XXXX') }}">
-                        <i class="fas fa-phone"></i>
-                        {{ Setting::getValue('contact_phone', '+966 XX XXX XXXX') }}
+            <div class="topbar-inner">
+                <!-- Left: Contact Info -->
+                <div class="topbar-left">
+                    <a href="tel:{{ Setting::getValue('contact_phone', '+966 XX XXX XXXX') }}" class="topbar-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>{{ Setting::getValue('contact_phone', '+966 XX XXX XXXX') }}</span>
                     </a>
-                    <a href="mailto:{{ Setting::getValue('contact_email', 'info@binmishal.com') }}">
+                    <a href="mailto:{{ Setting::getValue('contact_email', 'info@binmishal.com') }}" class="topbar-item">
                         <i class="fas fa-envelope"></i>
-                        {{ Setting::getValue('contact_email', 'info@binmishal.com') }}
+                        <span>{{ Setting::getValue('contact_email', 'info@binmishal.com') }}</span>
                     </a>
+                    <span class="topbar-item">
+                        <i class="fas fa-clock"></i>
+                        <span>{{ Setting::getValue('working_hours', 'Sat-Thu: 9AM-6PM') }}</span>
+                    </span>
                 </div>
                 
-                <!-- Right Side -->
-                <div class="topbar-right d-flex align-items-center gap-3">
-                    <!-- Working Hours -->
-                    <span class="d-none d-lg-inline">
-                        <i class="fas fa-clock"></i>
-                        {{ Setting::getValue('working_hours', 'Sat-Thu: 9AM-6PM') }}
-                    </span>
-                    
+                <!-- Right: Actions -->
+                <div class="topbar-right">
                     <!-- Language Switcher -->
                     <div class="language-switcher">
                         <button class="lang-btn dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fas fa-globe"></i>
-                            {{ strtoupper(app()->getLocale()) }}
+                            <span>{{ strtoupper(app()->getLocale()) }}</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{{ route('locale', 'en') }}">🇬🇧 English</a></li>
@@ -59,15 +57,18 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
                     </div>
                     
                     <!-- Portal Links -->
-                    <div class="portal-links d-none d-lg-flex align-items-center gap-2">
-                        <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}" class="btn btn-outline-light btn-sm">
-                            <i class="fas fa-headset me-1"></i> {{ __('nav.support') }}
+                    <div class="portal-links">
+                        <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}" class="btn btn-support">
+                            <i class="fas fa-headset"></i>
+                            <span>{{ __('nav.support') }}</span>
                         </a>
-                        <a href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}" class="btn btn-outline-light btn-sm">
-                            <i class="fas fa-sign-in-alt me-1"></i> {{ __('nav.login') }}
+                        <a href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}" class="btn btn-login">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>{{ __('nav.login') }}</span>
                         </a>
-                        <a href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}" class="btn btn-light btn-sm text-primary">
-                            <i class="fas fa-user-plus me-1"></i> {{ __('nav.register') }}
+                        <a href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}" class="btn btn-register">
+                            <i class="fas fa-user-plus"></i>
+                            <span>{{ __('nav.register') }}</span>
                         </a>
                     </div>
                 </div>
@@ -195,44 +196,76 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     z-index: 1000;
 }
 
-/* Top Bar */
+/* Top Bar - Modern Design */
 .header-topbar {
-    background: #343C90;
+    background: linear-gradient(135deg, #343C90 0%, #252E72 100%);
     color: #fff;
-    padding: 10px 0;
+    padding: 12px 0;
     font-size: 13px;
 }
 
-.header-topbar a {
-    color: #fff;
-    text-decoration: none;
-    margin-right: 15px;
-    display: inline-flex;
+.topbar-inner {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 6px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-.header-topbar .fa-phone,
-.header-topbar .fa-envelope,
-.header-topbar .fa-clock {
-    margin-right: 5px;
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
 }
 
-/* Language Switcher */
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.topbar-item {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+}
+
+.topbar-item:hover {
+    color: #fff;
+}
+
+.topbar-item i {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Language Switcher - Modern Pill */
 .language-switcher .lang-btn {
     background: rgba(255,255,255,0.15);
     border: 1px solid rgba(255,255,255,0.25);
     color: #fff;
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-size: 12px;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 13px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.language-switcher .lang-btn:hover {
+    background: rgba(255,255,255,0.25);
 }
 
 .language-switcher .dropdown-menu {
-    min-width: 130px;
+    min-width: 140px;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     border: none;
     padding: 8px;
 }
@@ -241,11 +274,68 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     padding: 10px 15px;
     font-size: 13px;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .language-switcher .dropdown-item:hover {
     background: #343C90;
     color: #fff;
+}
+
+/* Portal Buttons - Modern Style */
+.portal-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.portal-links .btn {
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+}
+
+.portal-links .btn i {
+    font-size: 12px;
+}
+
+.portal-links .btn-support {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.portal-links .btn-support:hover {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+}
+
+.portal-links .btn-login {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+}
+
+.portal-links .btn-login:hover {
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+}
+
+.portal-links .btn-register {
+    background: #fff;
+    color: #343C90;
+}
+
+.portal-links .btn-register:hover {
+    background: #f0f0f0;
+    color: #343C90;
 }
 
 /* Main Navigation */
@@ -397,7 +487,38 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
 /* Responsive */
 @media (max-width: 991px) {
     .header-topbar {
+        padding: 10px 0;
+    }
+    
+    .topbar-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .topbar-left {
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .topbar-item span {
         display: none;
+    }
+    
+    .topbar-item {
+        font-size: 16px;
+    }
+    
+    .topbar-right {
+        justify-content: center;
+    }
+    
+    .portal-links .btn span {
+        display: none;
+    }
+    
+    .portal-links .btn {
+        padding: 10px 14px;
     }
     
     .navbar {
