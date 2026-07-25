@@ -160,14 +160,11 @@ $tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
         <!-- Main Gradient Background -->
         <div class="hero-gradient"></div>
         
-        <!-- Decorative Light Circles -->
+        <!-- Decorative Light Circles - Static -->
         <div class="circle circle-lg circle-1"></div>
         <div class="circle circle-md circle-2"></div>
         <div class="circle circle-sm circle-3"></div>
         <div class="circle circle-xs circle-4"></div>
-        
-        <!-- Subtle Grid Pattern -->
-        <div class="hero-grid"></div>
     </div>
     
     <div class="container">
@@ -542,7 +539,7 @@ $tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
     z-index: 1;
 }
 
-/* Main Gradient */
+/* Main Gradient - Static, no animation */
 .hero-gradient {
     position: absolute;
     top: 0;
@@ -552,97 +549,57 @@ $tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
     z-index: 1;
 }
 
-/* Professional Light Circles - Optimized for Performance */
+/* Static Light Circles - No Animation */
 .circle {
     position: absolute;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 50%, transparent 70%);
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.03) 50%, transparent 70%);
     z-index: 2;
     pointer-events: none;
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
 }
 
 .circle-lg {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
 }
 
 .circle-md {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
 }
 
 .circle-sm {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
 }
 
 .circle-xs {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
 }
 
-/* Circle Positions & Animations - Reduced for Performance */
+/* Static Circle Positions */
 .circle-1 {
-    top: -150px;
-    right: -100px;
-    animation: floatSlow 25s ease-in-out infinite;
+    top: -100px;
+    right: -50px;
 }
 
 .circle-2 {
-    bottom: -80px;
-    left: -80px;
-    width: 350px;
-    height: 350px;
-    animation: floatSlow 20s ease-in-out infinite reverse;
+    bottom: -50px;
+    left: -50px;
 }
 
 .circle-3 {
-    top: 20%;
-    right: 25%;
-    animation: floatSlow 18s ease-in-out infinite;
-    animation-delay: -5s;
+    top: 30%;
+    right: 20%;
 }
 
 .circle-4 {
-    bottom: 25%;
-    right: 10%;
-    animation: floatSlow 15s ease-in-out infinite;
-    animation-delay: -8s;
+    bottom: 20%;
+    right: 15%;
 }
 
-/* Subtle Grid Pattern */
-.hero-grid {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 80px 80px;
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* Floating Animation - Simplified for Performance */
-@keyframes floatSlow {
-    0%, 100% {
-        transform: translate3d(0, 0, 0);
-    }
-    25% {
-        transform: translate3d(10px, -15px, 0);
-    }
-    50% {
-        transform: translate3d(-5px, 10px, 0);
-    }
-    75% {
-        transform: translate3d(15px, 5px, 0);
-    }
-}
+/* No Grid Pattern - Better Performance */
 
 /* Content Wrapper */
 .hero-content-wrapper {
@@ -686,8 +643,7 @@ $tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
 }
 
 .badge-item:hover {
-    background: rgba(255,255,255,0.25);
-    transform: translateY(-2px);
+    background: rgba(255,255,255,0.2);
 }
 
 .badge-item i {
@@ -695,89 +651,42 @@ $tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
     font-size: 14px;
 }
 
-/* Service Features - Dynamic */
+/* Service Features - Simple */
 .service-features {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .feature-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(10px);
-    padding: 10px 18px;
-    border-radius: 30px;
-    border: 1px solid rgba(255,255,255,0.3);
-    font-size: 14px;
+    background: rgba(255,255,255,0.15);
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 13px;
     font-weight: 500;
-    transition: all 0.3s;
-}
-
-.feature-badge:hover {
-    background: rgba(255,255,255,0.3);
-    transform: translateY(-2px);
 }
 
 .feature-badge i {
     color: #ffd700;
-    font-size: 14px;
+    font-size: 12px;
 }
 
-/* Content Animation */
-.hero-content .hero-title,
-.hero-content .hero-subtitle,
-.hero-content .service-features {
-    animation: fadeInUp 0.5s ease forwards;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.hero-content.content-changing .hero-title,
-.hero-content.content-changing .hero-subtitle,
-.hero-content.content-changing .service-features {
-    animation: fadeOutDown 0.3s ease forwards;
-}
-
-@keyframes fadeOutDown {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-}
-
-/* Hero Booking Card - Glassmorphism Effect */
+/* Hero Booking Card */
 .hero-form-wrapper {
     position: relative;
     z-index: 2;
 }
 
 .hero-booking-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 24px;
-    box-shadow: 
-        0 25px 50px rgba(0,0,0,0.3),
-        0 0 0 1px rgba(255,255,255,0.1) inset;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
     overflow: hidden;
     color: #1F2937;
-    border: 1px solid rgba(255,255,255,0.3);
 }
 
 .hero-booking-card .form-control,
@@ -954,7 +863,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const locale = '<?php echo $locale; ?>';
     
     // Get elements
-    const heroContent = document.getElementById('heroContent');
     const heroTitle = document.getElementById('heroTitle');
     const heroSubtitle = document.getElementById('heroSubtitle');
     const heroFeatures = document.getElementById('heroFeatures');
@@ -982,54 +890,34 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update hero content based on tab
     function updateHeroContent(tabKey) {
-        // Find tab data
         const tab = tabsData.find(t => t.tab_key === tabKey);
         if (!tab) return;
         
-        // Add changing class for animation
-        heroContent.classList.add('content-changing');
+        // Update title
+        const title = getLocalizedText(tab.title);
+        if (title && heroTitle) heroTitle.textContent = title;
         
-        // Wait for fade out, then update content
-        setTimeout(function() {
-            // Update title
-            const title = getLocalizedText(tab.title);
-            if (title) heroTitle.textContent = title;
-            
-            // Update subtitle
-            const subtitle = getLocalizedText(tab.subtitle);
-            if (subtitle) heroSubtitle.textContent = subtitle;
-            
-            // Update features
-            if (tab.features && tab.features.length > 0) {
-                let featuresHtml = '';
-                tab.features.forEach(function(feature) {
-                    const icon = tab.icon || 'fas fa-check';
-                    const text = getLocalizedFeature(feature);
-                    if (text) {
-                        featuresHtml += '<div class="feature-badge"><i class="' + icon + '"></i><span>' + text + '</span></div>';
-                    }
-                });
-                heroFeatures.innerHTML = featuresHtml;
-            }
-            
-            // Remove changing class
-            heroContent.classList.remove('content-changing');
-        }, 300);
+        // Update subtitle
+        const subtitle = getLocalizedText(tab.subtitle);
+        if (subtitle && heroSubtitle) heroSubtitle.textContent = subtitle;
+        
+        // Update features
+        if (tab.features && tab.features.length > 0 && heroFeatures) {
+            let featuresHtml = '';
+            tab.features.forEach(function(feature) {
+                const icon = tab.icon || 'fas fa-check';
+                const text = getLocalizedFeature(feature);
+                if (text) {
+                    featuresHtml += '<div class="feature-badge"><i class="' + icon + '"></i><span>' + text + '</span></div>';
+                }
+            });
+            heroFeatures.innerHTML = featuresHtml;
+        }
     }
     
     // Add click listeners to all tab buttons
     if (bookingTabs) {
         const tabButtons = bookingTabs.querySelectorAll('.nav-link');
-        tabButtons.forEach(function(button) {
-            button.addEventListener('shown.bs.tab', function(e) {
-                const tabKey = e.target.getAttribute('data-tab-key');
-                if (tabKey) {
-                    updateHeroContent(tabKey);
-                }
-            });
-        });
-        
-        // Also handle shown event for tab switching
         tabButtons.forEach(function(button) {
             button.addEventListener('click', function() {
                 const tabKey = this.getAttribute('data-tab-key');

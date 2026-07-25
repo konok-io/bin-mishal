@@ -187,17 +187,17 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
 </header>
 
 <style>
-/* Header Styles - Modern & Dynamic */
+/* Header Styles - Clean & Fast */
 .main-header {
     background: #fff;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
     position: relative;
     z-index: 1000;
 }
 
 /* Top Bar */
 .header-topbar {
-    background: linear-gradient(135deg, #343C90 0%, #252E72 100%);
+    background: #343C90;
     color: #fff;
     padding: 10px 0;
     font-size: 13px;
@@ -207,22 +207,15 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     color: #fff;
     text-decoration: none;
     margin-right: 15px;
-    transition: all 0.3s;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-}
-
-.header-topbar a:hover {
-    opacity: 0.85;
-    transform: translateY(-1px);
 }
 
 .header-topbar .fa-phone,
 .header-topbar .fa-envelope,
 .header-topbar .fa-clock {
     margin-right: 5px;
-    font-size: 12px;
 }
 
 /* Language Switcher */
@@ -234,28 +227,20 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     border-radius: 20px;
     font-size: 12px;
     cursor: pointer;
-    transition: all 0.3s;
-    backdrop-filter: blur(5px);
-}
-
-.language-switcher .lang-btn:hover {
-    background: rgba(255,255,255,0.25);
 }
 
 .language-switcher .dropdown-menu {
     min-width: 130px;
     border-radius: 12px;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     border: none;
     padding: 8px;
-    animation: dropdownFade 0.25s ease;
 }
 
 .language-switcher .dropdown-item {
     padding: 10px 15px;
     font-size: 13px;
     border-radius: 8px;
-    transition: all 0.2s;
 }
 
 .language-switcher .dropdown-item:hover {
@@ -265,9 +250,8 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
 
 /* Main Navigation */
 .navbar {
-    padding: 15px 0;
+    padding: 12px 0;
     background: #fff;
-    transition: all 0.3s;
 }
 
 .navbar-brand {
@@ -275,11 +259,6 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     font-size: 26px;
     color: #343C90 !important;
     text-decoration: none;
-    transition: all 0.3s;
-}
-
-.navbar-brand:hover {
-    transform: scale(1.02);
 }
 
 .brand-text {
@@ -288,20 +267,17 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     font-size: 24px;
 }
 
-/* Nav Links - Modern Style */
+/* Nav Links */
 .navbar-nav .nav-link {
     color: #374151;
     font-weight: 600;
-    padding: 12px 18px;
-    transition: all 0.3s;
-    position: relative;
+    padding: 10px 16px;
     font-size: 15px;
 }
 
 .navbar-nav .nav-link i {
-    font-size: 11px;
+    font-size: 10px;
     margin-left: 4px;
-    transition: transform 0.3s;
 }
 
 .navbar-nav .nav-link:hover,
@@ -309,65 +285,36 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     color: #E05522;
 }
 
-/* Underline Animation */
-.navbar-nav .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 18px;
-    right: 18px;
-    height: 3px;
-    background: linear-gradient(90deg, #E05522, #C94718);
-    border-radius: 2px;
-    transform: scaleX(0);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.navbar-nav .nav-link:hover::after,
-.navbar-nav .nav-link.active::after {
-    transform: scaleX(1);
-}
-
-/* Dropdown - Show on Hover */
+/* Dropdown - Simple Hover */
 .navbar-nav .dropdown {
     position: relative;
 }
 
 .navbar-nav .dropdown-menu {
-    display: block;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: none;
+    position: absolute;
     border: none;
-    border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-    padding: 15px;
-    min-width: 220px;
-    margin-top: 0;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+    padding: 12px;
+    min-width: 200px;
+    top: 100%;
 }
 
 .navbar-nav .dropdown:hover > .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.navbar-nav .dropdown:hover .nav-link i {
-    transform: rotate(180deg);
+    display: block;
 }
 
 /* Dropdown Items */
 .dropdown-menu .dropdown-item {
-    border-radius: 10px;
-    padding: 12px 16px;
+    border-radius: 8px;
+    padding: 10px 14px;
     font-weight: 500;
     color: #374151;
-    transition: all 0.2s;
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .dropdown-menu .dropdown-item:last-child {
@@ -375,13 +322,12 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
 }
 
 .dropdown-menu .dropdown-item:hover {
-    background: linear-gradient(135deg, #343C90 0%, #252E72 100%);
+    background: #343C90;
     color: #fff;
-    transform: translateX(5px);
 }
 
 .dropdown-menu .dropdown-item i {
-    font-size: 14px;
+    font-size: 13px;
     color: #E05522;
     width: 20px;
     text-align: center;
@@ -399,19 +345,16 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
 /* CTA Button */
 .header-cta {
     margin-left: 15px;
-    padding: 12px 24px;
-    border-radius: 30px;
-    background: linear-gradient(135deg, #E05522 0%, #C94718 100%);
+    padding: 10px 20px;
+    border-radius: 25px;
+    background: #E05522;
     border: none;
     color: #fff;
     font-weight: 600;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(224, 85, 34, 0.3);
 }
 
 .header-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(224, 85, 34, 0.4);
+    background: #C94718;
     color: #fff;
 }
 
@@ -426,17 +369,13 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     border-radius: 8px;
 }
 
-.navbar-toggler:focus {
-    box-shadow: 0 0 0 3px rgba(52, 60, 144, 0.2);
-}
-
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23343C90' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 /* Notice Ticker */
 .notice-ticker {
-    background: linear-gradient(90deg, #E05522 0%, #C94718 100%);
+    background: #E05522;
     color: #fff;
     padding: 8px 0;
     font-size: 13px;
@@ -450,43 +389,9 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
 
 .ticker-badge {
     background: rgba(255,255,255,0.2);
-    padding: 4px 12px;
-    border-radius: 15px;
+    padding: 3px 10px;
+    border-radius: 12px;
     font-weight: 600;
-}
-
-.ticker-text {
-    animation: ticker 25s linear infinite;
-}
-
-@keyframes ticker {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
-
-/* Animations */
-@keyframes dropdownFade {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Portal Links */
-.portal-links .btn-outline-light {
-    border-color: rgba(255,255,255,0.3);
-    font-size: 12px;
-    padding: 6px 12px;
-    border-radius: 20px;
-}
-
-.portal-links .btn-outline-light:hover {
-    background: rgba(255,255,255,0.2);
-    border-color: rgba(255,255,255,0.5);
-}
-
-.portal-links .btn-light {
-    border-radius: 20px;
-    font-size: 12px;
-    padding: 6px 12px;
 }
 
 /* Responsive */
@@ -501,32 +406,21 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     
     .navbar-collapse {
         background: #fff;
-        padding: 20px;
-        border-radius: 16px;
+        padding: 15px;
+        border-radius: 12px;
         margin-top: 15px;
-        box-shadow: 0 15px 50px rgba(0,0,0,0.15);
-        max-height: 80vh;
-        overflow-y: auto;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.12);
     }
     
     .navbar-nav .nav-link {
-        padding: 14px 15px;
+        padding: 12px 15px;
         border-bottom: 1px solid #f0f0f0;
-        font-size: 15px;
-    }
-    
-    .navbar-nav .nav-link::after {
-        display: none;
     }
     
     .navbar-nav .dropdown-menu {
         display: none;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
         box-shadow: none;
         padding: 0 0 0 20px;
-        border-radius: 0;
         background: #f8fafc;
     }
     
@@ -540,12 +434,6 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     
     .portal-links {
         display: none !important;
-    }
-    
-    .mobile-auth {
-        border-top: 1px solid #eee;
-        padding-top: 15px;
-        margin-top: 10px;
     }
 }
 </style>
