@@ -73,7 +73,7 @@ use App\Models\CMS\Setting;
                     <div class="tab-content booking-content" id="bookingTabsContent">
                         <!-- Flight Booking Form -->
                         <div class="tab-pane fade show active" id="flight-content" role="tabpanel">
-                            <form action="{{ route('booking.flight', ['locale' => app()->getLocale()]) }}" method="GET">
+                            <form action="{{ route('services.airticket', ['locale' => app()->getLocale()]) }}" method="GET">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label">@lang('booking.from')</label>
@@ -142,7 +142,7 @@ use App\Models\CMS\Setting;
                         
                         <!-- Umrah Form -->
                         <div class="tab-pane fade" id="umrah-content" role="tabpanel">
-                            <form action="{{ route('booking.umrah', ['locale' => app()->getLocale()]) }}" method="GET">
+                            <form action="{{ route('services.umrah', ['locale' => app()->getLocale()]) }}" method="GET">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label">@lang('booking.travel_date')</label>
@@ -184,7 +184,7 @@ use App\Models\CMS\Setting;
                         
                         <!-- Visa Form -->
                         <div class="tab-pane fade" id="visa-content" role="tabpanel">
-                            <form action="{{ route('booking.visa', ['locale' => app()->getLocale()]) }}" method="GET">
+                            <form action="{{ route('services.visa', ['locale' => app()->getLocale()]) }}" method="GET">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label">@lang('booking.visa_type')</label>
@@ -277,7 +277,7 @@ use App\Models\CMS\Setting;
                         
                         <!-- Appointment Form -->
                         <div class="tab-pane fade" id="appointment-content" role="tabpanel">
-                            <form action="{{ route('booking.appointment', ['locale' => app()->getLocale()]) }}" method="GET">
+                            <form action="{{ route('appointment', ['locale' => app()->getLocale()]) }}" method="GET">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label">@lang('booking.service_type')</label>
@@ -322,7 +322,7 @@ use App\Models\CMS\Setting;
                         
                         <!-- Investor Form -->
                         <div class="tab-pane fade" id="investor-content" role="tabpanel">
-                            <form action="{{ route('booking.investor', ['locale' => app()->getLocale()]) }}" method="GET">
+                            <form action="{{ route('investor', ['locale' => app()->getLocale()]) }}" method="GET">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label">@lang('booking.service_interest')</label>

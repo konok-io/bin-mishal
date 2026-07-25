@@ -345,4 +345,82 @@ class PublicController extends Controller
 
         return redirect()->back()->with('success', 'Your application has been submitted successfully!');
     }
+
+    /**
+     * Investment & License Services
+     */
+    public function investor(): View
+    {
+        $services = \App\Models\InvestorService::where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+            
+        return view('public.pages.investor', [
+            'services' => $services,
+        ]);
+    }
+
+    /**
+     * Investor Inquiry Submission
+     */
+    public function investorInquiry(Request $request)
+    {
+        $validated = $request->validate([
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:50',
+            'service_id' => 'required|integer|exists:investor_services,id',
+            'company_name' => 'nullable|string|max:255',
+            'investment_range' => 'nullable|string',
+            'message' => 'nullable|string',
+        ]);
+
+        $inquiry = new \App\Models\InvestorApplication();
+        $inquiry->application_no = \App\Models\InvestorApplication::generateApplicationNo();
+        $inquiry->service_id = $validated['service_id'];
+        $inquiry->full_name = $validated['full_name'];
+        $inquiry->email = $validated['email'];
+        $inquiry->phone = $validated['phone'];
+        $inquiry->company_name = $validated['company_name'] ?? null;
+        $inquiry->investment_range = $validated['investment_range'] ?? null;
+        $inquiry->status = \App\Enums\InvestorApplicationStatus::SUBMITTED;
+        $inquiry->save();
+
+        return redirect()->back()->with('success', 'Your inquiry has been submitted successfully!');
+    }
+
+    /**
+     * Cargo Price Calculator API
+     */
+    public function cargoCalculate(Request $request)
+    {
+        $fromCity = $request->get('from_city');
+        $toCity = $request->get('to_city');
+        $weight = floatval($request->get('weight', 0));
+        $cargoType = $request->get('type', 'air');
+
+        // Get pricing
+        $pricing = \App\Models\Cargo\CargoPricing::where('from_city', $fromCity)
+            ->where('to_city', $toCity)
+            ->where('cargo_type', $cargoType)
+            ->first();
+
+        $price = 0;
+        if ($pricing) {
+            // Calculate based on weight tiers
+            $tiers = $pricing->tiered_pricing ?? [];
+            foreach ($tiers as $tier) {
+                if ($weight >= ($tier['min_weight'] ?? 0) && $weight <= ($tier['max_weight'] ?? PHP_INT_MAX)) {
+                    $price = $tier['price'] ?? 0;
+                    break;
+                }
+            }
+        }
+
+        return response()->json([
+            'success' => true,
+            'price' => $price,
+            'currency' => 'SAR',
+        ]);
+    }
 }
