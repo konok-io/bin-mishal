@@ -89,12 +89,12 @@ class Setting extends Model
     public static function getThemeSettings(): array
     {
         return [
-            'primary_color' => self::getValue('primary_color', '#059669'),
-            'secondary_color' => self::getValue('secondary_color', '#047857'),
-            'accent_color' => self::getValue('accent_color', '#f59e0b'),
-            'success_color' => self::getValue('success_color', '#10b981'),
-            'warning_color' => self::getValue('warning_color', '#f59e0b'),
-            'danger_color' => self::getValue('danger_color', '#ef4444'),
+            'primary_color' => self::getValue('primary_color', '#343C90'),
+            'secondary_color' => self::getValue('secondary_color', '#E05522'),
+            'accent_color' => self::getValue('accent_color', '#1F2937'),
+            'success_color' => self::getValue('success_color', '#16A34A'),
+            'warning_color' => self::getValue('warning_color', '#F59E0B'),
+            'danger_color' => self::getValue('danger_color', '#DC2626'),
             'logo_light' => self::getValue('logo_light'),
             'logo_dark' => self::getValue('logo_dark'),
             'logo_mobile' => self::getValue('logo_mobile'),
@@ -129,9 +129,9 @@ class Setting extends Model
             ['group' => 'general', 'key' => 'working_hours', 'value' => 'Sat-Thu: 9AM-6PM', 'type' => 'text', 'label' => 'Working Hours'],
             
             // Appearance
-            ['group' => 'appearance', 'key' => 'primary_color', 'value' => '#006C35', 'type' => 'text', 'label' => 'Primary Color'],
-            ['group' => 'appearance', 'key' => 'secondary_color', 'value' => '#C8A951', 'type' => 'text', 'label' => 'Secondary Color'],
-            ['group' => 'appearance', 'key' => 'accent_color', 'value' => '#1B3A5C', 'type' => 'text', 'label' => 'Accent Color'],
+            ['group' => 'appearance', 'key' => 'primary_color', 'value' => '#343C90', 'type' => 'text', 'label' => 'Primary Color'],
+            ['group' => 'appearance', 'key' => 'secondary_color', 'value' => '#E05522', 'type' => 'text', 'label' => 'Secondary Color'],
+            ['group' => 'appearance', 'key' => 'accent_color', 'value' => '#1F2937', 'type' => 'text', 'label' => 'Accent Color'],
             ['group' => 'appearance', 'key' => 'logo_light', 'value' => '', 'type' => 'file', 'label' => 'Logo (Light)'],
             ['group' => 'appearance', 'key' => 'logo_dark', 'value' => '', 'type' => 'file', 'label' => 'Logo (Dark)'],
             ['group' => 'appearance', 'key' => 'favicon', 'value' => '', 'type' => 'file', 'label' => 'Favicon'],
