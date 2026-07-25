@@ -14,10 +14,9 @@ class AuditLogResource extends Resource
 {
     protected static ?string $model = AuditLog::class;
     protected static ?string $navigationIcon = 'heroicon-o-clock';
-    protected static ?string $navigationGroup = 'Admin';
     protected static ?string $navigationLabel = 'Audit Log';
     protected static ?int $navigationSort = 100;
-    protected static bool $shouldRegisterNavigation = true;
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function canCreate(): bool
     {
