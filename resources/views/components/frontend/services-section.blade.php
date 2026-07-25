@@ -6,13 +6,9 @@ use Illuminate\Support\Facades\Cache;
 $cacheKey = 'services_active_tabs_' . app()->getLocale();
 $activeTabs = Cache::remember($cacheKey, 600, function() {
     try {
-        $tabs = \App\Models\HeroTab::where('is_active', 1)->orderBy('order')->get();
-        if ($tabs->isEmpty()) {
-            return null;
-        }
-        return $tabs;
+        return \App\Models\HeroTab::where('is_active', 1)->orderBy('order')->get();
     } catch (\Exception $e) {
-        return null;
+        return collect();
     }
 });
 
@@ -117,7 +113,7 @@ $defaultServices = [
 ];
 
 // Use database data if available, otherwise use defaults
-$services = $activeTabs ?? $defaultServices;
+$services = (!$activeTabs->isEmpty()) ? $activeTabs : $defaultServices;
 
 // Helper function to get localized value
 function getLocalized($array, $locale = 'en') {
@@ -157,6 +153,12 @@ function getLocalized($array, $locale = 'en') {
                         <!-- Features List -->
                         @php
                             $features = is_array($service) ? ($service['features'] ?? []) : ($service->translated_features ?? []);
+                            // Generate service URL - use method for objects, route name for arrays
+                            if (is_array($service)) {
+                                $serviceUrl = route($service['url'] ?? 'services', ['locale' => app()->getLocale()]);
+                            } else {
+                                $serviceUrl = $service->getButtonUrlResolved() ?? route('services', ['locale' => app()->getLocale()]);
+                            }
                         @endphp
                         @if(!empty($features))
                             <ul class="service-features">
@@ -169,7 +171,7 @@ function getLocalized($array, $locale = 'en') {
                             </ul>
                         @endif
                         
-                        <a href="{{ route(is_array($service) ? $service['url'] : ($service->route_name ?? 'services'), ['locale' => app()->getLocale()]) }}" class="btn btn-outline-primary service-btn">
+                        <a href="{{ $serviceUrl }}" class="btn btn-outline-primary service-btn">
                             @lang('common.learn_more') <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
