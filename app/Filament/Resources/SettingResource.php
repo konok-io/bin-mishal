@@ -56,8 +56,10 @@ class SettingResource extends BaseResource
                                 'text' => 'Text',
                                 'number' => 'Number',
                                 'boolean' => 'Boolean/Toggle',
+                                'textarea' => 'Textarea',
                                 'json' => 'JSON',
                                 'file' => 'File',
+                                'select' => 'Select',
                             ])
                             ->default('text'),
                     ])->columns(2),
@@ -66,16 +68,16 @@ class SettingResource extends BaseResource
                     ->schema([
                         Schemas\Components\TextInput::make('value')
                             ->label('Value')
-                            ->visible(fn($get) => !in_array($get('type'), ['boolean', 'json', 'file'])),
+                            ->visible(fn($get) => in_array($get('type'), ['text', 'number'])),
                         Schemas\Components\Toggle::make('value')
                             ->label('Value')
                             ->visible(fn($get) => $get('type') === 'boolean'),
                         Schemas\Components\Textarea::make('value')
-                            ->label('JSON Value')
-                            ->visible(fn($get) => $get('type') === 'json'),
+                            ->label('Value')
+                            ->visible(fn($get) => in_array($get('type'), ['textarea', 'json'])),
                         Schemas\Components\FileUpload::make('value')
                             ->label('File')
-                            ->visible(fn($get) => $get('type') === 'file'),
+                            ->visible(fn($get) => in_array($get('type'), ['file', 'select'])),
                     ]),
 
                 Schemas\Components\Section::make('Documentation')
@@ -114,13 +116,20 @@ class SettingResource extends BaseResource
             ->filters([
                 Tables\Filters\SelectFilter::make('group')
                     ->options([
-                        'general' => 'General',
-                        'appearance' => 'Appearance',
-                        'seo' => 'SEO',
-                        'social' => 'Social',
-                        'booking' => 'Booking',
-                        'email' => 'Email',
-                        'integrations' => 'Integrations',
+                        'app' => 'App Settings',
+                        'contact' => 'Contact Info',
+                        'header' => 'Header Settings',
+                        'footer' => 'Footer Settings',
+                        'social' => 'Social Links',
+                        'hero_home' => 'Hero Section (Home)',
+                        'about' => 'About Section',
+                        'services' => 'Services Section',
+                        'contact_page' => 'Contact Page',
+                        'business' => 'Business Settings',
+                        'booking' => 'Booking Settings',
+                        'invoice' => 'Invoice Settings',
+                        'system' => 'System Settings',
+                        'widgets' => 'Widgets',
                     ]),
             ])
             ->actions([
