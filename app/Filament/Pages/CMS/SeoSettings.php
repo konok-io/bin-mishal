@@ -16,7 +16,11 @@ class SeoSettings extends Page
 {
     protected static ?string $title = 'SEO Settings';
     protected static ?string $navigationLabel = 'SEO';
-    protected static ?string $navigationIcon = 'heroicon-o-magnifying-glass';
+
+    public static function getNavigationIcon(): ?string
+    {
+        return 'heroicon-o-magnifying-glass';
+    }
 
     public ?array $data = [];
 

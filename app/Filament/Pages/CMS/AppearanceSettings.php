@@ -17,7 +17,11 @@ class AppearanceSettings extends Page
 {
     protected static ?string $title = 'Appearance Settings';
     protected static ?string $navigationLabel = 'Appearance';
-    protected static ?string $navigationIcon = 'heroicon-o-paint-brush';
+
+    public static function getNavigationIcon(): ?string
+    {
+        return 'heroicon-o-paint-brush';
+    }
 
     public ?array $data = [];
 

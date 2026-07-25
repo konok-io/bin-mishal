@@ -18,7 +18,11 @@ class GlobalSettings extends Page
 {
     protected static ?string $title = 'Global Settings';
     protected static ?string $navigationLabel = 'Global Settings';
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+
+    public static function getNavigationIcon(): ?string
+    {
+        return 'heroicon-o-cog-6-tooth';
+    }
 
     public ?array $data = [];
 
