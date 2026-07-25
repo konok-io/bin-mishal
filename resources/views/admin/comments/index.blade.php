@@ -43,7 +43,7 @@
                     <tr>
                         <td>
                             @if($comment->post)
-                                <a href="{{ route('blog.show', $comment->post->slug) }}" target="_blank">{{ Str::limit($comment->post->title, 30) }}</a>
+                                <a href="{{ route('blog.detail', $comment->post->slug) }}" target="_blank">{{ Str::limit($comment->post->title, 30) }}</a>
                             @else
                                 <span class="text-muted">N/A</span>
                             @endif

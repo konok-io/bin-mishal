@@ -318,7 +318,7 @@
                             <p class="text-muted">Flights & Visa</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-primary fw-bold">From SAR 450</span>
-                                <a href="{{ route('services.flight', ['locale' => app()->getLocale()]) }}" class="btn btn-sm btn-outline-primary">Book</a>
+                                <a href="{{ route('services.airticket', ['locale' => app()->getLocale()]) }}" class="btn btn-sm btn-outline-primary">Book</a>
                             </div>
                         </div>
                     </div>

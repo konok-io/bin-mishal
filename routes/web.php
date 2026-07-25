@@ -349,7 +349,7 @@ Route::prefix('{locale}')
         Route::get('/services/airticket', [PublicController::class, 'airticket'])->name('services.airticket');
         Route::get('/services/hotel', [PublicController::class, 'hotel'])->name('services.hotel');
         Route::get('/investor', [PublicController::class, 'investor'])->name('investor');
-        Route::get('/investor/inquiry', [PublicController::class, 'investorInquiry'])->name('investor.inquiry');
+        Route::post('/investor/inquiry', [PublicController::class, 'investorInquiry'])->name('investor.inquiry');
         Route::get('/cargo/calculate', [PublicController::class, 'cargoCalculate'])->name('cargo.calculate');
         
         // News & Blog

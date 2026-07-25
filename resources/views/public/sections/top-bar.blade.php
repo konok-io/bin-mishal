@@ -59,19 +59,19 @@
                     {{-- Language Switcher --}}
                     <div class="lang-switcher d-flex gap-1">
                         @if(app()->getLocale() !== 'bn')
-                            <a href="{{ route('language.switch', ['locale' => 'bn', 'redirect' => url()->current()]) }}" 
+                            <a href="{{ switch_locale_url('bn') }}" 
                                class="btn btn-sm {{ app()->getLocale() === 'bn' ? 'btn-light' : 'btn-outline-light' }}">
                                 বাংলা
                             </a>
                         @endif
                         @if(app()->getLocale() !== 'en')
-                            <a href="{{ route('language.switch', ['locale' => 'en', 'redirect' => url()->current()]) }}" 
+                            <a href="{{ switch_locale_url('en') }}" 
                                class="btn btn-sm {{ app()->getLocale() === 'en' ? 'btn-light' : 'btn-outline-light' }}">
                                 EN
                             </a>
                         @endif
                         @if(app()->getLocale() !== 'ar')
-                            <a href="{{ route('language.switch', ['locale' => 'ar', 'redirect' => url()->current()]) }}" 
+                            <a href="{{ switch_locale_url('ar') }}" 
                                class="btn btn-sm {{ app()->getLocale() === 'ar' ? 'btn-light' : 'btn-outline-light' }}">
                                 العربية
                             </a>

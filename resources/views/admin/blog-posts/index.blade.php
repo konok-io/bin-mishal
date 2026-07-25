@@ -82,7 +82,7 @@
                         </td>
                         <td>{{ $post->published_at ? $post->published_at->format('M d, Y') : $post->created_at->format('M d, Y') }}</td>
                         <td>
-                            <a href="{{ route('blog.show', $post->slug) }}" target="_blank" class="btn btn-sm btn-info">
+                            <a href="{{ route('blog.detail', $post->slug) }}" target="_blank" class="btn btn-sm btn-info">
                                 <i class="bi bi-eye"></i>
                             </a>
                             <a href="{{ route('admin.blog-posts.edit', $post->id) }}" class="btn btn-sm btn-warning">
