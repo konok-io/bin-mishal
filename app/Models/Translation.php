@@ -24,6 +24,11 @@ class Translation extends Model
         'updated_by',
     ];
 
+    protected $attributes = [
+        'source' => 'manual',
+        'status' => 'complete',
+    ];
+
     protected $casts = [
         'last_seen_in_code_at' => 'datetime',
     ];

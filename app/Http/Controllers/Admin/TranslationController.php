@@ -51,8 +51,11 @@ class TranslationController extends Controller
             'value_en' => 'nullable|string',
             'value_bn' => 'nullable|string',
             'value_ar' => 'nullable|string',
-            'source' => 'nullable|string',
+            'source' => 'nullable|string|in:code,manual,imported',
         ]);
+
+        // Set default source if not provided
+        $validated['source'] = $validated['source'] ?? 'manual';
 
         $translation = Translation::create($validated);
         $translation->updateStatus();
@@ -80,8 +83,11 @@ class TranslationController extends Controller
             'value_en' => 'nullable|string',
             'value_bn' => 'nullable|string',
             'value_ar' => 'nullable|string',
-            'source' => 'nullable|string',
+            'source' => 'nullable|string|in:code,manual,imported',
         ]);
+
+        // Set default source if not provided
+        $validated['source'] = $validated['source'] ?? 'manual';
 
         $translation->update($validated);
         $translation->updateStatus();
