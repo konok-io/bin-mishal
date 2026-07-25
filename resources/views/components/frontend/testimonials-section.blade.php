@@ -198,7 +198,7 @@ function getLocalizedTestimonial($array, $locale = 'en') {
     align-items: center;
     text-align: center;
     padding-right: 30px;
-    border-right: 3px solid var(--primary-color, #343C90);
+    border-right: 3px solid var(--primary-color, #E05522);
 }
 
 .author-avatar {
@@ -206,7 +206,7 @@ function getLocalizedTestimonial($array, $locale = 'en') {
     height: 110px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid var(--primary-color, #343C90);
+    border: 5px solid var(--primary-color, #E05522);
     margin-bottom: 20px;
     box-shadow: 0 10px 30px rgba(52, 60, 144, 0.2);
 }
@@ -215,7 +215,7 @@ function getLocalizedTestimonial($array, $locale = 'en') {
     width: 110px;
     height: 110px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-color, #343C90), var(--secondary-color, #E05522));
+    background: linear-gradient(135deg, var(--primary-color, #E05522), var(--secondary-color, #343C90));
     color: #fff;
     font-size: 45px;
     font-weight: 700;
@@ -241,7 +241,7 @@ function getLocalizedTestimonial($array, $locale = 'en') {
 
 .author-info .company {
     font-size: 0.9rem;
-    color: var(--primary-color, #343C90);
+    color: var(--primary-color, #E05522);
     font-weight: 500;
 }
 
@@ -255,7 +255,7 @@ function getLocalizedTestimonial($array, $locale = 'en') {
     top: -15px;
     left: 10px;
     font-size: 60px;
-    color: var(--secondary-color, #E05522);
+    color: var(--secondary-color, #343C90);
     opacity: 0.2;
 }
 
@@ -290,7 +290,7 @@ function getLocalizedTestimonial($array, $locale = 'en') {
 .carousel-control-next {
     width: 55px;
     height: 55px;
-    background: linear-gradient(135deg, var(--primary-color, #343C90), var(--secondary-color, #E05522));
+    background: linear-gradient(135deg, var(--primary-color, #E05522), var(--secondary-color, #343C90));
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
@@ -334,7 +334,7 @@ function getLocalizedTestimonial($array, $locale = 'en') {
 }
 
 .carousel-indicators button.active {
-    background: linear-gradient(135deg, var(--primary-color, #343C90), var(--secondary-color, #E05522));
+    background: linear-gradient(135deg, var(--primary-color, #E05522), var(--secondary-color, #343C90));
     width: 40px;
     border-radius: 7px;
 }
@@ -347,7 +347,7 @@ function getLocalizedTestimonial($array, $locale = 'en') {
     
     .testimonial-author {
         border-right: none;
-        border-bottom: 3px solid var(--primary-color, #343C90);
+        border-bottom: 3px solid var(--primary-color, #E05522);
         padding-right: 0;
         padding-bottom: 30px;
         margin-bottom: 30px;

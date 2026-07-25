@@ -144,11 +144,11 @@ use App\Models\Faq;
 }
 
 .accordion-button:hover {
-    color: var(--primary-color, #343C90);
+    color: var(--primary-color, #E05522);
 }
 
 .accordion-button:not(.collapsed) {
-    background: var(--primary-color, #343C90);
+    background: var(--primary-color, #E05522);
     color: #fff;
     box-shadow: none;
 }
@@ -168,7 +168,7 @@ use App\Models\Faq;
     border-radius: 50%;
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--primary-color, #343C90);
+    color: var(--primary-color, #E05522);
     flex-shrink: 0;
 }
 

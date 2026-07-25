@@ -45,11 +45,11 @@
         }
         
         :root {
-            --primary: #343C90;
-            --primary-dark: #252E72;
+            --primary: #E05522;
+            --primary-dark: #C94718;
             --primary-hover: #C94718;
-            --secondary: #E05522;
-            --secondary-dark: #C94718;
+            --secondary: #343C90;
+            --secondary-dark: #252E72;
             --accent: #1F2937;
             --success: #16A34A;
             --warning: #F59E0B;

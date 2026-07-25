@@ -149,7 +149,7 @@
 }
 
 .footer-social a:hover {
-    background: var(--primary-color, #343C90);
+    background: var(--primary-color, #E05522);
 }
 
 .footer-col .menu {

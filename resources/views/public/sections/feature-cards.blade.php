@@ -115,7 +115,7 @@
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-color, #343C90), var(--primary-dark, #252E72));
+    background: linear-gradient(135deg, var(--primary-color, #E05522), var(--primary-dark, #C94718));
     color: #fff;
     margin-bottom: 1.5rem;
 }
@@ -135,7 +135,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--primary-color, #343C90);
+    color: var(--primary-color, #E05522);
     font-weight: 500;
     text-decoration: none;
 }

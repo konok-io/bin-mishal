@@ -40,9 +40,9 @@
     
     <style>
         :root {
-            --primary-color: {{ \App\Models\CMS\Setting::getValue('primary_color', '#343C90') }};
-            --primary-dark: {{ \App\Models\CMS\Setting::getValue('primary_dark', '#252E72') }};
-            --secondary-color: {{ \App\Models\CMS\Setting::getValue('secondary_color', '#E05522') }};
+            --primary-color: {{ \App\Models\CMS\Setting::getValue('primary_color', '#E05522') }};
+            --primary-dark: {{ \App\Models\CMS\Setting::getValue('primary_dark', '#C94718') }};
+            --secondary-color: {{ \App\Models\CMS\Setting::getValue('secondary_color', '#343C90') }};
             --accent-color: {{ \App\Models\CMS\Setting::getValue('accent_color', '#1F2937') }};
             --text-dark: #1F2937;
             --text-muted: #6B7280;
@@ -329,7 +329,7 @@
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="destination-card rounded-4 overflow-hidden shadow-sm">
-                        <div class="destination-image" style="background: linear-gradient(135deg, #343C90 0%, #252E72 100%); height: 250px; display: flex; align-items: center; justify-content: center;">
+                        <div class="destination-image" style="background: linear-gradient(135deg, #E05522 0%, #C94718 100%); height: 250px; display: flex; align-items: center; justify-content: center;">
                             <i class="fas fa-kaaba fa-5x text-white opacity-50"></i>
                         </div>
                         <div class="destination-info p-4 bg-white">

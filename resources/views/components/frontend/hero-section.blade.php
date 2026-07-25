@@ -365,7 +365,7 @@ $activeTabs = Cache::remember($cacheKey, 600, function() {
 <style>
 /* Hero Section Styles */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-color, #343C90) 0%, #252E72 100%);
+    background: linear-gradient(135deg, var(--primary-color, #E05522) 0%, #C94718 100%);
     color: #fff;
     padding: 80px 0;
     position: relative;
@@ -459,12 +459,12 @@ $activeTabs = Cache::remember($cacheKey, 600, function() {
 
 .booking-tabs .nav-link.active {
     background: #fff;
-    color: var(--primary-color, #343C90);
+    color: var(--primary-color, #E05522);
     box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
 }
 
 .booking-tabs .nav-link:hover:not(.active) {
-    color: var(--primary-color, #343C90);
+    color: var(--primary-color, #E05522);
 }
 
 .booking-content {
@@ -487,12 +487,12 @@ $activeTabs = Cache::remember($cacheKey, 600, function() {
 }
 
 .form-control:focus, .form-select:focus {
-    border-color: var(--primary-color, #343C90);
+    border-color: var(--primary-color, #E05522);
     box-shadow: 0 0 0 3px rgba(0,108,53,0.1);
 }
 
 .btn-primary {
-    background: var(--primary-color, #343C90);
+    background: var(--primary-color, #E05522);
     border: none;
     padding: 14px 25px;
     border-radius: 10px;
@@ -501,7 +501,7 @@ $activeTabs = Cache::remember($cacheKey, 600, function() {
 }
 
 .btn-primary:hover {
-    background: #252E72;
+    background: #C94718;
     transform: translateY(-2px);
     box-shadow: 0 5px 20px rgba(0,108,53,0.3);
 }

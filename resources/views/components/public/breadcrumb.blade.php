@@ -56,7 +56,7 @@
 }
 
 .breadcrumb__link:hover {
-    color: var(--primary-color, #343C90);
+    color: var(--primary-color, #E05522);
 }
 
 .breadcrumb__current {

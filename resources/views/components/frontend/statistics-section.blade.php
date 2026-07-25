@@ -85,7 +85,7 @@ try {
 <style>
 /* Statistics Section */
 .statistics-section {
-    background: linear-gradient(135deg, var(--primary-color, #343C90) 0%, #252E72 100%);
+    background: linear-gradient(135deg, var(--primary-color, #E05522) 0%, #C94718 100%);
     color: #fff;
     position: relative;
     overflow: hidden;
@@ -134,7 +134,7 @@ try {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--secondary-color, #E05522), transparent);
+    background: linear-gradient(90deg, var(--secondary-color, #343C90), transparent);
     opacity: 0;
     transition: all 0.4s ease;
 }
@@ -152,7 +152,7 @@ try {
 .stat-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, var(--secondary-color, #E05522), #C94718);
+    background: linear-gradient(135deg, var(--secondary-color, #343C90), #C94718);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -190,7 +190,7 @@ try {
 .stat-suffix {
     font-size: 2.5rem;
     margin-left: 5px;
-    color: var(--secondary-color, #E05522);
+    color: var(--secondary-color, #343C90);
     font-weight: 700;
 }
 

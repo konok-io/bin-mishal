@@ -215,7 +215,7 @@ function getLocalized($array, $locale = 'en') {
 
 .section-badge {
     display: inline-block;
-    background: linear-gradient(135deg, var(--primary-color, #343C90), var(--secondary-color, #E05522));
+    background: linear-gradient(135deg, var(--primary-color, #E05522), var(--secondary-color, #343C90));
     color: #fff;
     padding: 8px 24px;
     border-radius: 30px;
@@ -240,7 +240,7 @@ function getLocalized($array, $locale = 'en') {
     display: block;
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary-color, #343C90), var(--secondary-color, #E05522));
+    background: linear-gradient(90deg, var(--primary-color, #E05522), var(--secondary-color, #343C90));
     margin: 20px auto 0;
     border-radius: 2px;
 }
@@ -277,7 +277,7 @@ function getLocalized($array, $locale = 'en') {
 .service-icon {
     width: 90px;
     height: 90px;
-    background: linear-gradient(145deg, var(--primary-color, #343C90), #252E72);
+    background: linear-gradient(145deg, var(--primary-color, #E05522), #C94718);
     border-radius: 22px;
     display: flex;
     align-items: center;
@@ -295,7 +295,7 @@ function getLocalized($array, $locale = 'en') {
 
 .service-card:hover .service-icon {
     transform: scale(1.1) rotate(8deg);
-    background: linear-gradient(145deg, var(--secondary-color, #E05522), #C94718);
+    background: linear-gradient(145deg, var(--secondary-color, #343C90), #C94718);
     box-shadow: 0 12px 35px rgba(224, 85, 34, 0.35);
 }
 
@@ -336,7 +336,7 @@ function getLocalized($array, $locale = 'en') {
 }
 
 .service-features li:hover {
-    color: var(--primary-color, #343C90);
+    color: var(--primary-color, #E05522);
     padding-left: 5px;
 }
 
@@ -347,7 +347,7 @@ function getLocalized($array, $locale = 'en') {
 }
 
 .service-features li:hover i {
-    color: var(--primary-color, #343C90);
+    color: var(--primary-color, #E05522);
     transform: scale(1.2);
 }
 
@@ -362,13 +362,13 @@ function getLocalized($array, $locale = 'en') {
     gap: 10px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: transparent;
-    border: 2px solid var(--primary-color, #343C90);
-    color: var(--primary-color, #343C90);
+    border: 2px solid var(--primary-color, #E05522);
+    color: var(--primary-color, #E05522);
 }
 
 .service-btn:hover {
-    background: var(--primary-color, #343C90);
-    border-color: var(--primary-color, #343C90);
+    background: var(--primary-color, #E05522);
+    border-color: var(--primary-color, #E05522);
     color: #fff;
     transform: translateX(5px);
     box-shadow: 0 8px 25px rgba(52, 60, 144, 0.3);
@@ -388,7 +388,7 @@ function getLocalized($array, $locale = 'en') {
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(90deg, var(--primary-color, #343C90), var(--secondary-color, #E05522), var(--primary-color, #343C90));
+    background: linear-gradient(90deg, var(--primary-color, #E05522), var(--secondary-color, #343C90), var(--primary-color, #E05522));
     background-size: 200% 100%;
     transform: scaleX(0);
     transform-origin: left;

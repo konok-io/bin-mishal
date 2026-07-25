@@ -42,14 +42,14 @@
         html[lang="en"] body { font-family: 'EnglishFont', 'Inter', sans-serif; }
         
         :root {
-            --primary: #343C90;
-            --primary-dark: #252E72;
-            --primary-hover: #252E72;
-            --primary-light: #EEF2FF;
-            --secondary: #E05522;
-            --secondary-dark: #C94718;
-            --secondary-hover: #C94718;
-            --secondary-light: #FFF3ED;
+            --primary: #E05522;
+            --primary-dark: #C94718;
+            --primary-hover: #C94718;
+            --primary-light: #FFF3ED;
+            --secondary: #343C90;
+            --secondary-dark: #252E72;
+            --secondary-hover: #252E72;
+            --secondary-light: #EEF2FF;
             --accent: #1F2937;
             --success: #16A34A;
             --warning: #F59E0B;

@@ -4,10 +4,10 @@
 @php
     $bgStyle = match($settings['background_type'] ?? 'gradient')
     {
-        'gradient' => "background: linear-gradient({$settings['gradient_from'] ?? '#343C90'}, {$settings['gradient_to'] ?? '#252E72'});",
+        'gradient' => "background: linear-gradient({$settings['gradient_from'] ?? '#E05522'}, {$settings['gradient_to'] ?? '#C94718'});",
         'image' => "background-image: url({$settings['background_image'] ?? ''}); background-size: cover; background-position: center;",
-        'color' => "background-color: {$settings['background_color'] ?? '#343C90'};",
-        default => "background-color: {$settings['background_color'] ?? '#343C90'};",
+        'color' => "background-color: {$settings['background_color'] ?? '#E05522'};",
+        default => "background-color: {$settings['background_color'] ?? '#E05522'};",
     };
 @endphp
 

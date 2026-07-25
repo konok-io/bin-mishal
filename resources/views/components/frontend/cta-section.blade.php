@@ -45,7 +45,7 @@ use App\Models\CMS\Setting;
 <style>
 /* CTA Section */
 .cta-section {
-    background: linear-gradient(135deg, var(--primary-color, #343C90) 0%, #252E72 100%);
+    background: linear-gradient(135deg, var(--primary-color, #E05522) 0%, #C94718 100%);
     position: relative;
     overflow: hidden;
 }
@@ -112,7 +112,7 @@ use App\Models\CMS\Setting;
 }
 
 .cta-feature i {
-    color: var(--secondary-color, #E05522);
+    color: var(--secondary-color, #343C90);
 }
 
 .cta-buttons {
@@ -126,13 +126,13 @@ use App\Models\CMS\Setting;
     border-radius: 30px;
     font-weight: 600;
     background: #fff;
-    color: var(--primary-color, #343C90);
+    color: var(--primary-color, #E05522);
     border: none;
     transition: all 0.3s ease;
 }
 
 .cta-btn-primary:hover {
-    background: var(--secondary-color, #E05522);
+    background: var(--secondary-color, #343C90);
     color: #fff;
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
