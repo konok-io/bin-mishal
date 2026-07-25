@@ -24,7 +24,7 @@ class MenuResource extends BaseResource
 
     public static function getNavigationGroup(): string
     {
-        return 'Content';
+        return 'CMS';
     }
 
     public static function form(Schema $schema): Schema

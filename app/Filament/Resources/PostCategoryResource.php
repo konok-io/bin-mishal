@@ -17,12 +17,12 @@ class PostCategoryResource extends BaseResource
 
     public static function getNavigationLabel(): string
     {
-        return 'Post Category';
+        return 'Post Categories';
     }
 
     public static function getNavigationGroup(): string
     {
-        return 'Content';
+        return 'CMS';
     }
 
     public static function form(Schema $schema): Schema

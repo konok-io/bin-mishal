@@ -17,12 +17,12 @@ class TestimonialResource extends BaseResource
 
     public static function getNavigationLabel(): string
     {
-        return 'Testimonial';
+        return 'Testimonials';
     }
 
     public static function getNavigationGroup(): string
     {
-        return 'CRM';
+        return 'CMS';
     }
 
     public static function form(Schema $schema): Schema

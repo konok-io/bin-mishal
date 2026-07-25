@@ -17,12 +17,12 @@ class FaqResource extends BaseResource
 
     public static function getNavigationLabel(): string
     {
-        return 'Faq';
+        return 'FAQs';
     }
 
     public static function getNavigationGroup(): string
     {
-        return 'Content';
+        return 'CMS';
     }
 
     public static function form(Schema $schema): Schema

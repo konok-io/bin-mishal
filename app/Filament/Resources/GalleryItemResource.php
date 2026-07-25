@@ -17,12 +17,12 @@ class GalleryItemResource extends BaseResource
 
     public static function getNavigationLabel(): string
     {
-        return 'Gallery Item';
+        return 'Gallery';
     }
 
     public static function getNavigationGroup(): string
     {
-        return 'Content';
+        return 'CMS';
     }
 
     public static function form(Schema $schema): Schema

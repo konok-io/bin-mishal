@@ -17,12 +17,12 @@ class SeoSettingResource extends BaseResource
 
     public static function getNavigationLabel(): string
     {
-        return 'Seo Setting';
+        return 'SEO Settings';
     }
 
     public static function getNavigationGroup(): string
     {
-        return 'System';
+        return 'CMS';
     }
 
     public static function form(Schema $schema): Schema

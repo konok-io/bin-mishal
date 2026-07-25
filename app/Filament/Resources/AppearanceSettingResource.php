@@ -4,35 +4,36 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SettingResource\Pages;
-use App\Models\Setting;
+use App\Filament\Resources\AppearanceSettingResource\Pages;
+use App\Models\AppearanceSetting;
 use Filament\Schemas;
 use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
-class SettingResource extends BaseResource
+
+class AppearanceSettingResource extends BaseResource
 {
-    protected static ?string $model = Setting::class;
-    
+    protected static ?string $model = AppearanceSetting::class;
+
     public static function shouldRegisterNavigation(): bool
     {
         return true;
     }
-    
+
     public static function getNavigationLabel(): string
     {
-        return 'Global Settings';
+        return 'Appearance Settings';
     }
-    
+
     public static function getNavigationIcon(): string
     {
-        return 'heroicon-o-cog-6-tooth';
+        return 'heroicon-o-paint-brush';
     }
-    
+
     public static function getNavigationSort(): ?int
     {
-        return 1;
+        return 3;
     }
 
     public static function getNavigationGroup(): string
@@ -49,22 +50,24 @@ class SettingResource extends BaseResource
                         Schemas\Components\TextInput::make('key')
                             ->label('Key')
                             ->required()
-                            ->unique(Setting::class, 'key', ignoreRecord: true),
-                        Schemas\Components\TextInput::make('group')
-                            ->label('Group')
+                            ->unique(AppearanceSetting::class, 'key', ignoreRecord: true),
+                        Schemas\Components\Select::make('section')
+                            ->label('Section')
+                            ->options(AppearanceSetting::SECTIONS)
                             ->required(),
                         Schemas\Components\TextInput::make('label')
-                            ->label('Label'),
+                            ->label('Label')
+                            ->required(),
                         Schemas\Components\Select::make('type')
                             ->label('Type')
                             ->options([
                                 'text' => 'Text',
+                                'color' => 'Color',
                                 'number' => 'Number',
                                 'boolean' => 'Boolean/Toggle',
                                 'textarea' => 'Textarea',
-                                'json' => 'JSON',
-                                'file' => 'File',
                                 'select' => 'Select',
+                                'file' => 'File/Image',
                             ])
                             ->default('text'),
                     ])->columns(2),
@@ -73,16 +76,27 @@ class SettingResource extends BaseResource
                     ->schema([
                         Schemas\Components\TextInput::make('value')
                             ->label('Value')
-                            ->visible(fn($get) => in_array($get('type'), ['text', 'number'])),
+                            ->visible(fn($get) => in_array($get('type'), ['text', 'number', 'color'])),
                         Schemas\Components\Toggle::make('value')
                             ->label('Value')
                             ->visible(fn($get) => $get('type') === 'boolean'),
                         Schemas\Components\Textarea::make('value')
                             ->label('Value')
-                            ->visible(fn($get) => in_array($get('type'), ['textarea', 'json'])),
+                            ->visible(fn($get) => in_array($get('type'), ['textarea'])),
+                        Schemas\Components\Select::make('value')
+                            ->label('Value')
+                            ->options([
+                                'primary' => 'Primary',
+                                'secondary' => 'Secondary',
+                                'success' => 'Success',
+                                'danger' => 'Danger',
+                                'warning' => 'Warning',
+                                'info' => 'Info',
+                            ])
+                            ->visible(fn($get) => $get('type') === 'select'),
                         Schemas\Components\FileUpload::make('value')
                             ->label('File')
-                            ->visible(fn($get) => in_array($get('type'), ['file', 'select'])),
+                            ->visible(fn($get) => $get('type') === 'file'),
                     ]),
 
                 Schemas\Components\Section::make('Documentation')
@@ -102,40 +116,35 @@ class SettingResource extends BaseResource
                     ->label('Key')
                     ->searchable()
                     ->fontWeight('bold'),
-                Tables\Columns\TextColumn::make('group')
-                    ->label('Group')
-                    ->badge()
-                    ->color('primary'),
+                Tables\Columns\TextColumn::make('label')
+                    ->label('Label')
+                    ->searchable(),
+                Tables\Columns\BadgeColumn::make('section')
+                    ->label('Section')
+                    ->colors([
+                        'primary' => 'colors',
+                        'success' => 'typography',
+                        'info' => 'layout',
+                        'warning' => 'buttons',
+                        'danger' => 'cards',
+                        'gray' => 'header',
+                        'secondary' => 'footer',
+                        'primary' => 'custom_css',
+                        'success' => 'custom_js',
+                    ]),
                 Tables\Columns\TextColumn::make('value')
                     ->label('Value')
                     ->limit(50),
-                Tables\Columns\TextColumn::make('label')
-                    ->label('Label'),
                 Tables\Columns\TextColumn::make('type')
                     ->label('Type'),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Updated')
                     ->dateTime(),
             ])
-            ->defaultSort('group')
+            ->defaultSort('section')
             ->filters([
-                Tables\Filters\SelectFilter::make('group')
-                    ->options([
-                        'app' => 'App Settings',
-                        'contact' => 'Contact Info',
-                        'header' => 'Header Settings',
-                        'footer' => 'Footer Settings',
-                        'social' => 'Social Links',
-                        'hero_home' => 'Hero Section (Home)',
-                        'about' => 'About Section',
-                        'services' => 'Services Section',
-                        'contact_page' => 'Contact Page',
-                        'business' => 'Business Settings',
-                        'booking' => 'Booking Settings',
-                        'invoice' => 'Invoice Settings',
-                        'system' => 'System Settings',
-                        'widgets' => 'Widgets',
-                    ]),
+                Tables\Filters\SelectFilter::make('section')
+                    ->options(AppearanceSetting::SECTIONS),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -151,9 +160,9 @@ class SettingResource extends BaseResource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSettings::route('/'),
-            'create' => Pages\CreateSetting::route('/create'),
-            'edit' => Pages\EditSetting::route('/{record}/edit'),
+            'index' => Pages\ListAppearanceSettings::route('/'),
+            'create' => Pages\CreateAppearanceSetting::route('/create'),
+            'edit' => Pages\EditAppearanceSetting::route('/{record}/edit'),
         ];
     }
 }
