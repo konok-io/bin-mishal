@@ -357,8 +357,20 @@
             </a>
 
             <div class="nav-section-title"><span>Settings</span></div>
-            <a href="{{ route('admin.settings.index') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.settings.index') }}" class="nav-link {{ request()->routeIs('admin.settings.index') ? 'active' : '' }}">
                 <i class="fa-solid fa-cog"></i><span>Settings</span>
+            </a>
+            <a href="{{ route('admin.settings.tax') }}" class="nav-link {{ request()->routeIs('admin.settings.tax*') ? 'active' : '' }}">
+                <i class="fa-solid fa-receipt"></i><span>Tax & VAT</span>
+            </a>
+            <a href="{{ route('admin.settings.backup') }}" class="nav-link {{ request()->routeIs('admin.settings.backup*') ? 'active' : '' }}">
+                <i class="fa-solid fa-database"></i><span>Backup</span>
+            </a>
+            <a href="{{ route('admin.settings.redirects') }}" class="nav-link {{ request()->routeIs('admin.settings.redirects*') ? 'active' : '' }}">
+                <i class="fa-solid fa-link"></i><span>Redirects</span>
+            </a>
+            <a href="{{ route('admin.settings.maintenance') }}" class="nav-link {{ request()->routeIs('admin.settings.maintenance*') ? 'active' : '' }}">
+                <i class="fa-solid fa-wrench"></i><span>Maintenance</span>
             </a>
             <a href="{{ route('admin.seo-settings.index') }}" class="nav-link {{ request()->routeIs('admin.seo-settings.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-search"></i><span>SEO Settings</span>

@@ -130,6 +130,21 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     // Integrations Dashboard (Phase 19)
     Route::get('/integrations', [\App\Http\Controllers\Admin\IntegrationsController::class, 'index'])->name('integrations.index');
 
+    // Additional Settings (Phase 19)
+    Route::prefix('settings')->name('settings.')->group(function () {
+        Route::get('/tax', [App\Http\Controllers\Admin\SettingsController::class, 'tax'])->name('tax');
+        Route::put('/tax', [App\Http\Controllers\Admin\SettingsController::class, 'updateTax'])->name('tax.update');
+        Route::get('/backup', [App\Http\Controllers\Admin\SettingsController::class, 'backup'])->name('backup');
+        Route::post('/backup/create', [App\Http\Controllers\Admin\SettingsController::class, 'createBackup'])->name('backup.create');
+        Route::get('/backup/{filename}', [App\Http\Controllers\Admin\SettingsController::class, 'downloadBackup'])->name('backup.download');
+        Route::delete('/backup/{filename}', [App\Http\Controllers\Admin\SettingsController::class, 'deleteBackup'])->name('backup.delete');
+        Route::get('/redirects', [App\Http\Controllers\Admin\SettingsController::class, 'redirects'])->name('redirects');
+        Route::post('/redirects', [App\Http\Controllers\Admin\SettingsController::class, 'storeRedirect'])->name('redirects.store');
+        Route::delete('/redirects/{id}', [App\Http\Controllers\Admin\SettingsController::class, 'deleteRedirect'])->name('redirects.delete');
+        Route::get('/maintenance', [App\Http\Controllers\Admin\SettingsController::class, 'maintenance'])->name('maintenance');
+        Route::put('/maintenance', [App\Http\Controllers\Admin\SettingsController::class, 'updateMaintenance'])->name('maintenance.update');
+    });
+
     // AI Chat Assistant (Phase 16)
     Route::prefix('chat-bot')->name('chat-bot.')->group(function () {
         Route::get('/', [App\Http\Controllers\Admin\ChatBotController::class, 'index'])->name('index');
