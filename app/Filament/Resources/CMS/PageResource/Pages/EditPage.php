@@ -11,7 +11,6 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditPage extends EditRecord
 {
-
     protected function getHeaderActions(): array
     {
         return [

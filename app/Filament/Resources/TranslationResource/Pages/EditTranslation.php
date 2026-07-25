@@ -11,7 +11,6 @@ use Filament\Resources\Pages\EditRecord;
 
 class EditTranslation extends EditRecord
 {
-
     protected function getHeaderActions(): array
     {
         return [

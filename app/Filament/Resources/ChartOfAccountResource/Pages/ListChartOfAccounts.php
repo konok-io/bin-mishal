@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ListChartOfAccounts extends ListRecords
 {
-
     protected function getHeaderActions(): array
     {
         return [

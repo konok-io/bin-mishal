@@ -11,6 +11,7 @@ use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
+class TrustBadgeResource extends BaseResource
 {
     protected static ?string $model = TrustBadge::class;
 
