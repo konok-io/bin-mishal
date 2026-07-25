@@ -71,7 +71,7 @@
       body{top:0!important}
       font font{background:transparent!important;box-shadow:none!important}
       /* Topbar matches sidebar header */
-      .admin-topbar{background:linear-gradient(160deg, #343C90 0%, #252E72 50%, #1a1f4a 100%);color:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+      .admin-topbar{background:#0F172A;color:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
       .admin-topbar .text-dark{color:#fff!important}
       .admin-topbar .gt-btn,.admin-topbar .theme-toggle-btn{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2)}
       .admin-topbar .gt-btn:hover,.admin-topbar .theme-toggle-btn:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.4)}
@@ -86,8 +86,6 @@
       /* dark theme */
       [data-theme="dark"] body,[data-theme="dark"] .admin-body,[data-theme="dark"] .admin-wrapper,[data-theme="dark"] .admin-main,[data-theme="dark"] .admin-content{background:#0A0A1F!important;color:#EDECFF}
       [data-theme="dark"] .admin-topbar,[data-theme="dark"] .admin-sidebar,[data-theme="dark"] .card,[data-theme="dark"] .admin-card,[data-theme="dark"] .stat-card,[data-theme="dark"] .dropdown-menu,[data-theme="dark"] .admin-page-header{background:#171433!important;color:#EDECFF!important;border-color:#2C2860!important}
-      [data-theme="dark"] .admin-topbar{background:linear-gradient(160deg, #171433 0%, #0F0F24 100%)!important}
-      [data-theme="dark"] .admin-sidebar{background:linear-gradient(160deg, #171433 0%, #0F0F24 100%)!important}
       [data-theme="dark"] .gt-btn,[data-theme="dark"] .theme-toggle-btn{background:#171433;color:#EDECFF;border-color:#2C2860}
       [data-theme="dark"] .text-dark,[data-theme="dark"] .text-body,[data-theme="dark"] .stat-value,[data-theme="dark"] h1,[data-theme="dark"] h2,[data-theme="dark"] h3,[data-theme="dark"] h4,[data-theme="dark"] h5{color:#EDECFF!important}
       [data-theme="dark"] .text-muted,[data-theme="dark"] .stat-label,[data-theme="dark"] .admin-breadcrumb,[data-theme="dark"] .admin-breadcrumb a,[data-theme="dark"] small{color:#9B98C7!important}
@@ -218,7 +216,7 @@
       body.TEWGTB-ARABIC .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
       body.TEWGTB-URDU .admin-sidebar.collapsed ~ .admin-content{margin-left:0!important;margin-right:70px!important}
       body.TEWGTB-HINDI .admin-sidebar.collapsed ~ .admin-content{margin-left:70px!important}
-      .admin-sidebar{display:flex;flex-direction:column;min-height:100vh;position:relative;overflow:hidden}
+      .admin-sidebar{display:flex;flex-direction:column;min-height:100vh}
       .admin-sidebar .nav::-webkit-scrollbar{display:none}
       .admin-sidebar .nav{-ms-overflow-style:none;scrollbar-width:none}
       .admin-sidebar .sidebar-brand{height:auto;min-height:64px}
@@ -348,14 +346,8 @@
             </a>
 
             <div class="nav-section-title"><span>Support</span></div>
-            <a href="{{ route('admin.contact-messages.index') }}" class="nav-link {{ request()->routeIs('admin.contact-messages.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-envelope"></i><span>Contact Messages</span>
-            </a>
             <a href="{{ route('admin.newsletter-subscribers.index') }}" class="nav-link {{ request()->routeIs('admin.newsletter-subscribers.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-mailbox"></i><span>Newsletter</span>
-            </a>
-            <a href="{{ route('admin.comments.index') }}" class="nav-link {{ request()->routeIs('admin.comments.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-comment-alt"></i><span>Comments</span>
             </a>
 
             <div class="nav-section-title"><span>Settings</span></div>
@@ -416,6 +408,17 @@
             <a href="{{ route('admin.city-tv-connect.cameras') }}" class="nav-link" target="_blank">
                 <i class="fa-solid fa-video"></i><span>Live Cameras</span>
             </a>
+
+            <div class="nav-section-title"><span>Account</span></div>
+            <a href="{{ route('admin.profile') }}" class="nav-link {{ request()->routeIs('admin.profile') ? 'active' : '' }}">
+                <i class="fa-solid fa-id-badge"></i><span>My Profile</span>
+            </a>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="nav-link border-0 bg-transparent w-100 text-start">
+                    <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+                </button>
+            </form>
         </nav>
     </aside>
 
@@ -426,57 +429,26 @@
                 <i class="fa-solid fa-bars"></i>
             </button>
 
-            <div class="ms-auto d-flex align-items-center gap-3">
-                {{-- Language Switcher --}}
-                <div class="dropdown">
-                    <button type="button" class="gt-btn" data-bs-toggle="dropdown">
-                        <i class="fa-solid fa-globe"></i>
-                        <span class="d-none d-md-inline">{{ strtoupper(app()->getLocale()) }}</span>
-                        <i class="fa-solid fa-chevron-down" style="font-size:.7em"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
-                            <form action="{{ route('locale.change') }}" method="POST" id="lang-en">
-                                @csrf
-                                <input type="hidden" name="locale" value="en">
-                                <button type="submit" class="dropdown-item {{ app()->getLocale() == 'en' ? 'active' : '' }}">
-                                    <i class="fa-solid fa-check me-2 {{ app()->getLocale() == 'en' ? '' : 'invisible' }}"></i> English
-                                </button>
-                            </form>
-                        </li>
-                        <li>
-                            <form action="{{ route('locale.change') }}" method="POST" id="lang-bn">
-                                @csrf
-                                <input type="hidden" name="locale" value="bn">
-                                <button type="submit" class="dropdown-item {{ app()->getLocale() == 'bn' ? 'active' : '' }}">
-                                    <i class="fa-solid fa-check me-2 {{ app()->getLocale() == 'bn' ? '' : 'invisible' }}"></i> বাংলা
-                                </button>
-                            </form>
-                        </li>
-                        <li>
-                            <form action="{{ route('locale.change') }}" method="POST" id="lang-ar">
-                                @csrf
-                                <input type="hidden" name="locale" value="ar">
-                                <button type="submit" class="dropdown-item {{ app()->getLocale() == 'ar' ? 'active' : '' }}">
-                                    <i class="fa-solid fa-check me-2 {{ app()->getLocale() == 'ar' ? '' : 'invisible' }}"></i> العربية
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-
-                {{-- Light / dark toggle --}}
-                <button type="button" class="theme-toggle-btn" onclick="pcToggleTheme()" aria-label="Toggle theme" title="Toggle light/dark">
+            <div class="d-flex align-items-center gap-3">
+                {{-- Theme Toggle --}}
+                <button class="theme-toggle-btn" onclick="pcToggleTheme()" title="Toggle Theme">
                     <i class="fa-solid fa-sun" id="pcSun"></i>
                     <i class="fa-solid fa-moon" id="pcMoon" style="display:none"></i>
                 </button>
 
-                <a href="/admin/contact-messages" class="text-dark position-relative">
-                    <i class="fa-solid fa-bell fs-5"></i>
-                </a>
+                {{-- Language Switcher --}}
+                <div class="gtranslate-wrap">
+                    <button class="gt-btn" onclick="document.body.classList.toggle('gt-open')">
+                        <i class="fa-solid fa-globe"></i>
+                        <span class="d-none d-md-inline">Language</span>
+                    </button>
+                    <div class="lang-menu" id="google_translate_element"></div>
+                </div>
+
+                {{-- User Dropdown --}}
                 <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center gap-2 text-decoration-none text-dark dropdown-toggle" data-bs-toggle="dropdown">
-                        <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=4F2FE8&color=fff&size=72" width="36" height="36" class="rounded-circle" alt="Avatar">
+                    <a href="#" class="d-flex align-items-center gap-2 text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ auth()->user()->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) . '&background=4F2FE8&color=fff' }}" class="rounded-circle object-fit-cover" alt="Avatar" style="width:36px;height:36px">
                         <span class="d-none d-md-inline small fw-semibold">{{ auth()->user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
