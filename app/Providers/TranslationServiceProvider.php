@@ -83,7 +83,46 @@ class DatabaseTranslationLoader
             // If database is not available, just use file translations
         }
 
-        return $lines;
+        // Ensure top-level values are strings (not arrays)
+        return $this->ensureStringValues($lines);
+    }
+
+    /**
+     * Ensure all top-level values in the array are strings.
+     * If a value is an array, replace it with its first string value or the key.
+     */
+    protected function ensureStringValues(array $array): array
+    {
+        $result = [];
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                // For arrays, try to get the first string value
+                $found = $this->findFirstString($value);
+                $result[$key] = $found ?? $key;
+            } else {
+                $result[$key] = (string) $value;
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * Recursively find the first string value in an array.
+     */
+    protected function findFirstString(mixed $value): ?string
+    {
+        if (is_string($value)) {
+            return $value;
+        }
+        if (is_array($value)) {
+            foreach ($value as $item) {
+                $found = $this->findFirstString($item);
+                if ($found !== null) {
+                    return $found;
+                }
+            }
+        }
+        return null;
     }
 
     /**
