@@ -8,5 +8,5 @@ use Filament\Resources\Pages\Page;
 
 class BasePage extends Page
 {
-    protected static string $resource = null;
+    // Base page class - override $resource in child classes
 }
