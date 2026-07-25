@@ -196,7 +196,7 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
 }
 
 .header-topbar {
-    background: var(--primary-color, #E05522);
+    background: #343C90;
     color: #fff;
     padding: 8px 0;
     font-size: 13px;
