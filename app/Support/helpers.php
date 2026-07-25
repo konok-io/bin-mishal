@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+if (!function_exists('enabled_locales')) {
+    function enabled_locales(): array
+    {
+        $locales = config('locales.enabled', []);
+        // Filter only enabled locales
+        return array_filter($locales, fn($config) => $config['enabled'] ?? false);
+    }
+}
+
 if (!function_exists('current_locale')) {
     function current_locale(): string
     {
