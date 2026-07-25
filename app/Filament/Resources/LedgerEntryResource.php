@@ -12,7 +12,6 @@ use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\TextEntry;
 use Illuminate\Database\Eloquent\Builder;
