@@ -11,6 +11,8 @@ class ListNewsletterSubscribers extends ListRecords
     protected static string $resource = NewsletterSubscriberResource::class;
 
     protected function getHeaderActions(): array
+
+    {
         return [
             Actions\Action::make('export')
                 ->label('Export All')

@@ -11,6 +11,8 @@ class EditPayroll extends EditRecord
     protected static string $resource = PayrollResource::class;
 
     protected function getHeaderActions(): array
+
+    {
         return [
             Actions\ViewAction::make(),
         ];

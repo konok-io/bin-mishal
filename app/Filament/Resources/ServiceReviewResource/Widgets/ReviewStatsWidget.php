@@ -11,6 +11,7 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 class ReviewStatsWidget extends BaseWidget
 {
     public function getStats(): array
+    {
         $totalReviews = ServiceReview::count();
         $approvedReviews = ServiceReview::where('is_approved', true)->count();
         $pendingReviews = ServiceReview::where('is_approved', false)->count();

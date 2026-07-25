@@ -11,6 +11,8 @@ class ListServiceReviews extends ListRecords
     protected static string $resource = ServiceReviewResource::class;
 
     protected function getHeaderActions(): array
+
+    {
         return [
             Actions\CreateAction::make(),
         ];

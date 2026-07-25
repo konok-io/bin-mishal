@@ -11,6 +11,7 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 class MediaStatsWidget extends BaseWidget
 {
     public function getStats(): array
+    {
         return [
             Stat::make('Total Files', Media::count())
                 ->description('All uploaded media')

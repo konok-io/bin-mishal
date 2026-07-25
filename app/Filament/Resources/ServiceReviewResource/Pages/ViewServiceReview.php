@@ -11,6 +11,8 @@ class ViewServiceReview extends ViewRecord
     protected static string $resource = ServiceReviewResource::class;
 
     protected function getHeaderActions(): array
+
+    {
         return [
             Actions\EditAction::make(),
         ];
