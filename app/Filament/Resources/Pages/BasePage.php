@@ -4,9 +4,5 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Pages;
 
-use Filament\Pages\Page as BasePageClass;
-
-class BasePage extends BasePageClass
-{
-    // Base page class - override $resource in child classes
-}
+// Base page class - removed as it was causing issues
+// Use Filament\Resources\Pages\ListRecords, EditRecord, etc. instead
