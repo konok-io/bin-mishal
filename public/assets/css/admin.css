@@ -424,14 +424,14 @@ body.admin-login-wrap {
 
 /* ---------------- Topbar ---------------- */
 .admin-content {
-  margin-left: var(--admin-sidebar-width);
+  margin-left: 0;
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
   padding: 0;
   margin-right: 0;
-  width: calc(100% - var(--admin-sidebar-width));
+  width: 100%;
   max-width: 100%;
 }
 .admin-topbar {
