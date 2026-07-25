@@ -3,17 +3,7 @@ use App\Models\HeroTab;
 use App\Models\CMS\Setting;
 use Illuminate\Support\Facades\Cache;
 
-// Get active tabs with fallback - cache key includes locale for correct translations
-$cacheKey = 'hero_active_tabs_' . app()->getLocale();
-$activeTabs = Cache::remember($cacheKey, 600, function() {
-    try {
-        return \App\Models\HeroTab::where('is_active', 1)->orderBy('order')->get();
-    } catch (\Exception $e) {
-        return collect();
-    }
-});
-
-// Default tabs array if database is empty
+// Default tabs array
 $defaultTabsArray = [
     [
         'tab_key' => 'flight',
@@ -47,10 +37,26 @@ $defaultTabsArray = [
     ],
 ];
 
+// Try to get tabs from database
+try {
+    $tabsCollection = \App\Models\HeroTab::where('is_active', 1)->orderBy('order')->get();
+    // Convert to array immediately to avoid serialization issues
+    $dbTabsArray = $tabsCollection->map(function($tab) {
+        return [
+            'tab_key' => $tab->tab_key,
+            'icon' => $tab->icon ?? 'fas fa-plane',
+            'label' => is_string($tab->label) ? json_decode($tab->label, true) : ($tab->label ?? ['en' => 'Service']),
+        ];
+    })->toArray();
+    $displayTabs = !empty($dbTabsArray) ? $dbTabsArray : $defaultTabsArray;
+} catch (\Exception $e) {
+    $displayTabs = $defaultTabsArray;
+}
+
 // Helper function for translated label
 function getHeroTabLabel($tab) {
     $locale = app()->getLocale();
-    $label = is_array($tab) ? ($tab['label'] ?? 'Service') : ($tab->label ?? 'Service');
+    $label = $tab['label'] ?? 'Service';
     if (is_array($label)) {
         return $label[$locale] ?? $label['en'] ?? 'Service';
     }
@@ -59,11 +65,8 @@ function getHeroTabLabel($tab) {
 
 // Helper function for icon
 function getHeroTabIcon($tab) {
-    return is_array($tab) ? ($tab['icon'] ?? 'fas fa-plane') : ($tab->icon ?? 'fas fa-plane');
+    return $tab['icon'] ?? 'fas fa-plane';
 }
-
-// Use database tabs if available, otherwise use default
-$displayTabs = (!$activeTabs->isEmpty()) ? $activeTabs->toArray() : $defaultTabsArray;
 ?>
 
 <!-- Dynamic Hero Section Component -->
