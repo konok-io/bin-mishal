@@ -122,7 +122,7 @@ Route::prefix('{locale}/employee')->name('employee.')->middleware(['auth:web', '
 // ADMIN ROUTES - Protected
 // =============================================================================
 
-Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,super_admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth:admin', 'role:admin,super_admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', fn() => view('admin.profile.index'))->name('profile');
     Route::get('/settings', fn() => view('admin.settings.index'))->name('settings.index');
