@@ -43,46 +43,43 @@ use App\Models\CMS\Setting;
 </section>
 
 <!-- Partner Logos Section -->
-<section class="partners-section py-4" id="partnersSection">
-    <div class="container">
-        <div class="text-center mb-4">
-            <h5 class="partners-title">@lang('partners.title')</h5>
+<section class="partners-section" id="partnersSection">
+    <div class="container-fluid px-4">
+        <div class="text-center mb-3">
+            <h6 class="partners-title mb-0">@lang('partners.title')</h6>
         </div>
-        <div class="partners-slider">
-            <div class="partners-track">
-                <!-- Airlines/Partners -->
-                <div class="partner-logo">
-                    <i class="fas fa-plane"></i>
-                    <span>Saudi Airlines</span>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-plane-departure"></i>
-                    <span>Biman Bangladesh</span>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-globe-americas"></i>
-                    <span>US-Bangla</span>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-plane-arrival"></i>
-                    <span>Flydubai</span>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-suitcase-rolling"></i>
-                    <span>Air Arabia</span>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-earth-americas"></i>
-                    <span>Qatar Airways</span>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-cloud-moon"></i>
-                    <span>Oman Air</span>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-mosque"></i>
-                    <span>Emirates</span>
-                </div>
+        <div class="partners-track">
+            <div class="partner-logo">
+                <i class="fas fa-plane"></i>
+                <span>Saudi Airlines</span>
+            </div>
+            <div class="partner-logo">
+                <i class="fas fa-plane-departure"></i>
+                <span>Biman Bangladesh</span>
+            </div>
+            <div class="partner-logo">
+                <i class="fas fa-globe-americas"></i>
+                <span>US-Bangla</span>
+            </div>
+            <div class="partner-logo">
+                <i class="fas fa-plane-arrival"></i>
+                <span>Flydubai</span>
+            </div>
+            <div class="partner-logo">
+                <i class="fas fa-suitcase-rolling"></i>
+                <span>Air Arabia</span>
+            </div>
+            <div class="partner-logo">
+                <i class="fas fa-earth-americas"></i>
+                <span>Qatar Airways</span>
+            </div>
+            <div class="partner-logo">
+                <i class="fas fa-cloud-moon"></i>
+                <span>Oman Air</span>
+            </div>
+            <div class="partner-logo">
+                <i class="fas fa-mosque"></i>
+                <span>Emirates</span>
             </div>
         </div>
     </div>
@@ -202,58 +199,51 @@ use App\Models\CMS\Setting;
 /* Partners Section */
 .partners-section {
     background: #f8fafc;
+    padding: 20px 0;
     border-top: 1px solid #eee;
-    overflow: hidden;
 }
 
 .partners-title {
     color: #343C90;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-}
-
-.partners-slider {
-    overflow: hidden;
-    position: relative;
+    letter-spacing: 1px;
 }
 
 .partners-track {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
-    padding: 10px 0;
+    gap: 12px;
 }
 
 .partner-logo {
     flex-shrink: 0;
-    min-width: 120px;
-    max-width: 150px;
-    height: 70px;
+    min-width: 100px;
+    max-width: 130px;
+    height: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 12px 15px;
+    gap: 4px;
+    padding: 8px 12px;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
     border: 1px solid #eee;
     transition: all 0.3s ease;
 }
 
 .partner-logo:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(52, 60, 144, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(52, 60, 144, 0.1);
     border-color: #343C90;
 }
 
 .partner-logo i {
-    font-size: 22px;
+    font-size: 18px;
     color: var(--primary-color, #343C90);
     transition: all 0.3s ease;
 }
@@ -263,7 +253,7 @@ use App\Models\CMS\Setting;
 }
 
 .partner-logo span {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     color: #555;
     text-align: center;
