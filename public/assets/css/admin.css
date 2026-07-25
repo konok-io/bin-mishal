@@ -299,11 +299,13 @@ body.admin-login-wrap.TEWGTB-HINDI {
   --admin-primary: #2563EB;
   --admin-primary-dark: #1d4ed8;
   --admin-secondary: #0F172A;
-  --admin-accent: #F97316;
+  --admin-accent: #E05522;
   --admin-sidebar-width: 260px;
   --admin-bg: #f1f5f9;
   --admin-border: #e2e8f0;
   --admin-radius: 12px;
+  --admin-sidebar-bg: linear-gradient(160deg, #0F172A 0%, #1a1f4a 50%, #0F172A 100%);
+  --admin-topbar-bg: linear-gradient(160deg, #0F172A 0%, #1a1f4a 50%, #0F172A 100%);
 }
 
 body.admin-body,
@@ -321,7 +323,7 @@ body.admin-login-wrap {
 /* ---------------- Sidebar ---------------- */
 .admin-sidebar {
   width: var(--admin-sidebar-width);
-  background: var(--admin-secondary);
+  background: var(--admin-sidebar-bg);
   color: #cbd5e1;
   position: fixed;
   top: 0;
@@ -356,7 +358,7 @@ body.admin-login-wrap {
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .admin-sidebar .sidebar-brand i {
-  color: var(--admin-primary);
+  color: var(--admin-accent);
 }
 .admin-sidebar .nav-section-title {
   font-size: 0.7rem;
@@ -383,13 +385,19 @@ body.admin-login-wrap {
   font-size: 0.95rem;
 }
 .admin-sidebar .nav-link:hover {
-  background: rgba(255,255,255,0.05);
+  background: rgba(224, 85, 34, 0.15);
   color: #fff;
 }
+.admin-sidebar .nav-link:hover i {
+  color: var(--admin-accent);
+}
 .admin-sidebar .nav-link.active {
-  background: rgba(37, 99, 235, 0.15);
+  background: linear-gradient(135deg, rgba(224, 85, 34, 0.25) 0%, rgba(15, 23, 42, 0.8) 100%);
   color: #fff;
-  border-left-color: var(--admin-primary);
+  border-left: 3px solid var(--admin-accent);
+}
+.admin-sidebar .nav-link.active i {
+  color: var(--admin-accent);
 }
 
 /* ---------------- Topbar ---------------- */
@@ -401,8 +409,8 @@ body.admin-login-wrap {
   flex-direction: column;
 }
 .admin-topbar {
-  background: #fff;
-  border-bottom: 1px solid var(--admin-border);
+  background: var(--admin-topbar-bg);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   height: 64px;
   padding: 0 1.5rem;
   position: sticky;
@@ -411,12 +419,16 @@ body.admin-login-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: #fff;
 }
 .admin-topbar .sidebar-toggle-btn {
   display: none;
-  border: none;
+  border: 1px solid rgba(255,255,255,0.25);
   background: transparent;
   font-size: 1.25rem;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
 }
 .admin-main {
   padding: 1.75rem;

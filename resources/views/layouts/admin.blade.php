@@ -71,12 +71,12 @@
       body{top:0!important}
       font font{background:transparent!important;box-shadow:none!important}
       /* Topbar matches sidebar header */
-      .admin-topbar{background:#0F172A;color:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+      .admin-topbar{background:linear-gradient(160deg, #0F172A 0%, #1a1f4a 50%, #0F172A 100%);color:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
       .admin-topbar .text-dark{color:#fff!important}
       .admin-topbar .gt-btn,.admin-topbar .theme-toggle-btn{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2)}
       .admin-topbar .gt-btn:hover,.admin-topbar .theme-toggle-btn:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.4)}
       .admin-topbar .sidebar-toggle-btn{color:#fff}
-      .admin-topbar .lang-menu button{color:#333}
+      .admin-topbar .lang-menu button{color:#fff}
       .admin-topbar .dropdown-menu{margin-top:8px;top:15px!important}
       .admin-topbar .gtranslate-wrap{position:relative}
       /* Page header padding */
@@ -85,7 +85,7 @@
       .admin-card{padding:10px}
       /* dark theme */
       [data-theme="dark"] body,[data-theme="dark"] .admin-body,[data-theme="dark"] .admin-wrapper,[data-theme="dark"] .admin-main,[data-theme="dark"] .admin-content{background:#0A0A1F!important;color:#EDECFF}
-      [data-theme="dark"] .admin-topbar,[data-theme="dark"] .admin-sidebar,[data-theme="dark"] .card,[data-theme="dark"] .admin-card,[data-theme="dark"] .stat-card,[data-theme="dark"] .dropdown-menu,[data-theme="dark"] .admin-page-header{background:#171433!important;color:#EDECFF!important;border-color:#2C2860!important}
+      [data-theme="dark"] .admin-topbar,[data-theme="dark"] .admin-sidebar,[data-theme="dark"] .card,[data-theme="dark"] .admin-card,[data-theme="dark"] .stat-card,[data-theme="dark"] .dropdown-menu,[data-theme="dark"] .admin-page-header{background:linear-gradient(160deg, #0F172A 0%, #1a1f4a 50%, #0F172A 100%)!important;color:#EDECFF!important;border-color:#2C2860!important}
       [data-theme="dark"] .gt-btn,[data-theme="dark"] .theme-toggle-btn{background:#171433;color:#EDECFF;border-color:#2C2860}
       [data-theme="dark"] .text-dark,[data-theme="dark"] .text-body,[data-theme="dark"] .stat-value,[data-theme="dark"] h1,[data-theme="dark"] h2,[data-theme="dark"] h3,[data-theme="dark"] h4,[data-theme="dark"] h5{color:#EDECFF!important}
       [data-theme="dark"] .text-muted,[data-theme="dark"] .stat-label,[data-theme="dark"] .admin-breadcrumb,[data-theme="dark"] .admin-breadcrumb a,[data-theme="dark"] small{color:#9B98C7!important}
@@ -135,8 +135,10 @@
       [data-theme="dark"] .btn-link{color:#22D3EE!important}
       [data-theme="dark"] .btn-close{filter:invert(1) grayscale(100%) brightness(200%)}
       [data-theme="dark"] .admin-sidebar .nav-link{color:#9B98C7}
-      [data-theme="dark"] .admin-sidebar .nav-link:hover{color:#fff;background:rgba(79,47,232,0.25)}
-      [data-theme="dark"] .admin-sidebar .nav-link.active{color:#fff;background:linear-gradient(135deg,#4F2FE8,#7C3AED)}
+      [data-theme="dark"] .admin-sidebar .nav-link:hover{color:#fff;background:rgba(224, 85, 34, 0.25)}
+      [data-theme="dark"] .admin-sidebar .nav-link:hover i{color:#E05522}
+      [data-theme="dark"] .admin-sidebar .nav-link.active{color:#fff;background:linear-gradient(135deg, rgba(224, 85, 34, 0.3) 0%, rgba(15, 23, 42, 0.9) 100%);border-left:3px solid #E05522}
+      [data-theme="dark"] .admin-sidebar .nav-link.active i{color:#E05522}
       /* Sidebar collapse styles */
       .admin-sidebar.collapsed{width:70px!important}
       .admin-sidebar.collapsed .sidebar-brand span,
@@ -144,7 +146,7 @@
       .admin-sidebar.collapsed .nav-link > span,
       .admin-sidebar.collapsed .badge.ms-auto{display:none!important}
       .admin-sidebar .sidebar-brand{padding:1rem 0.5rem 1rem 1rem;padding-right:0!important}
-      .admin-sidebar .site-logo-icon{font-size:1.2rem}
+      .admin-sidebar .site-logo-icon{font-size:1.2rem;color:#E05522}
       .admin-sidebar.collapsed .sidebar-brand{justify-content:center;padding:0!important}
       .admin-sidebar.collapsed .sidebar-brand > div:first-child{display:flex!important;padding-left:10px!important;align-items:center}
       .admin-sidebar.collapsed .sidebar-brand > div:first-child span{display:none!important}
