@@ -15,6 +15,11 @@ class SeoSettingResource extends BaseResource
 {
     protected static ?string $model = SeoSetting::class;
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return true;
+    }
+
     public static function getNavigationLabel(): string
     {
         return 'SEO Settings';
