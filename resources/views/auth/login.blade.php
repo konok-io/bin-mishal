@@ -44,13 +44,17 @@
         :root {
             --primary: #343C90;
             --primary-dark: #252E72;
-            --primary-hover: #C94718;
+            --primary-hover: #252E72;
+            --primary-light: #EEF2FF;
             --secondary: #E05522;
             --secondary-dark: #C94718;
+            --secondary-hover: #C94718;
+            --secondary-light: #FFF3ED;
             --accent: #1F2937;
             --success: #16A34A;
             --warning: #F59E0B;
             --danger: #DC2626;
+            --info: #2563EB;
         }
         
         * { box-sizing: border-box; }
@@ -214,7 +218,7 @@
         
         .form-floating > .form-control:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 108, 53, 0.1);
+            box-shadow: 0 0 0 3px rgba(52, 60, 144, 0.1);
         }
         
         .form-floating > label {
@@ -238,7 +242,7 @@
         
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 108, 53, 0.3);
+            box-shadow: 0 10px 20px rgba(52, 60, 144, 0.3);
             color: white;
         }
         
