@@ -14,6 +14,26 @@ use Filament\Tables\Table;
 class SettingResource extends BaseResource
 {
     protected static ?string $model = Setting::class;
+    
+    public static function shouldRegisterNavigation(): bool
+    {
+        return true;
+    }
+    
+    public static function getNavigationLabel(): string
+    {
+        return 'Site Settings';
+    }
+    
+    public static function getNavigationIcon(): string
+    {
+        return 'heroicon-o-cog-6-tooth';
+    }
+    
+    public static function getNavigationSort(): ?int
+    {
+        return 1;
+    }
 
     public static function form(Schema $schema): Schema
     {
