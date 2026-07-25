@@ -12,6 +12,8 @@ class Setting extends Model
 {
     use HasFactory;
 
+    protected $table = 'cms_settings';
+
     protected $fillable = [
         'group',
         'key',
