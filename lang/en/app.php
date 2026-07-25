@@ -39,8 +39,29 @@ return [
     'confirmed' => 'Confirmed',
     'cancelled' => 'Cancelled',
     'rejected' => 'Rejected',
+    'learn_more' => 'Learn More',
+    'view_all' => 'View All',
+    'all_rights' => 'All Rights Reserved',
+    'announcement' => 'Announcement',
+
+    // Navigation
+    'nav' => [
+        'home' => 'Home',
+        'services' => 'Services',
+        'about' => 'About Us',
+        'contact' => 'Contact',
+        'careers' => 'Careers',
+        'blog' => 'Blog',
+        'all_services' => 'All Services',
+        'get_quote' => 'Get Quote',
+    ],
 
     // Auth
+    'auth' => [
+        'login' => 'Login',
+        'register' => 'Register',
+        'logout' => 'Logout',
+    ],
     'email' => 'Email',
     'password' => 'Password',
     'confirm_password' => 'Confirm Password',
@@ -52,6 +73,154 @@ return [
     'admin_dashboard' => 'Admin Dashboard',
     'employee_dashboard' => 'Employee Dashboard',
     'my_dashboard' => 'My Dashboard',
+
+    // Hero
+    'hero' => [
+        'licensed_operator' => 'Licensed Operator',
+        '24_7_support' => '24/7 Support',
+        'trusted_company' => 'Trusted Company',
+    ],
+
+    // Booking
+    'booking' => [
+        'from' => 'From',
+        'to' => 'To',
+        'select_city' => 'Select City',
+        'departure_date' => 'Departure Date',
+        'return_date' => 'Return Date',
+        'travel_date' => 'Travel Date',
+        'adults' => 'Adults',
+        'children' => 'Children',
+        'infants' => 'Infants',
+        'persons' => 'Persons',
+        'duration' => 'Duration',
+        'hotel_rating' => 'Hotel Rating',
+        'search_flights' => 'Search Flights',
+        'search_packages' => 'Search Packages',
+        'visa_type' => 'Visa Type',
+        'select_visa' => 'Select Visa Type',
+        'country' => 'Country',
+        'entry_type' => 'Entry Type',
+        'duration_days' => 'Duration (Days)',
+        'apply_visa' => 'Apply for Visa',
+        'from_country' => 'From Country',
+        'select_country' => 'Select Country',
+        'to_country' => 'To Country',
+        'cargo_type' => 'Cargo Type',
+        'weight_kg' => 'Weight (kg)',
+        'calculate_price' => 'Calculate Price',
+        'service_type' => 'Service Type',
+        'select_service' => 'Select Service',
+        'preferred_date' => 'Preferred Date',
+        'preferred_time' => 'Preferred Time',
+        'branch' => 'Branch',
+        'select_branch' => 'Select Branch',
+        'book_appointment' => 'Book Appointment',
+        'service_interest' => 'Service Interest',
+        'select_interest' => 'Select Interest',
+        'investment_range' => 'Investment Range',
+        'select_range' => 'Select Range',
+        'inquire_now' => 'Inquire Now',
+    ],
+
+    // Services
+    'services' => [
+        'our_services' => 'Our Services',
+        'title' => 'What We Offer',
+        'subtitle' => 'Comprehensive travel and business solutions tailored for you',
+        'flight_booking' => 'Flight Booking',
+        'umrah_packages' => 'Umrah Packages',
+        'visa_processing' => 'Visa Processing',
+        'cargo_shipping' => 'Cargo Shipping',
+        'investment_licenses' => 'Investment Licenses',
+        'appointment' => 'Book Appointment',
+        'view_all_services' => 'View All Services',
+    ],
+
+    // Statistics
+    'stats' => [
+        'happy_customers' => 'Happy Customers',
+        'flights_booked' => 'Flights Booked',
+        'umrah_packages' => 'Umrah Packages',
+        'years_experience' => 'Years Experience',
+    ],
+
+    // Testimonials
+    'testimonials' => [
+        'title' => 'Testimonials',
+        'subtitle' => 'What Our Customers Say',
+        'description' => 'Real experiences from our valued customers',
+    ],
+
+    // Gallery
+    'gallery' => [
+        'title' => 'Gallery',
+        'subtitle' => 'Our Moments & Memories',
+        'description' => 'Captured moments from our journeys',
+        'view_all' => 'View All Photos',
+        'default_1_title' => 'Masjid al-Haram',
+        'default_2_title' => 'Makkah',
+        'default_3_title' => 'Air Travel',
+        'default_4_title' => 'Jeddah Tower',
+    ],
+
+    // FAQ
+    'faq' => [
+        'title' => 'FAQ',
+        'subtitle' => 'Frequently Asked Questions',
+        'description' => 'Find answers to common questions',
+        'view_all' => 'View All FAQs',
+        'default_q1' => 'How can I book a flight?',
+        'default_a1' => 'You can book flights through our website or visit our office. We offer competitive prices and excellent service.',
+        'default_q2' => 'What documents do I need for Umrah?',
+        'default_a2' => 'You need a valid passport, visa, and vaccination certificates. Our team will guide you through the entire process.',
+        'default_q3' => 'How long does visa processing take?',
+        'default_a3' => 'Visa processing typically takes 3-7 working days depending on the visa type and nationality.',
+        'default_q4' => 'Do you offer cargo services?',
+        'default_a4' => 'Yes, we offer air and sea cargo services from Saudi Arabia to Bangladesh and other countries.',
+    ],
+
+    // CTA
+    'cta' => [
+        'title' => 'Ready to Get Started?',
+        'subtitle' => 'Contact us today for the best travel and business solutions',
+        'feature_1' => 'Expert Guidance',
+        'feature_2' => 'Competitive Prices',
+        'feature_3' => '24/7 Support',
+        'contact_now' => 'Contact Now',
+        'whatsapp' => 'WhatsApp Us',
+    ],
+
+    // Partners
+    'partners' => [
+        'title' => 'Trusted Partners & Airlines',
+    ],
+
+    // Footer
+    'footer' => [
+        'quick_links' => 'Quick Links',
+        'our_services' => 'Our Services',
+        'newsletter' => 'Newsletter',
+        'newsletter_desc' => 'Subscribe to get special offers and updates',
+        'enter_email' => 'Enter your email',
+        'follow_us' => 'Follow Us',
+        'we_accept' => 'We Accept',
+        'all_rights' => 'All Rights Reserved.',
+        'chat_whatsapp' => 'Chat on WhatsApp',
+    ],
+
+    // Legal
+    'legal' => [
+        'privacy_policy' => 'Privacy Policy',
+        'terms_conditions' => 'Terms & Conditions',
+        'refund_policy' => 'Refund Policy',
+    ],
+
+    // SEO
+    'home' => [
+        'seo_title' => 'Home',
+        'seo_description' => 'Bin Mishal Travels - Your trusted travel partner for flights, Umrah, visas, cargo & more',
+    ],
 
     // Customer
     'customer' => 'Customer',

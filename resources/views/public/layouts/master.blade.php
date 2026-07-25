@@ -133,65 +133,13 @@
     @stack('styles')
 </head>
 <body>
-    <header class="main-header">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="/{{ app()->getLocale() }}">{{ __('app.app_name') }}</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="/{{ app()->getLocale() }}">{{ __('app.home') }}</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/{{ app()->getLocale() }}/services">{{ __('navigation.services') }}</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/{{ app()->getLocale() }}/about">{{ __('app.about') }}</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/{{ app()->getLocale() }}/news">News</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/{{ app()->getLocale() }}/contact">{{ __('app.contact') }}</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <!-- Dynamic Header Component -->
+    @include('components.frontend.header')
 
     @yield('content')
 
-    <footer class="main-footer">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <h5 class="footer-title">{{ __('app.app_name') }}</h5>
-                    <p class="opacity-75 mb-4">{{ __('home.footer_description') }}</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <h5 class="footer-title">Quick Links</h5>
-                    <ul class="footer-links">
-                        <li><a href="/{{ app()->getLocale() }}/about">{{ __('app.about') }}</a></li>
-                        <li><a href="/{{ app()->getLocale() }}/services">{{ __('navigation.services') }}</a></li>
-                        <li><a href="/{{ app()->getLocale() }}/contact">{{ __('app.contact') }}</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4">
-                    <h5 class="footer-title">{{ __('home.contact_info') }}</h5>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt me-2"></i> Riyadh, Saudi Arabia</li>
-                        <li><i class="fas fa-phone me-2"></i> +966 XX XXX XXXX</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="mb-0 opacity-75">&copy; {{ date('Y') }} {{ __('app.app_name') }}. {{ __('common.all_rights_reserved') }}</p>
-            </div>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/966XXXXXXXX" target="_blank" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- Dynamic Footer Component -->
+    @include('components.frontend.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     @stack('scripts')
