@@ -31,4 +31,11 @@ return [
     'version' => 'সংস্করণ',
     'copyright' => '© :year বিন মিশাল ট্রাভেল',
     'all_rights_reserved' => 'সর্বস্বত্ব সংরক্ষিত।',
+    'announcement' => 'ঘোষণা',
+    'learn_more' => 'আরও জানুন',
+    'all' => 'সব',
+    'found' => 'পাওয়া গেছে',
+    'results' => 'ফলাফল',
+    'views' => 'দেখা হয়েছে',
+    'searching' => 'খুঁজছি...',
 ];

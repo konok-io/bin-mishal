@@ -31,4 +31,11 @@ return [
     'version' => 'Version',
     'copyright' => '© :year Bin Mishal Travel',
     'all_rights_reserved' => 'All rights reserved.',
+    'announcement' => 'Announcement',
+    'learn_more' => 'Learn More',
+    'all' => 'All',
+    'found' => 'Found',
+    'results' => 'Results',
+    'views' => 'Views',
+    'searching' => 'Searching...',
 ];

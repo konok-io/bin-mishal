@@ -31,4 +31,11 @@ return [
     'version' => 'الإصدار',
     'copyright' => '© :year بن ميثال للسفر',
     'all_rights_reserved' => 'جميع الحقوق محفوظة.',
+    'announcement' => 'إعلان',
+    'learn_more' => 'اعرف المزيد',
+    'all' => 'الكل',
+    'found' => 'تم العثور على',
+    'results' => 'نتائج',
+    'views' => 'مشاهدات',
+    'searching' => 'جاري البحث...',
 ];
