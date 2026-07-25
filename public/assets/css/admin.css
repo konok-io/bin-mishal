@@ -296,14 +296,20 @@ body.admin-login-wrap.TEWGTB-HINDI {
 }
 
 :root {
-  --admin-primary: #2563EB;
-  --admin-primary-dark: #1d4ed8;
-  --admin-secondary: #0F172A;
-  --admin-accent: #F97316;
+  /* Bin Mishal Admin Theme Colors */
+  --admin-primary: #2F378A;
+  --admin-primary-dark: #242E75;
+  --admin-secondary: #E25A24;
+  --admin-secondary-dark: #C94A1C;
+  --admin-accent: #1F2937;
   --admin-sidebar-width: 260px;
-  --admin-bg: #f1f5f9;
-  --admin-border: #e2e8f0;
+  --admin-bg: #F8FAFC;
+  --admin-border: #E5E7EB;
   --admin-radius: 12px;
+  --admin-sidebar-bg: #2F378A;
+  --admin-sidebar-text: #FFFFFF;
+  --admin-sidebar-hover: #E25A24;
+  --admin-sidebar-active-bg: #E25A24;
 }
 
 body.admin-body,
@@ -321,8 +327,8 @@ body.admin-login-wrap {
 /* ---------------- Sidebar ---------------- */
 .admin-sidebar {
   width: var(--admin-sidebar-width);
-  background: var(--admin-secondary);
-  color: #cbd5e1;
+  background: var(--admin-sidebar-bg);
+  color: var(--admin-sidebar-text);
   position: fixed;
   top: 0;
   left: 0;
@@ -356,18 +362,18 @@ body.admin-login-wrap {
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .admin-sidebar .sidebar-brand i {
-  color: var(--admin-primary);
+  color: var(--admin-sidebar-hover);
 }
 .admin-sidebar .nav-section-title {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #64748b;
+  color: rgba(255,255,255,0.5);
   padding: 1.1rem 1.5rem 0.4rem;
   font-weight: 700;
 }
 .admin-sidebar .nav-link {
-  color: #cbd5e1;
+  color: rgba(255,255,255,0.85);
   padding: 0.65rem 1.5rem;
   font-size: 0.9rem;
   font-weight: 500;
@@ -381,15 +387,22 @@ body.admin-login-wrap {
   width: 18px;
   text-align: center;
   font-size: 0.95rem;
+  color: rgba(255,255,255,0.85);
 }
 .admin-sidebar .nav-link:hover {
-  background: rgba(255,255,255,0.05);
-  color: #fff;
+  background: rgba(255,255,255,0.1);
+  color: var(--admin-sidebar-hover);
+}
+.admin-sidebar .nav-link:hover i {
+  color: var(--admin-sidebar-hover);
 }
 .admin-sidebar .nav-link.active {
-  background: rgba(37, 99, 235, 0.15);
+  background: var(--admin-sidebar-active-bg);
   color: #fff;
-  border-left-color: var(--admin-primary);
+  border-left-color: #fff;
+}
+.admin-sidebar .nav-link.active i {
+  color: #fff;
 }
 
 /* ---------------- Topbar ---------------- */
@@ -435,11 +448,17 @@ body.admin-login-wrap {
   font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
-  color: var(--admin-secondary);
+  color: var(--admin-primary);
 }
 .admin-breadcrumb {
   font-size: 0.8rem;
-  color: #64748b;
+  color: #6B7280;
+}
+.admin-breadcrumb a {
+  color: var(--admin-primary);
+}
+.admin-breadcrumb a:hover {
+  color: var(--admin-secondary);
 }
 
 /* ---------------- Cards ---------------- */
@@ -486,12 +505,16 @@ body.admin-login-wrap {
 .stat-card .stat-value {
   font-size: 1.6rem;
   font-weight: 800;
-  color: var(--admin-secondary);
+  color: var(--admin-primary);
   line-height: 1.1;
 }
 .stat-card .stat-label {
   font-size: 0.8rem;
-  color: #64748b;
+  color: #6B7280;
+}
+.stat-card .stat-icon {
+  background: rgba(226, 90, 36, 0.1);
+  color: var(--admin-secondary);
 }
 
 /* ---------------- Buttons ---------------- */
@@ -502,19 +525,20 @@ body.admin-login-wrap {
   font-weight: 600;
 }
 .btn-admin-primary:hover {
-  background-color: var(--admin-primary-dark);
-  border-color: var(--admin-primary-dark);
+  background-color: var(--admin-secondary);
+  border-color: var(--admin-secondary);
   color: #fff;
 }
 .btn-admin-accent {
-  background-color: var(--admin-accent);
-  border-color: var(--admin-accent);
+  background-color: var(--admin-secondary);
+  border-color: var(--admin-secondary);
   color: #fff;
   font-weight: 600;
 }
 .btn-admin-accent:hover {
+  background-color: var(--admin-primary);
+  border-color: var(--admin-primary);
   color: #fff;
-  filter: brightness(0.95);
 }
 
 /* ---------------- Tables ---------------- */
@@ -522,14 +546,17 @@ body.admin-login-wrap {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: #64748b;
+  color: #fff;
   font-weight: 700;
   border-bottom: 1px solid var(--admin-border);
-  background: #f8fafc;
+  background: var(--admin-primary);
 }
 .table-admin td {
   vertical-align: middle;
   font-size: 0.9rem;
+}
+.table-admin tbody tr:hover {
+  background-color: rgba(47, 55, 138, 0.05);
 }
 .table-admin img.thumb {
   width: 46px;
@@ -543,8 +570,16 @@ body.admin-login-wrap {
   font-weight: 600;
   font-size: 0.85rem;
   margin-bottom: 0.4rem;
+  color: #1F2937;
 }
-.required-star { color: var(--admin-accent); }
+.required-star { color: var(--admin-secondary); }
+
+/* Admin Form Inputs */
+.admin-body .form-control:focus,
+.admin-body .form-select:focus {
+  border-color: var(--admin-primary);
+  box-shadow: 0 0 0 0.2rem rgba(47, 55, 138, 0.15);
+}
 
 /* ---------------- Login ---------------- */
 .admin-login-wrap {
@@ -552,7 +587,7 @@ body.admin-login-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #0F172A 0%, #1e293b 60%, #2563EB 130%);
+  background: linear-gradient(135deg, #2F378A 0%, #1F2937 100%);
   padding: 2rem;
 }
 .admin-login-card {
@@ -561,7 +596,17 @@ body.admin-login-wrap {
   padding: 2.75rem;
   width: 100%;
   max-width: 420px;
-  box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+  box-shadow: 0 30px 70px rgba(47, 55, 138, 0.3);
+}
+.admin-login-card .logo {
+  color: var(--admin-primary);
+}
+.admin-login-card h2 {
+  color: var(--admin-primary);
+}
+.admin-login-card .form-control:focus {
+  border-color: var(--admin-primary);
+  box-shadow: 0 0 0 0.2rem rgba(47, 55, 138, 0.15);
 }
 
 @media (max-width: 991.98px) {

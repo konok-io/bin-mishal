@@ -3,60 +3,629 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
-/* ── Brand Color Theme (Tailwind v4 @theme) ───────────────────── */
+/* ── Bin Mishal Brand Color Theme (Tailwind v4 @theme) ───────────────────── */
 @theme {
-    /* Primary: Bin Mishal green */
-    --color-primary: #006C35;
-    --color-primary-50: #e9f7ef;
-    --color-primary-100: #d1f0dd;
-    --color-primary-200: #a3e1bb;
-    --color-primary-300: #6bc992;
-    --color-primary-400: #3fa96d;
-    --color-primary-500: #006C35; /* main */
-    --color-primary-600: #005c2d;
-    --color-primary-700: #004d25;
-    --color-primary-800: #003e1e;
-    --color-primary-900: #002f17;
+    /* Primary: Bin Mishal Blue */
+    --color-primary: #2F378A;
+    --color-primary-50: #f0f1fa;
+    --color-primary-100: #e1e3f5;
+    --color-primary-200: #c3c7eb;
+    --color-primary-300: #a5abe1;
+    --color-primary-400: #878fd7;
+    --color-primary-500: #2F378A; /* main */
+    --color-primary-600: #262d78;
+    --color-primary-700: #1e2466;
+    --color-primary-800: #161c54;
+    --color-primary-900: #0e1242;
 
-    /* Secondary: gold */
-    --color-secondary: #C8A951;
-    --color-secondary-50: #fdf8ed;
-    --color-secondary-100: #faf0d7;
-    --color-secondary-200: #f5e1af;
-    --color-secondary-300: #eece7f;
-    --color-secondary-400: #e5ba50;
-    --color-secondary-500: #C8A951; /* main */
-    --color-secondary-600: #a08a42;
-    --color-secondary-700: #786b31;
-    --color-secondary-800: #504c21;
-    --color-secondary-900: #282d12;
+    /* Secondary: Bin Mishal Orange */
+    --color-secondary: #E25A24;
+    --color-secondary-50: #fdf0ec;
+    --color-secondary-100: #fbe0d9;
+    --color-secondary-200: #f7c1b3;
+    --color-secondary-300: #f3a28d;
+    --color-secondary-400: #ef8367;
+    --color-secondary-500: #E25A24; /* main */
+    --color-secondary-600: #c94a1c; /* hover */
+    --color-secondary-700: #a73c16;
+    --color-secondary-800: #852e10;
+    --color-secondary-900: #63200a;
 
-    /* Accent: navy */
-    --color-accent: #1B3A5C;
-    --color-accent-50: #edf2f7;
-    --color-accent-100: #d4e1ef;
-    --color-accent-200: #a9c3df;
-    --color-accent-300: #7da5cf;
-    --color-accent-400: #5287bf;
-    --color-accent-500: #1B3A5C; /* main */
-    --color-accent-600: #183151;
-    --color-accent-700: #122741;
-    --color-accent-800: #0d1e31;
-    --color-accent-900: #071422;
+    /* Hover states */
+    --color-primary-hover: #242E75;
+    --color-secondary-hover: #C94A1C;
+
+    /* Accent: Dark Blue for admin/dark sections */
+    --color-accent: #1F2937;
+    --color-accent-50: #f3f4f6;
+    --color-accent-100: #e5e7eb;
+    --color-accent-200: #d1d5db;
+    --color-accent-300: #9ca3af;
+    --color-accent-400: #6b7280;
+    --color-accent-500: #1F2937;
+    --color-accent-600: #111827;
+    --color-accent-700: #0d1017;
+    --color-accent-800: #090a0e;
+    --color-accent-900: #050507;
+
+    /* Surface colors */
+    --color-surface: #FFFFFF;
+    --color-surface-dark: #F8FAFC;
+    --color-surface-border: #E5E7EB;
 
     /* Semantic colors */
     --color-success: #16A34A;
     --color-warning: #F59E0B;
     --color-danger: #DC2626;
+    --color-info: #2F378A;
 
     /* Font families */
     --font-sans-bn: 'Hind Siliguri', 'Noto Sans Bengali', ui-sans-serif, system-ui, sans-serif;
     --font-sans-ar: 'IBM Plex Sans Arabic', 'Noto Sans Arabic', ui-sans-serif, system-ui, sans-serif;
     --font-sans-en: 'Inter', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
 
-    /* Default font — preserve Instrument Sans from vite.config.js bunny plugin */
+    /* Default font */
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* ── Global CSS Variables ───────────────────── */
+:root {
+    --primary: #2F378A;
+    --primary-hover: #242E75;
+    --primary-light: #f0f1fa;
+    --secondary: #E25A24;
+    --secondary-hover: #C94A1C;
+    --secondary-light: #fdf0ec;
+    --accent: #1F2937;
+    --background: #FFFFFF;
+    --surface: #FFFFFF;
+    --surface-dark: #F8FAFC;
+    --border: #E5E7EB;
+    --text: #1F2937;
+    --text-light: #6B7280;
+    --text-muted: #9CA3AF;
+    --success: #16A34A;
+    --warning: #F59E0B;
+    --danger: #DC2626;
+    --info: #2F378A;
+}
+
+/* ── Text Selection ───────────────────── */
+::selection {
+    background-color: #2F378A;
+    color: #FFFFFF;
+}
+
+::-moz-selection {
+    background-color: #2F378A;
+    color: #FFFFFF;
+}
+
+/* ── Custom Scrollbar ───────────────────── */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F8FAFC;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2F378A;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #E25A24;
+}
+
+/* ── Smooth Scrolling ───────────────────── */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ── Links ───────────────────── */
+a {
+    color: #2F378A;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #E25A24;
+}
+
+/* ── Buttons Base ───────────────────── */
+.btn-primary {
+    background-color: #2F378A !important;
+    border-color: #2F378A !important;
+    color: #FFFFFF !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #E25A24 !important;
+    border-color: #E25A24 !important;
+    color: #FFFFFF !important;
+}
+
+.btn-secondary {
+    background-color: #E25A24 !important;
+    border-color: #E25A24 !important;
+    color: #FFFFFF !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: #2F378A !important;
+    border-color: #2F378A !important;
+    color: #FFFFFF !important;
+}
+
+.btn-outline-primary {
+    background-color: transparent !important;
+    border-color: #2F378A !important;
+    color: #2F378A !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    background-color: #2F378A !important;
+    border-color: #2F378A !important;
+    color: #FFFFFF !important;
+}
+
+.btn-outline-secondary {
+    background-color: transparent !important;
+    border-color: #E25A24 !important;
+    color: #E25A24 !important;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+    background-color: #E25A24 !important;
+    border-color: #E25A24 !important;
+    color: #FFFFFF !important;
+}
+
+/* ── Cards ───────────────────── */
+.card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: #E25A24;
+    box-shadow: 0 4px 12px rgba(47, 55, 138, 0.1);
+}
+
+.card-header {
+    background-color: #F8FAFC;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.card-title {
+    color: #1F2937;
+}
+
+/* ── Forms ───────────────────── */
+.form-control:focus,
+.form-select:focus {
+    border-color: #2F378A;
+    box-shadow: 0 0 0 0.2rem rgba(47, 55, 138, 0.15);
+}
+
+.form-label {
+    color: #1F2937;
+    font-weight: 500;
+}
+
+.form-control::placeholder {
+    color: #9CA3AF;
+}
+
+/* ── Header/Navbar ───────────────────── */
+.navbar {
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+    color: #2F378A !important;
+    font-weight: 700;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #2F378A;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #E25A24;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    color: #E25A24;
+}
+
+/* ── Footer ───────────────────── */
+.footer {
+    background: #2F378A;
+    color: #FFFFFF;
+}
+
+.footer a {
+    color: #FFFFFF;
+}
+
+.footer a:hover {
+    color: #E25A24;
+}
+
+.footer .btn-outline-light {
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+}
+
+.footer .btn-outline-light:hover {
+    background: #E25A24;
+    border-color: #E25A24;
+    color: #FFFFFF;
+}
+
+/* ── Tables ───────────────────── */
+.table thead th {
+    background-color: #2F378A;
+    color: #FFFFFF;
+    border-color: #2F378A;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(47, 55, 138, 0.05);
+}
+
+/* ── Pagination ───────────────────── */
+.pagination .page-link {
+    color: #2F378A;
+    border-color: #E5E7EB;
+}
+
+.pagination .page-link:hover {
+    color: #E25A24;
+    background-color: #F8FAFC;
+    border-color: #E5E7EB;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #2F378A;
+    border-color: #2F378A;
+    color: #FFFFFF;
+}
+
+/* ── Badges ───────────────────── */
+.badge-primary {
+    background-color: #2F378A;
+    color: #FFFFFF;
+}
+
+.badge-secondary {
+    background-color: #E25A24;
+    color: #FFFFFF;
+}
+
+/* ── Alerts ───────────────────── */
+.alert-primary {
+    background-color: rgba(47, 55, 138, 0.1);
+    border-color: #2F378A;
+    color: #2F378A;
+}
+
+.alert-secondary {
+    background-color: rgba(226, 90, 36, 0.1);
+    border-color: #E25A24;
+    color: #E25A24;
+}
+
+/* ── Dropdown ───────────────────── */
+.dropdown-item:hover {
+    background-color: rgba(47, 55, 138, 0.1);
+    color: #E25A24;
+}
+
+.dropdown-item.active {
+    background-color: #2F378A;
+    color: #FFFFFF;
+}
+
+/* ── Modal ───────────────────── */
+.modal-header {
+    background-color: #2F378A;
+    color: #FFFFFF;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+.modal-footer .btn-primary {
+    background-color: #2F378A;
+    border-color: #2F378A;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: #E25A24;
+    border-color: #E25A24;
+}
+
+/* ── Breadcrumb ───────────────────── */
+.breadcrumb-item a {
+    color: #6B7280;
+}
+
+.breadcrumb-item a:hover {
+    color: #2F378A;
+}
+
+.breadcrumb-item.active {
+    color: #2F378A;
+}
+
+/* ── Loader/Spinner ───────────────────── */
+.spinner-primary {
+    color: #2F378A;
+}
+
+.spinner-secondary {
+    color: #E25A24;
+}
+
+/* ── Custom Components ───────────────────── */
+.text-primary {
+    color: #2F378A !important;
+}
+
+.text-secondary {
+    color: #E25A24 !important;
+}
+
+.bg-primary {
+    background-color: #2F378A !important;
+}
+
+.bg-secondary {
+    background-color: #E25A24 !important;
+}
+
+.bg-surface {
+    background-color: #F8FAFC !important;
+}
+
+.border-primary {
+    border-color: #2F378A !important;
+}
+
+.border-secondary {
+    border-color: #E25A24 !important;
+}
+
+.border-surface {
+    border-color: #E5E7EB !important;
+}
+
+/* ── Icon Colors ───────────────────── */
+.text-icon {
+    color: #2F378A;
+}
+
+.text-icon-active {
+    color: #E25A24;
+}
+
+/* ── Section Backgrounds ───────────────────── */
+.section-light {
+    background-color: #F8FAFC;
+}
+
+.section-dark {
+    background-color: #2F378A;
+    color: #FFFFFF;
+}
+
+/* ── Input Groups ───────────────────── */
+.input-group-text {
+    background-color: #F8FAFC;
+    border-color: #E5E7EB;
+    color: #2F378A;
+}
+
+/* ── Custom Checkbox/Radio ───────────────────── */
+.form-check-input:checked {
+    background-color: #2F378A;
+    border-color: #2F378A;
+}
+
+.form-check-input:focus {
+    border-color: #2F378A;
+    box-shadow: 0 0 0 0.2rem rgba(47, 55, 138, 0.15);
+}
+
+/* ── Switch ───────────────────── */
+.form-switch .form-check-input:checked {
+    background-color: #2F378A;
+    border-color: #2F378A;
+}
+
+.form-switch .form-check-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(47, 55, 138, 0.15);
+}
+
+/* ── Progress Bars ───────────────────── */
+.progress-bar {
+    background-color: #2F378A;
+}
+
+.progress-bar.bg-secondary {
+    background-color: #E25A24 !important;
+}
+
+/* ── List Group ───────────────────── */
+.list-group-item.active {
+    background-color: #2F378A;
+    border-color: #2F378A;
+}
+
+.list-group-item-action:hover {
+    background-color: rgba(47, 55, 138, 0.05);
+}
+
+/* ── Nav Tabs ───────────────────── */
+.nav-tabs .nav-link {
+    color: #6B7280;
+    border-color: #E5E7EB;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #2F378A;
+    border-color: #E5E7EB;
+}
+
+.nav-tabs .nav-link.active {
+    color: #FFFFFF;
+    background-color: #2F378A;
+    border-color: #2F378A;
+}
+
+/* ── Nav Pills ───────────────────── */
+.nav-pills .nav-link {
+    color: #2F378A;
+}
+
+.nav-pills .nav-link:hover {
+    color: #E25A24;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #2F378A;
+    color: #FFFFFF;
+}
+
+/* ── Accordion ───────────────────── */
+.accordion-button {
+    color: #1F2937;
+    background-color: #FFFFFF;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #FFFFFF;
+    background-color: #2F378A;
+}
+
+.accordion-button:focus {
+    border-color: #2F378A;
+    box-shadow: 0 0 0 0.2rem rgba(47, 55, 138, 0.15);
+}
+
+/* ── Tooltips ───────────────────── */
+.tooltip-inner {
+    background-color: #2F378A;
+}
+
+.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before,
+.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: #2F378A;
+}
+
+/* ── Popovers ───────────────────── */
+.popover {
+    border-color: #E5E7EB;
+}
+
+.popover-header {
+    background-color: #2F378A;
+    color: #FFFFFF;
+}
+
+.popover-body {
+    color: #1F2937;
+}
+
+/* ── Links in text ───────────────────── */
+.link-primary {
+    color: #2F378A;
+}
+
+.link-primary:hover {
+    color: #E25A24;
+}
+
+.link-secondary {
+    color: #E25A24;
+}
+
+.link-secondary:hover {
+    color: #2F378A;
+}
+
+/* ── Hero Section ───────────────────── */
+.hero-section {
+    background: linear-gradient(135deg, #2F378A 0%, #1F2937 100%);
+    color: #FFFFFF;
+}
+
+/* ── CTAs Section ───────────────────── */
+.cta-section {
+    background: #E25A24;
+    color: #FFFFFF;
+}
+
+/* ── Featured Section ───────────────────── */
+.featured-icon {
+    background: rgba(47, 55, 138, 0.1);
+    color: #2F378A;
+}
+
+.featured-icon:hover {
+    background: #2F378A;
+    color: #FFFFFF;
+}
+
+/* ── Partner Logo Styling ───────────────────── */
+.partner-logo {
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.partner-logo:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* ── Service Card Hover ───────────────────── */
+.service-card {
+    border: 2px solid transparent;
+}
+
+.service-card:hover {
+    border-color: #E25A24;
+}
+
+/* ── Testimonial Card ───────────────────── */
+.testimonial-card {
+    border-top: 3px solid #2F378A;
+}
+
+/* ── Stats Counter ───────────────────── */
+.stat-number {
+    color: #2F378A;
+}
+
+.stat-icon {
+    color: #E25A24;
 }
 
 /* Per-locale body font — applied via data attribute on <html> */

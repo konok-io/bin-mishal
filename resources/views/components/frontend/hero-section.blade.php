@@ -362,7 +362,7 @@ use App\Models\CMS\Setting;
 <style>
 /* Hero Section Styles */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-color, #006C35) 0%, #004d26 100%);
+    background: linear-gradient(135deg, var(--primary-color, #2F378A) 0%, #242E75 100%);
     color: #fff;
     padding: 80px 0;
     position: relative;
@@ -456,12 +456,12 @@ use App\Models\CMS\Setting;
 
 .booking-tabs .nav-link.active {
     background: #fff;
-    color: var(--primary-color, #006C35);
+    color: var(--primary-color, #2F378A);
     box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
 }
 
 .booking-tabs .nav-link:hover:not(.active) {
-    color: var(--primary-color, #006C35);
+    color: var(--primary-color, #2F378A);
 }
 
 .booking-content {
@@ -484,12 +484,12 @@ use App\Models\CMS\Setting;
 }
 
 .form-control:focus, .form-select:focus {
-    border-color: var(--primary-color, #006C35);
+    border-color: var(--primary-color, #2F378A);
     box-shadow: 0 0 0 3px rgba(0,108,53,0.1);
 }
 
 .btn-primary {
-    background: var(--primary-color, #006C35);
+    background: var(--primary-color, #2F378A);
     border: none;
     padding: 14px 25px;
     border-radius: 10px;
@@ -498,7 +498,7 @@ use App\Models\CMS\Setting;
 }
 
 .btn-primary:hover {
-    background: #005c2e;
+    background: #242E75;
     transform: translateY(-2px);
     box-shadow: 0 5px 20px rgba(0,108,53,0.3);
 }

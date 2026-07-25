@@ -40,12 +40,12 @@
     
     <style>
         :root {
-            --primary-color: {{ \App\Models\CMS\Setting::getValue('primary_color', '#006C35') }};
-            --primary-dark: {{ \App\Models\CMS\Setting::getValue('primary_dark', '#004d26') }};
-            --secondary-color: {{ \App\Models\CMS\Setting::getValue('secondary_color', '#C8A951') }};
-            --accent-color: {{ \App\Models\CMS\Setting::getValue('accent_color', '#1B3A5C') }};
-            --text-dark: #1E293B;
-            --text-muted: #64748B;
+            --primary-color: {{ \App\Models\CMS\Setting::getValue('primary_color', '#2F378A') }};
+            --primary-dark: {{ \App\Models\CMS\Setting::getValue('primary_dark', '#242E75') }};
+            --secondary-color: {{ \App\Models\CMS\Setting::getValue('secondary_color', '#E25A24') }};
+            --accent-color: {{ \App\Models\CMS\Setting::getValue('accent_color', '#1F2937') }};
+            --text-dark: #1F2937;
+            --text-muted: #6B7280;
             --bg-light: #F8FAFC;
         }
         
@@ -295,7 +295,7 @@
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="destination-card rounded-4 overflow-hidden shadow-sm">
-                        <div class="destination-image" style="background: linear-gradient(135deg, #006C35 0%, #004d26 100%); height: 250px; display: flex; align-items: center; justify-content: center;">
+                        <div class="destination-image" style="background: linear-gradient(135deg, #2F378A 0%, #242E75 100%); height: 250px; display: flex; align-items: center; justify-content: center;">
                             <i class="fas fa-kaaba fa-5x text-white opacity-50"></i>
                         </div>
                         <div class="destination-info p-4 bg-white">
@@ -325,7 +325,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="destination-card rounded-4 overflow-hidden shadow-sm">
-                        <div class="destination-image" style="background: linear-gradient(135deg, #C8A951 0%, #8a7339 100%); height: 250px; display: flex; align-items: center; justify-content: center;">
+                        <div class="destination-image" style="background: linear-gradient(135deg, #E25A24 0%, #C94A1C 100%); height: 250px; display: flex; align-items: center; justify-content: center;">
                             <i class="fas fa-passport fa-5x text-white opacity-50"></i>
                         </div>
                         <div class="destination-info p-4 bg-white">

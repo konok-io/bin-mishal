@@ -177,7 +177,7 @@ $navTabs = Cache::remember('header_nav_tabs', 600, function() {
 }
 
 .header-topbar {
-    background: var(--primary-color, #006C35);
+    background: var(--primary-color, #2F378A);
     color: #fff;
     padding: 8px 0;
     font-size: 13px;
@@ -229,11 +229,11 @@ $navTabs = Cache::remember('header_nav_tabs', 600, function() {
 .navbar-brand {
     font-weight: 700;
     font-size: 24px;
-    color: var(--primary-color, #006C35) !important;
+    color: var(--primary-color, #2F378A) !important;
 }
 
 .brand-text {
-    color: var(--primary-color, #006C35);
+    color: var(--primary-color, #2F378A);
     font-weight: 800;
     font-size: 22px;
 }
@@ -248,7 +248,7 @@ $navTabs = Cache::remember('header_nav_tabs', 600, function() {
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
-    color: var(--primary-color, #006C35);
+    color: var(--primary-color, #2F378A);
 }
 
 .navbar-nav .nav-link::after {
@@ -258,7 +258,7 @@ $navTabs = Cache::remember('header_nav_tabs', 600, function() {
     left: 15px;
     right: 15px;
     height: 2px;
-    background: var(--primary-color, #006C35);
+    background: var(--primary-color, #2F378A);
     transform: scaleX(0);
     transition: transform 0.3s;
 }
@@ -269,7 +269,7 @@ $navTabs = Cache::remember('header_nav_tabs', 600, function() {
 }
 
 .navbar-toggler {
-    border: 2px solid var(--primary-color, #006C35);
+    border: 2px solid var(--primary-color, #2F378A);
     padding: 8px;
 }
 
@@ -335,13 +335,13 @@ $navTabs = Cache::remember('header_nav_tabs', 600, function() {
 }
 
 .dropdown-item:hover {
-    background: var(--primary-color, #006C35);
+    background: var(--primary-color, #2F378A);
     color: #fff;
 }
 
 .dropdown-item i {
     margin-right: 8px;
-    color: var(--primary-color, #006C35);
+    color: var(--primary-color, #2F378A);
 }
 
 .dropdown-item:hover i {

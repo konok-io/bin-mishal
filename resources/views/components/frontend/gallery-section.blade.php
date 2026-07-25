@@ -179,7 +179,7 @@ use App\Models\GalleryItem;
 .gallery-link {
     width: 40px;
     height: 40px;
-    background: var(--primary-color, #006C35);
+    background: var(--primary-color, #2F378A);
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
@@ -190,7 +190,7 @@ use App\Models\GalleryItem;
 }
 
 .gallery-link:hover {
-    background: var(--secondary-color, #C8A951);
+    background: var(--secondary-color, #E25A24);
     transform: scale(1.1);
 }
 

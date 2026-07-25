@@ -42,10 +42,12 @@
         html[lang="en"] body { font-family: 'EnglishFont', 'Inter', sans-serif; }
         
         :root {
-            --primary: #006C35;
-            --primary-dark: #004d26;
-            --secondary: #C8A951;
-            --accent: #1B3A5C;
+            --primary: #2F378A;
+            --primary-dark: #242E75;
+            --primary-hover: #C94A1C;
+            --secondary: #E25A24;
+            --secondary-dark: #C94A1C;
+            --accent: #1F2937;
             --success: #16A34A;
             --warning: #F59E0B;
             --danger: #DC2626;

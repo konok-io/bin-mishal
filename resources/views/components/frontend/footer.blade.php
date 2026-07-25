@@ -202,7 +202,7 @@ use App\Models\SocialLink;
     left: 0;
     width: 40px;
     height: 3px;
-    background: var(--primary-color, #006C35);
+    background: var(--primary-color, #2F378A);
     border-radius: 2px;
 }
 
@@ -217,7 +217,7 @@ use App\Models\SocialLink;
     width: 20px;
     margin-right: 10px;
     margin-top: 3px;
-    color: var(--secondary-color, #C8A951);
+    color: var(--secondary-color, #E25A24);
 }
 
 .footer-contact .contact-item a {
@@ -249,7 +249,7 @@ use App\Models\SocialLink;
 }
 
 .social-icon:hover {
-    background: var(--primary-color, #006C35);
+    background: var(--primary-color, #2F378A);
     transform: translateY(-3px);
 }
 
@@ -274,7 +274,7 @@ use App\Models\SocialLink;
 .footer-links a::before {
     content: '›';
     margin-right: 8px;
-    color: var(--secondary-color, #C8A951);
+    color: var(--secondary-color, #E25A24);
     font-size: 18px;
 }
 
@@ -299,7 +299,7 @@ use App\Models\SocialLink;
 .newsletter-form .btn {
     border-radius: 0 25px 25px 0;
     padding: 12px 20px;
-    background: var(--primary-color, #006C35);
+    background: var(--primary-color, #2F378A);
     border: none;
 }
 
@@ -410,7 +410,7 @@ use App\Models\SocialLink;
     right: 30px;
     width: 50px;
     height: 50px;
-    background: var(--primary-color, #006C35);
+    background: var(--primary-color, #2F378A);
     border: none;
     border-radius: 50%;
     color: #fff;
@@ -430,7 +430,7 @@ use App\Models\SocialLink;
 
 .back-to-top:hover {
     transform: translateY(-5px);
-    background: var(--secondary-color, #C8A951);
+    background: var(--secondary-color, #E25A24);
 }
 
 /* Responsive */
