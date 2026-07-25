@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Cache;
 class NewsletterSubscriberResource extends BaseResource
 {
     protected static ?string $model = NewsletterSubscriber::class;
-    protected static ?string $navigationIcon = 'heroicon-o-envelope';
-    protected static ?string $navigationLabel = 'Newsletter';
-    protected static ?int $navigationSort = 15;
 
     public static function form(Form $form): Form
     {

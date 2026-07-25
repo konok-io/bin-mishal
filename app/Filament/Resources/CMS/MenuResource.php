@@ -16,9 +16,6 @@ use Filament\Tables\Table;
 class MenuResource extends BaseResource
 {
     protected static ?string $model = Menu::class;
-    protected static ?string $navigationIcon = 'heroicon-o-bars-3-bottom-left';
-    protected static ?string $navigationLabel = 'Menus';
-    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {

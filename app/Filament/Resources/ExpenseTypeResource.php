@@ -15,9 +15,6 @@ use Filament\Tables\Table;
 class ExpenseTypeResource extends BaseResource
 {
     protected static ?string $model = ExpenseType::class;
-    protected static ?string $navigationIcon = 'heroicon-o-tag';
-    protected static ?string $navigationLabel = 'Expense Types';
-    protected static ?int $navigationSort = 18;
 
     public static function canAccess(): bool
     {

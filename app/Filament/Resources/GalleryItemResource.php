@@ -15,9 +15,6 @@ use Filament\Tables\Table;
 class GalleryItemResource extends BaseResource
 {
     protected static ?string $model = GalleryItem::class;
-    protected static ?string $navigationIcon = 'heroicon-o-photo';
-    protected static ?string $navigationLabel = 'Gallery';
-    protected static ?int $navigationSort = 11;
 
     public static function form(Form $form): Form
     {

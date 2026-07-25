@@ -16,9 +16,6 @@ use Filament\Tables\Columns\BadgeColumn;
 class TranslationResource extends BaseResource
 {
     protected static ?string $model = Translation::class;
-    protected static ?string $navigationIcon = 'heroicon-o-language';
-    protected static ?string $navigationLabel = 'Translations';
-    protected static ?int $navigationSort = 100;
 
     public static function form(Form $form): Form
     {

@@ -15,9 +15,6 @@ use Filament\Tables\Table;
 class NotificationTemplateResource extends BaseResource
 {
     protected static ?string $model = NotificationTemplate::class;
-    protected static ?string $navigationIcon = 'heroicon-o-bell';
-    protected static ?string $navigationLabel = 'Notifications';
-    protected static ?int $navigationSort = 11;
 
     public static function form(Form $form): Form
     {

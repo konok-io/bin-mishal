@@ -15,9 +15,6 @@ use Filament\Tables\Table;
 class PostResource extends BaseResource
 {
     protected static ?string $model = Post::class;
-    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
-    protected static ?string $navigationLabel = 'Blog/News';
-    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {

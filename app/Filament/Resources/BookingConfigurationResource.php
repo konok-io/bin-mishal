@@ -16,9 +16,6 @@ use Filament\Tables\Table;
 class BookingConfigurationResource extends BaseResource
 {
     protected static ?string $model = BookingConfiguration::class;
-    protected static ?string $navigationIcon = 'heroicon-o-cog';
-    protected static ?string $navigationLabel = 'Service Config';
-    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {

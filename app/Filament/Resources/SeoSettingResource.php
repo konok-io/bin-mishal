@@ -15,9 +15,6 @@ use Filament\Tables\Table;
 class SeoSettingResource extends BaseResource
 {
     protected static ?string $model = SeoSetting::class;
-    protected static ?string $navigationIcon = 'heroicon-o-magnifying-glass';
-    protected static ?string $navigationLabel = 'SEO Manager';
-    protected static ?int $navigationSort = 10;
 
     public static function form(Form $form): Form
     {

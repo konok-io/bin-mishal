@@ -14,9 +14,6 @@ use Filament\Tables\Table;
 class FeatureCardResource extends BaseResource
 {
     protected static ?string $model = FeatureCard::class;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationLabel = 'Feature Cards';
-    protected static ?int $navigationSort = 23;
 
     public static function form(Form $form): Form
     {

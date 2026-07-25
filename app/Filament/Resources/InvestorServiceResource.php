@@ -15,9 +15,6 @@ use Filament\Tables\Table;
 class InvestorServiceResource extends BaseResource
 {
     protected static ?string $model = InvestorService::class;
-    protected static ?string $navigationIcon = 'heroicon-o-building-office';
-    protected static ?string $navigationLabel = 'Services';
-    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {

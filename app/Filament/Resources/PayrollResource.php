@@ -15,9 +15,6 @@ use Filament\Tables\Table;
 class PayrollResource extends BaseResource
 {
     protected static ?string $model = Payroll::class;
-    protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
-    protected static ?string $navigationLabel = 'Payroll';
-    protected static ?int $navigationSort = 10;
 
     public static function canAccess(): bool
     {

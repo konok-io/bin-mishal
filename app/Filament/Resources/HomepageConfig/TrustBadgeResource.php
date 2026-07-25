@@ -14,9 +14,6 @@ use Filament\Tables\Table;
 class TrustBadgeResource extends BaseResource
 {
     protected static ?string $model = TrustBadge::class;
-    protected static ?string $navigationIcon = 'heroicon-o-badge-check';
-    protected static ?string $navigationLabel = 'Trust Badges';
-    protected static ?int $navigationSort = 21;
 
     public static function form(Form $form): Form
     {

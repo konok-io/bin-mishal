@@ -20,9 +20,6 @@ use Illuminate\Database\Eloquent\Builder;
 class LedgerEntryResource extends BaseResource
 {
     protected static ?string $model = LedgerEntry::class;
-    protected static ?string $navigationIcon = 'heroicon-o-bookmark-square';
-    protected static ?string $navigationLabel = 'Ledger Entries';
-    protected static ?int $navigationSort = 31;
 
     public static function canAccess(): bool
     {

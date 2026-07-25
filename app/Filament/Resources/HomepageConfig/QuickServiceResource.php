@@ -14,9 +14,6 @@ use Filament\Tables\Table;
 class QuickServiceResource extends BaseResource
 {
     protected static ?string $model = QuickService::class;
-    protected static ?string $navigationIcon = 'heroicon-o-sparkles';
-    protected static ?string $navigationLabel = 'Quick Services';
-    protected static ?int $navigationSort = 22;
 
     public static function form(Form $form): Form
     {

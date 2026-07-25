@@ -15,9 +15,6 @@ use Filament\Tables\Table;
 class SocialLinkResource extends BaseResource
 {
     protected static ?string $model = SocialLink::class;
-    protected static ?string $navigationIcon = 'heroicon-o-share';
-    protected static ?string $navigationLabel = 'Social Links';
-    protected static ?int $navigationSort = 10;
 
     public static function form(Form $form): Form
     {

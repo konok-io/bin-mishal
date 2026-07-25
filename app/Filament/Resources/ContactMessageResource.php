@@ -17,9 +17,6 @@ use Illuminate\Database\Eloquent\Builder;
 class ContactMessageResource extends BaseResource
 {
     protected static ?string $model = ContactMessage::class;
-    protected static ?string $navigationIcon = 'heroicon-o-envelope';
-    protected static ?string $navigationLabel = 'Inbox';
-    protected static ?int $navigationSort = 1;
 
     public static function getNavigationBadge(): ?string
     {

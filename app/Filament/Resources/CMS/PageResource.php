@@ -15,9 +15,6 @@ use Filament\Tables\Table;
 class PageResource extends BaseResource
 {
     protected static ?string $model = Page::class;
-    protected static ?string $navigationIcon = 'heroicon-o-document-duplicate';
-    protected static ?string $navigationLabel = 'Pages';
-    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {

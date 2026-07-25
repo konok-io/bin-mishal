@@ -12,8 +12,6 @@ use Filament\Tables\Table;
 class AuditLogResource extends BaseResource
 {
     protected static ?string $model = AuditLog::class;
-    protected static ?string $navigationLabel = 'Audit Log';
-    protected static ?int $navigationSort = 100;
 
     public static function canCreate(): bool
     {

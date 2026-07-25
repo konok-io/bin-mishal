@@ -15,9 +15,6 @@ use Filament\Tables\Table;
 class SettingResource extends BaseResource
 {
     protected static ?string $model = Setting::class;
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
-    protected static ?string $navigationLabel = 'Site Settings';
-    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
