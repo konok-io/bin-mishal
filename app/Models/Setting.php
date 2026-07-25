@@ -60,13 +60,23 @@ class Setting extends Model
 
         $value = $settings[$key] ?? $defaults[$key] ?? $default;
 
+        // Handle array values - convert to string for safety
+        if (is_array($value)) {
+            $value = json_encode($value);
+        }
+
         // Auto-cast based on type
         $setting = self::where('key', $key)->first();
         if ($setting) {
             $value = self::castValue($value, $setting->type);
         }
 
-        return $value;
+        // Ensure final value is string for display purposes
+        if (is_array($value)) {
+            return json_encode($value);
+        }
+
+        return (string) $value;
     }
 
     // Set setting value
