@@ -66,8 +66,8 @@
                 
                 <h2>Contact Information</h2>
                 <p>For questions about these Terms of Service, please contact us:</p>
-                <p><strong>Email:</strong> {{ settings('email', 'info@binmishal.com') }}</p>
-                <p><strong>Phone:</strong> {{ settings('phone', '+966 XX XXX XXXX') }}</p>
+                <p><strong>Email:</strong> {{ \AppModelsCMSSetting::getValue('contact_email', 'info@binmishal.com') }}</p>
+                <p><strong>Phone:</strong> {{ \AppModelsCMSSetting::getValue('contact_phone', '+966 XX XXX XXXX') }}</p>
                 
                 <p class="text-muted"><small>@lang('Last updated:') {{ now()->format('F d, Y') }}</small></p>
             @endif

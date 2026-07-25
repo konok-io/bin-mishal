@@ -97,15 +97,15 @@ $primaryLocation = $officeLocations->where('is_headquarters', true)->first() ?? 
                     @empty
                         <div class="mb-4">
                             <h6><i class="fas fa-map-marker-alt text-primary-custom me-2"></i> Office Address</h6>
-                            <p class="text-muted ms-4">{{ settings('contact_address', 'Riyadh, Kingdom of Saudi Arabia') }}</p>
+                            <p class="text-muted ms-4">{{ \AppModelsCMSSetting::getValue('contact_address', 'Riyadh, Kingdom of Saudi Arabia') }}</p>
                         </div>
                         <div class="mb-4">
                             <h6><i class="fas fa-phone text-primary-custom me-2"></i> Phone</h6>
-                            <p class="text-muted ms-4">{{ settings('contact_phone', '+966 XX XXX XXXX') }}</p>
+                            <p class="text-muted ms-4">{{ \AppModelsCMSSetting::getValue('contact_phone', '+966 XX XXX XXXX') }}</p>
                         </div>
                         <div class="mb-4">
                             <h6><i class="fas fa-envelope text-primary-custom me-2"></i> Email</h6>
-                            <p class="text-muted ms-4">{{ settings('contact_email', 'info@binmishal.com') }}</p>
+                            <p class="text-muted ms-4">{{ \AppModelsCMSSetting::getValue('contact_email', 'info@binmishal.com') }}</p>
                         </div>
                     @endforelse
                 </div>

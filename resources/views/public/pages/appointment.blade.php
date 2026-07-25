@@ -83,17 +83,17 @@
                     <div class="col-md-4 text-center">
                         <i class="bi bi-telephone text-success" style="font-size: 2rem;"></i>
                         <h5 class="mt-2">@lang('Call Us')</h5>
-                        <p>{{ settings('phone', '+966 XX XXX XXXX') }}</p>
+                        <p>{{ \App\Models\CMS\Setting::getValue('contact_phone', '+966 XX XXX XXXX') }}</p>
                     </div>
                     <div class="col-md-4 text-center">
                         <i class="bi bi-whatsapp text-success" style="font-size: 2rem;"></i>
                         <h5 class="mt-2">@lang('WhatsApp')</h5>
-                        <p>{{ settings('whatsapp', '+966 XX XXX XXXX') }}</p>
+                        <p>{{ \App\Models\CMS\Setting::getValue('contact_whatsapp', '+966 XX XXX XXXX') }}</p>
                     </div>
                     <div class="col-md-4 text-center">
                         <i class="bi bi-envelope text-success" style="font-size: 2rem;"></i>
                         <h5 class="mt-2">@lang('Email')</h5>
-                        <p>{{ settings('email', 'info@binmishal.com') }}</p>
+                        <p>{{ \App\Models\CMS\Setting::getValue('contact_email', 'info@binmishal.com') }}</p>
                     </div>
                 </div>
             </div>

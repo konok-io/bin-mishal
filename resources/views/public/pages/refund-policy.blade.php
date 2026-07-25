@@ -79,8 +79,8 @@
             
             <h2>Contact Us</h2>
             <p>For refund inquiries, please contact us:</p>
-            <p><strong>Email:</strong> {{ settings('email', 'info@binmishal.com') }}</p>
-            <p><strong>Phone:</strong> {{ settings('phone', '+966 XX XXX XXXX') }}</p>
+            <p><strong>Email:</strong> {{ \AppModelsCMSSetting::getValue('contact_email', 'info@binmishal.com') }}</p>
+            <p><strong>Phone:</strong> {{ \AppModelsCMSSetting::getValue('contact_phone', '+966 XX XXX XXXX') }}</p>
             <p><strong>Hours:</strong> Sunday - Thursday, 9 AM - 6 PM</p>
             
             <p class="text-muted"><small>@lang('Last updated:') {{ now()->format('F d, Y') }}</small></p>
