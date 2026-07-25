@@ -18,7 +18,10 @@ use App\Models\SocialLink;
                             <img src="{{ Storage::url(Setting::getValue('logo_light')) }}" alt="{{ Setting::getValue('site_name', 'Bin Mishal') }}" height="50" class="mb-3">
                         @endif
                         <h4>{{ Setting::getValue('site_name', 'Bin Mishal Travels') }}</h4>
-                        <p class="text-muted">{{ Setting::getValue('site_tagline', 'Your Trusted Travel Partner') }}</p>
+                        <p class="footer-tagline">{{ Setting::getValue('site_tagline', 'Your Trusted Travel Partner') }}</p>
+                        @if(Setting::getValue('site_description'))
+                            <p class="footer-description">{{ Setting::getValue('site_description') }}</p>
+                        @endif
                     </div>
                     
                     <!-- Contact Info -->
@@ -179,11 +182,20 @@ use App\Models\SocialLink;
 .footer-brand h4 {
     color: #fff;
     font-weight: 700;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
-.footer-brand p {
-    color: rgba(255,255,255,0.7);
+.footer-tagline {
+    color: rgba(255,255,255,0.9) !important;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.footer-description {
+    color: rgba(255,255,255,0.7) !important;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 0;
 }
 
 .footer-title {

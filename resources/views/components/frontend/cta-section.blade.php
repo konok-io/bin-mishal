@@ -203,14 +203,16 @@ use App\Models\CMS\Setting;
 .partners-section {
     background: #f8fafc;
     border-top: 1px solid #eee;
+    overflow: hidden;
 }
 
 .partners-title {
-    color: #666;
-    font-weight: 500;
-    font-size: 14px;
+    color: #343C90;
+    font-weight: 600;
+    font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    margin-bottom: 25px;
 }
 
 .partners-slider {
@@ -220,33 +222,38 @@ use App\Models\CMS\Setting;
 
 .partners-track {
     display: flex;
-    gap: 50px;
-    animation: scroll 30s linear infinite;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 0;
 }
 
 .partner-logo {
     flex-shrink: 0;
-    min-width: 140px;
-    height: 80px;
+    min-width: 120px;
+    max-width: 150px;
+    height: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 15px 20px;
+    gap: 6px;
+    padding: 12px 15px;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid #eee;
     transition: all 0.3s ease;
 }
 
 .partner-logo:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 20px rgba(52, 60, 144, 0.15);
+    box-shadow: 0 5px 15px rgba(52, 60, 144, 0.12);
+    border-color: #343C90;
 }
 
 .partner-logo i {
-    font-size: 24px;
+    font-size: 22px;
     color: var(--primary-color, #343C90);
     transition: all 0.3s ease;
 }
@@ -256,11 +263,12 @@ use App\Models\CMS\Setting;
 }
 
 .partner-logo span {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    color: #444;
+    color: #555;
     text-align: center;
     white-space: nowrap;
+    line-height: 1.2;
 }
 
 @keyframes scroll {
