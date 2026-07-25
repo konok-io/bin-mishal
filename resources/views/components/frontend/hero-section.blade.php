@@ -3,37 +3,79 @@ use App\Models\HeroTab;
 use App\Models\CMS\Setting;
 use Illuminate\Support\Facades\Cache;
 
-// Default tabs array
+// Default tabs array with full content
 $defaultTabsArray = [
     [
         'tab_key' => 'flight',
         'icon' => 'fas fa-plane',
         'label' => ['en' => 'Flight', 'bn' => 'ফ্লাইট', 'ar' => 'رحلة طيران'],
+        'title' => ['en' => 'Book Your Flight', 'bn' => 'আপনার ফ্লাইট বুক করুন', 'ar' => 'احجز رحلتك'],
+        'subtitle' => ['en' => 'Best deals on domestic & international flights', 'bn' => 'দেশি ও আন্তর্জাতিক ফ্লাইটে সেরা অফার', 'ar' => 'أفضل العروض على الرحلات الداخلية والدولية'],
+        'features' => [
+            ['en' => '800+ Airlines', 'bn' => '৮০০+ এয়ারলাইন্স', 'ar' => '+800 شركة طيران'],
+            ['en' => 'Best Prices', 'bn' => 'সেরা মূল্য', 'ar' => 'أفضل الأسعار'],
+            ['en' => '24/7 Support', 'bn' => '২৪/৭ সাপোর্ট', 'ar' => 'دعم على مدار الساعة'],
+        ],
     ],
     [
         'tab_key' => 'umrah',
         'icon' => 'fas fa-kaaba',
         'label' => ['en' => 'Umrah', 'bn' => 'উমরাহ', 'ar' => 'عمرة'],
+        'title' => ['en' => 'Umrah Packages', 'bn' => 'উমরাহ প্যাকেজ', 'ar' => 'باقات العمرة'],
+        'subtitle' => ['en' => 'Complete Umrah packages with visa & hotels', 'bn' => 'ভিসা ও হোটেল সহ সম্পূর্ণ উমরাহ প্যাকেজ', 'ar' => 'باقات عمرة كاملة مع التأشيرة والفنادق'],
+        'features' => [
+            ['en' => '5-Star Hotels', 'bn' => '৫ তারা হোটেল', 'ar' => 'فنادق 5 نجوم'],
+            ['en' => 'Visa Included', 'bn' => 'ভিসা অন্তর্ভুক্ত', 'ar' => 'تأشيرة مشمولة'],
+            ['en' => 'Group Discounts', 'bn' => 'গ্রুপ ডিসকাউন্ট', 'ar' => 'خصومات جماعية'],
+        ],
     ],
     [
         'tab_key' => 'visa',
         'icon' => 'fas fa-passport',
         'label' => ['en' => 'Visa', 'bn' => 'ভিসা', 'ar' => 'تأشيرة'],
+        'title' => ['en' => 'Visa Services', 'bn' => 'ভিসা সেবা', 'ar' => 'خدمات التأشيرة'],
+        'subtitle' => ['en' => 'Fast & reliable visa processing for all countries', 'bn' => 'সব দেশের জন্য দ্রুত ও নির্ভরযোগ্য ভিসা প্রসেসিং', 'ar' => 'معالجة تأشيرات سريعة وموثوقة لجميع الدول'],
+        'features' => [
+            ['en' => 'Fast Processing', 'bn' => 'দ্রুত প্রসেসিং', 'ar' => 'معالجة سريعة'],
+            ['en' => 'Expert Guidance', 'bn' => 'বিশেষজ্ঞ গাইডেন্স', 'ar' => 'إرشاد متخصص'],
+            ['en' => 'High Success Rate', 'bn' => 'উচ্চ সাফল্য হার', 'ar' => 'معدل نجاح عالي'],
+        ],
     ],
     [
         'tab_key' => 'cargo',
         'icon' => 'fas fa-box',
         'label' => ['en' => 'Cargo', 'bn' => 'কার্গো', 'ar' => 'شحن'],
+        'title' => ['en' => 'Cargo Services', 'bn' => 'কার্গো সেবা', 'ar' => 'خدمات الشحن'],
+        'subtitle' => ['en' => 'Secure & affordable shipping worldwide', 'bn' => 'বিশ্বব্যাপী নিরাপদ ও সাশ্রয়ী শিপিং', 'ar' => 'شحن آمن وبأسعار معقولة حول العالم'],
+        'features' => [
+            ['en' => 'Door to Door', 'bn' => 'ডোর টু ডোর', 'ar' => 'من الباب إلى الباب'],
+            ['en' => 'Real-time Tracking', 'bn' => 'রিয়েল-টাইম ট্র্যাকিং', 'ar' => 'تتبع في الوقت الفعلي'],
+            ['en' => 'Competitive Rates', 'bn' => 'প্রতিযোগিতামূলক রেট', 'ar' => 'أسعار تنافسية'],
+        ],
     ],
     [
         'tab_key' => 'appointment',
         'icon' => 'fas fa-calendar-check',
         'label' => ['en' => 'Appointment', 'bn' => 'অ্যাপয়েন্টমেন্ট', 'ar' => 'موعد'],
+        'title' => ['en' => 'Book Appointment', 'bn' => 'অ্যাপয়েন্টমেন্ট বুক করুন', 'ar' => 'احجز موعد'],
+        'subtitle' => ['en' => 'Schedule a consultation with our experts', 'bn' => 'আমাদের বিশেষজ্ঞদের সাথে পরামর্শ নিন', 'ar' => 'حدد موعدًا للاستشارة مع خبرائنا'],
+        'features' => [
+            ['en' => 'Free Consultation', 'bn' => 'বিনামূল্যে পরামর্শ', 'ar' => 'استشارة مجانية'],
+            ['en' => 'Flexible Timing', 'bn' => 'নমনীয় সময়', 'ar' => 'توقيت مرن'],
+            ['en' => 'Online/Offline', 'bn' => 'অনলাইন/অফলাইন', 'ar' => 'عبر الإنترنت / بدون اتصال'],
+        ],
     ],
     [
         'tab_key' => 'investor',
         'icon' => 'fas fa-chart-line',
         'label' => ['en' => 'Investor', 'bn' => 'বিনিয়োগকারী', 'ar' => 'مستثمر'],
+        'title' => ['en' => 'Investment Services', 'bn' => 'বিনিয়োগ সেবা', 'ar' => 'خدمات الاستثمار'],
+        'subtitle' => ['en' => 'MISA license & business setup in Saudi Arabia', 'bn' => 'সৌদি আরবে MISA লাইসেন্স ও ব্যবসা স্থাপন', 'ar' => 'ترخيص MISA وتأسيس الأعمال في المملكة العربية السعودية'],
+        'features' => [
+            ['en' => 'MISA License', 'bn' => 'MISA লাইসেন্স', 'ar' => 'ترخيص MISA'],
+            ['en' => 'Company Setup', 'bn' => 'কোম্পানি সেটআপ', 'ar' => 'تأسيس شركة'],
+            ['en' => 'Legal Support', 'bn' => 'আইনি সাপোর্ট', 'ar' => 'دعم قانوني'],
+        ],
     ],
 ];
 
@@ -46,9 +88,45 @@ try {
             'tab_key' => $tab->tab_key,
             'icon' => $tab->icon ?? 'fas fa-plane',
             'label' => is_string($tab->label) ? json_decode($tab->label, true) : ($tab->label ?? ['en' => 'Service']),
+            'title' => is_string($tab->title) ? json_decode($tab->title, true) : ($tab->title ?? null),
+            'subtitle' => is_string($tab->subtitle) ? json_decode($tab->subtitle, true) : ($tab->subtitle ?? null),
+            'features' => $tab->features ?? [],
         ];
     })->toArray();
-    $displayTabs = !empty($dbTabsArray) ? $dbTabsArray : $defaultTabsArray;
+    
+    // Merge with defaults to ensure all fields exist
+    $displayTabs = [];
+    foreach (!empty($dbTabsArray) ? $dbTabsArray : $defaultTabsArray as $tab) {
+        $displayTabs[] = array_merge(end($defaultTabsArray) ?: [], $tab);
+    }
+    
+    // If we have DB tabs, use them as base
+    if (!empty($dbTabsArray)) {
+        $displayTabs = array_map(function($dbTab) use ($defaultTabsArray) {
+            // Find matching default
+            $default = null;
+            foreach ($defaultTabsArray as $d) {
+                if ($d['tab_key'] === $dbTab['tab_key']) {
+                    $default = $d;
+                    break;
+                }
+            }
+            // Merge, keeping DB values but falling back to defaults
+            if ($default) {
+                return [
+                    'tab_key' => $dbTab['tab_key'],
+                    'icon' => $dbTab['icon'] ?? $default['icon'],
+                    'label' => $dbTab['label'] ?? $default['label'],
+                    'title' => $dbTab['title'] ?? $default['title'],
+                    'subtitle' => $dbTab['subtitle'] ?? $default['subtitle'],
+                    'features' => $dbTab['features'] ?? $default['features'],
+                ];
+            }
+            return $dbTab;
+        }, $dbTabsArray);
+    } else {
+        $displayTabs = $defaultTabsArray;
+    }
 } catch (\Exception $e) {
     $displayTabs = $defaultTabsArray;
 }
@@ -67,6 +145,12 @@ function getHeroTabLabel($tab) {
 function getHeroTabIcon($tab) {
     return $tab['icon'] ?? 'fas fa-plane';
 }
+
+// Get locale
+$locale = app()->getLocale();
+
+// Encode tabs data for JavaScript
+$tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
 ?>
 
 <!-- Dynamic Hero Section Component -->
@@ -90,16 +174,24 @@ function getHeroTabIcon($tab) {
     
     <div class="container">
         <div class="row align-items-center">
-            <!-- Left: Content -->
+            <!-- Left: Dynamic Content -->
             <div class="col-lg-6 hero-content-wrapper">
                 <div class="hero-content" id="heroContent">
-                    <!-- Dynamic Hero Title -->
-                    <h1 class="hero-title">
-                        {{ Setting::getValue('hero_title', 'Your Trusted Travel Partner') }}
-                    </h1>
-                    <p class="hero-subtitle">
-                        {{ Setting::getValue('hero_subtitle', 'Book flights, Umrah packages, visas, cargo & more - all in one place') }}
-                    </p>
+                    <!-- Content will be dynamically loaded -->
+                    <h1 class="hero-title" id="heroTitle">{{ $displayTabs[0]['title'][$locale] ?? $displayTabs[0]['title']['en'] ?? 'Your Trusted Travel Partner' }}</h1>
+                    <p class="hero-subtitle" id="heroSubtitle">{{ $displayTabs[0]['subtitle'][$locale] ?? $displayTabs[0]['subtitle']['en'] ?? 'Book flights, Umrah packages, visas, cargo & more - all in one place' }}</p>
+                    
+                    <!-- Dynamic Features -->
+                    <div class="service-features" id="heroFeatures">
+                        @if(!empty($displayTabs[0]['features']))
+                            @foreach($displayTabs[0]['features'] as $feature)
+                                <div class="feature-badge">
+                                    <i class="{{ $displayTabs[0]['icon'] ?? 'fas fa-check' }}"></i>
+                                    <span>{{ is_array($feature) ? ($feature[$locale] ?? $feature['en'] ?? '') : $feature }}</span>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
                     
                     <!-- Trust Badges -->
                     <div class="trust-badges d-none d-md-flex">
@@ -131,7 +223,8 @@ function getHeroTabIcon($tab) {
                                         data-bs-toggle="tab" 
                                         data-bs-target="#{{ $tab['tab_key'] }}-content"
                                         type="button" 
-                                        role="tab">
+                                        role="tab"
+                                        data-tab-key="{{ $tab['tab_key'] }}">
                                     <i class="{{ $tab['icon'] ?? 'fas fa-plane' }}"></i>
                                     <span>{{ getHeroTabLabel($tab) }}</span>
                                 </button>
@@ -617,6 +710,73 @@ function getHeroTabIcon($tab) {
     font-size: 14px;
 }
 
+/* Service Features - Dynamic */
+.service-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.feature-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    padding: 10px 18px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.3);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.feature-badge:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+}
+
+.feature-badge i {
+    color: #ffd700;
+    font-size: 14px;
+}
+
+/* Content Animation */
+.hero-content .hero-title,
+.hero-content .hero-subtitle,
+.hero-content .service-features {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content.content-changing .hero-title,
+.hero-content.content-changing .hero-subtitle,
+.hero-content.content-changing .service-features {
+    animation: fadeOutDown 0.3s ease forwards;
+}
+
+@keyframes fadeOutDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
 /* Hero Booking Card - Glassmorphism Effect */
 .hero-form-wrapper {
     position: relative;
@@ -789,5 +949,110 @@ function getHeroTabIcon($tab) {
     .hero-title {
         font-size: 1.8rem;
     }
+    
+    .service-features {
+        gap: 8px;
+    }
+    
+    .feature-badge {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
 }
 </style>
+
+<!-- Dynamic Tab Content Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Tabs data from PHP
+    const tabsData = <?php echo $tabsJson; ?>;
+    const locale = '<?php echo $locale; ?>';
+    
+    // Get elements
+    const heroContent = document.getElementById('heroContent');
+    const heroTitle = document.getElementById('heroTitle');
+    const heroSubtitle = document.getElementById('heroSubtitle');
+    const heroFeatures = document.getElementById('heroFeatures');
+    const bookingTabs = document.getElementById('bookingTabs');
+    
+    // Helper function to get localized text
+    function getLocalizedText(obj) {
+        if (!obj) return '';
+        if (typeof obj === 'string') return obj;
+        if (typeof obj === 'object') {
+            return obj[locale] || obj['en'] || '';
+        }
+        return '';
+    }
+    
+    // Helper function to get localized feature text
+    function getLocalizedFeature(feature) {
+        if (!feature) return '';
+        if (typeof feature === 'string') return feature;
+        if (typeof feature === 'object') {
+            return feature[locale] || feature['en'] || '';
+        }
+        return '';
+    }
+    
+    // Update hero content based on tab
+    function updateHeroContent(tabKey) {
+        // Find tab data
+        const tab = tabsData.find(t => t.tab_key === tabKey);
+        if (!tab) return;
+        
+        // Add changing class for animation
+        heroContent.classList.add('content-changing');
+        
+        // Wait for fade out, then update content
+        setTimeout(function() {
+            // Update title
+            const title = getLocalizedText(tab.title);
+            if (title) heroTitle.textContent = title;
+            
+            // Update subtitle
+            const subtitle = getLocalizedText(tab.subtitle);
+            if (subtitle) heroSubtitle.textContent = subtitle;
+            
+            // Update features
+            if (tab.features && tab.features.length > 0) {
+                let featuresHtml = '';
+                tab.features.forEach(function(feature) {
+                    const icon = tab.icon || 'fas fa-check';
+                    const text = getLocalizedFeature(feature);
+                    if (text) {
+                        featuresHtml += '<div class="feature-badge"><i class="' + icon + '"></i><span>' + text + '</span></div>';
+                    }
+                });
+                heroFeatures.innerHTML = featuresHtml;
+            }
+            
+            // Remove changing class
+            heroContent.classList.remove('content-changing');
+        }, 300);
+    }
+    
+    // Add click listeners to all tab buttons
+    if (bookingTabs) {
+        const tabButtons = bookingTabs.querySelectorAll('.nav-link');
+        tabButtons.forEach(function(button) {
+            button.addEventListener('shown.bs.tab', function(e) {
+                const tabKey = e.target.getAttribute('data-tab-key');
+                if (tabKey) {
+                    updateHeroContent(tabKey);
+                }
+            });
+        });
+        
+        // Also handle shown event for tab switching
+        tabButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                const tabKey = this.getAttribute('data-tab-key');
+                if (tabKey) {
+                    updateHeroContent(tabKey);
+                }
+            });
+        });
+    }
+});
+</script>
