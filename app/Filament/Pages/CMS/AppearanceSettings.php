@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Filament\Pages\CMS;
 
 use App\Models\CMS\Setting;
-use Filament\Pages\BasePage;
+use Filament\Pages\Page;
 use Filament\Forms\Form;
 use Filament\Schemas;
 use Filament\Schemas\Schema;
 
-class AppearanceSettings extends \Filament\Pages\BasePage
+class AppearanceSettings extends Page
 {
     protected static ?string $title = 'Appearance Settings';
 

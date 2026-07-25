@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Filament\Pages\CMS;
 
 use App\Models\Setting;
-use Filament\Pages\BasePage;
+use Filament\Pages\Page;
 use Filament\Forms\Form;
 use Filament\Schemas;
 use Filament\Schemas\Schema;
 
-class GlobalSettings extends \Filament\Pages\BasePage
+class GlobalSettings extends Page
 {
     protected static ?string $title = 'Global Settings';
 
