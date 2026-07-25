@@ -187,22 +187,6 @@ $tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
                             @endforeach
                         @endif
                     </div>
-                    
-                    <!-- Trust Badges -->
-                    <div class="trust-badges d-none d-md-flex">
-                        <div class="badge-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>@lang('hero.licensed_operator')</span>
-                        </div>
-                        <div class="badge-item">
-                            <i class="fas fa-headset"></i>
-                            <span>@lang('hero.24_7_support')</span>
-                        </div>
-                        <div class="badge-item">
-                            <i class="fas fa-award"></i>
-                            <span>@lang('hero.trusted_company')</span>
-                        </div>
-                    </div>
                 </div>
             </div>
             
@@ -621,34 +605,6 @@ $tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
     margin-bottom: 30px;
     line-height: 1.6;
     text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
-.trust-badges {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.badge-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    padding: 10px 18px;
-    border-radius: 30px;
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: all 0.3s;
-}
-
-.badge-item:hover {
-    background: rgba(255,255,255,0.2);
-}
-
-.badge-item i {
-    color: #ffd700;
-    font-size: 14px;
 }
 
 /* Service Features - Simple */
