@@ -14,7 +14,7 @@ class PublicController extends Controller
      */
     public function home(): View
     {
-        return view('welcome-new');
+        return view('welcome');
     }
 
     /**
