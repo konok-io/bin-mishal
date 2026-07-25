@@ -10,7 +10,7 @@ use Filament\Forms\Form;
 use Filament\Schemas;
 use Filament\Schemas\Schema;
 
-class GlobalSettings extends BasePage
+class GlobalSettings extends \Filament\Pages\BasePage
 {
     protected static ?string $title = 'Global Settings';
 

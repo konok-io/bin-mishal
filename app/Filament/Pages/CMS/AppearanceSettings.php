@@ -10,7 +10,7 @@ use Filament\Forms\Form;
 use Filament\Schemas;
 use Filament\Schemas\Schema;
 
-class AppearanceSettings extends BasePage
+class AppearanceSettings extends \Filament\Pages\BasePage
 {
     protected static ?string $title = 'Appearance Settings';
 
