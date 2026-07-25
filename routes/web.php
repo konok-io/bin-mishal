@@ -308,18 +308,23 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin', 'role:admin,su
     });
 });
 
-// Locale change route (GET for links)
+// Locale change route (GET for links) - MUST be before {locale} prefix routes
 Route::get('/locale/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'bn', 'ar'])) {
         session(['locale' => $locale]);
         app()->setLocale($locale);
         
-        // Get the current path and replace the locale prefix
+        // Get the current path
         $currentPath = request()->path();
         $currentPath = trim($currentPath, '/');
         $segments = explode('/', $currentPath);
         
-        // Remove current locale from path if present
+        // Remove 'locale' segment if present (the /locale/ part)
+        if (($segments[0] ?? '') === 'locale') {
+            array_shift($segments);
+        }
+        
+        // Remove current locale prefix if present (bn, en, ar)
         if (in_array($segments[0] ?? '', ['bn', 'en', 'ar'])) {
             array_shift($segments);
         }

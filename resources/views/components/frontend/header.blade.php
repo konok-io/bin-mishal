@@ -68,9 +68,9 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
                             <span>{{ strtoupper(app()->getLocale()) }}</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{ route('locale', 'en') }}">🇬🇧 English</a></li>
-                            <li><a class="dropdown-item" href="{{ route('locale', 'bn') }}">🇧🇩 বাংলা</a></li>
-                            <li><a class="dropdown-item" href="{{ route('locale', 'ar') }}">🇸🇦 العربية</a></li>
+                            <li><a class="dropdown-item" href="{{ switch_locale_url('en') }}">🇬🇧 English</a></li>
+                            <li><a class="dropdown-item" href="{{ switch_locale_url('bn') }}">🇧🇩 বাংলা</a></li>
+                            <li><a class="dropdown-item" href="{{ switch_locale_url('ar') }}">🇸🇦 العربية</a></li>
                         </ul>
                     </div>
                 </div>
