@@ -69,6 +69,9 @@ class DatabaseTranslationLoader
                             continue;
                         }
 
+                        // Ensure value is a string
+                        $value = (string) $value;
+
                         if (str_contains($shortKey, '.')) {
                             data_set($lines, $shortKey, $value);
                         } else {
@@ -83,22 +86,21 @@ class DatabaseTranslationLoader
             // If database is not available, just use file translations
         }
 
-        // Ensure top-level values are strings (not arrays)
-        return $this->ensureStringValues($lines);
+        // Ensure ALL values are strings recursively
+        return $this->stringifyArray($lines);
     }
 
     /**
-     * Ensure all top-level values in the array are strings.
-     * If a value is an array, replace it with its first string value or the key.
+     * Recursively convert all values in an array to strings.
+     * Nested arrays become the first string value found or the key name.
      */
-    protected function ensureStringValues(array $array): array
+    protected function stringifyArray(array $arr): array
     {
         $result = [];
-        foreach ($array as $key => $value) {
+        foreach ($arr as $key => $value) {
             if (is_array($value)) {
-                // For arrays, try to get the first string value
-                $found = $this->findFirstString($value);
-                $result[$key] = $found ?? $key;
+                // Recursively process nested arrays
+                $result[$key] = $this->stringifyValue($value) ?? (string) $key;
             } else {
                 $result[$key] = (string) $value;
             }
@@ -107,18 +109,18 @@ class DatabaseTranslationLoader
     }
 
     /**
-     * Recursively find the first string value in an array.
+     * Convert an array to a string by finding the first string value.
      */
-    protected function findFirstString(mixed $value): ?string
+    protected function stringifyValue(array $arr): ?string
     {
-        if (is_string($value)) {
-            return $value;
-        }
-        if (is_array($value)) {
-            foreach ($value as $item) {
-                $found = $this->findFirstString($item);
-                if ($found !== null) {
-                    return $found;
+        foreach ($arr as $value) {
+            if (is_string($value)) {
+                return $value;
+            }
+            if (is_array($value)) {
+                $result = $this->stringifyValue($value);
+                if ($result !== null) {
+                    return $result;
                 }
             }
         }
