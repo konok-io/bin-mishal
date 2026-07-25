@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Filament\Pages\CMS;
 
 use App\Models\Setting;
-use Filament\Pages\Page;
+use Filament\Pages\BasePage;
+use Filament\Forms\Form;
 use Filament\Schemas;
 use Filament\Schemas\Schema;
 
-class GlobalSettings extends Page
+class GlobalSettings extends BasePage
 {
-    protected ?string $title = 'Global Settings';
-    protected string $view = 'filament.pages.settings-form';
+    protected static ?string $title = 'Global Settings';
 
     public ?array $data = [];
 
@@ -22,9 +22,9 @@ class GlobalSettings extends Page
         $this->form->fill($setting?->toArray() ?? []);
     }
 
-    public function form(Schema $schema): Schema
+    public function form(Form $form): Form
     {
-        return $schema->statePath('data')->schema([
+        return $form->schema([
             Schemas\Components\Tabs::make('Settings')
                 ->tabs([
                     Schemas\Components\Tabs\Tab::make('General')
@@ -42,52 +42,17 @@ class GlobalSettings extends Page
                                         ->label('Phone'),
                                     Schemas\Components\TextInput::make('company_email')
                                         ->label('Email'),
-                                    Schemas\Components\Textarea::make('company_address')
-                                        ->label('Address'),
                                 ]),
                         ]),
 
                     Schemas\Components\Tabs\Tab::make('Social Media')
                         ->schema([
-                            Schemas\Components\Section::make('Social Links')
-                                ->schema([
-                                    Schemas\Components\TextInput::make('facebook_url')
-                                        ->label('Facebook')
-                                        ->url(),
-                                    Schemas\Components\TextInput::make('youtube_url')
-                                        ->label('YouTube')
-                                        ->url(),
-                                    Schemas\Components\TextInput::make('linkedin_url')
-                                        ->label('LinkedIn')
-                                        ->url(),
-                                ]),
-                        ]),
-
-                    Schemas\Components\Tabs\Tab::make('SEO & Analytics')
-                        ->schema([
-                            Schemas\Components\Section::make('Default Meta')
-                                ->schema([
-                                    Schemas\Components\TextInput::make('default_meta_title')
-                                        ->label('Default Meta Title'),
-                                    Schemas\Components\Textarea::make('default_meta_description')
-                                        ->label('Default Meta Description'),
-                                ]),
-                            Schemas\Components\Section::make('Analytics')
-                                ->schema([
-                                    Schemas\Components\TextInput::make('ga4_id')
-                                        ->label('Google Analytics 4 ID'),
-                                ]),
-                        ]),
-
-                    Schemas\Components\Tabs\Tab::make('Maintenance')
-                        ->schema([
-                            Schemas\Components\Section::make('Maintenance Mode')
-                                ->schema([
-                                    Schemas\Components\Toggle::make('maintenance_mode')
-                                        ->label('Enable Maintenance Mode'),
-                                    Schemas\Components\Textarea::make('maintenance_message')
-                                        ->label('Maintenance Message'),
-                                ]),
+                            Schemas\Components\TextInput::make('facebook_url')
+                                ->label('Facebook')
+                                ->url(),
+                            Schemas\Components\TextInput::make('youtube_url')
+                                ->label('YouTube')
+                                ->url(),
                         ]),
                 ]),
         ]);
