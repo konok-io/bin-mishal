@@ -58,15 +58,17 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
                     
                     <!-- Portal Links -->
                     <div class="portal-links">
-                        <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}" class="btn btn-support">
+                        <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}" class="btn">
                             <i class="fas fa-headset"></i>
                             <span>{{ __('nav.support') }}</span>
                         </a>
-                        <a href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}" class="btn btn-login">
+                        <span class="btn-divider">|</span>
+                        <a href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}" class="btn">
                             <i class="fas fa-sign-in-alt"></i>
                             <span>{{ __('nav.login') }}</span>
                         </a>
-                        <a href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}" class="btn btn-register">
+                        <span class="btn-divider">|</span>
+                        <a href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}" class="btn">
                             <i class="fas fa-user-plus"></i>
                             <span>{{ __('nav.register') }}</span>
                         </a>
@@ -284,58 +286,39 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     color: #fff;
 }
 
-/* Portal Buttons - Modern Style */
+/* Portal Buttons - Simple Text Style */
 .portal-links {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 5px;
 }
 
 .portal-links .btn {
-    padding: 8px 16px;
-    border-radius: 25px;
+    padding: 8px 14px;
     font-size: 13px;
     font-weight: 500;
     display: flex;
     align-items: center;
     gap: 8px;
     border: none;
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.portal-links .btn:hover {
+    opacity: 0.8;
+    color: #fff;
 }
 
 .portal-links .btn i {
     font-size: 12px;
 }
 
-.portal-links .btn-support {
-    background: rgba(255,255,255,0.1);
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.2);
-}
-
-.portal-links .btn-support:hover {
-    background: rgba(255,255,255,0.2);
-    color: #fff;
-}
-
-.portal-links .btn-login {
-    background: rgba(255,255,255,0.15);
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.25);
-}
-
-.portal-links .btn-login:hover {
-    background: rgba(255,255,255,0.25);
-    color: #fff;
-}
-
-.portal-links .btn-register {
-    background: #fff;
-    color: #343C90;
-}
-
-.portal-links .btn-register:hover {
-    background: #f0f0f0;
-    color: #343C90;
+.portal-links .btn-divider {
+    color: rgba(255,255,255,0.3);
+    font-size: 14px;
 }
 
 /* Main Navigation */
