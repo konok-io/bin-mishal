@@ -387,6 +387,14 @@
                 <i class="fa-solid fa-plug"></i><span>Integrations</span>
             </a>
 
+            <div class="nav-section-title"><span>AI & WhatsApp</span></div>
+            <a href="{{ route('admin.chat-bot.index') }}" class="nav-link {{ request()->routeIs('admin.chat-bot.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-robot"></i><span>AI Chat Assistant</span>
+            </a>
+            <a href="{{ route('admin.whatsapp-broadcast.index') }}" class="nav-link {{ request()->routeIs('admin.whatsapp-broadcast.*') ? 'active' : '' }}">
+                <i class="fa-brands fa-whatsapp"></i><span>WhatsApp Broadcast</span>
+            </a>
+
             <div class="nav-section-title"><span>City TV Connect</span></div>
             <a href="{{ route('admin.city-tv-connect.index') }}" class="nav-link {{ request()->routeIs('admin.city-tv-connect.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-satellite-dish"></i><span>Branch Management</span>

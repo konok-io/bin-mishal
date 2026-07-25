@@ -124,6 +124,24 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     // Integrations Dashboard (Phase 19)
     Route::get('/integrations', [\App\Http\Controllers\Admin\IntegrationsController::class, 'index'])->name('integrations.index');
 
+    // AI Chat Assistant (Phase 16)
+    Route::prefix('chat-bot')->name('chat-bot.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\ChatBotController::class, 'index'])->name('index');
+        Route::put('/', [App\Http\Controllers\Admin\ChatBotController::class, 'update'])->name('update');
+        Route::get('/conversations', [App\Http\Controllers\Admin\ChatBotController::class, 'conversations'])->name('conversations');
+        Route::get('/analytics', [App\Http\Controllers\Admin\ChatBotController::class, 'analytics'])->name('analytics');
+        Route::get('/handoff', [App\Http\Controllers\Admin\ChatBotController::class, 'handoff'])->name('handoff');
+    });
+
+    // WhatsApp Broadcast (Phase 16)
+    Route::prefix('whatsapp-broadcast')->name('whatsapp-broadcast.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\WhatsAppBroadcastController::class, 'index'])->name('index');
+        Route::put('/settings', [App\Http\Controllers\Admin\WhatsAppBroadcastController::class, 'updateSettings'])->name('update-settings');
+        Route::get('/create', [App\Http\Controllers\Admin\WhatsAppBroadcastController::class, 'create'])->name('create');
+        Route::post('/send', [App\Http\Controllers\Admin\WhatsAppBroadcastController::class, 'send'])->name('send');
+        Route::get('/{id}', [App\Http\Controllers\Admin\WhatsAppBroadcastController::class, 'show'])->name('show');
+    });
+
     // User Management (Phase 18)
     Route::resource('users', \App\Http\Controllers\Admin\UsersController::class)->names([
         'index' => 'users.index',
