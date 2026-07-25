@@ -516,7 +516,14 @@ function getHeroTabIcon($tab) {
 .booking-tabs {
     background: rgba(255,255,255,0.1);
     border-bottom: none;
-    padding: 15px 15px 0;
+    padding: 15px 10px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.booking-tabs .nav-item {
+    white-space: nowrap;
 }
 
 .booking-tabs .nav-link {
@@ -524,15 +531,16 @@ function getHeroTabIcon($tab) {
     border-radius: 10px 10px 0 0;
     color: rgba(255,255,255,0.7);
     font-weight: 500;
-    padding: 12px 15px;
+    padding: 10px 12px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     transition: all 0.3s;
+    font-size: 13px;
 }
 
 .booking-tabs .nav-link i {
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .booking-tabs .nav-link.active {
