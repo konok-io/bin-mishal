@@ -431,6 +431,8 @@ body.admin-login-wrap {
   flex-direction: column;
   padding: 0;
   margin-right: 0;
+  width: calc(100% - var(--admin-sidebar-width));
+  max-width: 100%;
 }
 .admin-topbar {
   background: #fff;
@@ -455,6 +457,31 @@ body.admin-login-wrap {
   flex: 1;
   width: 100%;
   margin: 0;
+  max-width: 100%;
+}
+
+/* Fix Bootstrap container in admin panel */
+.admin-main .container,
+.admin-main .container-fluid,
+.admin-main .container-sm,
+.admin-main .container-md,
+.admin-main .container-lg,
+.admin-main .container-xl,
+.admin-main .container-xxl {
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Remove extra left padding from rows in admin */
+.admin-main .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.admin-main .row > * {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .admin-page-header {
