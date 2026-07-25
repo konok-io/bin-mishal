@@ -71,8 +71,14 @@ function getHeroTabIcon($tab) {
 
 <!-- Dynamic Hero Section Component -->
 <section class="hero-section" id="heroSection">
-    <!-- Background Pattern -->
-    <div class="hero-bg-pattern"></div>
+    <!-- Animated Background Elements -->
+    <div class="hero-bg-wrapper">
+        <div class="hero-gradient"></div>
+        <div class="hero-shape hero-shape-1"></div>
+        <div class="hero-shape hero-shape-2"></div>
+        <div class="hero-shape hero-shape-3"></div>
+        <div class="hero-particles"></div>
+    </div>
     
     <div class="container">
         <div class="row align-items-center">
@@ -416,9 +422,9 @@ function getHeroTabIcon($tab) {
 </section>
 
 <style>
-/* Hero Section Styles */
+/* Hero Section Styles - Modern Gradient Design */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-color, #E05522) 0%, #C94718 100%);
+    background: linear-gradient(135deg, #343C90 0%, #E05522 50%, #C94718 100%);
     color: #fff;
     padding: 80px 0;
     position: relative;
@@ -426,16 +432,106 @@ function getHeroTabIcon($tab) {
     min-height: 650px;
 }
 
-.hero-bg-pattern {
+/* Animated Background Wrapper */
+.hero-bg-wrapper {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.5;
+    overflow: hidden;
 }
 
+/* Main Gradient Overlay */
+.hero-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(52, 60, 144, 0.95) 0%, 
+        rgba(224, 85, 34, 0.9) 50%, 
+        rgba(201, 71, 24, 0.85) 100%);
+    z-index: 1;
+}
+
+/* Floating Shapes */
+.hero-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.hero-shape-1 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #fff 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+    animation: float1 15s ease-in-out infinite;
+}
+
+.hero-shape-2 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #E05522 0%, transparent 70%);
+    bottom: -50px;
+    left: -50px;
+    animation: float2 12s ease-in-out infinite;
+}
+
+.hero-shape-3 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #343C90 0%, transparent 70%);
+    top: 50%;
+    left: 30%;
+    animation: float3 10s ease-in-out infinite;
+}
+
+/* Floating Animations */
+@keyframes float1 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(-30px, 30px) rotate(5deg); }
+    66% { transform: translate(30px, -30px) rotate(-5deg); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(40px, -40px) scale(1.1); }
+}
+
+@keyframes float3 {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(20px, -20px); }
+    75% { transform: translate(-20px, 20px); }
+}
+
+/* Particle Effect */
+.hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 1px, transparent 1px),
+        radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 2px, transparent 2px),
+        radial-gradient(circle at 60% 70%, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 100px 100px, 150px 150px, 80px 80px, 120px 120px;
+    animation: particles 20s linear infinite;
+    z-index: 0;
+}
+
+@keyframes particles {
+    0% { background-position: 0 0, 0 0, 0 0, 0 0; }
+    100% { background-position: 100px 100px, -150px 150px, -80px -80px, 120px -120px; }
+}
+
+/* Content Wrapper */
 .hero-content-wrapper {
     position: relative;
     z-index: 2;
@@ -446,67 +542,82 @@ function getHeroTabIcon($tab) {
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 20px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 .hero-subtitle {
     font-size: 1.2rem;
-    opacity: 0.9;
+    opacity: 0.95;
     margin-bottom: 30px;
     line-height: 1.6;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 .trust-badges {
     display: flex;
-    gap: 25px;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .badge-item {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
+    font-size: 13px;
     background: rgba(255,255,255,0.15);
-    padding: 8px 15px;
-    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    padding: 10px 18px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s;
+}
+
+.badge-item:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-2px);
 }
 
 .badge-item i {
     color: #ffd700;
+    font-size: 14px;
 }
 
-/* Hero Booking Card */
+/* Hero Booking Card - Glassmorphism Effect */
 .hero-form-wrapper {
     position: relative;
     z-index: 2;
 }
 
 .hero-booking-card {
-    background: #343C90;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    box-shadow: 
+        0 25px 50px rgba(0,0,0,0.3),
+        0 0 0 1px rgba(255,255,255,0.1) inset;
     overflow: hidden;
-    color: #fff;
+    color: #1F2937;
+    border: 1px solid rgba(255,255,255,0.3);
 }
 
 .hero-booking-card .form-control,
 .hero-booking-card .form-select {
-    background: #fff;
+    background: #f8fafc;
     color: #1F2937;
-    border: 1px solid #ddd;
+    border: 2px solid #e5e7eb;
 }
 
 .hero-booking-card .form-control:focus,
 .hero-booking-card .form-select:focus {
     background: #fff;
     color: #1F2937;
-    border-color: var(--primary-color, #E05522);
-    box-shadow: 0 0 0 0.2rem rgba(224, 85, 34, 0.25);
+    border-color: #343C90;
+    box-shadow: 0 0 0 4px rgba(52, 60, 144, 0.15);
 }
 
 .hero-booking-card label {
-    color: #fff;
-    font-weight: 500;
+    color: #374151;
+    font-weight: 600;
 }
 
 .hero-booking-card .btn {
@@ -514,7 +625,7 @@ function getHeroTabIcon($tab) {
 }
 
 .booking-tabs {
-    background: rgba(255,255,255,0.1);
+    background: linear-gradient(135deg, #343C90 0%, #4A5299 100%);
     border-bottom: none;
     padding: 15px 10px 0;
     display: flex;
@@ -528,7 +639,7 @@ function getHeroTabIcon($tab) {
 
 .booking-tabs .nav-link {
     border: none;
-    border-radius: 10px 10px 0 0;
+    border-radius: 12px 12px 0 0;
     color: rgba(255,255,255,0.7);
     font-weight: 500;
     padding: 10px 12px;
@@ -546,11 +657,13 @@ function getHeroTabIcon($tab) {
 .booking-tabs .nav-link.active {
     background: #fff;
     color: #343C90;
-    box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
+    font-weight: 600;
 }
 
 .booking-tabs .nav-link:hover:not(.active) {
     color: #fff;
+    background: rgba(255,255,255,0.1);
 }
 
 .booking-content {
@@ -559,42 +672,42 @@ function getHeroTabIcon($tab) {
 }
 
 .form-label {
-    font-weight: 500;
-    color: #fff;
+    font-weight: 600;
+    color: #374151;
     font-size: 14px;
     margin-bottom: 6px;
 }
 
 .form-control, .form-select {
-    border-radius: 10px;
-    padding: 10px 15px;
-    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 12px 15px;
+    border: 2px solid #e5e7eb;
     transition: all 0.3s;
-    background: #fff;
+    background: #f8fafc;
     color: #1F2937;
 }
 
 .form-control:focus, .form-select:focus {
-    border-color: var(--primary-color, #E05522);
-    box-shadow: 0 0 0 3px rgba(224, 85, 34, 0.2);
+    border-color: #343C90;
+    box-shadow: 0 0 0 4px rgba(52, 60, 144, 0.1);
     background: #fff;
-    color: #1F2937;
 }
 
 .btn-primary {
-    background: var(--primary-color, #E05522);
+    background: linear-gradient(135deg, #E05522 0%, #C94718 100%);
     border: none;
     padding: 14px 25px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 600;
     transition: all 0.3s;
     color: #fff;
+    box-shadow: 0 4px 15px rgba(224, 85, 34, 0.3);
 }
 
 .btn-primary:hover {
-    background: #C94718;
+    background: linear-gradient(135deg, #C94718 0%, #A73C16 100%);
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(224, 85, 34, 0.4);
+    box-shadow: 0 8px 25px rgba(224, 85, 34, 0.4);
 }
 
 /* Responsive */
