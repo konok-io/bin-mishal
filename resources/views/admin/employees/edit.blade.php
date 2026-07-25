@@ -85,7 +85,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="joining_date" class="form-label">Joining Date</label>
-                        <input type="date" class="form-control @error('joining_date') is-invalid @enderror" id="joining_date" name="joining_date" value="{{ old('joining_date', $employee->employee?->joining_date?->format('Y-m-d') ?? '') }}">
+                        <input type="date" class="form-control @error('joining_date') is-invalid @enderror" id="joining_date" name="joining_date" value="{{ old('joining_date', optional(optional($employee)->employee)->joining_date?->format('Y-m-d') ?? '') }}">
                         @error('joining_date')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
