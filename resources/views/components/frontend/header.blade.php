@@ -10,8 +10,6 @@ $contactPhone = Setting::getValue('contact_phone', '+966 13 XXXXXXX');
 $contactEmail = Setting::getValue('contact_email', 'info@binmishal.com');
 $workingHours = Setting::getValue('working_hours', 'Sat-Thu: 9AM-9PM');
 $logoUrl = Setting::getValue('logo_light') ? Storage::url(Setting::getValue('logo_light')) : null;
-$ctaText = Setting::getValue('header_cta_text', 'Get Quote');
-$ctaUrl = Setting::getValue('header_cta_url', '/contact');
 $showLogin = Setting::getValue('show_login_button', true);
 $showRegister = Setting::getValue('show_register_button', true);
 
@@ -66,12 +64,7 @@ $navItems = !empty($headerMenu) ? $headerMenu : $fallbackMenu;
                 <div class="topbar-right">
                     <!-- Portal Links -->
                     <div class="portal-links">
-                        <a href="{{ locale_route('contact') }}" class="btn">
-                            <i class="fas fa-headset"></i>
-                            <span>{{ __('nav.support') }}</span>
-                        </a>
                         @if($showLogin)
-                        <span class="btn-divider">|</span>
                         <a href="{{ locale_route('portal.login') }}" class="btn">
                             <i class="fas fa-sign-in-alt"></i>
                             <span>{{ __('nav.login') }}</span>
@@ -167,11 +160,6 @@ $navItems = !empty($headerMenu) ? $headerMenu : $fallbackMenu;
                     </li>
                 </ul>
             </div>
-            
-            <!-- CTA Button -->
-            <a href="{{ locale_route('contact') }}" class="btn btn-primary d-none d-lg-flex header-cta">
-                <i class="fas fa-phone"></i> {{ $ctaText }}
-            </a>
         </div>
     </nav>
     
@@ -426,26 +414,6 @@ $navItems = !empty($headerMenu) ? $headerMenu : $fallbackMenu;
     margin: 8px 0;
 }
 
-/* CTA Button */
-.header-cta {
-    margin-left: 15px;
-    padding: 10px 20px;
-    border-radius: 25px;
-    background: #E05522;
-    border: none;
-    color: #fff;
-    font-weight: 600;
-}
-
-.header-cta:hover {
-    background: #C94718;
-    color: #fff;
-}
-
-.header-cta i {
-    margin-right: 6px;
-}
-
 /* Mobile Toggle */
 .navbar-toggler {
     border: 2px solid #343C90;
@@ -541,10 +509,6 @@ $navItems = !empty($headerMenu) ? $headerMenu : $fallbackMenu;
     
     .navbar-nav .dropdown:hover > .dropdown-menu {
         display: block;
-    }
-    
-    .header-cta {
-        display: none !important;
     }
     
     .portal-links {
