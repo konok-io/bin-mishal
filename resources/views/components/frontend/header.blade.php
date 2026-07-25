@@ -140,14 +140,14 @@ use App\Models\HeroTab;
     
     <!-- Notice Ticker (if active notices exist) -->
     @php
-        $activeNotices = \App\Models\Notice::active()->currentlyActive()->take(1)->get();
+        $activeNotices = \App\Models\Notice::active()->current()->forLocale()->ordered()->take(1)->get();
     @endphp
     @if($activeNotices->isNotEmpty())
         <div class="notice-ticker">
             <div class="container">
                 <div class="ticker-content">
                     <span class="ticker-badge"><i class="fas fa-bullhorn"></i> @lang('common.announcement')</span>
-                    <span class="ticker-text">{{ $activeNotices->first()->title }}</span>
+                    <span class="ticker-text">{{ $activeNotices->first()->content }}</span>
                 </div>
             </div>
         </div>

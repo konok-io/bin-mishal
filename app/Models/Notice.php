@@ -66,7 +66,7 @@ class Notice extends Model
             });
     }
 
-    public function scopeForLocale($query, string $locale = null)
+    public function scopeForLocale($query, ?string $locale = null)
     {
         $locale = $locale ?? app()->getLocale();
 

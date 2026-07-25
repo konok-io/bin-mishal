@@ -56,8 +56,8 @@ use App\Models\SocialLink;
                     <div class="footer-social mt-4">
                         <h5>@lang('footer.follow_us')</h5>
                         <div class="social-icons">
-                            @foreach(\App\Models\SocialLink::active()->get() as $social)
-                                <a href="{{ $social->url }}" target="_blank" class="social-icon" title="{{ $social->name }}">
+                            @foreach(\App\Models\SocialLink::visible()->ordered()->get() as $social)
+                                <a href="{{ $social->url }}" target="_blank" class="social-icon" title="{{ $social->translated_name }}">
                                     <i class="{{ $social->icon }}"></i>
                                 </a>
                             @endforeach
