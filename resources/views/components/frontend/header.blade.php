@@ -43,19 +43,6 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
                 
                 <!-- Right: Actions -->
                 <div class="topbar-right">
-                    <!-- Language Switcher -->
-                    <div class="language-switcher">
-                        <button class="lang-btn dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fas fa-globe"></i>
-                            <span>{{ strtoupper(app()->getLocale()) }}</span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{ route('locale', 'en') }}">🇬🇧 English</a></li>
-                            <li><a class="dropdown-item" href="{{ route('locale', 'bn') }}">🇧🇩 বাংলা</a></li>
-                            <li><a class="dropdown-item" href="{{ route('locale', 'ar') }}">🇸🇦 العربية</a></li>
-                        </ul>
-                    </div>
-                    
                     <!-- Portal Links -->
                     <div class="portal-links">
                         <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}" class="btn">
@@ -72,6 +59,19 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
                             <i class="fas fa-user-plus"></i>
                             <span>{{ __('nav.register') }}</span>
                         </a>
+                    </div>
+                    
+                    <!-- Language Switcher -->
+                    <div class="language-switcher">
+                        <button class="lang-btn dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fas fa-globe"></i>
+                            <span>{{ strtoupper(app()->getLocale()) }}</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ route('locale', 'en') }}">🇬🇧 English</a></li>
+                            <li><a class="dropdown-item" href="{{ route('locale', 'bn') }}">🇧🇩 বাংলা</a></li>
+                            <li><a class="dropdown-item" href="{{ route('locale', 'ar') }}">🇸🇦 العربية</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
