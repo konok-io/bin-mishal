@@ -28,9 +28,12 @@
             unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFF;
         }
         
-        html[lang="bn"] body { font-family: 'BanglaFont', 'Hind Siliguri', sans-serif; }
-        html[lang="ar"] body { font-family: 'ArabicFont', 'Noto Sans Arabic', sans-serif; direction: rtl; }
-        html[lang="en"] body { font-family: 'EnglishFont', 'Inter', sans-serif; }
+        html[lang="bn"] body,
+        html[lang="bn"] * { font-family: 'BanglaFont', 'Hind Siliguri', sans-serif; }
+        html[lang="ar"] body,
+        html[lang="ar"] * { font-family: 'ArabicFont', 'Noto Sans Arabic', sans-serif; direction: rtl; }
+        html[lang="en"] body,
+        html[lang="en"] * { font-family: 'EnglishFont', 'Inter', sans-serif; }
         
         :root {
             --primary: #E05522;

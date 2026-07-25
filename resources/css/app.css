@@ -3,6 +3,64 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+/* ── Custom Fonts ─────────────────────────────────────────────────────────── */
+@font-face {
+    font-family: 'BanglaFont';
+    src: url('/fonts/bangla.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    unicode-range: U+0980-09FF, U+09E0-09EF, U+200C-200D, U+20B9;
+}
+@font-face {
+    font-family: 'BanglaFont';
+    src: url('/fonts/bangla.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    unicode-range: U+0980-09FF, U+09E0-09EF, U+200C-200D, U+20B9;
+}
+@font-face {
+    font-family: 'EnglishFont';
+    src: url('/fonts/English.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    unicode-range: U+0000-007F, U+0080-00FF, U+0100-017F, U+1E00-1EFF, U+1F300-1F9FF;
+}
+@font-face {
+    font-family: 'EnglishFont';
+    src: url('/fonts/English.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    unicode-range: U+0000-007F, U+0080-00FF, U+0100-017F, U+1E00-1EFF, U+1F300-1F9FF;
+}
+@font-face {
+    font-family: 'ArabicFont';
+    src: url('/fonts/Arabic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}
+@font-face {
+    font-family: 'ArabicFont';
+    src: url('/fonts/Arabic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+/* ── Language-based Font Selection ───────────────────────────────────────── */
+html[lang="bn"] body,
+html[lang="bn"] * {
+    font-family: 'BanglaFont', 'Hind Siliguri', sans-serif;
+}
+html[lang="ar"] body,
+html[lang="ar"] * {
+    font-family: 'ArabicFont', 'Noto Sans Arabic', sans-serif;
+}
+html[lang="en"] body,
+html[lang="en"] * {
+    font-family: 'EnglishFont', 'Inter', sans-serif;
+}
+
 /* ── Bin Mishal Brand Color Theme (Tailwind v4 @theme) ───────────────────── */
 @theme {
     /* Primary: Bin Mishal Orange */
