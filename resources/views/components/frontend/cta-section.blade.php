@@ -52,22 +52,36 @@ use App\Models\CMS\Setting;
             <div class="partners-track">
                 <!-- Airlines/Partners -->
                 <div class="partner-logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Saudi_Airlines_logo.svg/200px-Saudi_Airlines_logo.svg.png" alt="Saudi Airlines">
+                    <i class="fas fa-plane"></i>
+                    <span>Saudi Airlines</span>
                 </div>
                 <div class="partner-logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Lufthansa_Logo.svg/200px-Lufthansa_Logo.svg.png" alt="Lufthansa">
+                    <i class="fas fa-plane-departure"></i>
+                    <span>Biman Bangladesh</span>
                 </div>
                 <div class="partner-logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Qatar_Airways_Logo.svg/200px-Qatar_Airways_Logo.svg.png" alt="Qatar Airways">
+                    <i class="fas fa-globe-americas"></i>
+                    <span>US-Bangla</span>
                 </div>
                 <div class="partner-logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Emirates_Airlines_logo.svg/200px-Emirates_Airlines_logo.svg.png" alt="Emirates">
+                    <i class="fas fa-plane-arrival"></i>
+                    <span>Flydubai</span>
                 </div>
                 <div class="partner-logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Oman_Air_Logo.svg/200px-Oman_Air_Logo.svg.png" alt="Oman Air">
+                    <i class="fas fa-suitcase-rolling"></i>
+                    <span>Air Arabia</span>
                 </div>
                 <div class="partner-logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/US-Bangla_Airlines_Logo.svg/200px-US-Bangla_Airlines_Logo.svg.png" alt="US-Bangla">
+                    <i class="fas fa-earth-americas"></i>
+                    <span>Qatar Airways</span>
+                </div>
+                <div class="partner-logo">
+                    <i class="fas fa-cloud-moon"></i>
+                    <span>Oman Air</span>
+                </div>
+                <div class="partner-logo">
+                    <i class="fas fa-mosque"></i>
+                    <span>Emirates</span>
                 </div>
             </div>
         </div>
@@ -212,23 +226,41 @@ use App\Models\CMS\Setting;
 
 .partner-logo {
     flex-shrink: 0;
-    height: 60px;
+    min-width: 140px;
+    height: 80px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.partner-logo img {
-    max-height: 50px;
-    width: auto;
-    filter: grayscale(100%);
-    opacity: 0.6;
+    gap: 8px;
+    padding: 15px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     transition: all 0.3s ease;
 }
 
-.partner-logo img:hover {
-    filter: grayscale(0%);
-    opacity: 1;
+.partner-logo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(52, 60, 144, 0.15);
+}
+
+.partner-logo i {
+    font-size: 24px;
+    color: var(--primary-color, #343C90);
+    transition: all 0.3s ease;
+}
+
+.partner-logo:hover i {
+    color: var(--secondary-color, #E05522);
+}
+
+.partner-logo span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #444;
+    text-align: center;
+    white-space: nowrap;
 }
 
 @keyframes scroll {

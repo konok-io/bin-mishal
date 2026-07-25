@@ -94,7 +94,7 @@ use App\Models\SocialLink;
                 <!-- Newsletter Column -->
                 <div class="col-lg-4 col-md-6">
                     <h5 class="footer-title">@lang('footer.newsletter')</h5>
-                    <p class="text-muted mb-3">@lang('footer.newsletter_desc')</p>
+                    <p class="newsletter-desc mb-3">@lang('footer.newsletter_desc')</p>
                     
                     <form action="{{ route('newsletter.subscribe') }}" method="POST" class="newsletter-form">
                         @csrf
@@ -284,6 +284,10 @@ use App\Models\SocialLink;
 }
 
 /* Newsletter */
+.newsletter-desc {
+    color: rgba(255,255,255,0.8) !important;
+}
+
 .newsletter-form .input-group {
     border-radius: 25px;
     overflow: hidden;
