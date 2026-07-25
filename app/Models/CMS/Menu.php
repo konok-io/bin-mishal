@@ -68,14 +68,77 @@ class Menu extends Model
     {
         $cacheKey = "menu_tree_{$this->id}_" . app()->getLocale();
 
-        return Cache::remember($cacheKey, self::CACHE_TTL, function () {
+        $flatItems = Cache::remember($cacheKey, self::CACHE_TTL, function () {
             return $this->items()
                 ->where('status', true)
-                ->with(['children' => fn($q) => $q->where('status', true)->orderBy('order')])
                 ->whereNull('parent_id')
                 ->orderBy('order')
-                ->get();
+                ->get()
+                ->toArray();
         });
+
+        // Get all children items for building tree
+        $allChildren = $this->items()
+            ->where('status', true)
+            ->whereNotNull('parent_id')
+            ->orderBy('order')
+            ->get()
+            ->toArray();
+
+        // Build tree and hydrate models
+        $treeData = $this->buildTreeFromArrays($flatItems, $allChildren);
+        $collection = MenuItem::hydrate($treeData);
+
+        // Set children relations properly
+        $this->setChildrenRelations($collection, $allChildren);
+
+        return $collection;
+    }
+
+    protected function buildTreeFromArrays(array $items, array $allChildren): array
+    {
+        $childrenByParent = [];
+        foreach ($allChildren as $child) {
+            $parentId = $child['parent_id'];
+            if (!isset($childrenByParent[$parentId])) {
+                $childrenByParent[$parentId] = [];
+            }
+            $childrenByParent[$parentId][] = $child;
+        }
+
+        foreach ($items as &$item) {
+            $id = $item['id'];
+            if (isset($childrenByParent[$id])) {
+                $item['children'] = $this->buildTreeFromArrays($childrenByParent[$id], $allChildren);
+            } else {
+                $item['children'] = [];
+            }
+        }
+
+        return $items;
+    }
+
+    protected function setChildrenRelations($collection, array $allChildren): void
+    {
+        $childrenByParent = [];
+        foreach ($allChildren as $child) {
+            $parentId = $child['parent_id'];
+            if (!isset($childrenByParent[$parentId])) {
+                $childrenByParent[$parentId] = [];
+            }
+            $childrenByParent[$parentId][] = $child['id'];
+        }
+
+        foreach ($collection as $item) {
+            $id = $item->id;
+            if (isset($childrenByParent[$id])) {
+                $childIds = $childrenByParent[$id];
+                $childrenCollection = $collection->whereIn('id', $childIds);
+                $item->setRelation('children', $childrenCollection);
+            } else {
+                $item->setRelation('children', new \Illuminate\Database\Eloquent\Collection());
+            }
+        }
     }
 
     public static function getByLocation(string $location): ?self
