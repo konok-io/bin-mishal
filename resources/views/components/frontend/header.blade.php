@@ -2,21 +2,31 @@
 use App\Models\CMS\Menu;
 use App\Models\CMS\MenuItem;
 use App\Models\CMS\Setting;
-use App\Models\HeroTab;
-use Illuminate\Support\Facades\Cache;
+use App\Services\CMS\MenuBuilder;
 
-// Get HeroTabs with fallback - cache key includes locale for correct translations
-$cacheKey = 'header_nav_tabs_' . app()->getLocale();
-$navTabs = Cache::remember($cacheKey, 600, function() {
-    try {
-        return \App\Models\HeroTab::where('is_active', 1)
-            ->where('show_in_nav', 1)
-            ->orderBy('order')
-            ->get() ?? collect();
-    } catch (\Exception $e) {
-        return collect();
-    }
-});
+// Get header menu from CMS - MenuBuilder handles caching automatically
+$menuBuilder = app(MenuBuilder::class);
+$headerMenu = $menuBuilder->header();
+
+// Fallback menu if no CMS menu exists
+$fallbackMenu = [
+    ['title' => __('nav.home'), 'url' => locale_route('home'), 'icon' => 'fas fa-home', 'is_active' => request()->routeIs('home'), 'children' => []],
+    ['title' => __('nav.services'), 'url' => '#', 'icon' => 'fas fa-plane', 'is_active' => false, 'children' => [
+        ['title' => __('nav.umrah'), 'url' => locale_route('services.umrah'), 'icon' => 'fas fa-kaaba'],
+        ['title' => __('nav.visa'), 'url' => locale_route('services.visa'), 'icon' => 'fas fa-passport'],
+        ['title' => __('nav.airticket'), 'url' => locale_route('services.airticket'), 'icon' => 'fas fa-plane-departure'],
+        ['title' => __('nav.hotel'), 'url' => locale_route('services.hotel'), 'icon' => 'fas fa-hotel'],
+        ['title' => __('nav.cargo'), 'url' => locale_route('services.cargo'), 'icon' => 'fas fa-truck'],
+        ['title' => __('nav.investor'), 'url' => locale_route('investor'), 'icon' => 'fas fa-handshake'],
+    ]],
+    ['title' => __('nav.about'), 'url' => locale_route('about'), 'icon' => 'fas fa-info-circle', 'is_active' => request()->routeIs('about'), 'children' => []],
+    ['title' => __('nav.news'), 'url' => locale_route('news'), 'icon' => 'fas fa-newspaper', 'is_active' => request()->routeIs('news'), 'children' => []],
+    ['title' => __('nav.gallery'), 'url' => locale_route('gallery'), 'icon' => 'fas fa-images', 'is_active' => request()->routeIs('gallery'), 'children' => []],
+    ['title' => __('nav.careers'), 'url' => locale_route('careers'), 'icon' => 'fas fa-briefcase', 'is_active' => request()->routeIs('careers'), 'children' => []],
+    ['title' => __('nav.contact'), 'url' => locale_route('contact'), 'icon' => 'fas fa-envelope', 'is_active' => request()->routeIs('contact'), 'children' => []],
+];
+
+$navItems = !empty($headerMenu) ? $headerMenu : $fallbackMenu;
 ?>
 
 <!-- Dynamic Header Component -->
@@ -45,17 +55,17 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
                 <div class="topbar-right">
                     <!-- Portal Links -->
                     <div class="portal-links">
-                        <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}" class="btn">
+                        <a href="{{ locale_route('contact') }}" class="btn">
                             <i class="fas fa-headset"></i>
                             <span>{{ __('nav.support') }}</span>
                         </a>
                         <span class="btn-divider">|</span>
-                        <a href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}" class="btn">
+                        <a href="{{ locale_route('portal.login') }}" class="btn">
                             <i class="fas fa-sign-in-alt"></i>
                             <span>{{ __('nav.login') }}</span>
                         </a>
                         <span class="btn-divider">|</span>
-                        <a href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}" class="btn">
+                        <a href="{{ locale_route('portal.register') }}" class="btn">
                             <i class="fas fa-user-plus"></i>
                             <span>{{ __('nav.register') }}</span>
                         </a>
@@ -82,7 +92,7 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <!-- Logo -->
-            <a class="navbar-brand" href="{{ route('home', ['locale' => app()->getLocale()]) }}">
+            <a class="navbar-brand" href="{{ locale_route('home') }}">
                 @if(Setting::getValue('logo_light'))
                     <img src="{{ Storage::url(Setting::getValue('logo_light')) }}" alt="{{ Setting::getValue('site_name', 'Bin Mishal') }}" height="45">
                 @else
@@ -98,68 +108,45 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
             <!-- Navigation Menu -->
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto">
-                    <!-- Home -->
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home', ['locale' => app()->getLocale()]) }}">
-                            <i class="fas fa-home"></i> @lang('nav.home')
+                    @foreach($navItems as $item)
+                    <li class="nav-item {{ !empty($item['children']) ? 'dropdown' : '' }}">
+                        @if(!empty($item['children']))
+                        <a class="nav-link dropdown-toggle" href="#" id="menu-{{ $loop->index }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @if(!empty($item['icon']))<i class="{{ $item['icon'] }}"></i>@endif
+                            {{ $item['title'] }} <i class="fas fa-chevron-down"></i>
                         </a>
-                    </li>
-                    
-                    <!-- Services Dropdown (Dynamic from HeroTabs) -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-plane"></i> @lang('nav.services') <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                            @foreach($navTabs as $tab)
-                                @if($tab instanceof \App\Models\HeroTab)
-                                <li>
-                                    <a class="dropdown-item" href="{{ $tab->button_url_resolved ?? '#' }}">
-                                        <i class="{{ $tab->icon ?? 'fas fa-angle-right' }}"></i>
-                                        {{ $tab->translated_label }}
-                                    </a>
-                                </li>
-                                @endif
+                        <ul class="dropdown-menu" aria-labelledby="menu-{{ $loop->index }}">
+                            @foreach($item['children'] as $child)
+                            <li>
+                                <a class="dropdown-item" href="{{ $child['url'] ?? '#' }}" {{ !empty($child['target']) ? 'target="'.$child['target'].'"' : '' }}>
+                                    @if(!empty($child['icon']))<i class="{{ $child['icon'] }}"></i>@endif
+                                    {{ $child['title'] }}
+                                </a>
+                            </li>
                             @endforeach
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ route('services', ['locale' => app()->getLocale()]) }}">@lang('nav.all_services')</a></li>
                         </ul>
-                    </li>
-                    
-                    <!-- About -->
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about', ['locale' => app()->getLocale()]) }}">
-                            <i class="fas fa-info-circle"></i> @lang('nav.about')
+                        @else
+                        <a class="nav-link {{ $item['is_active'] ?? false ? 'active' : '' }}" href="{{ $item['url'] ?? '#' }}" {{ !empty($item['target']) ? 'target="'.$item['target'].'"' : '' }}>
+                            @if(!empty($item['icon']))<i class="{{ $item['icon'] }}"></i>@endif
+                            {{ $item['title'] }}
                         </a>
+                        @endif
                     </li>
+                    @endforeach
                     
-                    <!-- Contact -->
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact', ['locale' => app()->getLocale()]) }}">
-                            <i class="fas fa-envelope"></i> @lang('nav.contact')
-                        </a>
-                    </li>
-                    
-                    <!-- Careers -->
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('careers') ? 'active' : '' }}" href="{{ route('careers', ['locale' => app()->getLocale()]) }}">
-                            <i class="fas fa-briefcase"></i> @lang('nav.careers')
-                        </a>
-                    </li>
-                    
-                    <!-- Mobile Portal Links -->
+                    <!-- Mobile Portal Links (visible only on mobile) -->
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="{{ route('contact', ['locale' => app()->getLocale()]) }}">
+                        <a class="nav-link" href="{{ locale_route('contact') }}">
                             <i class="fas fa-headset me-1"></i> {{ __('nav.support') }}
                         </a>
                     </li>
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}">
+                        <a class="nav-link" href="{{ locale_route('portal.login') }}">
                             <i class="fas fa-sign-in-alt me-1"></i> {{ __('nav.login') }}
                         </a>
                     </li>
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link text-primary" href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}">
+                        <a class="nav-link text-primary" href="{{ locale_route('portal.register') }}">
                             <i class="fas fa-user-plus me-1"></i> {{ __('nav.register') }}
                         </a>
                     </li>
@@ -167,7 +154,7 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
             </div>
             
             <!-- CTA Button -->
-            <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}" class="btn btn-primary d-none d-lg-flex header-cta">
+            <a href="{{ locale_route('contact') }}" class="btn btn-primary d-none d-lg-flex header-cta">
                 <i class="fas fa-phone"></i> @lang('nav.get_quote')
             </a>
         </div>
