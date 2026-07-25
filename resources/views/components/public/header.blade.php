@@ -129,7 +129,7 @@
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-color, #059669);
+    color: var(--primary-color, #343C90);
     text-decoration: none;
 }
 
@@ -163,7 +163,7 @@
 
 .nav-desktop .menu-item a:hover,
 .nav-desktop .menu-item.is-active a {
-    color: var(--primary-color, #059669);
+    color: var(--primary-color, #343C90);
 }
 
 .nav-actions {

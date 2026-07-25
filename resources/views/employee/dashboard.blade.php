@@ -58,7 +58,7 @@
 
                 <!-- Leave Balance -->
                 <div class="col-md-4">
-                    <div class="card" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white;">
+                    <div class="card" style="background: linear-gradient(135deg, #343C90 0%, #252E72 100%); color: white;">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
