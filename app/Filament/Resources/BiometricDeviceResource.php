@@ -8,7 +8,7 @@ use App\Filament\Resources\BiometricDeviceResource\Pages;
 use App\Models\BiometricDevice;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Infolists\Infolist;
@@ -16,7 +16,7 @@ use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\IconEntry;
 
-class BiometricDeviceResource extends Resource
+class BiometricDeviceResource extends BaseResource
 {
     protected static ?string $model = BiometricDevice::class;
     protected static ?string $navigationIcon = 'heroicon-o-device-phone-mobile';

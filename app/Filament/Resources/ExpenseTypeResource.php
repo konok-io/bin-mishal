@@ -8,11 +8,11 @@ use App\Filament\Resources\ExpenseTypeResource\Pages;
 use App\Models\ExpenseType;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class ExpenseTypeResource extends Resource
+class ExpenseTypeResource extends BaseResource
 {
     protected static ?string $model = ExpenseType::class;
     protected static ?string $navigationIcon = 'heroicon-o-tag';

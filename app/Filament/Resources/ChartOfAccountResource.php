@@ -8,11 +8,11 @@ use App\Filament\Resources\ChartOfAccountResource\Pages;
 use App\Models\ChartOfAccount;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class ChartOfAccountResource extends Resource
+class ChartOfAccountResource extends BaseResource
 {
     protected static ?string $model = ChartOfAccount::class;
     protected static ?string $navigationIcon = 'heroicon-o-calculator';

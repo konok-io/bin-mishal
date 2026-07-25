@@ -8,13 +8,13 @@ use App\Filament\Resources\ContactMessageResource\Pages;
 use App\Models\ContactMessage;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 
-class ContactMessageResource extends Resource
+class ContactMessageResource extends BaseResource
 {
     protected static ?string $model = ContactMessage::class;
     protected static ?string $navigationIcon = 'heroicon-o-envelope';

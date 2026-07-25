@@ -6,17 +6,14 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AuditLogResource\Pages;
 use App\Models\AuditLog;
-use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class AuditLogResource extends Resource
+class AuditLogResource extends BaseResource
 {
     protected static ?string $model = AuditLog::class;
-    protected static ?string $navigationIcon = 'heroicon-o-clock';
     protected static ?string $navigationLabel = 'Audit Log';
     protected static ?int $navigationSort = 100;
-    protected static bool $shouldRegisterNavigation = false;
 
     public static function canCreate(): bool
     {

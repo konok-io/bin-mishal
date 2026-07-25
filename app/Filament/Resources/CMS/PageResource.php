@@ -8,11 +8,11 @@ use App\Filament\Resources\CMS\PageResource\Pages;
 use App\Models\CMS\Page;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class PageResource extends Resource
+class PageResource extends BaseResource
 {
     protected static ?string $model = Page::class;
     protected static ?string $navigationIcon = 'heroicon-o-document-duplicate';

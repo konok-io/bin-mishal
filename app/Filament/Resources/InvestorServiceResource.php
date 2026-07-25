@@ -8,11 +8,11 @@ use App\Filament\Resources\InvestorServiceResource\Pages;
 use App\Models\InvestorService;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class InvestorServiceResource extends Resource
+class InvestorServiceResource extends BaseResource
 {
     protected static ?string $model = InvestorService::class;
     protected static ?string $navigationIcon = 'heroicon-o-building-office';

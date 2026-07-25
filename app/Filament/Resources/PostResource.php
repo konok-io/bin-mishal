@@ -8,11 +8,11 @@ use App\Filament\Resources\PostResource\Pages;
 use App\Models\Post;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class PostResource extends Resource
+class PostResource extends BaseResource
 {
     protected static ?string $model = Post::class;
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';

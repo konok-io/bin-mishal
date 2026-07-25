@@ -8,11 +8,11 @@ use App\Filament\Resources\JobResource\Pages;
 use App\Models\Job;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class JobResource extends Resource
+class JobResource extends BaseResource
 {
     protected static ?string $model = Job::class;
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';

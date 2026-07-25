@@ -8,11 +8,11 @@ use App\Filament\Resources\HeroTabResource\Pages;
 use App\Models\HeroTab;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class HeroTabResource extends Resource
+class HeroTabResource extends BaseResource
 {
     protected static ?string $model = HeroTab::class;
     protected static ?string $navigationIcon = 'heroicon-o-view-columns';

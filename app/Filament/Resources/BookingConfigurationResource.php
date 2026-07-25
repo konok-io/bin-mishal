@@ -9,11 +9,11 @@ use App\Filament\Resources\BookingConfigurationResource\Pages;
 use App\Models\BookingConfiguration;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class BookingConfigurationResource extends Resource
+class BookingConfigurationResource extends BaseResource
 {
     protected static ?string $model = BookingConfiguration::class;
     protected static ?string $navigationIcon = 'heroicon-o-cog';

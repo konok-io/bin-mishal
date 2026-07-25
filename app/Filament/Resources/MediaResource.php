@@ -8,12 +8,12 @@ use App\Filament\Resources\MediaResource\Pages;
 use App\Models\Media;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Storage;
 
-class MediaResource extends Resource
+class MediaResource extends BaseResource
 {
     protected static ?string $model = Media::class;
     protected static ?string $navigationIcon = 'heroicon-o-photo';

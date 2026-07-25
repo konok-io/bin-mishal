@@ -9,11 +9,11 @@ use App\Filament\Resources\CMS\MenuResource\RelationManagers;
 use App\Models\CMS\Menu;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class MenuResource extends Resource
+class MenuResource extends BaseResource
 {
     protected static ?string $model = Menu::class;
     protected static ?string $navigationIcon = 'heroicon-o-bars-3-bottom-left';

@@ -8,11 +8,11 @@ use App\Filament\Resources\CargoPricingResource\Pages;
 use App\Models\Cargo\CargoPricing;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class CargoPricingResource extends Resource
+class CargoPricingResource extends BaseResource
 {
     protected static ?string $model = CargoPricing::class;
     protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';

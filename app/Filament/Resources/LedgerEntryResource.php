@@ -9,7 +9,7 @@ use App\Models\LedgerEntry;
 use App\Services\AccountingService;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Infolists\Infolist;
@@ -17,7 +17,7 @@ use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Illuminate\Database\Eloquent\Builder;
 
-class LedgerEntryResource extends Resource
+class LedgerEntryResource extends BaseResource
 {
     protected static ?string $model = LedgerEntry::class;
     protected static ?string $navigationIcon = 'heroicon-o-bookmark-square';

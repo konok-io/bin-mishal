@@ -8,7 +8,7 @@ use App\Filament\Resources\ExpenseClaimResource\Pages;
 use App\Models\ExpenseClaim;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Infolists\Infolist;
@@ -17,7 +17,7 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\BadgeEntry;
 use Illuminate\Database\Eloquent\Builder;
 
-class ExpenseClaimResource extends Resource
+class ExpenseClaimResource extends BaseResource
 {
     protected static ?string $model = ExpenseClaim::class;
     protected static ?string $navigationIcon = 'heroicon-o-receipt-percent';

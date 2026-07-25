@@ -8,12 +8,12 @@ use App\Filament\Resources\NewsletterSubscriberResource\Pages;
 use App\Models\NewsletterSubscriber;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Cache;
 
-class NewsletterSubscriberResource extends Resource
+class NewsletterSubscriberResource extends BaseResource
 {
     protected static ?string $model = NewsletterSubscriber::class;
     protected static ?string $navigationIcon = 'heroicon-o-envelope';

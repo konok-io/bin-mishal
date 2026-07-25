@@ -8,11 +8,11 @@ use App\Filament\Resources\OfficeLocationResource\Pages;
 use App\Models\OfficeLocation;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class OfficeLocationResource extends Resource
+class OfficeLocationResource extends BaseResource
 {
     protected static ?string $model = OfficeLocation::class;
     protected static ?string $navigationIcon = 'heroicon-o-building-office';

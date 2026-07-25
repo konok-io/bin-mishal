@@ -8,13 +8,13 @@ use App\Filament\Resources\JobApplicationResource\Pages;
 use App\Models\JobApplication;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 
-class JobApplicationResource extends Resource
+class JobApplicationResource extends BaseResource
 {
     protected static ?string $model = JobApplication::class;
     protected static ?string $navigationIcon = 'heroicon-o-user-group';

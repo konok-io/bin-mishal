@@ -8,11 +8,11 @@ use App\Filament\Resources\SocialLinkResource\Pages;
 use App\Models\SocialLink;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class SocialLinkResource extends Resource
+class SocialLinkResource extends BaseResource
 {
     protected static ?string $model = SocialLink::class;
     protected static ?string $navigationIcon = 'heroicon-o-share';

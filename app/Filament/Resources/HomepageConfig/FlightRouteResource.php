@@ -7,11 +7,11 @@ namespace App\Filament\Resources\HomepageConfig;
 use App\Models\FlightRoute;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class FlightRouteResource extends Resource
+class FlightRouteResource extends BaseResource
 {
     protected static ?string $model = FlightRoute::class;
     protected static ?string $navigationIcon = 'heroicon-o-paper-airplane';

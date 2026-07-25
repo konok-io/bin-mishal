@@ -8,11 +8,11 @@ use App\Filament\Resources\ServiceReviewResource\Pages;
 use App\Models\ServiceReview;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class ServiceReviewResource extends Resource
+class ServiceReviewResource extends BaseResource
 {
     protected static ?string $model = ServiceReview::class;
     protected static ?string $navigationIcon = 'heroicon-o-star';

@@ -7,11 +7,11 @@ namespace App\Filament\Resources\HomepageConfig;
 use App\Models\QuickService;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class QuickServiceResource extends Resource
+class QuickServiceResource extends BaseResource
 {
     protected static ?string $model = QuickService::class;
     protected static ?string $navigationIcon = 'heroicon-o-sparkles';

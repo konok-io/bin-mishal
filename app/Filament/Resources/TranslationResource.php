@@ -8,12 +8,12 @@ use App\Filament\Resources\TranslationResource\Pages;
 use App\Models\Translation;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\BadgeColumn;
 
-class TranslationResource extends Resource
+class TranslationResource extends BaseResource
 {
     protected static ?string $model = Translation::class;
     protected static ?string $navigationIcon = 'heroicon-o-language';

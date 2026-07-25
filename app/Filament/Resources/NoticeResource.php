@@ -8,11 +8,11 @@ use App\Filament\Resources\NoticeResource\Pages;
 use App\Models\Notice;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class NoticeResource extends Resource
+class NoticeResource extends BaseResource
 {
     protected static ?string $model = Notice::class;
     protected static ?string $navigationIcon = 'heroicon-o-megaphone';
