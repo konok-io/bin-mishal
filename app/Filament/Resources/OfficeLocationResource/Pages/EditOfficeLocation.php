@@ -10,7 +10,7 @@ class EditOfficeLocation extends EditRecord
 {
     protected static string $resource = OfficeLocationResource::class;
 
-    protected function getHeaderActions(): array
+    protected function getHeaderActions(array):     
 
     {
         return [

@@ -10,7 +10,7 @@ class ViewLedgerEntry extends ViewRecord
 {
     protected static string $resource = LedgerEntryResource::class;
 
-    protected function getHeaderActions(): array
+    protected function getHeaderActions(array):     
 
     {
         return [

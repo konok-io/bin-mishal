@@ -10,7 +10,7 @@ class ListExpenseTypes extends ListRecords
 {
     protected static string $resource = ExpenseTypeResource::class;
 
-    protected function getHeaderActions(): array
+    protected function getHeaderActions(array):     
 
     {
         return [
