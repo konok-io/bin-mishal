@@ -348,6 +348,8 @@ Route::prefix('{locale}')
         Route::get('/services/visa/{slug}', [PublicController::class, 'visaService'])->name('services.visa.service');
         Route::get('/services/airticket', [PublicController::class, 'airticket'])->name('services.airticket');
         Route::get('/services/hotel', [PublicController::class, 'hotel'])->name('services.hotel');
+        Route::get('/services/cargo', [PublicController::class, 'cargo'])->name('services.cargo');
+        Route::get('/services/investor', [PublicController::class, 'investor'])->name('services.investor');
         Route::get('/investor', [PublicController::class, 'investor'])->name('investor');
         Route::post('/investor/inquiry', [PublicController::class, 'investorInquiry'])->name('investor.inquiry');
         Route::get('/cargo/calculate', [PublicController::class, 'cargoCalculate'])->name('cargo.calculate');
