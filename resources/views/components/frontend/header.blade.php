@@ -64,10 +64,10 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
                             <i class="fas fa-headset me-1"></i> {{ __('nav.support') }}
                         </a>
                         <a href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}" class="btn btn-outline-light btn-sm">
-                            <i class="fas fa-sign-in-alt me-1"></i> {{ __('auth.login') }}
+                            <i class="fas fa-sign-in-alt me-1"></i> {{ __('login') }}
                         </a>
                         <a href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}" class="btn btn-light btn-sm text-primary">
-                            <i class="fas fa-user-plus me-1"></i> {{ __('auth.register') }}
+                            <i class="fas fa-user-plus me-1"></i> {{ __('register') }}
                         </a>
                     </div>
                 </div>
@@ -152,12 +152,12 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
                     </li>
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}">
-                            <i class="fas fa-sign-in-alt me-1"></i> {{ __('auth.login') }}
+                            <i class="fas fa-sign-in-alt me-1"></i> {{ __('login') }}
                         </a>
                     </li>
                     <li class="nav-item d-lg-none">
                         <a class="nav-link text-primary" href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}">
-                            <i class="fas fa-user-plus me-1"></i> {{ __('auth.register') }}
+                            <i class="fas fa-user-plus me-1"></i> {{ __('register') }}
                         </a>
                     </li>
                 </ul>
