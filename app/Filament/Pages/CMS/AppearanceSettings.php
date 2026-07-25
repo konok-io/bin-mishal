@@ -11,8 +11,8 @@ use Filament\Schemas\Schema;
 
 class AppearanceSettings extends Page
 {
-    protected static ?string $title = 'Appearance Settings';
-    protected static string $view = 'filament.pages.settings-form';
+    protected ?string $title = 'Appearance Settings';
+    protected string $view = 'filament.pages.settings-form';
 
     public ?array $data = [];
 

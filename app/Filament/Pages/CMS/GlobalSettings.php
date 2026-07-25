@@ -11,8 +11,8 @@ use Filament\Schemas\Schema;
 
 class GlobalSettings extends Page
 {
-    protected static ?string $title = 'Global Settings';
-    protected static string $view = 'filament.pages.settings-form';
+    protected ?string $title = 'Global Settings';
+    protected string $view = 'filament.pages.settings-form';
 
     public ?array $data = [];
 
