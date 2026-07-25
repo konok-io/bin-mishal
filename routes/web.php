@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\ChartOfAccountController;
 use App\Http\Controllers\Admin\CityTVConnectController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\CustomerRegistrationController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -41,6 +42,7 @@ use App\Http\Controllers\CMS\PageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Public\PublicController;
+use App\Http\Controllers\PublicVerificationController;
 use App\Http\Controllers\RssFeedController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SitemapController;
@@ -83,6 +85,10 @@ Route::middleware('guest')->group(function () {
 // =============================================================================
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+
+// Public Verification & Tracking Pages
+Route::get('/verify', [PublicVerificationController::class, 'verify'])->name('public.verify');
+Route::get('/track', [PublicVerificationController::class, 'track'])->name('public.track');
 Route::get('/feed/rss', [RssFeedController::class, 'index'])->name('feed.rss');
 Route::get('/feed/atom', [RssFeedController::class, 'atom'])->name('feed.atom');
 
@@ -168,6 +174,16 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
 
     // CRUD Routes
     Route::resource('customers', CustomerController::class)->names(['index' => 'customers.index', 'create' => 'customers.create', 'store' => 'customers.store', 'show' => 'customers.show', 'edit' => 'customers.edit', 'update' => 'customers.update', 'destroy' => 'customers.destroy']);
+    
+    // Customer Registration (Phase 17)
+    Route::prefix('customers/registration')->name('customers.registration.')->group(function () {
+        Route::get('/', [CustomerRegistrationController::class, 'create'])->name('create');
+        Route::post('/', [CustomerRegistrationController::class, 'store'])->name('store');
+        Route::get('/scan', [CustomerRegistrationController::class, 'scan'])->name('scan');
+        Route::get('/{id}/pdf', [CustomerRegistrationController::class, 'pdf'])->name('pdf');
+        Route::post('/{id}/add-service', [CustomerRegistrationController::class, 'addService'])->name('add-service');
+        Route::post('/{id}/payment', [CustomerRegistrationController::class, 'recordPayment'])->name('payment');
+    });
     Route::resource('leads', LeadController::class)->names(['index' => 'leads.index', 'create' => 'leads.create', 'store' => 'leads.store', 'show' => 'leads.show', 'edit' => 'leads.edit', 'update' => 'leads.update', 'destroy' => 'leads.destroy']);
     Route::resource('bookings', BookingController::class)->names(['index' => 'bookings.index', 'create' => 'bookings.create', 'store' => 'bookings.store', 'show' => 'bookings.show', 'edit' => 'bookings.edit', 'update' => 'bookings.update', 'destroy' => 'bookings.destroy']);
     Route::post('bookings/{id}/issue', [BookingController::class, 'issue'])->name('bookings.issue');
