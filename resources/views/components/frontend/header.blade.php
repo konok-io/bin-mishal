@@ -1,10 +1,21 @@
 <?php
 use App\Models\CMS\Menu;
 use App\Models\CMS\MenuItem;
-use App\Models\CMS\Setting;
+use App\Models\Setting;
 use App\Services\CMS\MenuBuilder;
 
-// Get header menu from CMS - MenuBuilder handles caching automatically
+// Get settings values
+$siteName = Setting::getValue('app_name', 'Bin Mishal Travel');
+$contactPhone = Setting::getValue('contact_phone', '+966 13 XXXXXXX');
+$contactEmail = Setting::getValue('contact_email', 'info@binmishal.com');
+$workingHours = Setting::getValue('working_hours', 'Sat-Thu: 9AM-9PM');
+$logoUrl = Setting::getValue('logo_light') ? Storage::url(Setting::getValue('logo_light')) : null;
+$ctaText = Setting::getValue('header_cta_text', 'Get Quote');
+$ctaUrl = Setting::getValue('header_cta_url', '/contact');
+$showLogin = Setting::getValue('show_login_button', true);
+$showRegister = Setting::getValue('show_register_button', true);
+
+// Get header menu from CMS
 $menuBuilder = app(MenuBuilder::class);
 $headerMenu = $menuBuilder->header();
 
@@ -37,17 +48,17 @@ $navItems = !empty($headerMenu) ? $headerMenu : $fallbackMenu;
             <div class="topbar-inner">
                 <!-- Left: Contact Info -->
                 <div class="topbar-left">
-                    <a href="tel:{{ Setting::getValue('contact_phone', '+966 XX XXX XXXX') }}" class="topbar-item">
+                    <a href="tel:{{ $contactPhone }}" class="topbar-item">
                         <i class="fas fa-phone-alt"></i>
-                        <span>{{ Setting::getValue('contact_phone', '+966 XX XXX XXXX') }}</span>
+                        <span>{{ $contactPhone }}</span>
                     </a>
-                    <a href="mailto:{{ Setting::getValue('contact_email', 'info@binmishal.com') }}" class="topbar-item">
+                    <a href="mailto:{{ $contactEmail }}" class="topbar-item">
                         <i class="fas fa-envelope"></i>
-                        <span>{{ Setting::getValue('contact_email', 'info@binmishal.com') }}</span>
+                        <span>{{ $contactEmail }}</span>
                     </a>
                     <span class="topbar-item">
                         <i class="fas fa-clock"></i>
-                        <span>{{ Setting::getValue('working_hours', 'Sat-Thu: 9AM-6PM') }}</span>
+                        <span>{{ $workingHours }}</span>
                     </span>
                 </div>
                 
@@ -59,16 +70,20 @@ $navItems = !empty($headerMenu) ? $headerMenu : $fallbackMenu;
                             <i class="fas fa-headset"></i>
                             <span>{{ __('nav.support') }}</span>
                         </a>
+                        @if($showLogin)
                         <span class="btn-divider">|</span>
                         <a href="{{ locale_route('portal.login') }}" class="btn">
                             <i class="fas fa-sign-in-alt"></i>
                             <span>{{ __('nav.login') }}</span>
                         </a>
+                        @endif
+                        @if($showRegister)
                         <span class="btn-divider">|</span>
                         <a href="{{ locale_route('portal.register') }}" class="btn">
                             <i class="fas fa-user-plus"></i>
                             <span>{{ __('nav.register') }}</span>
                         </a>
+                        @endif
                     </div>
                     
                     <!-- Language Switcher -->
@@ -93,10 +108,10 @@ $navItems = !empty($headerMenu) ? $headerMenu : $fallbackMenu;
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand" href="{{ locale_route('home') }}">
-                @if(Setting::getValue('logo_light'))
-                    <img src="{{ Storage::url(Setting::getValue('logo_light')) }}" alt="{{ Setting::getValue('site_name', 'Bin Mishal') }}" height="45">
+                @if($logoUrl)
+                    <img src="{{ $logoUrl }}" alt="{{ $siteName }}" height="45">
                 @else
-                    <span class="brand-text">{{ Setting::getValue('site_name', 'Bin Mishal') }}</span>
+                    <span class="brand-text">{{ $siteName }}</span>
                 @endif
             </a>
             
@@ -155,7 +170,7 @@ $navItems = !empty($headerMenu) ? $headerMenu : $fallbackMenu;
             
             <!-- CTA Button -->
             <a href="{{ locale_route('contact') }}" class="btn btn-primary d-none d-lg-flex header-cta">
-                <i class="fas fa-phone"></i> @lang('nav.get_quote')
+                <i class="fas fa-phone"></i> {{ $ctaText }}
             </a>
         </div>
     </nav>
