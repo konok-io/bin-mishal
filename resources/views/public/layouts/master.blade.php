@@ -80,20 +80,23 @@
         
         /* Bengali pages - Auto-detect script */
         html[lang="bn"] body,
-        html[lang="bn"] * {
+        html[lang="bn"] *:not(i):not([class*="fa"]) {
             font-family: 'BanglaFont', 'Hind Siliguri', sans-serif;
         }
         /* Arabic pages */
         html[lang="ar"] body,
-        html[lang="ar"] * {
+        html[lang="ar"] *:not(i):not([class*="fa"]) {
             font-family: 'ArabicFont', 'Noto Sans Arabic', sans-serif;
             direction: rtl;
         }
         /* English pages */
         html[lang="en"] body,
-        html[lang="en"] * {
+        html[lang="en"] *:not(i):not([class*="fa"]) {
             font-family: 'EnglishFont', 'Inter', sans-serif;
         }
+        
+        /* Icons always use Font Awesome */
+        i, [class*="fa-"], .fas, .far, .fab, .fal, .fa, .bi { font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Pro', 'FontAwesome', sans-serif !important; }
         
         body { 
             color: var(--text-dark);

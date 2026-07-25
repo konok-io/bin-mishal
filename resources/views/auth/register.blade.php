@@ -29,11 +29,13 @@
         }
         
         html[lang="bn"] body,
-        html[lang="bn"] * { font-family: 'BanglaFont', 'Hind Siliguri', sans-serif; }
+        html[lang="bn"] *:not(i):not([class*="fa"]) { font-family: 'BanglaFont', 'Hind Siliguri', sans-serif; }
         html[lang="ar"] body,
-        html[lang="ar"] * { font-family: 'ArabicFont', 'Noto Sans Arabic', sans-serif; direction: rtl; }
+        html[lang="ar"] *:not(i):not([class*="fa"]) { font-family: 'ArabicFont', 'Noto Sans Arabic', sans-serif; direction: rtl; }
         html[lang="en"] body,
-        html[lang="en"] * { font-family: 'EnglishFont', 'Inter', sans-serif; }
+        html[lang="en"] *:not(i):not([class*="fa"]) { font-family: 'EnglishFont', 'Inter', sans-serif; }
+        
+        i, [class*="fa-"], .fas, .far, .fab, .fal, .fa, .bi { font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Pro', 'FontAwesome', sans-serif !important; }
         
         :root {
             --primary: #E05522;

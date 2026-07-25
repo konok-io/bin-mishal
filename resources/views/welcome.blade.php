@@ -87,9 +87,13 @@
             --bg-light: #F8FAFC;
         }
         
-        html[lang="bn"] body, html[lang="bn"] * { font-family: 'BanglaFont', 'Hind Siliguri', sans-serif; }
-        html[lang="ar"] body, html[lang="ar"] * { font-family: 'ArabicFont', 'Noto Sans Arabic', sans-serif; direction: rtl; }
-        html[lang="en"] body, html[lang="en"] * { font-family: 'EnglishFont', 'Inter', sans-serif; }
+        /* Language-based font selection */
+        html[lang="bn"] body, html[lang="bn"] *:not(i):not([class*="fa"]) { font-family: 'BanglaFont', 'Hind Siliguri', sans-serif; }
+        html[lang="ar"] body, html[lang="ar"] *:not(i):not([class*="fa"]) { font-family: 'ArabicFont', 'Noto Sans Arabic', sans-serif; direction: rtl; }
+        html[lang="en"] body, html[lang="en"] *:not(i):not([class*="fa"]) { font-family: 'EnglishFont', 'Inter', sans-serif; }
+        
+        /* Icons always use Font Awesome */
+        i, [class*="fa-"], .fas, .far, .fab, .fal, .fa, .bi { font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Pro', 'FontAwesome', sans-serif !important; }
         
         body { color: var(--text-dark); background: #fff; }
         ::-webkit-scrollbar { width: 8px; }
