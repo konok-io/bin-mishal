@@ -21,6 +21,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
+        /* Custom Fonts */
+        @font-face {
+            font-family: 'BanglaFont';
+            src: url('/fonts/bangla.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'BanglaFont';
+            src: url('/fonts/bangla.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'EnglishFont';
+            src: url('/fonts/English.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'EnglishFont';
+            src: url('/fonts/English.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'ArabicFont';
+            src: url('/fonts/Arabic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'ArabicFont';
+            src: url('/fonts/Arabic.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+        
         :root {
             --primary: #E05522;
             --primary-dark: #C94718;
