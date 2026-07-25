@@ -165,8 +165,6 @@ $tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
         <div class="circle circle-md circle-2"></div>
         <div class="circle circle-sm circle-3"></div>
         <div class="circle circle-xs circle-4"></div>
-        <div class="circle circle-lg circle-5"></div>
-        <div class="circle circle-md circle-6"></div>
         
         <!-- Subtle Grid Pattern -->
         <div class="hero-grid"></div>
@@ -554,12 +552,16 @@ $tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
     z-index: 1;
 }
 
-/* Professional Light Circles */
+/* Professional Light Circles - Optimized for Performance */
 .circle {
     position: absolute;
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 50%, transparent 70%);
     z-index: 2;
+    pointer-events: none;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .circle-lg {
@@ -582,11 +584,11 @@ $tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
     height: 80px;
 }
 
-/* Circle Positions & Animations */
+/* Circle Positions & Animations - Reduced for Performance */
 .circle-1 {
     top: -150px;
     right: -100px;
-    animation: floatSlow 20s ease-in-out infinite;
+    animation: floatSlow 25s ease-in-out infinite;
 }
 
 .circle-2 {
@@ -594,39 +596,21 @@ $tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
     left: -80px;
     width: 350px;
     height: 350px;
-    animation: floatSlow 15s ease-in-out infinite reverse;
+    animation: floatSlow 20s ease-in-out infinite reverse;
 }
 
 .circle-3 {
     top: 20%;
     right: 25%;
-    animation: floatSlow 12s ease-in-out infinite;
-    animation-delay: -3s;
+    animation: floatSlow 18s ease-in-out infinite;
+    animation-delay: -5s;
 }
 
 .circle-4 {
     bottom: 25%;
     right: 10%;
-    animation: floatSlow 10s ease-in-out infinite;
-    animation-delay: -5s;
-}
-
-.circle-5 {
-    top: 40%;
-    left: 5%;
-    width: 200px;
-    height: 200px;
-    animation: floatSlow 18s ease-in-out infinite;
+    animation: floatSlow 15s ease-in-out infinite;
     animation-delay: -8s;
-}
-
-.circle-6 {
-    bottom: 10%;
-    right: 40%;
-    width: 100px;
-    height: 100px;
-    animation: floatSlow 14s ease-in-out infinite;
-    animation-delay: -2s;
 }
 
 /* Subtle Grid Pattern */
@@ -637,25 +621,26 @@ $tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
     right: 0;
     bottom: 0;
     background-image: 
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 80px 80px;
     z-index: 0;
+    pointer-events: none;
 }
 
-/* Floating Animation */
+/* Floating Animation - Simplified for Performance */
 @keyframes floatSlow {
     0%, 100% {
-        transform: translate(0, 0) scale(1);
+        transform: translate3d(0, 0, 0);
     }
     25% {
-        transform: translate(15px, -20px) scale(1.02);
+        transform: translate3d(10px, -15px, 0);
     }
     50% {
-        transform: translate(-10px, 15px) scale(0.98);
+        transform: translate3d(-5px, 10px, 0);
     }
     75% {
-        transform: translate(20px, 10px) scale(1.01);
+        transform: translate3d(15px, 5px, 0);
     }
 }
 
