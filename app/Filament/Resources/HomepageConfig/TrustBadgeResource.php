@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Filament\Resources\HomepageConfig;
 
 use App\Models\TrustBadge;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -15,36 +15,36 @@ class TrustBadgeResource extends BaseResource
 {
     protected static ?string $model = TrustBadge::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Grid::make(3)
+                Schemas\Components\Grid::make(3)
                     ->schema([
-                        Forms\Components\TextInput::make('name')
+                        Schemas\Components\TextInput::make('name')
                             ->label('Name (English)')
                             ->required(),
-                        Forms\Components\TextInput::make('name_bn')
+                        Schemas\Components\TextInput::make('name_bn')
                             ->label('Name (Bengali)'),
-                        Forms\Components\TextInput::make('name_ar')
+                        Schemas\Components\TextInput::make('name_ar')
                             ->label('Name (Arabic)'),
                     ]),
-                Forms\Components\Grid::make(2)
+                Schemas\Components\Grid::make(2)
                     ->schema([
-                        Forms\Components\TextInput::make('image_url')
+                        Schemas\Components\TextInput::make('image_url')
                             ->label('Image URL')
                             ->url(),
-                        Forms\Components\TextInput::make('link')
+                        Schemas\Components\TextInput::make('link')
                             ->label('Link URL')
                             ->url(),
                     ]),
-                Forms\Components\Grid::make(2)
+                Schemas\Components\Grid::make(2)
                     ->schema([
-                        Forms\Components\TextInput::make('sort_order')
+                        Schemas\Components\TextInput::make('sort_order')
                             ->label('Sort Order')
                             ->numeric()
                             ->default(0),
-                        Forms\Components\Toggle::make('is_active')
+                        Schemas\Components\Toggle::make('is_active')
                             ->label('Active')
                             ->default(true),
                     ]),

@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostCommentResource\Pages;
 use App\Models\PostComment;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,26 +16,26 @@ class PostCommentResource extends BaseResource
 {
     protected static ?string $model = PostComment::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Select::make('post_id')
+                Schemas\Components\Select::make('post_id')
                     ->label('Post')
                     ->relationship('post', 'title')
                     ->required(),
-                Forms\Components\TextInput::make('name')
+                Schemas\Components\TextInput::make('name')
                     ->label('Author Name')
                     ->required(),
-                Forms\Components\TextInput::make('email')
+                Schemas\Components\TextInput::make('email')
                     ->label('Email')
                     ->email()
                     ->required(),
-                Forms\Components\Textarea::make('comment')
+                Schemas\Components\Textarea::make('comment')
                     ->label('Comment')
                     ->required()
                     ->rows(4),
-                Forms\Components\Toggle::make('is_approved')
+                Schemas\Components\Toggle::make('is_approved')
                     ->label('Approved'),
             ]);
     }

@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\JobResource\Pages;
 use App\Models\Job;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -22,42 +22,42 @@ class JobResource extends BaseResource
         return $user && ($user->hasRole(['super_admin', 'admin', 'hr']) || $user->can('careers.view'));
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Group::make()
+                Schemas\Components\Group::make()
                     ->schema([
-                        Forms\Components\Tabs::make('Job Details')
+                        Schemas\Components\Tabs::make('Job Details')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('Basic Info')
+                                Schemas\Components\Tabs\Tab::make('Basic Info')
                                     ->schema([
-                                        Forms\Components\TextInput::make('title')
+                                        Schemas\Components\TextInput::make('title')
                                             ->label('Job Title (English)')
                                             ->required(),
-                                        Forms\Components\TextInput::make('title_bn')
+                                        Schemas\Components\TextInput::make('title_bn')
                                             ->label('Job Title (Bengali)'),
-                                        Forms\Components\TextInput::make('title_ar')
+                                        Schemas\Components\TextInput::make('title_ar')
                                             ->label('Job Title (Arabic)'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('Department & Location')
+                                Schemas\Components\Tabs\Tab::make('Department & Location')
                                     ->schema([
-                                        Forms\Components\Select::make('department')
+                                        Schemas\Components\Select::make('department')
                                             ->label('Department')
                                             ->options(Job::DEPARTMENTS)
                                             ->required(),
-                                        Forms\Components\TextInput::make('department_bn')
+                                        Schemas\Components\TextInput::make('department_bn')
                                             ->label('Department (Bengali)'),
-                                        Forms\Components\TextInput::make('department_ar')
+                                        Schemas\Components\TextInput::make('department_ar')
                                             ->label('Department (Arabic)'),
-                                        Forms\Components\TextInput::make('location')
+                                        Schemas\Components\TextInput::make('location')
                                             ->label('Location (English)')
                                             ->required(),
-                                        Forms\Components\TextInput::make('location_bn')
+                                        Schemas\Components\TextInput::make('location_bn')
                                             ->label('Location (Bengali)'),
-                                        Forms\Components\TextInput::make('location_ar')
+                                        Schemas\Components\TextInput::make('location_ar')
                                             ->label('Location (Arabic)'),
-                                        Forms\Components\Select::make('country')
+                                        Schemas\Components\Select::make('country')
                                             ->label('Country')
                                             ->options([
                                                 'SA' => 'Saudi Arabia',
@@ -69,41 +69,41 @@ class JobResource extends BaseResource
                                     ]),
                             ])->columnSpanFull(),
 
-                        Forms\Components\Group::make()
+                        Schemas\Components\Group::make()
                             ->schema([
-                                Forms\Components\Select::make('employment_type')
+                                Schemas\Components\Select::make('employment_type')
                                     ->label('Employment Type')
                                     ->options(Job::EMPLOYMENT_TYPES)
                                     ->default('full_time'),
-                                Forms\Components\Select::make('experience_level')
+                                Schemas\Components\Select::make('experience_level')
                                     ->label('Experience Level')
                                     ->options(Job::EXPERIENCE_LEVELS)
                                     ->default('mid'),
-                                Forms\Components\DatePicker::make('deadline')
+                                Schemas\Components\DatePicker::make('deadline')
                                     ->label('Application Deadline'),
                             ])->columns(3),
 
-                        Forms\Components\Section::make('Salary Range')
+                        Schemas\Components\Section::make('Salary Range')
                             ->schema([
-                                Forms\Components\TextInput::make('salary_min')
+                                Schemas\Components\TextInput::make('salary_min')
                                     ->label('Minimum Salary (SAR)')
                                     ->numeric()
                                     ->prefix('SAR'),
-                                Forms\Components\TextInput::make('salary_max')
+                                Schemas\Components\TextInput::make('salary_max')
                                     ->label('Maximum Salary (SAR)')
                                     ->numeric()
                                     ->prefix('SAR'),
-                                Forms\Components\Toggle::make('salary_visible')
+                                Schemas\Components\Toggle::make('salary_visible')
                                     ->label('Show salary on public page')
                                     ->default(false),
                             ])->columns(3),
                     ])->columnSpan(['lg' => 2]),
 
-                Forms\Components\Column::make()
+                Schemas\Components\Column::make()
                     ->schema([
-                        Forms\Components\Section::make('Status')
+                        Schemas\Components\Section::make('Status')
                             ->schema([
-                                Forms\Components\Select::make('status')
+                                Schemas\Components\Select::make('status')
                                     ->label('Status')
                                     ->options([
                                         'draft' => 'Draft',
@@ -111,7 +111,7 @@ class JobResource extends BaseResource
                                         'closed' => 'Closed',
                                     ])
                                     ->default('draft'),
-                                Forms\Components\Toggle::make('is_featured')
+                                Schemas\Components\Toggle::make('is_featured')
                                     ->label('Featured Job'),
                             ]),
                     ])->columnSpan(['lg' => 1]),

@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\BiometricDeviceResource\Pages;
 use App\Models\BiometricDevice;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -26,17 +26,17 @@ class BiometricDeviceResource extends BaseResource
         return $user && ($user->hasRole(['super_admin', 'admin', 'hr']) || $user->can('biometric.manage'));
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 Section::make('Device Information')
                     ->schema([
-                        Forms\Components\TextInput::make('device_id')
+                        Schemas\Components\TextInput::make('device_id')
                             ->label('Device ID / Serial Number')
                             ->required()
                             ->unique(BiometricDevice::class, 'device_id', fn($record) => $record),
-                        Forms\Components\TextInput::make('name')
+                        Schemas\Components\TextInput::make('name')
                             ->label('Device Name')
                             ->required()
                             ->placeholder('e.g., Main Entrance - Floor 1'),
@@ -44,7 +44,7 @@ class BiometricDeviceResource extends BaseResource
 
                 Section::make('Location')
                     ->schema([
-                        Forms\Components\Select::make('branch_id')
+                        Schemas\Components\Select::make('branch_id')
                             ->label('Branch/Office')
                             ->relationship('branch', 'name')
                             ->searchable()
@@ -53,29 +53,29 @@ class BiometricDeviceResource extends BaseResource
 
                 Section::make('Device Configuration')
                     ->schema([
-                        Forms\Components\Select::make('brand')
+                        Schemas\Components\Select::make('brand')
                             ->label('Device Brand')
                             ->options(BiometricDevice::BRANDS)
                             ->default('zkteco')
                             ->required(),
-                        Forms\Components\TextInput::make('model')
+                        Schemas\Components\TextInput::make('model')
                             ->label('Model Number')
                             ->placeholder('e.g., C3-400'),
                     ])->columns(2),
 
                 Section::make('Connection Settings')
                     ->schema([
-                        Forms\Components\TextInput::make('ip_address')
+                        Schemas\Components\TextInput::make('ip_address')
                             ->label('IP Address')
                             ->placeholder('192.168.1.100')
                             ->ip(),
-                        Forms\Components\TextInput::make('port')
+                        Schemas\Components\TextInput::make('port')
                             ->label('Port')
                             ->default(4370)
                             ->numeric()
                             ->minValue(1)
                             ->maxValue(65535),
-                        Forms\Components\TextInput::make('comm_key')
+                        Schemas\Components\TextInput::make('comm_key')
                             ->label('Communication Key')
                             ->password()
                             ->revealable(),
@@ -83,23 +83,23 @@ class BiometricDeviceResource extends BaseResource
 
                 Section::make('Sync Configuration')
                     ->schema([
-                        Forms\Components\Select::make('sync_method')
+                        Schemas\Components\Select::make('sync_method')
                             ->label('Sync Method')
                             ->options(BiometricDevice::SYNC_METHODS)
                             ->default('webhook')
                             ->required()
                             ->reactive(),
-                        Forms\Components\TextInput::make('webhook_url')
+                        Schemas\Components\TextInput::make('webhook_url')
                             ->label('Webhook URL')
                             ->url()
                             ->placeholder('https://yoursite.com/api/biometric/webhook/{device_id}')
                             ->visible(fn($get) => $get('sync_method') === 'webhook'),
-                        Forms\Components\TextInput::make('api_key')
+                        Schemas\Components\TextInput::make('api_key')
                             ->label('API Key')
                             ->password()
                             ->revealable()
                             ->visible(fn($get) => in_array($get('sync_method'), ['webhook', 'polling'])),
-                        Forms\Components\TextInput::make('sync_interval')
+                        Schemas\Components\TextInput::make('sync_interval')
                             ->label('Sync Interval (minutes)')
                             ->numeric()
                             ->default(5)
@@ -108,11 +108,11 @@ class BiometricDeviceResource extends BaseResource
 
                 Section::make('Status')
                     ->schema([
-                        Forms\Components\Select::make('status')
+                        Schemas\Components\Select::make('status')
                             ->label('Device Status')
                             ->options(BiometricDevice::STATUSES)
                             ->default('active'),
-                        Forms\Components\DateTimePicker::make('last_sync_at')
+                        Schemas\Components\DateTimePicker::make('last_sync_at')
                             ->label('Last Sync')
                             ->disabled()
                             ->visible(fn($record) => $record && $record->last_sync_at),
@@ -120,7 +120,7 @@ class BiometricDeviceResource extends BaseResource
 
                 Section::make('Notes')
                     ->schema([
-                        Forms\Components\Textarea::make('notes')
+                        Schemas\Components\Textarea::make('notes')
                             ->label('Notes')
                             ->rows(3)
                             ->placeholder('Additional notes about this device...'),

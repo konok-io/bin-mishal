@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\OfficeLocationResource\Pages;
 use App\Models\OfficeLocation;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,65 +16,65 @@ class OfficeLocationResource extends BaseResource
 {
     protected static ?string $model = OfficeLocation::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Basic Information')
+                Schemas\Components\Section::make('Basic Information')
                     ->schema([
-                        Forms\Components\TextInput::make('name')
+                        Schemas\Components\TextInput::make('name')
                             ->label('Office Name')
                             ->required()
                             ->placeholder('e.g., Riyadh Head Office'),
-                        Forms\Components\TextInput::make('city')
+                        Schemas\Components\TextInput::make('city')
                             ->label('City')
                             ->placeholder('e.g., Riyadh'),
-                        Forms\Components\TextInput::make('country')
+                        Schemas\Components\TextInput::make('country')
                             ->label('Country')
                             ->default('Saudi Arabia'),
-                        Forms\Components\Toggle::make('is_headquarters')
+                        Schemas\Components\Toggle::make('is_headquarters')
                             ->label('Headquarters'),
-                        Forms\Components\Toggle::make('is_active')
+                        Schemas\Components\Toggle::make('is_active')
                             ->label('Active')
                             ->default(true),
                     ])->columns(2),
                 
-                Forms\Components\Section::make('Address')
+                Schemas\Components\Section::make('Address')
                     ->schema([
-                        Forms\Components\Textarea::make('address')
+                        Schemas\Components\Textarea::make('address')
                             ->label('Full Address')
                             ->required()
                             ->rows(2,
-                        Forms\Components\TextInput::make('working_hours')
+                        Schemas\Components\TextInput::make('working_hours')
                             ->label('Working Hours')
                             ->placeholder('Sat-Thu: 9AM-6PM'),
                     ]),
                 
-                Forms\Components\Section::make('Contact')
+                Schemas\Components\Section::make('Contact')
                     ->schema([
-                        Forms\Components\TextInput::make('phone')
+                        Schemas\Components\TextInput::make('phone')
                             ->label('Phone'),
-                        Forms\Components\TextInput::make('whatsapp')
+                        Schemas\Components\TextInput::make('whatsapp')
                             ->label('WhatsApp'),
-                        Forms\Components\TextInput::make('email')
+                        Schemas\Components\TextInput::make('email')
                             ->label('Email'),
                     ])->columns(3),
                 
-                Forms\Components\Section::make('Map Settings')
+                Schemas\Components\Section::make('Map Settings')
                     ->schema([
-                        Forms\Components\Grid::make(2)
+                        Schemas\Components\Grid::make(2)
                             ->schema([
-                                Forms\Components\TextInput::make('latitude')
+                                Schemas\Components\TextInput::make('latitude')
                                     ->label('Latitude')
                                     ->numeric(),
-                                Forms\Components\TextInput::make('longitude')
+                                Schemas\Components\TextInput::make('longitude')
                                     ->label('Longitude')
                                     ->numeric(),
                             ]),
-                        Forms\Components\Select::make('map_zoom')
+                        Schemas\Components\Select::make('map_zoom')
                             ->label('Map Zoom')
                             ->options(collect(range(1, 21))->mapWithKeys(fn($i) => [$i => $i])),
-                        Forms\Components\Select::make('map_type')
+                        Schemas\Components\Select::make('map_type')
                             ->label('Map Type')
                             ->options([
                                 'roadmap' => 'Roadmap',
@@ -84,14 +84,14 @@ class OfficeLocationResource extends BaseResource
                             ]),
                     ])->columns(2),
                 
-                Forms\Components\Section::make('Additional')
+                Schemas\Components\Section::make('Additional')
                     ->schema([
-                        Forms\Components\Textarea::make('description')
+                        Schemas\Components\Textarea::make('description')
                             ->label('Description'),
-                        Forms\Components\FileUpload::make('image')
+                        Schemas\Components\FileUpload::make('image')
                             ->label('Office Image')
                             ->image(),
-                        Forms\Components\TextInput::make('sort_order')
+                        Schemas\Components\TextInput::make('sort_order')
                             ->label('Sort Order')
                             ->numeric()
                             ->default(0),

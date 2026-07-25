@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\JobApplicationResource\Pages;
 use App\Models\JobApplication;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -24,53 +24,53 @@ class JobApplicationResource extends BaseResource
         return $user && ($user->hasRole(['super_admin', 'admin', 'hr']) || $user->can('applications.view'));
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Applicant Information')
+                Schemas\Components\Section::make('Applicant Information')
                     ->schema([
-                        Forms\Components\TextInput::make('full_name')
+                        Schemas\Components\TextInput::make('full_name')
                             ->label('Full Name')
                             ->disabled(),
-                        Forms\Components\TextInput::make('email')
+                        Schemas\Components\TextInput::make('email')
                             ->label('Email')
                             ->disabled(),
-                        Forms\Components\TextInput::make('phone')
+                        Schemas\Components\TextInput::make('phone')
                             ->label('Phone')
                             ->disabled(),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Application')
+                Schemas\Components\Section::make('Application')
                     ->schema([
-                        Forms\Components\Select::make('job_id')
+                        Schemas\Components\Select::make('job_id')
                             ->label('Job Position')
                             ->disabled()
                             ->relationship('job', 'title'),
-                        Forms\Components\FileUpload::make('cv_path')
+                        Schemas\Components\FileUpload::make('cv_path')
                             ->label('CV/Resume')
                             ->disabled(),
-                        Forms\Components\Textarea::make('cover_letter')
+                        Schemas\Components\Textarea::make('cover_letter')
                             ->label('Cover Letter')
                             ->rows(4)
                             ->disabled(),
                     ]),
 
-                Forms\Components\Section::make('Status Management')
+                Schemas\Components\Section::make('Status Management')
                     ->schema([
-                        Forms\Components\Select::make('status')
+                        Schemas\Components\Select::make('status')
                             ->label('Status')
                             ->options(JobApplication::STATUSES)
                             ->required(),
-                        Forms\Components\DateTimePicker::make('interview_date')
+                        Schemas\Components\DateTimePicker::make('interview_date')
                             ->label('Interview Date'),
-                        Forms\Components\Textarea::make('interview_notes')
+                        Schemas\Components\Textarea::make('interview_notes')
                             ->label('Interview Notes')
                             ->rows(2),
-                        Forms\Components\Textarea::make('rejection_reason')
+                        Schemas\Components\Textarea::make('rejection_reason')
                             ->label('Rejection Reason')
                             ->rows(2),
-                        Forms\Components\Textarea::make('admin_notes')
+                        Schemas\Components\Textarea::make('admin_notes')
                             ->label('Internal Notes (HR Only)')
                             ->rows(3)
                             ->helperText('These notes are only visible to admins'),
@@ -120,7 +120,7 @@ class JobApplicationResource extends BaseResource
             ->filters([
                 Filter::make('job_id')
                     ->form([
-                        Forms\Components\Select::make('job_id')
+                        Schemas\Components\Select::make('job_id')
                             ->label('Job Position')
                             ->relationship('job', 'title')
                             ->placeholder('All Positions'),
@@ -135,8 +135,8 @@ class JobApplicationResource extends BaseResource
                     ->options(JobApplication::STATUSES),
                 Filter::make('applied_at')
                     ->form([
-                        Forms\Components\DatePicker::make('from'),
-                        Forms\Components\DatePicker::make('until'),
+                        Schemas\Components\DatePicker::make('from'),
+                        Schemas\Components\DatePicker::make('until'),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
@@ -156,10 +156,10 @@ class JobApplicationResource extends BaseResource
                         ->label('Schedule Interview')
                         ->icon('heroicon-o-calendar')
                         ->form([
-                            Forms\Components\DateTimePicker::make('interview_date')
+                            Schemas\Components\DateTimePicker::make('interview_date')
                                 ->label('Interview Date & Time')
                                 ->required(),
-                            Forms\Components\Textarea::make('notes')
+                            Schemas\Components\Textarea::make('notes')
                                 ->label('Notes'),
                         ])
                         ->action(function (JobApplication $record, array $data) {
@@ -174,7 +174,7 @@ class JobApplicationResource extends BaseResource
                         ->icon('heroicon-o-x-mark')
                         ->color('danger')
                         ->form([
-                            Forms\Components\Textarea::make('reason')
+                            Schemas\Components\Textarea::make('reason')
                                 ->label('Rejection Reason'),
                         ])
                         ->action(function (JobApplication $record, array $data) {

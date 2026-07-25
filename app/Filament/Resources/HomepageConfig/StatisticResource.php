@@ -10,8 +10,8 @@ use App\Filament\Resources\HomepageConfig\Pages\ListQuickServices;
 use App\Filament\Resources\HomepageConfig\Pages\ListFeatureCards;
 use App\Filament\Resources\HomepageConfig\Pages\ListFlightRoutes;
 use App\Models\Statistic;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -20,56 +20,56 @@ class StatisticResource extends BaseResource
 {
     protected static ?string $model = Statistic::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Grid::make(3)
+                Schemas\Components\Grid::make(3)
                     ->schema([
-                        Forms\Components\TextInput::make('key')
+                        Schemas\Components\TextInput::make('key')
                             ->label('Key')
                             ->required()
                             ->unique(Statistic::class, 'key', ignoreRecord: true)
                             ->helperText('Unique identifier (e.g., "customers", "tickets")'),
-                        Forms\Components\TextInput::make('label')
+                        Schemas\Components\TextInput::make('label')
                             ->label('Label (English)')
                             ->required(),
-                        Forms\Components\TextInput::make('label_bn')
+                        Schemas\Components\TextInput::make('label_bn')
                             ->label('Label (Bengali)'),
-                        Forms\Components\TextInput::make('label_ar')
+                        Schemas\Components\TextInput::make('label_ar')
                             ->label('Label (Arabic)'),
                     ]),
-                Forms\Components\Grid::make(4)
+                Schemas\Components\Grid::make(4)
                     ->schema([
-                        Forms\Components\TextInput::make('value')
+                        Schemas\Components\TextInput::make('value')
                             ->label('Value')
                             ->numeric()
                             ->required(),
-                        Forms\Components\TextInput::make('prefix')
+                        Schemas\Components\TextInput::make('prefix')
                             ->label('Prefix (English)')
                             ->placeholder('e.g., SAR'),
-                        Forms\Components\TextInput::make('suffix')
+                        Schemas\Components\TextInput::make('suffix')
                             ->label('Suffix (English)')
                             ->placeholder('e.g., K+'),
-                        Forms\Components\TextInput::make('suffix_bn')
+                        Schemas\Components\TextInput::make('suffix_bn')
                             ->label('Suffix (Bengali)'),
-                        Forms\Components\TextInput::make('suffix_ar')
+                        Schemas\Components\TextInput::make('suffix_ar')
                             ->label('Suffix (Arabic)'),
                     ]),
-                Forms\Components\Grid::make(3)
+                Schemas\Components\Grid::make(3)
                     ->schema([
-                        Forms\Components\TextInput::make('icon')
+                        Schemas\Components\TextInput::make('icon')
                             ->label('Icon Class')
                             ->placeholder('heroicon-o-users'),
-                        Forms\Components\ColorPicker::make('color')
+                        Schemas\Components\ColorPicker::make('color')
                             ->label('Color')
                             ->default('#198754'),
-                        Forms\Components\TextInput::make('sort_order')
+                        Schemas\Components\TextInput::make('sort_order')
                             ->label('Sort Order')
                             ->numeric()
                             ->default(0),
                     ]),
-                Forms\Components\Toggle::make('is_active')
+                Schemas\Components\Toggle::make('is_active')
                     ->label('Active')
                     ->default(true),
             ]);

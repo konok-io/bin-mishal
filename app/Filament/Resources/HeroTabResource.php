@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\HeroTabResource\Pages;
 use App\Models\HeroTab;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,13 +16,13 @@ class HeroTabResource extends BaseResource
 {
     protected static ?string $model = HeroTab::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Tab Settings')
+                Schemas\Components\Section::make('Tab Settings')
                     ->schema([
-                        Forms\Components\Select::make('tab_key')
+                        Schemas\Components\Select::make('tab_key')
                             ->label('Tab Key')
                             ->options([
                                 'flight' => 'Flight',
@@ -34,165 +34,165 @@ class HeroTabResource extends BaseResource
                             ])
                             ->required()
                             ->unique(HeroTab::class, 'tab_key', ignoreRecord: true),
-                        Forms\Components\TextInput::make('icon')
+                        Schemas\Components\TextInput::make('icon')
                             ->label('Icon')
                             ->placeholder('fas fa-plane'),
-                        Forms\Components\Toggle::make('is_active')
+                        Schemas\Components\Toggle::make('is_active')
                             ->label('Active')
                             ->default(true),
-                        Forms\Components\Toggle::make('show_in_nav')
+                        Schemas\Components\Toggle::make('show_in_nav')
                             ->label('Show in Header Nav')
                             ->default(true),
                     ])->columns(4),
 
-                Forms\Components\Section::make('Labels (Multilingual)')
+                Schemas\Components\Section::make('Labels (Multilingual)')
                     ->schema([
-                        Forms\Components\Tabs::make('Labels')
+                        Schemas\Components\Tabs::make('Labels')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('English')
+                                Schemas\Components\Tabs\Tab::make('English')
                                     ->schema([
-                                        Forms\Components\TextInput::make('label.en')
+                                        Schemas\Components\TextInput::make('label.en')
                                             ->label('Tab Label')
                                             ->required(),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('বাংলা')
+                                Schemas\Components\Tabs\Tab::make('বাংলা')
                                     ->schema([
-                                        Forms\Components\TextInput::make('label.bn')
+                                        Schemas\Components\TextInput::make('label.bn')
                                             ->label('Tab Label'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('العربية')
+                                Schemas\Components\Tabs\Tab::make('العربية')
                                     ->schema([
-                                        Forms\Components\TextInput::make('label.ar')
+                                        Schemas\Components\TextInput::make('label.ar')
                                             ->label('Tab Label'),
                                     ]),
                             ]),
                     ]),
 
-                Forms\Components\Section::make('Title (Multilingual)')
+                Schemas\Components\Section::make('Title (Multilingual)')
                     ->schema([
-                        Forms\Components\Tabs::make('Titles')
+                        Schemas\Components\Tabs::make('Titles')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('English')
+                                Schemas\Components\Tabs\Tab::make('English')
                                     ->schema([
-                                        Forms\Components\TextInput::make('title.en')
+                                        Schemas\Components\TextInput::make('title.en')
                                             ->label('Title')
                                             ->required(),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('বাংলা')
+                                Schemas\Components\Tabs\Tab::make('বাংলা')
                                     ->schema([
-                                        Forms\Components\TextInput::make('title.bn')
+                                        Schemas\Components\TextInput::make('title.bn')
                                             ->label('Title'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('العربية')
+                                Schemas\Components\Tabs\Tab::make('العربية')
                                     ->schema([
-                                        Forms\Components\TextInput::make('title.ar')
+                                        Schemas\Components\TextInput::make('title.ar')
                                             ->label('Title'),
                                     ]),
                             ]),
                     ]),
 
-                Forms\Components\Section::make('Subtitle (Multilingual)')
+                Schemas\Components\Section::make('Subtitle (Multilingual)')
                     ->schema([
-                        Forms\Components\Tabs::make('Subtitles')
+                        Schemas\Components\Tabs::make('Subtitles')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('English')
+                                Schemas\Components\Tabs\Tab::make('English')
                                     ->schema([
-                                        Forms\Components\TextInput::make('subtitle.en')
+                                        Schemas\Components\TextInput::make('subtitle.en')
                                             ->label('Subtitle')
                                             ->required(),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('বাংলা')
+                                Schemas\Components\Tabs\Tab::make('বাংলা')
                                     ->schema([
-                                        Forms\Components\TextInput::make('subtitle.bn')
+                                        Schemas\Components\TextInput::make('subtitle.bn')
                                             ->label('Subtitle'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('العربية')
+                                Schemas\Components\Tabs\Tab::make('العربية')
                                     ->schema([
-                                        Forms\Components\TextInput::make('subtitle.ar')
+                                        Schemas\Components\TextInput::make('subtitle.ar')
                                             ->label('Subtitle'),
                                     ]),
                             ]),
                     ]),
 
-                Forms\Components\Section::make('Description (Multilingual)')
+                Schemas\Components\Section::make('Description (Multilingual)')
                     ->schema([
-                        Forms\Components\Tabs::make('Descriptions')
+                        Schemas\Components\Tabs::make('Descriptions')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('English')
+                                Schemas\Components\Tabs\Tab::make('English')
                                     ->schema([
-                                        Forms\Components\Textarea::make('description.en')
+                                        Schemas\Components\Textarea::make('description.en')
                                             ->label('Description'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('বাংলা')
+                                Schemas\Components\Tabs\Tab::make('বাংলা')
                                     ->schema([
-                                        Forms\Components\Textarea::make('description.bn')
+                                        Schemas\Components\Textarea::make('description.bn')
                                             ->label('Description'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('العربية')
+                                Schemas\Components\Tabs\Tab::make('العربية')
                                     ->schema([
-                                        Forms\Components\Textarea::make('description.ar')
+                                        Schemas\Components\Textarea::make('description.ar')
                                             ->label('Description'),
                                     ]),
                             ]),
                     ]),
 
-                Forms\Components\Section::make('Features (Multilingual)')
+                Schemas\Components\Section::make('Features (Multilingual)')
                     ->description('List of feature points shown in the hero section')
                     ->schema([
-                        Forms\Components\Tabs::make('Features')
+                        Schemas\Components\Tabs::make('Features')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('English')
+                                Schemas\Components\Tabs\Tab::make('English')
                                     ->schema([
-                                        Forms\Components\TagsInput::make('features.en')
+                                        Schemas\Components\TagsInput::make('features.en')
                                             ->label('Features'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('বাংলা')
+                                Schemas\Components\Tabs\Tab::make('বাংলা')
                                     ->schema([
-                                        Forms\Components\TagsInput::make('features.bn')
+                                        Schemas\Components\TagsInput::make('features.bn')
                                             ->label('Features'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('العربية')
+                                Schemas\Components\Tabs\Tab::make('العربية')
                                     ->schema([
-                                        Forms\Components\TagsInput::make('features.ar')
+                                        Schemas\Components\TagsInput::make('features.ar')
                                             ->label('Features'),
                                     ]),
                             ]),
                     ]),
 
-                Forms\Components\Section::make('Image')
+                Schemas\Components\Section::make('Image')
                     ->schema([
-                        Forms\Components\FileUpload::make('image')
+                        Schemas\Components\FileUpload::make('image')
                             ->label('Hero Image')
                             ->image()
                             ->directory('hero')
                             ->visibility('public'),
                     ]),
 
-                Forms\Components\Section::make('Button')
+                Schemas\Components\Section::make('Button')
                     ->schema([
-                        Forms\Components\Tabs::make('Button Text')
+                        Schemas\Components\Tabs::make('Button Text')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('English')
+                                Schemas\Components\Tabs\Tab::make('English')
                                     ->schema([
-                                        Forms\Components\TextInput::make('button_text.en')
+                                        Schemas\Components\TextInput::make('button_text.en')
                                             ->label('Button Text')
                                             ->required(),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('বাংলা')
+                                Schemas\Components\Tabs\Tab::make('বাংলা')
                                     ->schema([
-                                        Forms\Components\TextInput::make('button_text.bn')
+                                        Schemas\Components\TextInput::make('button_text.bn')
                                             ->label('Button Text'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('العربية')
+                                Schemas\Components\Tabs\Tab::make('العربية')
                                     ->schema([
-                                        Forms\Components\TextInput::make('button_text.ar')
+                                        Schemas\Components\TextInput::make('button_text.ar')
                                             ->label('Button Text'),
                                     ]),
                             ]),
-                        Forms\Components\TextInput::make('button_url')
+                        Schemas\Components\TextInput::make('button_url')
                             ->label('Button URL')
                             ->placeholder('/bn/services/umrah'),
-                        Forms\Components\Select::make('route_name')
+                        Schemas\Components\Select::make('route_name')
                             ->label('Or Link to Route')
                             ->options([
                                 'services.umrah' => 'Umrah Packages',
@@ -205,9 +205,9 @@ class HeroTabResource extends BaseResource
                             ->nullable(),
                     ]),
 
-                Forms\Components\Section::make('Ordering')
+                Schemas\Components\Section::make('Ordering')
                     ->schema([
-                        Forms\Components\TextInput::make('order')
+                        Schemas\Components\TextInput::make('order')
                             ->label('Sort Order')
                             ->numeric()
                             ->default(0),

@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SettingResource\Pages;
 use App\Models\Setting;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,22 +16,22 @@ class SettingResource extends BaseResource
 {
     protected static ?string $model = Setting::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Setting Details')
+                Schemas\Components\Section::make('Setting Details')
                     ->schema([
-                        Forms\Components\TextInput::make('key')
+                        Schemas\Components\TextInput::make('key')
                             ->label('Key')
                             ->required()
                             ->unique(Setting::class, 'key', ignoreRecord: true),
-                        Forms\Components\TextInput::make('group')
+                        Schemas\Components\TextInput::make('group')
                             ->label('Group')
                             ->required(),
-                        Forms\Components\TextInput::make('label')
+                        Schemas\Components\TextInput::make('label')
                             ->label('Label'),
-                        Forms\Components\Select::make('type')
+                        Schemas\Components\Select::make('type')
                             ->label('Type')
                             ->options([
                                 'text' => 'Text',
@@ -43,25 +43,25 @@ class SettingResource extends BaseResource
                             ->default('text'),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Value')
+                Schemas\Components\Section::make('Value')
                     ->schema([
-                        Forms\Components\TextInput::make('value')
+                        Schemas\Components\TextInput::make('value')
                             ->label('Value')
                             ->visible(fn($get) => !in_array($get('type'), ['boolean', 'json', 'file'])),
-                        Forms\Components\Toggle::make('value')
+                        Schemas\Components\Toggle::make('value')
                             ->label('Value')
                             ->visible(fn($get) => $get('type') === 'boolean'),
-                        Forms\Components\Textarea::make('value')
+                        Schemas\Components\Textarea::make('value')
                             ->label('JSON Value')
                             ->visible(fn($get) => $get('type') === 'json'),
-                        Forms\Components\FileUpload::make('value')
+                        Schemas\Components\FileUpload::make('value')
                             ->label('File')
                             ->visible(fn($get) => $get('type') === 'file'),
                     ]),
 
-                Forms\Components\Section::make('Documentation')
+                Schemas\Components\Section::make('Documentation')
                     ->schema([
-                        Forms\Components\Textarea::make('description')
+                        Schemas\Components\Textarea::make('description')
                             ->label('Description')
                             ->rows(2),
                     ]),

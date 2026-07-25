@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostResource\Pages;
 use App\Models\Post;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,73 +16,73 @@ class PostResource extends BaseResource
 {
     protected static ?string $model = Post::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Basic Information')
+                Schemas\Components\Section::make('Basic Information')
                     ->schema([
-                        Forms\Components\TextInput::make('title')
+                        Schemas\Components\TextInput::make('title')
                             ->label('Title (English)')
                             ->required(),
-                        Forms\Components\TextInput::make('title_bn')
+                        Schemas\Components\TextInput::make('title_bn')
                             ->label('Title (Bengali)'),
-                        Forms\Components\TextInput::make('title_ar')
+                        Schemas\Components\TextInput::make('title_ar')
                             ->label('Title (Arabic)'),
-                        Forms\Components\Select::make('category_id')
+                        Schemas\Components\Select::make('category_id')
                             ->label('Category')
                             ->relationship('category', 'name'),
-                        Forms\Components\FileUpload::make('featured_image')
+                        Schemas\Components\FileUpload::make('featured_image')
                             ->label('Featured Image')
                             ->image(),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Content')
+                Schemas\Components\Section::make('Content')
                     ->schema([
-                        Forms\Components\Textarea::make('excerpt')
+                        Schemas\Components\Textarea::make('excerpt')
                             ->label('Excerpt (English)')
                             ->rows(2),
-                        Forms\Components\Textarea::make('excerpt_bn')
+                        Schemas\Components\Textarea::make('excerpt_bn')
                             ->label('Excerpt (Bengali)')
                             ->rows(2),
-                        Forms\Components\Textarea::make('excerpt_ar')
+                        Schemas\Components\Textarea::make('excerpt_ar')
                             ->label('Excerpt (Arabic)')
                             ->rows(2),
                     ]),
 
-                Forms\Components\Section::make('Full Content')
+                Schemas\Components\Section::make('Full Content')
                     ->schema([
-                        Forms\Components\RichEditor::make('content')
+                        Schemas\Components\RichEditor::make('content')
                             ->label('Content (English)'),
-                        Forms\Components\RichEditor::make('content_bn')
+                        Schemas\Components\RichEditor::make('content_bn')
                             ->label('Content (Bengali)'),
-                        Forms\Components\RichEditor::make('content_ar')
+                        Schemas\Components\RichEditor::make('content_ar')
                             ->label('Content (Arabic)'),
                     ]),
 
-                Forms\Components\Section::make('SEO')
+                Schemas\Components\Section::make('SEO')
                     ->schema([
-                        Forms\Components\TextInput::make('meta_title')
+                        Schemas\Components\TextInput::make('meta_title')
                             ->label('Meta Title'),
-                        Forms\Components\Textarea::make('meta_description')
+                        Schemas\Components\Textarea::make('meta_description')
                             ->label('Meta Description')
                             ->rows(2),
-                        Forms\Components\TextInput::make('meta_keywords')
+                        Schemas\Components\TextInput::make('meta_keywords')
                             ->label('Meta Keywords'),
-                        Forms\Components\FileUpload::make('og_image')
+                        Schemas\Components\FileUpload::make('og_image')
                             ->label('OG Image')
                             ->image(),
                     ])->collapsible(),
 
-                Forms\Components\Section::make('Publishing')
+                Schemas\Components\Section::make('Publishing')
                     ->schema([
-                        Forms\Components\Toggle::make('is_published')
+                        Schemas\Components\Toggle::make('is_published')
                             ->label('Published')
                             ->default(false),
-                        Forms\Components\Toggle::make('is_featured')
+                        Schemas\Components\Toggle::make('is_featured')
                             ->label('Featured')
                             ->default(false),
-                        Forms\Components\DateTimePicker::make('published_at')
+                        Schemas\Components\DateTimePicker::make('published_at')
                             ->label('Published At'),
                     ])->columns(3),
             ]);

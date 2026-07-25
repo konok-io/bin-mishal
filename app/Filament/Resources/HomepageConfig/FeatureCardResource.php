@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Filament\Resources\HomepageConfig;
 
 use App\Models\FeatureCard;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -15,59 +15,59 @@ class FeatureCardResource extends BaseResource
 {
     protected static ?string $model = FeatureCard::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Grid::make(3)
+                Schemas\Components\Grid::make(3)
                     ->schema([
-                        Forms\Components\TextInput::make('title')
+                        Schemas\Components\TextInput::make('title')
                             ->label('Title (English)')
                             ->required(),
-                        Forms\Components\TextInput::make('title_bn')
+                        Schemas\Components\TextInput::make('title_bn')
                             ->label('Title (Bengali)'),
-                        Forms\Components\TextInput::make('title_ar')
+                        Schemas\Components\TextInput::make('title_ar')
                             ->label('Title (Arabic)'),
                     ]),
-                Forms\Components\Grid::make(4)
+                Schemas\Components\Grid::make(4)
                     ->schema([
-                        Forms\Components\TextInput::make('number')
+                        Schemas\Components\TextInput::make('number')
                             ->label('Number')
                             ->numeric()
                             ->required(),
-                        Forms\Components\TextInput::make('number_suffix')
+                        Schemas\Components\TextInput::make('number_suffix')
                             ->label('Suffix (English)')
                             ->placeholder('K+'),
-                        Forms\Components\TextInput::make('number_suffix_bn')
+                        Schemas\Components\TextInput::make('number_suffix_bn')
                             ->label('Suffix (Bengali)'),
-                        Forms\Components\TextInput::make('number_suffix_ar')
+                        Schemas\Components\TextInput::make('number_suffix_ar')
                             ->label('Suffix (Arabic)'),
                     ]),
-                Forms\Components\Grid::make(2)
+                Schemas\Components\Grid::make(2)
                     ->schema([
-                        Forms\Components\TextInput::make('icon')
+                        Schemas\Components\TextInput::make('icon')
                             ->label('Icon Class')
                             ->placeholder('heroicon-o-sparkles'),
-                        Forms\Components\ColorPicker::make('color')
+                        Schemas\Components\ColorPicker::make('color')
                             ->label('Color')
                             ->default('#198754'),
                     ]),
-                Forms\Components\Textarea::make('description')
+                Schemas\Components\Textarea::make('description')
                     ->label('Description (English)')
                     ->rows(2),
-                Forms\Components\Textarea::make('description_bn')
+                Schemas\Components\Textarea::make('description_bn')
                     ->label('Description (Bengali)')
                     ->rows(2),
-                Forms\Components\Textarea::make('description_ar')
+                Schemas\Components\Textarea::make('description_ar')
                     ->label('Description (Arabic)')
                     ->rows(2),
-                Forms\Components\Grid::make(2)
+                Schemas\Components\Grid::make(2)
                     ->schema([
-                        Forms\Components\TextInput::make('sort_order')
+                        Schemas\Components\TextInput::make('sort_order')
                             ->label('Sort Order')
                             ->numeric()
                             ->default(0),
-                        Forms\Components\Toggle::make('is_active')
+                        Schemas\Components\Toggle::make('is_active')
                             ->label('Active')
                             ->default(true),
                     ]),

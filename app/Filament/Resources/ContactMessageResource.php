@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ContactMessageResource\Pages;
 use App\Models\ContactMessage;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -29,52 +29,52 @@ class ContactMessageResource extends BaseResource
         return 'danger';
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Sender Information')
+                Schemas\Components\Section::make('Sender Information')
                     ->schema([
-                        Forms\Components\TextInput::make('name')
+                        Schemas\Components\TextInput::make('name')
                             ->label('Name')
                             ->disabled(),
-                        Forms\Components\TextInput::make('email')
+                        Schemas\Components\TextInput::make('email')
                             ->label('Email')
                             ->disabled()
                             ->url(fn($state) => 'mailto:' . $state),
-                        Forms\Components\TextInput::make('phone')
+                        Schemas\Components\TextInput::make('phone')
                             ->label('Phone')
                             ->disabled(),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Message Details')
+                Schemas\Components\Section::make('Message Details')
                     ->schema([
-                        Forms\Components\TextInput::make('subject')
+                        Schemas\Components\TextInput::make('subject')
                             ->label('Subject')
                             ->disabled(),
-                        Forms\Components\Select::make('type')
+                        Schemas\Components\Select::make('type')
                             ->label('Type')
                             ->options(ContactMessage::TYPES)
                             ->disabled(),
-                        Forms\Components\Textarea::make('message')
+                        Schemas\Components\Textarea::make('message')
                             ->label('Message')
                             ->disabled()
                             ->rows(6),
                     ]),
 
-                Forms\Components\Section::make('Status')
+                Schemas\Components\Section::make('Status')
                     ->schema([
-                        Forms\Components\Toggle::make('is_read')
+                        Schemas\Components\Toggle::make('is_read')
                             ->label('Mark as Read'),
-                        Forms\Components\Toggle::make('is_replied')
+                        Schemas\Components\Toggle::make('is_replied')
                             ->label('Mark as Replied'),
-                        Forms\Components\Toggle::make('is_spam')
+                        Schemas\Components\Toggle::make('is_spam')
                             ->label('Mark as Spam'),
-                        Forms\Components\Textarea::make('reply_note')
+                        Schemas\Components\Textarea::make('reply_note')
                             ->label('Reply Note (Internal)')
                             ->rows(2)
                             ->helperText('Internal note about your reply'),
-                        Forms\Components\Textarea::make('admin_notes')
+                        Schemas\Components\Textarea::make('admin_notes')
                             ->label('Admin Notes')
                             ->rows(3)
                             ->helperText('Private notes only visible to admins'),
@@ -148,7 +148,7 @@ class ContactMessageResource extends BaseResource
                     ->label('Mark Replied')
                     ->icon('heroicon-o-paper-airplane')
                     ->form([
-                        Forms\Components\Textarea::make('reply_note')
+                        Schemas\Components\Textarea::make('reply_note')
                             ->label('Reply Note')
                             ->rows(2),
                     ])

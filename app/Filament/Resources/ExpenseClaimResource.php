@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ExpenseClaimResource\Pages;
 use App\Models\ExpenseClaim;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -27,13 +27,13 @@ class ExpenseClaimResource extends BaseResource
         return $user && ($user->hasRole(['super_admin', 'admin', 'hr']) || $user->can('expense.manage'));
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Employee Information')
+                Schemas\Components\Section::make('Employee Information')
                     ->schema([
-                        Forms\Components\Select::make('employee_id')
+                        Schemas\Components\Select::make('employee_id')
                             ->relationship('employee', 'name', fn(Builder $query) => 
                                 $query->where('status', 'active')
                             )
@@ -42,38 +42,38 @@ class ExpenseClaimResource extends BaseResource
                             ->required(),
                     ]),
 
-                Forms\Components\Section::make('Expense Details')
+                Schemas\Components\Section::make('Expense Details')
                     ->schema([
-                        Forms\Components\Select::make('expense_type_id')
+                        Schemas\Components\Select::make('expense_type_id')
                             ->relationship('expenseType', 'name')
                             ->searchable()
                             ->preload()
                             ->required(),
-                        Forms\Components\DatePicker::make('expense_date')
+                        Schemas\Components\DatePicker::make('expense_date')
                             ->required()
                             ->maxDate(now()),
-                        Forms\Components\TextInput::make('amount')
+                        Schemas\Components\TextInput::make('amount')
                             ->required()
                             ->numeric()
                             ->prefix('SAR'),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Description')
+                Schemas\Components\Section::make('Description')
                     ->schema([
-                        Forms\Components\Textarea::make('description')
+                        Schemas\Components\Textarea::make('description')
                             ->required()
                             ->rows(3),
                     ]),
 
-                Forms\Components\Section::make('Review')
+                Schemas\Components\Section::make('Review')
                     ->schema([
-                        Forms\Components\Select::make('status')
+                        Schemas\Components\Select::make('status')
                             ->options(ExpenseClaim::STATUSES)
                             ->required(),
-                        Forms\Components\Textarea::make('rejection_reason')
+                        Schemas\Components\Textarea::make('rejection_reason')
                             ->label('Rejection Reason')
                             ->rows(2),
-                        Forms\Components\Textarea::make('admin_notes')
+                        Schemas\Components\Textarea::make('admin_notes')
                             ->label('Admin Notes')
                             ->rows(2),
                     ])->visible(fn($record) => $record !== null),
@@ -126,8 +126,8 @@ class ExpenseClaimResource extends BaseResource
                     ->relationship('employee', 'name'),
                 Tables\Filters\Filter::make('date_range')
                     ->form([
-                        Forms\Components\DatePicker::make('from'),
-                        Forms\Components\DatePicker::make('to'),
+                        Schemas\Components\DatePicker::make('from'),
+                        Schemas\Components\DatePicker::make('to'),
                     ])
                     ->query(function (Builder $query, array $data) {
                         return $query
@@ -149,7 +149,7 @@ class ExpenseClaimResource extends BaseResource
                     ->icon('heroicon-o-x-mark')
                     ->color('danger')
                     ->form([
-                        Forms\Components\Textarea::make('reason')
+                        Schemas\Components\Textarea::make('reason')
                             ->required()
                             ->label('Rejection Reason'),
                     ])

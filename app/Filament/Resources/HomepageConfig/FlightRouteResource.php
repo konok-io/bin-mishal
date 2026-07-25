@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Filament\Resources\HomepageConfig;
 
 use App\Models\FlightRoute;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -15,23 +15,23 @@ class FlightRouteResource extends BaseResource
 {
     protected static ?string $model = FlightRoute::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('From')
+                Schemas\Components\Section::make('From')
                     ->schema([
-                        Forms\Components\Grid::make(3)
+                        Schemas\Components\Grid::make(3)
                             ->schema([
-                                Forms\Components\TextInput::make('from_city')
+                                Schemas\Components\TextInput::make('from_city')
                                     ->label('City (English)')
                                     ->required(),
-                                Forms\Components\TextInput::make('from_city_bn')
+                                Schemas\Components\TextInput::make('from_city_bn')
                                     ->label('City (Bengali)'),
-                                Forms\Components\TextInput::make('from_city_ar')
+                                Schemas\Components\TextInput::make('from_city_ar')
                                     ->label('City (Arabic)'),
                             ]),
-                        Forms\Components\Select::make('from_country')
+                        Schemas\Components\Select::make('from_country')
                             ->label('Country')
                             ->options([
                                 'SA' => 'Saudi Arabia',
@@ -42,19 +42,19 @@ class FlightRouteResource extends BaseResource
                             ])
                             ->default('SA'),
                     ]),
-                Forms\Components\Section::make('To')
+                Schemas\Components\Section::make('To')
                     ->schema([
-                        Forms\Components\Grid::make(3)
+                        Schemas\Components\Grid::make(3)
                             ->schema([
-                                Forms\Components\TextInput::make('to_city')
+                                Schemas\Components\TextInput::make('to_city')
                                     ->label('City (English)')
                                     ->required(),
-                                Forms\Components\TextInput::make('to_city_bn')
+                                Schemas\Components\TextInput::make('to_city_bn')
                                     ->label('City (Bengali)'),
-                                Forms\Components\TextInput::make('to_city_ar')
+                                Schemas\Components\TextInput::make('to_city_ar')
                                     ->label('City (Arabic)'),
                             ]),
-                        Forms\Components\Select::make('to_country')
+                        Schemas\Components\Select::make('to_country')
                             ->label('Country')
                             ->options([
                                 'SA' => 'Saudi Arabia',
@@ -65,35 +65,35 @@ class FlightRouteResource extends BaseResource
                             ])
                             ->default('BD'),
                     ]),
-                Forms\Components\Section::make('Details')
+                Schemas\Components\Section::make('Details')
                     ->schema([
-                        Forms\Components\Grid::make(4)
+                        Schemas\Components\Grid::make(4)
                             ->schema([
-                                Forms\Components\TextInput::make('price')
+                                Schemas\Components\TextInput::make('price')
                                     ->label('Price')
                                     ->numeric()
                                     ->prefix('SAR'),
-                                Forms\Components\Select::make('currency')
+                                Schemas\Components\Select::make('currency')
                                     ->label('Currency')
                                     ->options([
                                         'SAR' => 'SAR',
                                         'BDT' => 'BDT',
                                     ])
                                     ->default('SAR'),
-                                Forms\Components\TextInput::make('airline')
+                                Schemas\Components\TextInput::make('airline')
                                     ->label('Airline'),
-                                Forms\Components\TextInput::make('image_url')
+                                Schemas\Components\TextInput::make('image_url')
                                     ->label('Image URL'),
                             ]),
-                        Forms\Components\Grid::make(3)
+                        Schemas\Components\Grid::make(3)
                             ->schema([
-                                Forms\Components\Toggle::make('is_featured')
+                                Schemas\Components\Toggle::make('is_featured')
                                     ->label('Featured'),
-                                Forms\Components\TextInput::make('sort_order')
+                                Schemas\Components\TextInput::make('sort_order')
                                     ->label('Sort Order')
                                     ->numeric()
                                     ->default(0),
-                                Forms\Components\Toggle::make('is_active')
+                                Schemas\Components\Toggle::make('is_active')
                                     ->label('Active')
                                     ->default(true),
                             ]),

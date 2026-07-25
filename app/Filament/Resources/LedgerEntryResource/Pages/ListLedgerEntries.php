@@ -22,22 +22,22 @@ class ListLedgerEntries extends ListRecords
                 ->icon('heroicon-o-arrow-down-left')
                 ->color('success')
                 ->form([
-                    \Filament\Forms\Components\DatePicker::make('entry_date')
+                    \Filament\Schemas\Components\DatePicker::make('entry_date')
                         ->default(now()),
-                    \Filament\Forms\Components\Select::make('account_id')
+                    \Filament\Schemas\Components\Select::make('account_id')
                         ->label('Revenue Account')
                         ->relationship('account', 'name', fn($query) => 
                             $query->where('type', 'revenue')->active()
                         )
                         ->searchable()
                         ->required(),
-                    \Filament\Forms\Components\TextInput::make('amount')
+                    \Filament\Schemas\Components\TextInput::make('amount')
                         ->required()
                         ->numeric()
                         ->prefix('SAR'),
-                    \Filament\Forms\Components\TextInput::make('description')
+                    \Filament\Schemas\Components\TextInput::make('description')
                         ->required(),
-                    \Filament\Forms\Components\Textarea::make('notes'),
+                    \Filament\Schemas\Components\Textarea::make('notes'),
                 ])
                 ->action(function (array $data) {
                     $service = app(AccountingService::class);
@@ -49,22 +49,22 @@ class ListLedgerEntries extends ListRecords
                 ->icon('heroicon-o-arrow-up-right')
                 ->color('danger')
                 ->form([
-                    \Filament\Forms\Components\DatePicker::make('entry_date')
+                    \Filament\Schemas\Components\DatePicker::make('entry_date')
                         ->default(now()),
-                    \Filament\Forms\Components\Select::make('account_id')
+                    \Filament\Schemas\Components\Select::make('account_id')
                         ->label('Expense Account')
                         ->relationship('account', 'name', fn($query) => 
                             $query->where('type', 'expense')->active()
                         )
                         ->searchable()
                         ->required(),
-                    \Filament\Forms\Components\TextInput::make('amount')
+                    \Filament\Schemas\Components\TextInput::make('amount')
                         ->required()
                         ->numeric()
                         ->prefix('SAR'),
-                    \Filament\Forms\Components\TextInput::make('description')
+                    \Filament\Schemas\Components\TextInput::make('description')
                         ->required(),
-                    \Filament\Forms\Components\Textarea::make('notes'),
+                    \Filament\Schemas\Components\Textarea::make('notes'),
                 ])
                 ->action(function (array $data) {
                     $service = app(AccountingService::class);

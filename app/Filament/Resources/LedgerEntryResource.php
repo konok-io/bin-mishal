@@ -7,8 +7,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\LedgerEntryResource\Pages;
 use App\Models\LedgerEntry;
 use App\Services\AccountingService;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -27,48 +27,48 @@ class LedgerEntryResource extends BaseResource
         return $user && ($user->hasRole(['super_admin', 'finance']) || $user->can('accounting.manage'));
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Entry Details')
+                Schemas\Components\Section::make('Entry Details')
                     ->schema([
-                        Forms\Components\DatePicker::make('entry_date')
+                        Schemas\Components\DatePicker::make('entry_date')
                             ->required()
                             ->default(now()),
-                        Forms\Components\Select::make('entry_type')
+                        Schemas\Components\Select::make('entry_type')
                             ->options(LedgerEntry::ENTRY_TYPES)
                             ->required(),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Account & Amount')
+                Schemas\Components\Section::make('Account & Amount')
                     ->schema([
-                        Forms\Components\Select::make('account_id')
+                        Schemas\Components\Select::make('account_id')
                             ->relationship('account', 'name', fn($query) => $query->active())
                             ->searchable()
                             ->preload()
                             ->required(),
-                        Forms\Components\Select::make('transaction_type')
+                        Schemas\Components\Select::make('transaction_type')
                             ->options(LedgerEntry::TRANSACTION_TYPES)
                             ->required(),
-                        Forms\Components\TextInput::make('amount')
+                        Schemas\Components\TextInput::make('amount')
                             ->required()
                             ->numeric()
                             ->prefix('SAR'),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Details')
+                Schemas\Components\Section::make('Details')
                     ->schema([
-                        Forms\Components\TextInput::make('description')
+                        Schemas\Components\TextInput::make('description')
                             ->required()
                             ->maxLength(500),
-                        Forms\Components\Textarea::make('notes')
+                        Schemas\Components\Textarea::make('notes')
                             ->rows(2),
                     ]),
 
-                Forms\Components\Section::make('Reference (Optional)')
+                Schemas\Components\Section::make('Reference (Optional)')
                     ->schema([
-                        Forms\Components\Select::make('reference_type')
+                        Schemas\Components\Select::make('reference_type')
                             ->options([
                                 'booking' => 'Booking',
                                 'cargo' => 'Cargo',
@@ -77,10 +77,10 @@ class LedgerEntryResource extends BaseResource
                                 'expense' => 'Expense',
                             ])
                             ->reactive(),
-                        Forms\Components\TextInput::make('reference_id')
+                        Schemas\Components\TextInput::make('reference_id')
                             ->numeric()
                             ->visible(fn($get) => $get('reference_type') !== null),
-                        Forms\Components\Select::make('branch_id')
+                        Schemas\Components\Select::make('branch_id')
                             ->relationship('branch', 'name')
                             ->searchable()
                             ->preload(),
@@ -131,8 +131,8 @@ class LedgerEntryResource extends BaseResource
                     ->options(LedgerEntry::TRANSACTION_TYPES),
                 Tables\Filters\Filter::make('date_range')
                     ->form([
-                        Forms\Components\DatePicker::make('from'),
-                        Forms\Components\DatePicker::make('to'),
+                        Schemas\Components\DatePicker::make('from'),
+                        Schemas\Components\DatePicker::make('to'),
                     ])
                     ->query(function (Builder $query, array $data) {
                         return $query

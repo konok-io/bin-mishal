@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\NoticeResource\Pages;
 use App\Models\Notice;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,88 +16,88 @@ class NoticeResource extends BaseResource
 {
     protected static ?string $model = Notice::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Content')
+                Schemas\Components\Section::make('Content')
                     ->schema([
-                        Forms\Components\Select::make('type')
+                        Schemas\Components\Select::make('type')
                             ->label('Type')
                             ->options(Notice::TYPES)
                             ->required()
                             ->default('info'),
                     ])->columns(1),
 
-                Forms\Components\Section::make('Notice Content (Multilingual)')
+                Schemas\Components\Section::make('Notice Content (Multilingual)')
                     ->schema([
-                        Forms\Components\Tabs::make('Content')
+                        Schemas\Components\Tabs::make('Content')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('English')
+                                Schemas\Components\Tabs\Tab::make('English')
                                     ->schema([
-                                        Forms\Components\TextInput::make('content.en')
+                                        Schemas\Components\TextInput::make('content.en')
                                             ->label('Notice Text')
                                             ->required()
                                             ->placeholder('Enter the scrolling notice text...'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('বাংলা')
+                                Schemas\Components\Tabs\Tab::make('বাংলা')
                                     ->schema([
-                                        Forms\Components\TextInput::make('content.bn')
+                                        Schemas\Components\TextInput::make('content.bn')
                                             ->label('Notice Text'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('العربية')
+                                Schemas\Components\Tabs\Tab::make('العربية')
                                     ->schema([
-                                        Forms\Components\TextInput::make('content.ar')
+                                        Schemas\Components\TextInput::make('content.ar')
                                             ->label('Notice Text'),
                                     ]),
                             ]),
                     ]),
 
-                Forms\Components\Section::make('Link (Optional)')
+                Schemas\Components\Section::make('Link (Optional)')
                     ->schema([
-                        Forms\Components\TextInput::make('link_url')
+                        Schemas\Components\TextInput::make('link_url')
                             ->label('Link URL')
                             ->url()
                             ->placeholder('https://'),
-                        Forms\Components\Tabs::make('Link Text')
+                        Schemas\Components\Tabs::make('Link Text')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('English')
+                                Schemas\Components\Tabs\Tab::make('English')
                                     ->schema([
-                                        Forms\Components\TextInput::make('link_text.en')
+                                        Schemas\Components\TextInput::make('link_text.en')
                                             ->label('Link Text'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('বাংলা')
+                                Schemas\Components\Tabs\Tab::make('বাংলা')
                                     ->schema([
-                                        Forms\Components\TextInput::make('link_text.bn')
+                                        Schemas\Components\TextInput::make('link_text.bn')
                                             ->label('Link Text'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('العربية')
+                                Schemas\Components\Tabs\Tab::make('العربية')
                                     ->schema([
-                                        Forms\Components\TextInput::make('link_text.ar')
+                                        Schemas\Components\TextInput::make('link_text.ar')
                                             ->label('Link Text'),
                                     ]),
                             ]),
                     ]),
 
-                Forms\Components\Section::make('Scheduling')
+                Schemas\Components\Section::make('Scheduling')
                     ->schema([
-                        Forms\Components\DateTimePicker::make('start_date')
+                        Schemas\Components\DateTimePicker::make('start_date')
                             ->label('Start Date')
                             ->nullable(),
-                        Forms\Components\DateTimePicker::make('end_date')
+                        Schemas\Components\DateTimePicker::make('end_date')
                             ->label('End Date')
                             ->nullable()
                             ->afterOrEqual('start_date'),
-                        Forms\Components\TextInput::make('priority')
+                        Schemas\Components\TextInput::make('priority')
                             ->label('Priority')
                             ->numeric()
                             ->default(0)
                             ->helperText('Higher priority notices appear first'),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Visibility')
+                Schemas\Components\Section::make('Visibility')
                     ->schema([
-                        Forms\Components\CheckboxList::make('visibility')
+                        Schemas\Components\CheckboxList::make('visibility')
                             ->label('Show on Languages')
                             ->options([
                                 'en' => 'English',
@@ -107,9 +107,9 @@ class NoticeResource extends BaseResource
                             ->columns(3),
                     ]),
 
-                Forms\Components\Section::make('Status')
+                Schemas\Components\Section::make('Status')
                     ->schema([
-                        Forms\Components\Toggle::make('is_active')
+                        Schemas\Components\Toggle::make('is_active')
                             ->label('Active')
                             ->default(true),
                     ]),

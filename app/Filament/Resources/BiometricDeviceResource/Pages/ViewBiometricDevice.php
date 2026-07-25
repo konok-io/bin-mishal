@@ -46,7 +46,7 @@ class ViewBiometricDevice extends ViewRecord
                 ->icon('heroicon-o-document-arrow-up')
                 ->color('warning')
                 ->form([
-                    \Filament\Forms\Components\FileUpload::make('file')
+                    \Filament\Schemas\Components\FileUpload::make('file')
                         ->label('CSV File')
                         ->acceptedFileTypes(['text/csv', 'text/plain', 'application/csv'])
                         ->required(),

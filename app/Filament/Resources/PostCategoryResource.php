@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostCategoryResource\Pages;
 use App\Models\PostCategory;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,45 +16,45 @@ class PostCategoryResource extends BaseResource
 {
     protected static ?string $model = PostCategory::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Basic Information')
+                Schemas\Components\Section::make('Basic Information')
                     ->schema([
-                        Forms\Components\TextInput::make('name')
+                        Schemas\Components\TextInput::make('name')
                             ->label('Name (English)')
                             ->required(),
-                        Forms\Components\TextInput::make('name_bn')
+                        Schemas\Components\TextInput::make('name_bn')
                             ->label('Name (Bengali)'),
-                        Forms\Components\TextInput::make('name_ar')
+                        Schemas\Components\TextInput::make('name_ar')
                             ->label('Name (Arabic)'),
-                        Forms\Components\TextInput::make('icon')
+                        Schemas\Components\TextInput::make('icon')
                             ->label('Icon (FontAwesome)')
                             ->placeholder('fas fa-folder'),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Details')
+                Schemas\Components\Section::make('Details')
                     ->schema([
-                        Forms\Components\Textarea::make('description')
+                        Schemas\Components\Textarea::make('description')
                             ->label('Description (English)')
                             ->rows(2),
-                        Forms\Components\Textarea::make('description_bn')
+                        Schemas\Components\Textarea::make('description_bn')
                             ->label('Description (Bengali)')
                             ->rows(2),
-                        Forms\Components\Textarea::make('description_ar')
+                        Schemas\Components\Textarea::make('description_ar')
                             ->label('Description (Arabic)')
                             ->rows(2),
-                        Forms\Components\ColorPicker::make('color')
+                        Schemas\Components\ColorPicker::make('color')
                             ->label('Color'),
                     ]),
 
-                Forms\Components\Section::make('Settings')
+                Schemas\Components\Section::make('Settings')
                     ->schema([
-                        Forms\Components\Toggle::make('is_active')
+                        Schemas\Components\Toggle::make('is_active')
                             ->label('Active')
                             ->default(true),
-                        Forms\Components\TextInput::make('sort_order')
+                        Schemas\Components\TextInput::make('sort_order')
                             ->label('Sort Order')
                             ->numeric()
                             ->default(0),

@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ServiceReviewResource\Pages;
 use App\Models\ServiceReview;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,13 +16,13 @@ class ServiceReviewResource extends BaseResource
 {
     protected static ?string $model = ServiceReview::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Review Details')
+                Schemas\Components\Section::make('Review Details')
                     ->schema([
-                        Forms\Components\Select::make('service_type')
+                        Schemas\Components\Select::make('service_type')
                             ->label('Service Type')
                             ->options([
                                 'umrah' => 'Umrah',
@@ -33,11 +33,11 @@ class ServiceReviewResource extends BaseResource
                                 'appointment' => 'Appointment',
                             ])
                             ->required(),
-                        Forms\Components\TextInput::make('service_id')
+                        Schemas\Components\TextInput::make('service_id')
                             ->label('Service ID')
                             ->numeric()
                             ->required(),
-                        Forms\Components\Select::make('rating')
+                        Schemas\Components\Select::make('rating')
                             ->label('Rating')
                             ->options([
                                 1 => '⭐ Poor',
@@ -49,32 +49,32 @@ class ServiceReviewResource extends BaseResource
                             ->required(),
                     ])->columns(3),
                 
-                Forms\Components\Section::make('Customer Info')
+                Schemas\Components\Section::make('Customer Info')
                     ->schema([
-                        Forms\Components\TextInput::make('customer_name')
+                        Schemas\Components\TextInput::make('customer_name')
                             ->label('Customer Name'),
-                        Forms\Components\TextInput::make('customer_email')
+                        Schemas\Components\TextInput::make('customer_email')
                             ->label('Email')
                             ->email(),
-                        Forms\Components\Select::make('user_id')
+                        Schemas\Components\Select::make('user_id')
                             ->label('User Account')
                             ->relationship('user', 'name')
                             ->searchable()
                             ->preload(),
                     ])->columns(3),
                 
-                Forms\Components\Section::make('Review Content')
+                Schemas\Components\Section::make('Review Content')
                     ->schema([
-                        Forms\Components\TextInput::make('title')
+                        Schemas\Components\TextInput::make('title')
                             ->label('Review Title'),
-                        Forms\Components\Textarea::make('content')
+                        Schemas\Components\Textarea::make('content')
                             ->label('Review Content')
                             ->rows(4),
                     ]),
                 
-                Forms\Components\Section::make('Moderation')
+                Schemas\Components\Section::make('Moderation')
                     ->schema([
-                        Forms\Components\Toggle::make('is_approved')
+                        Schemas\Components\Toggle::make('is_approved')
                             ->label('Approved for Display')
                             ->default(false),
                     ]),

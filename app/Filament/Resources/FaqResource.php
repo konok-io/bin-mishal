@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\FaqResource\Pages;
 use App\Models\Faq;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,45 +16,45 @@ class FaqResource extends BaseResource
 {
     protected static ?string $model = Faq::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Question')
+                Schemas\Components\Section::make('Question')
                     ->schema([
-                        Forms\Components\TextInput::make('question')
+                        Schemas\Components\TextInput::make('question')
                             ->label('Question (English)')
                             ->required(),
-                        Forms\Components\TextInput::make('question_bn')
+                        Schemas\Components\TextInput::make('question_bn')
                             ->label('Question (Bengali)'),
-                        Forms\Components\TextInput::make('question_ar')
+                        Schemas\Components\TextInput::make('question_ar')
                             ->label('Question (Arabic)'),
                     ]),
 
-                Forms\Components\Section::make('Answer')
+                Schemas\Components\Section::make('Answer')
                     ->schema([
-                        Forms\Components\Textarea::make('answer')
+                        Schemas\Components\Textarea::make('answer')
                             ->label('Answer (English)')
                             ->rows(4),
-                        Forms\Components\Textarea::make('answer_bn')
+                        Schemas\Components\Textarea::make('answer_bn')
                             ->label('Answer (Bengali)')
                             ->rows(4),
-                        Forms\Components\Textarea::make('answer_ar')
+                        Schemas\Components\Textarea::make('answer_ar')
                             ->label('Answer (Arabic)')
                             ->rows(4),
                     ]),
 
-                Forms\Components\Section::make('Settings')
+                Schemas\Components\Section::make('Settings')
                     ->schema([
-                        Forms\Components\Select::make('category')
+                        Schemas\Components\Select::make('category')
                             ->label('Category')
                             ->options(Faq::CATEGORIES),
-                        Forms\Components\TextInput::make('service_type')
+                        Schemas\Components\TextInput::make('service_type')
                             ->label('Service Type'),
-                        Forms\Components\Toggle::make('is_active')
+                        Schemas\Components\Toggle::make('is_active')
                             ->label('Active')
                             ->default(true),
-                        Forms\Components\TextInput::make('sort_order')
+                        Schemas\Components\TextInput::make('sort_order')
                             ->label('Sort Order')
                             ->numeric()
                             ->default(0),

@@ -7,8 +7,8 @@ namespace App\Filament\Resources;
 use App\Enums\BookingType;
 use App\Filament\Resources\BookingConfigurationResource\Pages;
 use App\Models\BookingConfiguration;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,73 +17,73 @@ class BookingConfigurationResource extends BaseResource
 {
     protected static ?string $model = BookingConfiguration::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Service')
+                Schemas\Components\Section::make('Service')
                     ->schema([
-                        Forms\Components\Select::make('service_type')
+                        Schemas\Components\Select::make('service_type')
                             ->label('Service')
                             ->options(BookingConfiguration::SERVICES)
                             ->required()
                             ->disabledOn('edit'),
                     ])->columns(1),
 
-                Forms\Components\Section::make('Booking Types')
+                Schemas\Components\Section::make('Booking Types')
                     ->description('Select which booking types this service supports')
                     ->schema([
-                        Forms\Components\CheckboxList::make('booking_types')
+                        Schemas\Components\CheckboxList::make('booking_types')
                             ->label('Enabled Booking Types')
                             ->options(collect(BookingType::cases())->mapWithKeys(fn($type) => [$type->value => $type->label()]))
                             ->columns(3),
                     ]),
 
-                Forms\Components\Section::make('Settings')
+                Schemas\Components\Section::make('Settings')
                     ->schema([
-                        Forms\Components\Toggle::make('is_enabled')
+                        Schemas\Components\Toggle::make('is_enabled')
                             ->label('Enable Online Booking'),
-                        Forms\Components\Toggle::make('requires_confirmation')
+                        Schemas\Components\Toggle::make('requires_confirmation')
                             ->label('Require Admin Confirmation'),
-                        Forms\Components\Toggle::make('allow_cancellation')
+                        Schemas\Components\Toggle::make('allow_cancellation')
                             ->label('Allow Cancellation'),
-                        Forms\Components\TextInput::make('cancellation_deadline_days')
+                        Schemas\Components\TextInput::make('cancellation_deadline_days')
                             ->label('Cancellation Deadline (Days)')
                             ->numeric()
                             ->default(7),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Quantity Limits')
+                Schemas\Components\Section::make('Quantity Limits')
                     ->schema([
-                        Forms\Components\TextInput::make('min_quantity')
+                        Schemas\Components\TextInput::make('min_quantity')
                             ->label('Minimum Quantity')
                             ->numeric()
                             ->default(1),
-                        Forms\Components\TextInput::make('max_quantity')
+                        Schemas\Components\TextInput::make('max_quantity')
                             ->label('Maximum Quantity')
                             ->numeric()
                             ->default(10),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Pricing')
+                Schemas\Components\Section::make('Pricing')
                     ->schema([
-                        Forms\Components\Select::make('currency')
+                        Schemas\Components\Select::make('currency')
                             ->label('Currency')
                             ->options([
                                 'SAR' => 'SAR (Saudi Riyal)',
                                 'BDT' => 'BDT (Bangladeshi Taka)',
                             ])
                             ->default('SAR'),
-                        Forms\Components\Select::make('pricing_model')
+                        Schemas\Components\Select::make('pricing_model')
                             ->label('Pricing Model')
                             ->options(BookingConfiguration::PRICING_MODELS)
                             ->default('fixed'),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Form Fields')
+                Schemas\Components\Section::make('Form Fields')
                     ->description('Configure which fields to show in the booking form')
                     ->schema([
-                        Forms\Components\CheckboxList::make('form_fields_enabled')
+                        Schemas\Components\CheckboxList::make('form_fields_enabled')
                             ->label('Visible Fields')
                             ->options([
                                 'name' => 'Full Name',

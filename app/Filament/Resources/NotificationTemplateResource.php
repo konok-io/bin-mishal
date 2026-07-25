@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\NotificationTemplateResource\Pages;
 use App\Models\NotificationTemplate;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,20 +16,20 @@ class NotificationTemplateResource extends BaseResource
 {
     protected static ?string $model = NotificationTemplate::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Template Configuration')
+                Schemas\Components\Section::make('Template Configuration')
                     ->schema([
-                        Forms\Components\TextInput::make('name')
+                        Schemas\Components\TextInput::make('name')
                             ->label('Template Name')
                             ->required(),
-                        Forms\Components\Select::make('event')
+                        Schemas\Components\Select::make('event')
                             ->label('Event')
                             ->options(NotificationTemplate::EVENTS)
                             ->required(),
-                        Forms\Components\CheckboxList::make('channels')
+                        Schemas\Components\CheckboxList::make('channels')
                             ->label('Channels')
                             ->options([
                                 'email' => 'Email',
@@ -39,41 +39,41 @@ class NotificationTemplateResource extends BaseResource
                             ->default(['email']),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Email Subject')
+                Schemas\Components\Section::make('Email Subject')
                     ->schema([
-                        Forms\Components\TextInput::make('subject')
+                        Schemas\Components\TextInput::make('subject')
                             ->label('Subject (English)'),
-                        Forms\Components\TextInput::make('subject_bn')
+                        Schemas\Components\TextInput::make('subject_bn')
                             ->label('Subject (Bengali)'),
-                        Forms\Components\TextInput::make('subject_ar')
+                        Schemas\Components\TextInput::make('subject_ar')
                             ->label('Subject (Arabic)'),
                     ]),
 
-                Forms\Components\Section::make('Message Body')
+                Schemas\Components\Section::make('Message Body')
                     ->schema([
-                        Forms\Components\Textarea::make('body')
+                        Schemas\Components\Textarea::make('body')
                             ->label('Body (English)')
                             ->rows(6)
                             ->placeholder('Use {{variable_name}} for dynamic content'),
-                        Forms\Components\Textarea::make('body_bn')
+                        Schemas\Components\Textarea::make('body_bn')
                             ->label('Body (Bengali)')
                             ->rows(6),
-                        Forms\Components\Textarea::make('body_ar')
+                        Schemas\Components\Textarea::make('body_ar')
                             ->label('Body (Arabic)')
                             ->rows(6),
                     ]),
 
-                Forms\Components\Section::make('Available Variables')
+                Schemas\Components\Section::make('Available Variables')
                     ->schema([
-                        Forms\Components\KeyValue::make('variables')
+                        Schemas\Components\KeyValue::make('variables')
                             ->label('Variable Descriptions')
                             ->keyLabel('Variable Name')
                             ->valueLabel('Description'),
                     ])->collapsible(),
 
-                Forms\Components\Section::make('Status')
+                Schemas\Components\Section::make('Status')
                     ->schema([
-                        Forms\Components\Toggle::make('is_active')
+                        Schemas\Components\Toggle::make('is_active')
                             ->label('Active')
                             ->default(true),
                     ]),
@@ -100,7 +100,7 @@ class NotificationTemplateResource extends BaseResource
                     ->label('Preview')
                     ->icon('heroicon-o-eye')
                     ->form([
-                        Forms\Components\KeyValue::make('preview_variables')
+                        Schemas\Components\KeyValue::make('preview_variables')
                             ->label('Test Variables')
                             ->addButtonLabel('Add Variable'),
                     ])

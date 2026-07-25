@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\GalleryItemResource\Pages;
 use App\Models\GalleryItem;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,98 +16,98 @@ class GalleryItemResource extends BaseResource
 {
     protected static ?string $model = GalleryItem::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Basic Info')
+                Schemas\Components\Section::make('Basic Info')
                     ->schema([
-                        Forms\Components\Select::make('type')
+                        Schemas\Components\Select::make('type')
                             ->label('Type')
                             ->options(GalleryItem::TYPES)
                             ->required()
                             ->default('photo')
                             ->reactive(),
-                        Forms\Components\TextInput::make('category')
+                        Schemas\Components\TextInput::make('category')
                             ->label('Category')
                             ->placeholder('e.g., Events, Office, Team'),
-                        Forms\Components\Toggle::make('is_featured')
+                        Schemas\Components\Toggle::make('is_featured')
                             ->label('Featured'),
-                        Forms\Components\Toggle::make('status')
+                        Schemas\Components\Toggle::make('status')
                             ->label('Active')
                             ->default(true),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Photo')
+                Schemas\Components\Section::make('Photo')
                     ->schema([
-                        Forms\Components\FileUpload::make('image')
+                        Schemas\Components\FileUpload::make('image')
                             ->label('Image')
                             ->image()
                             ->directory('gallery')
                             ->visibility('public'),
                     ])->visible(fn($get) => $get('type') === 'photo'),
 
-                Forms\Components\Section::make('Video')
+                Schemas\Components\Section::make('Video')
                     ->schema([
-                        Forms\Components\TextInput::make('video_url')
+                        Schemas\Components\TextInput::make('video_url')
                             ->label('YouTube/Vimeo URL')
                             ->url()
                             ->placeholder('https://youtube.com/watch?v=...'),
-                        Forms\Components\FileUpload::make('thumbnail')
+                        Schemas\Components\FileUpload::make('thumbnail')
                             ->label('Thumbnail Image')
                             ->image()
                             ->directory('gallery/thumbnails')
                             ->visibility('public'),
                     ])->visible(fn($get) => $get('type') === 'video'),
 
-                Forms\Components\Section::make('Titles (Multilingual)')
+                Schemas\Components\Section::make('Titles (Multilingual)')
                     ->schema([
-                        Forms\Components\Tabs::make('Titles')
+                        Schemas\Components\Tabs::make('Titles')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('English')
+                                Schemas\Components\Tabs\Tab::make('English')
                                     ->schema([
-                                        Forms\Components\TextInput::make('title.en')
+                                        Schemas\Components\TextInput::make('title.en')
                                             ->label('Title')
                                             ->required(),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('বাংলা')
+                                Schemas\Components\Tabs\Tab::make('বাংলা')
                                     ->schema([
-                                        Forms\Components\TextInput::make('title.bn')
+                                        Schemas\Components\TextInput::make('title.bn')
                                             ->label('Title'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('العربية')
+                                Schemas\Components\Tabs\Tab::make('العربية')
                                     ->schema([
-                                        Forms\Components\TextInput::make('title.ar')
+                                        Schemas\Components\TextInput::make('title.ar')
                                             ->label('Title'),
                                     ]),
                             ]),
                     ]),
 
-                Forms\Components\Section::make('Description (Multilingual)')
+                Schemas\Components\Section::make('Description (Multilingual)')
                     ->schema([
-                        Forms\Components\Tabs::make('Descriptions')
+                        Schemas\Components\Tabs::make('Descriptions')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('English')
+                                Schemas\Components\Tabs\Tab::make('English')
                                     ->schema([
-                                        Forms\Components\Textarea::make('description.en')
+                                        Schemas\Components\Textarea::make('description.en')
                                             ->label('Description'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('বাংলা')
+                                Schemas\Components\Tabs\Tab::make('বাংলা')
                                     ->schema([
-                                        Forms\Components\Textarea::make('description.bn')
+                                        Schemas\Components\Textarea::make('description.bn')
                                             ->label('Description'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('العربية')
+                                Schemas\Components\Tabs\Tab::make('العربية')
                                     ->schema([
-                                        Forms\Components\Textarea::make('description.ar')
+                                        Schemas\Components\Textarea::make('description.ar')
                                             ->label('Description'),
                                     ]),
                             ]),
                     ]),
 
-                Forms\Components\Section::make('Settings')
+                Schemas\Components\Section::make('Settings')
                     ->schema([
-                        Forms\Components\TextInput::make('order')
+                        Schemas\Components\TextInput::make('order')
                             ->label('Sort Order')
                             ->numeric()
                             ->default(0),

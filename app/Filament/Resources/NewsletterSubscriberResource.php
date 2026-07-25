@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\NewsletterSubscriberResource\Pages;
 use App\Models\NewsletterSubscriber;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,20 +17,20 @@ class NewsletterSubscriberResource extends BaseResource
 {
     protected static ?string $model = NewsletterSubscriber::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\TextInput::make('email')
+                Schemas\Components\TextInput::make('email')
                     ->label('Email')
                     ->email()
                     ->required()
                     ->unique(ignoreRecord: true),
-                Forms\Components\TextInput::make('name')
+                Schemas\Components\TextInput::make('name')
                     ->label('Name'),
-                Forms\Components\Toggle::make('is_active')
+                Schemas\Components\Toggle::make('is_active')
                     ->label('Active'),
-                Forms\Components\Toggle::make('is_verified')
+                Schemas\Components\Toggle::make('is_verified')
                     ->label('Verified'),
             ]);
     }

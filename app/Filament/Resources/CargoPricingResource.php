@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CargoPricingResource\Pages;
 use App\Models\Cargo\CargoPricing;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,34 +16,34 @@ class CargoPricingResource extends BaseResource
 {
     protected static ?string $model = CargoPricing::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Route Configuration')
+                Schemas\Components\Section::make('Route Configuration')
                     ->schema([
-                        Forms\Components\Select::make('cargo_type_id')
+                        Schemas\Components\Select::make('cargo_type_id')
                             ->label('Cargo Type')
                             ->relationship('cargoType', 'name')
                             ->required(),
-                        Forms\Components\Select::make('origin_city_id')
+                        Schemas\Components\Select::make('origin_city_id')
                             ->label('Origin City')
                             ->relationship('originCity', 'name')
                             ->required(),
-                        Forms\Components\Select::make('destination_city_id')
+                        Schemas\Components\Select::make('destination_city_id')
                             ->label('Destination City')
                             ->relationship('destinationCity', 'name')
                             ->required(),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Pricing Settings')
+                Schemas\Components\Section::make('Pricing Settings')
                     ->schema([
-                        Forms\Components\Select::make('pricing_type')
+                        Schemas\Components\Select::make('pricing_type')
                             ->label('Pricing Type')
                             ->options(CargoPricing::PRICING_TYPES)
                             ->required()
                             ->reactive(),
-                        Forms\Components\Select::make('currency')
+                        Schemas\Components\Select::make('currency')
                             ->label('Currency')
                             ->options([
                                 'SAR' => 'SAR (Saudi Riyal)',
@@ -52,31 +52,31 @@ class CargoPricingResource extends BaseResource
                             ->default('SAR'),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Fixed Price Settings')
+                Schemas\Components\Section::make('Fixed Price Settings')
                     ->description('For fixed or hybrid pricing')
                     ->schema([
-                        Forms\Components\TextInput::make('flat_rate')
+                        Schemas\Components\TextInput::make('flat_rate')
                             ->label('Flat Package Price')
                             ->numeric()
                             ->prefix('SAR')
                             ->visible(fn($get) => in_array($get('pricing_type'), ['fixed', 'tiered', 'hybrid'])),
                     ])->columns(1),
 
-                Forms\Components\Section::make('Per KG Settings')
+                Schemas\Components\Section::make('Per KG Settings')
                     ->description('For per kg or hybrid pricing')
                     ->schema([
-                        Forms\Components\TextInput::make('min_weight')
+                        Schemas\Components\TextInput::make('min_weight')
                             ->label('Base Weight (included in base price)')
                             ->numeric()
                             ->suffix('kg')
                             ->default(0)
                             ->visible(fn($get) => in_array($get('pricing_type'), ['per_kg', 'hybrid'])),
-                        Forms\Components\TextInput::make('base_price')
+                        Schemas\Components\TextInput::make('base_price')
                             ->label('Base Price')
                             ->numeric()
                             ->prefix('SAR')
                             ->visible(fn($get) => in_array($get('pricing_type'), ['per_kg', 'hybrid'])),
-                        Forms\Components\TextInput::make('price_per_kg')
+                        Schemas\Components\TextInput::make('price_per_kg')
                             ->label('Rate per KG')
                             ->numeric()
                             ->prefix('SAR')
@@ -85,10 +85,10 @@ class CargoPricingResource extends BaseResource
                             ->visible(fn($get) => in_array($get('pricing_type'), ['per_kg', 'hybrid'])),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Tiered Pricing')
+                Schemas\Components\Section::make('Tiered Pricing')
                     ->description('Define weight brackets with fixed prices')
                     ->schema([
-                        Forms\Components\Textarea::make('tiered_pricing')
+                        Schemas\Components\Textarea::make('tiered_pricing')
                             ->label('Weight Tiers (JSON)')
                             ->default(json_encode([
                                 ['min_weight' => 0, 'max_weight' => 5, 'price' => 100],
@@ -102,14 +102,14 @@ class CargoPricingResource extends BaseResource
                             ->hint('JSON format: [{"min_weight": 0, "max_weight": 5, "price": 100}, ...]'),
                     ])->visible(fn($get) => $get('pricing_type') === 'tiered'),
 
-                Forms\Components\Section::make('VAT & Status')
+                Schemas\Components\Section::make('VAT & Status')
                     ->schema([
-                        Forms\Components\TextInput::make('vat_percentage')
+                        Schemas\Components\TextInput::make('vat_percentage')
                             ->label('VAT Percentage')
                             ->numeric()
                             ->suffix('%')
                             ->default(15),
-                        Forms\Components\Toggle::make('is_active')
+                        Schemas\Components\Toggle::make('is_active')
                             ->label('Active')
                             ->default(true),
                     ])->columns(2),

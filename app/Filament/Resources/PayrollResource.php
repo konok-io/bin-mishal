@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PayrollResource\Pages;
 use App\Models\Payroll;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -22,113 +22,113 @@ class PayrollResource extends BaseResource
         return $user && ($user->hasRole(['super_admin', 'admin', 'hr']) || $user->can('payroll.view'));
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Employee & Period')
+                Schemas\Components\Section::make('Employee & Period')
                     ->schema([
-                        Forms\Components\Select::make('employee_id')
+                        Schemas\Components\Select::make('employee_id')
                             ->label('Employee')
                             ->relationship('employee', 'name')
                             ->searchable()
                             ->preload()
                             ->required(),
-                        Forms\Components\TextInput::make('payroll_month')
+                        Schemas\Components\TextInput::make('payroll_month')
                             ->label('Month')
                             ->placeholder('01-12')
                             ->required(),
-                        Forms\Components\TextInput::make('payroll_year')
+                        Schemas\Components\TextInput::make('payroll_year')
                             ->label('Year')
                             ->numeric()
                             ->default(date('Y'))
                             ->required(),
-                        Forms\Components\DatePicker::make('pay_date')
+                        Schemas\Components\DatePicker::make('pay_date')
                             ->label('Payment Date'),
                     ])->columns(4),
 
-                Forms\Components\Section::make('Earnings')
+                Schemas\Components\Section::make('Earnings')
                     ->schema([
-                        Forms\Components\TextInput::make('basic_salary')
+                        Schemas\Components\TextInput::make('basic_salary')
                             ->label('Basic Salary')
                             ->numeric()
                             ->prefix('SAR'),
-                        Forms\Components\TextInput::make('housing_allowance')
+                        Schemas\Components\TextInput::make('housing_allowance')
                             ->label('Housing Allowance')
                             ->numeric()
                             ->prefix('SAR'),
-                        Forms\Components\TextInput::make('transport_allowance')
+                        Schemas\Components\TextInput::make('transport_allowance')
                             ->label('Transport Allowance')
                             ->numeric()
                             ->prefix('SAR'),
-                        Forms\Components\TextInput::make('food_allowance')
+                        Schemas\Components\TextInput::make('food_allowance')
                             ->label('Food Allowance')
                             ->numeric()
                             ->prefix('SAR'),
-                        Forms\Components\TextInput::make('other_allowance')
+                        Schemas\Components\TextInput::make('other_allowance')
                             ->label('Other Allowance')
                             ->numeric()
                             ->prefix('SAR'),
-                        Forms\Components\TextInput::make('overtime_hours')
+                        Schemas\Components\TextInput::make('overtime_hours')
                             ->label('Overtime Hours')
                             ->numeric(),
-                        Forms\Components\TextInput::make('overtime_amount')
+                        Schemas\Components\TextInput::make('overtime_amount')
                             ->label('Overtime Amount')
                             ->numeric()
                             ->prefix('SAR'),
-                        Forms\Components\TextInput::make('bonus')
+                        Schemas\Components\TextInput::make('bonus')
                             ->label('Bonus')
                             ->numeric()
                             ->prefix('SAR'),
-                        Forms\Components\TextInput::make('gross_salary')
+                        Schemas\Components\TextInput::make('gross_salary')
                             ->label('Gross Salary')
                             ->numeric()
                             ->prefix('SAR'),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Deductions')
+                Schemas\Components\Section::make('Deductions')
                     ->schema([
-                        Forms\Components\TextInput::make('gosi_deduction')
+                        Schemas\Components\TextInput::make('gosi_deduction')
                             ->label('GOSI Deduction')
                             ->numeric()
                             ->prefix('SAR'),
-                        Forms\Components\TextInput::make('health_insurance')
+                        Schemas\Components\TextInput::make('health_insurance')
                             ->label('Health Insurance')
                             ->numeric()
                             ->prefix('SAR'),
-                        Forms\Components\TextInput::make('absence_days')
+                        Schemas\Components\TextInput::make('absence_days')
                             ->label('Absence Days')
                             ->numeric(),
-                        Forms\Components\TextInput::make('absence_deduction')
+                        Schemas\Components\TextInput::make('absence_deduction')
                             ->label('Absence Deduction')
                             ->numeric()
                             ->prefix('SAR'),
-                        Forms\Components\TextInput::make('loan_deduction')
+                        Schemas\Components\TextInput::make('loan_deduction')
                             ->label('Loan Deduction')
                             ->numeric()
                             ->prefix('SAR'),
-                        Forms\Components\TextInput::make('loan_balance')
+                        Schemas\Components\TextInput::make('loan_balance')
                             ->label('Outstanding Loan Balance')
                             ->numeric()
                             ->prefix('SAR'),
-                        Forms\Components\TextInput::make('other_deduction')
+                        Schemas\Components\TextInput::make('other_deduction')
                             ->label('Other Deductions')
                             ->numeric()
                             ->prefix('SAR'),
-                        Forms\Components\TextInput::make('total_deductions')
+                        Schemas\Components\TextInput::make('total_deductions')
                             ->label('Total Deductions')
                             ->numeric()
                             ->prefix('SAR'),
                     ])->columns(4),
 
-                Forms\Components\Section::make('Net Pay')
+                Schemas\Components\Section::make('Net Pay')
                     ->schema([
-                        Forms\Components\TextInput::make('net_salary')
+                        Schemas\Components\TextInput::make('net_salary')
                             ->label('Net Salary')
                             ->numeric()
                             ->prefix('SAR')
                             ->required(),
-                        Forms\Components\Select::make('status')
+                        Schemas\Components\Select::make('status')
                             ->label('Status')
                             ->options([
                                 'draft' => 'Draft',
@@ -137,7 +137,7 @@ class PayrollResource extends BaseResource
                                 'paid' => 'Paid/Locked',
                             ])
                             ->default('draft'),
-                        Forms\Components\Textarea::make('notes')
+                        Schemas\Components\Textarea::make('notes')
                             ->label('Notes')
                             ->rows(3),
                     ])->columns(3),

@@ -30,7 +30,7 @@ class ViewContactMessage extends ViewRecord
                 ->label('Mark as Replied')
                 ->icon('heroicon-o-paper-airplane')
                 ->form([
-                    \Filament\Forms\Components\Textarea::make('reply_note')
+                    \Filament\Schemas\Components\Textarea::make('reply_note')
                         ->label('Reply Note')
                         ->rows(2),
                 ])

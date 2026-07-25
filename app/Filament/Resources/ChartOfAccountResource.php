@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ChartOfAccountResource\Pages;
 use App\Models\ChartOfAccount;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -22,54 +22,54 @@ class ChartOfAccountResource extends BaseResource
         return $user && ($user->hasRole(['super_admin', 'finance']) || $user->can('accounting.manage'));
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Account Information')
+                Schemas\Components\Section::make('Account Information')
                     ->schema([
-                        Forms\Components\TextInput::make('code')
+                        Schemas\Components\TextInput::make('code')
                             ->required()
                             ->maxLength(20)
                             ->unique(ChartOfAccount::class, 'code', fn($record) => $record),
-                        Forms\Components\TextInput::make('name')
+                        Schemas\Components\TextInput::make('name')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\Textarea::make('description')
+                        Schemas\Components\Textarea::make('description')
                             ->rows(2),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Classification')
+                Schemas\Components\Section::make('Classification')
                     ->schema([
-                        Forms\Components\Select::make('type')
+                        Schemas\Components\Select::make('type')
                             ->options(ChartOfAccount::TYPES)
                             ->required()
                             ->reactive(),
-                        Forms\Components\Select::make('category')
+                        Schemas\Components\Select::make('category')
                             ->options(fn($get) => self::getCategoriesForType($get('type')))
                             ->required(),
-                        Forms\Components\Select::make('normal_balance')
+                        Schemas\Components\Select::make('normal_balance')
                             ->options(ChartOfAccount::NORMAL_BALANCES)
                             ->required(),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Hierarchy')
+                Schemas\Components\Section::make('Hierarchy')
                     ->schema([
-                        Forms\Components\Select::make('parent_id')
+                        Schemas\Components\Select::make('parent_id')
                             ->label('Parent Account')
                             ->relationship('parent', 'name', fn($query) => $query->whereNull('parent_id'))
                             ->searchable()
                             ->preload(),
                     ]),
 
-                Forms\Components\Section::make('Settings')
+                Schemas\Components\Section::make('Settings')
                     ->schema([
-                        Forms\Components\Toggle::make('is_active')
+                        Schemas\Components\Toggle::make('is_active')
                             ->default(true),
-                        Forms\Components\Toggle::make('is_system')
+                        Schemas\Components\Toggle::make('is_system')
                             ->disabled()
                             ->tooltip('System accounts cannot be created manually'),
-                        Forms\Components\TextInput::make('sort_order')
+                        Schemas\Components\TextInput::make('sort_order')
                             ->numeric()
                             ->default(0),
                     ])->columns(3),

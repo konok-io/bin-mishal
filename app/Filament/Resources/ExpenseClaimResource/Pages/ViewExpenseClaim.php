@@ -29,7 +29,7 @@ class ViewExpenseClaim extends ViewRecord
                 ->icon('heroicon-o-x-mark')
                 ->color('danger')
                 ->form([
-                    \Filament\Forms\Components\Textarea::make('reason')
+                    \Filament\Schemas\Components\Textarea::make('reason')
                         ->required()
                         ->label('Rejection Reason'),
                 ])

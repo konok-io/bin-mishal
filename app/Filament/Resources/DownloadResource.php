@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\DownloadResource\Pages;
 use App\Models\Download;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,13 +16,13 @@ class DownloadResource extends BaseResource
 {
     protected static ?string $model = Download::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('File')
+                Schemas\Components\Section::make('File')
                     ->schema([
-                        Forms\Components\FileUpload::make('file_path')
+                        Schemas\Components\FileUpload::make('file_path')
                             ->label('File')
                             ->directory('downloads')
                             ->visibility('public')
@@ -34,74 +34,74 @@ class DownloadResource extends BaseResource
                                     $component->state($record->file_path);
                                 }
                             }),
-                        Forms\Components\TextInput::make('file_name')
+                        Schemas\Components\TextInput::make('file_name')
                             ->label('Display Name')
                             ->placeholder('e.g., Umrah Guide 2024.pdf'),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Category')
+                Schemas\Components\Section::make('Category')
                     ->schema([
-                        Forms\Components\Select::make('category')
+                        Schemas\Components\Select::make('category')
                             ->label('Category')
                             ->options(Download::CATEGORIES)
                             ->required(),
-                        Forms\Components\TextInput::make('icon')
+                        Schemas\Components\TextInput::make('icon')
                             ->label('Icon (optional)')
                             ->placeholder('heroicon-o-document'),
-                        Forms\Components\ColorPicker::make('color')
+                        Schemas\Components\ColorPicker::make('color')
                             ->label('Accent Color'),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Titles (Multilingual)')
+                Schemas\Components\Section::make('Titles (Multilingual)')
                     ->schema([
-                        Forms\Components\Tabs::make('Titles')
+                        Schemas\Components\Tabs::make('Titles')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('English')
+                                Schemas\Components\Tabs\Tab::make('English')
                                     ->schema([
-                                        Forms\Components\TextInput::make('title.en')
+                                        Schemas\Components\TextInput::make('title.en')
                                             ->label('Title')
                                             ->required(),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('বাংলা')
+                                Schemas\Components\Tabs\Tab::make('বাংলা')
                                     ->schema([
-                                        Forms\Components\TextInput::make('title.bn')
+                                        Schemas\Components\TextInput::make('title.bn')
                                             ->label('Title'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('العربية')
+                                Schemas\Components\Tabs\Tab::make('العربية')
                                     ->schema([
-                                        Forms\Components\TextInput::make('title.ar')
+                                        Schemas\Components\TextInput::make('title.ar')
                                             ->label('Title'),
                                     ]),
                             ]),
                     ]),
 
-                Forms\Components\Section::make('Description (Multilingual)')
+                Schemas\Components\Section::make('Description (Multilingual)')
                     ->schema([
-                        Forms\Components\Tabs::make('Descriptions')
+                        Schemas\Components\Tabs::make('Descriptions')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('English')
+                                Schemas\Components\Tabs\Tab::make('English')
                                     ->schema([
-                                        Forms\Components\Textarea::make('description.en')
+                                        Schemas\Components\Textarea::make('description.en')
                                             ->label('Description'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('বাংলা')
+                                Schemas\Components\Tabs\Tab::make('বাংলা')
                                     ->schema([
-                                        Forms\Components\Textarea::make('description.bn')
+                                        Schemas\Components\Textarea::make('description.bn')
                                             ->label('Description'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('العربية')
+                                Schemas\Components\Tabs\Tab::make('العربية')
                                     ->schema([
-                                        Forms\Components\Textarea::make('description.ar')
+                                        Schemas\Components\Textarea::make('description.ar')
                                             ->label('Description'),
                                     ]),
                             ]),
                     ]),
 
-                Forms\Components\Section::make('Settings')
+                Schemas\Components\Section::make('Settings')
                     ->schema([
-                        Forms\Components\Toggle::make('is_featured')
+                        Schemas\Components\Toggle::make('is_featured')
                             ->label('Featured'),
-                        Forms\Components\Toggle::make('status')
+                        Schemas\Components\Toggle::make('status')
                             ->label('Active')
                             ->default(true),
                     ])->columns(2),

@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TestimonialResource\Pages;
 use App\Models\Testimonial;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,58 +16,58 @@ class TestimonialResource extends BaseResource
 {
     protected static ?string $model = Testimonial::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Person Information')
+                Schemas\Components\Section::make('Person Information')
                     ->schema([
-                        Forms\Components\TextInput::make('name')
+                        Schemas\Components\TextInput::make('name')
                             ->label('Name (English)')
                             ->required(),
-                        Forms\Components\TextInput::make('name_bn')
+                        Schemas\Components\TextInput::make('name_bn')
                             ->label('Name (Bengali)'),
-                        Forms\Components\TextInput::make('name_ar')
+                        Schemas\Components\TextInput::make('name_ar')
                             ->label('Name (Arabic)'),
-                        Forms\Components\TextInput::make('designation')
+                        Schemas\Components\TextInput::make('designation')
                             ->label('Designation (English)'),
-                        Forms\Components\TextInput::make('designation_bn')
+                        Schemas\Components\TextInput::make('designation_bn')
                             ->label('Designation (Bengali)'),
-                        Forms\Components\TextInput::make('designation_ar')
+                        Schemas\Components\TextInput::make('designation_ar')
                             ->label('Designation (Arabic)'),
-                        Forms\Components\TextInput::make('company')
+                        Schemas\Components\TextInput::make('company')
                             ->label('Company (English)'),
-                        Forms\Components\TextInput::make('company_bn')
+                        Schemas\Components\TextInput::make('company_bn')
                             ->label('Company (Bengali)'),
-                        Forms\Components\TextInput::make('company_ar')
+                        Schemas\Components\TextInput::make('company_ar')
                             ->label('Company (Arabic)'),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Review')
+                Schemas\Components\Section::make('Review')
                     ->schema([
-                        Forms\Components\Textarea::make('quote')
+                        Schemas\Components\Textarea::make('quote')
                             ->label('Quote (English)')
                             ->required()
                             ->rows(3),
-                        Forms\Components\Textarea::make('quote_bn')
+                        Schemas\Components\Textarea::make('quote_bn')
                             ->label('Quote (Bengali)')
                             ->rows(3),
-                        Forms\Components\Textarea::make('quote_ar')
+                        Schemas\Components\Textarea::make('quote_ar')
                             ->label('Quote (Arabic)')
                             ->rows(3),
-                        Forms\Components\Slider::make('rating')
+                        Schemas\Components\Slider::make('rating')
                             ->label('Rating')
                             ->min(1)
                             ->max(5)
                             ->default(5),
-                        Forms\Components\FileUpload::make('avatar')
+                        Schemas\Components\FileUpload::make('avatar')
                             ->label('Photo')
                             ->image(),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Settings')
+                Schemas\Components\Section::make('Settings')
                     ->schema([
-                        Forms\Components\Select::make('service_type')
+                        Schemas\Components\Select::make('service_type')
                             ->label('Service Type')
                             ->options([
                                 'flight' => 'Flight',
@@ -77,12 +77,12 @@ class TestimonialResource extends BaseResource
                                 'investor' => 'Investor',
                                 'general' => 'General',
                             ]),
-                        Forms\Components\Toggle::make('is_featured')
+                        Schemas\Components\Toggle::make('is_featured')
                             ->label('Featured'),
-                        Forms\Components\Toggle::make('is_active')
+                        Schemas\Components\Toggle::make('is_active')
                             ->label('Active')
                             ->default(true),
-                        Forms\Components\TextInput::make('sort_order')
+                        Schemas\Components\TextInput::make('sort_order')
                             ->label('Sort Order')
                             ->numeric()
                             ->default(0),

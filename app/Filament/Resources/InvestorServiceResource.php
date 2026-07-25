@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\InvestorServiceResource\Pages;
 use App\Models\InvestorService;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,71 +16,71 @@ class InvestorServiceResource extends BaseResource
 {
     protected static ?string $model = InvestorService::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Basic Information')
+                Schemas\Components\Section::make('Basic Information')
                     ->schema([
-                        Forms\Components\TextInput::make('service_key')
+                        Schemas\Components\TextInput::make('service_key')
                             ->label('Service Key')
                             ->required()
                             ->unique(InvestorService::class, 'service_key', ignoreRecord: true),
-                        Forms\Components\TextInput::make('name')
+                        Schemas\Components\TextInput::make('name')
                             ->label('Name (English)')
                             ->required(),
-                        Forms\Components\TextInput::make('name_bn')
+                        Schemas\Components\TextInput::make('name_bn')
                             ->label('Name (Bengali)'),
-                        Forms\Components\TextInput::make('name_ar')
+                        Schemas\Components\TextInput::make('name_ar')
                             ->label('Name (Arabic)'),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Description')
+                Schemas\Components\Section::make('Description')
                     ->schema([
-                        Forms\Components\Textarea::make('description')
+                        Schemas\Components\Textarea::make('description')
                             ->label('Description (English)')
                             ->rows(3),
-                        Forms\Components\Textarea::make('description_bn')
+                        Schemas\Components\Textarea::make('description_bn')
                             ->label('Description (Bengali)')
                             ->rows(3),
-                        Forms\Components\Textarea::make('description_ar')
+                        Schemas\Components\Textarea::make('description_ar')
                             ->label('Description (Arabic)')
                             ->rows(3),
                     ]),
 
-                Forms\Components\Section::make('Display Settings')
+                Schemas\Components\Section::make('Display Settings')
                     ->schema([
-                        Forms\Components\TextInput::make('icon')
+                        Schemas\Components\TextInput::make('icon')
                             ->label('Icon (FontAwesome class)')
                             ->placeholder('fas fa-chart-line'),
-                        Forms\Components\ColorPicker::make('color')
+                        Schemas\Components\ColorPicker::make('color')
                             ->label('Color'),
-                        Forms\Components\TextInput::make('processing_time')
+                        Schemas\Components\TextInput::make('processing_time')
                             ->label('Processing Time'),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Required Documents')
+                Schemas\Components\Section::make('Required Documents')
                     ->schema([
-                        Forms\Components\KeyValue::make('required_documents')
+                        Schemas\Components\KeyValue::make('required_documents')
                             ->label('Documents Checklist')
                             ->keyLabel('Document Name')
                             ->valueLabel('Description'),
                     ]),
 
-                Forms\Components\Section::make('Fee Structure')
+                Schemas\Components\Section::make('Fee Structure')
                     ->schema([
-                        Forms\Components\KeyValue::make('fee_structure')
+                        Schemas\Components\KeyValue::make('fee_structure')
                             ->label('Fee Structure')
                             ->keyLabel('Fee Type')
                             ->valueLabel('Amount'),
                     ]),
 
-                Forms\Components\Section::make('Status')
+                Schemas\Components\Section::make('Status')
                     ->schema([
-                        Forms\Components\Toggle::make('is_active')
+                        Schemas\Components\Toggle::make('is_active')
                             ->label('Active')
                             ->default(true),
-                        Forms\Components\TextInput::make('sort_order')
+                        Schemas\Components\TextInput::make('sort_order')
                             ->label('Sort Order')
                             ->numeric()
                             ->default(0),

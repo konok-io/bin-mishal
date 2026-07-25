@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SocialLinkResource\Pages;
 use App\Models\SocialLink;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,63 +16,63 @@ class SocialLinkResource extends BaseResource
 {
     protected static ?string $model = SocialLink::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Platform')
+                Schemas\Components\Section::make('Platform')
                     ->schema([
-                        Forms\Components\Select::make('platform')
+                        Schemas\Components\Select::make('platform')
                             ->label('Platform')
                             ->options(collect(SocialLink::PLATFORMS)->map(fn($p, $k) => $k)->flip()->toArray())
                             ->required()
                             ->reactive()
                             ->afterStateUpdated(fn($set, $state) => self::updateFromPlatform($set, $state)),
-                        Forms\Components\TextInput::make('icon')
+                        Schemas\Components\TextInput::make('icon')
                             ->label('Icon (FontAwesome)')
                             ->placeholder('fab fa-facebook')
                             ->helperText('FontAwesome icon class'),
-                        Forms\Components\ColorPicker::make('color')
+                        Schemas\Components\ColorPicker::make('color')
                             ->label('Brand Color'),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Display Names (Multilingual)')
+                Schemas\Components\Section::make('Display Names (Multilingual)')
                     ->schema([
-                        Forms\Components\Tabs::make('Names')
+                        Schemas\Components\Tabs::make('Names')
                             ->tabs([
-                                Forms\Components\Tabs\Tab::make('English')
+                                Schemas\Components\Tabs\Tab::make('English')
                                     ->schema([
-                                        Forms\Components\TextInput::make('name.en')
+                                        Schemas\Components\TextInput::make('name.en')
                                             ->label('Name'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('বাংলা')
+                                Schemas\Components\Tabs\Tab::make('বাংলা')
                                     ->schema([
-                                        Forms\Components\TextInput::make('name.bn')
+                                        Schemas\Components\TextInput::make('name.bn')
                                             ->label('Name'),
                                     ]),
-                                Forms\Components\Tabs\Tab::make('العربية')
+                                Schemas\Components\Tabs\Tab::make('العربية')
                                     ->schema([
-                                        Forms\Components\TextInput::make('name.ar')
+                                        Schemas\Components\TextInput::make('name.ar')
                                             ->label('Name'),
                                     ]),
                             ]),
                     ]),
 
-                Forms\Components\Section::make('Link')
+                Schemas\Components\Section::make('Link')
                     ->schema([
-                        Forms\Components\TextInput::make('url')
+                        Schemas\Components\TextInput::make('url')
                             ->label('URL')
                             ->url()
                             ->placeholder('https://'),
                     ]),
 
-                Forms\Components\Section::make('Settings')
+                Schemas\Components\Section::make('Settings')
                     ->schema([
-                        Forms\Components\TextInput::make('order')
+                        Schemas\Components\TextInput::make('order')
                             ->label('Sort Order')
                             ->numeric()
                             ->default(0),
-                        Forms\Components\Toggle::make('is_visible')
+                        Schemas\Components\Toggle::make('is_visible')
                             ->label('Show on Website')
                             ->default(true),
                     ])->columns(2),

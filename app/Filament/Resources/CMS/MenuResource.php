@@ -7,8 +7,8 @@ namespace App\Filament\Resources\CMS;
 use App\Filament\Resources\CMS\MenuResource\Pages;
 use App\Filament\Resources\CMS\MenuResource\RelationManagers;
 use App\Models\CMS\Menu;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,30 +17,30 @@ class MenuResource extends BaseResource
 {
     protected static ?string $model = Menu::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Menu Details')
+                Schemas\Components\Section::make('Menu Details')
                     ->schema([
-                        Forms\Components\TextInput::make('name')
+                        Schemas\Components\TextInput::make('name')
                             ->label('Menu Name')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('slug')
+                        Schemas\Components\TextInput::make('slug')
                             ->label('Slug')
                             ->required()
                             ->maxLength(255)
                             ->unique(Menu::class, 'slug', ignoreRecord: true),
-                        Forms\Components\Select::make('location')
+                        Schemas\Components\Select::make('location')
                             ->label('Location')
                             ->required()
                             ->options(Menu::LOCATIONS)
                             ->searchable(),
-                        Forms\Components\Textarea::make('description')
+                        Schemas\Components\Textarea::make('description')
                             ->label('Description')
                             ->rows(2),
-                        Forms\Components\Toggle::make('status')
+                        Schemas\Components\Toggle::make('status')
                             ->label('Active')
                             ->default(true),
                     ])->columns(2),

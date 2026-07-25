@@ -7,8 +7,8 @@ namespace App\Filament\Resources;
 use App\Enums\InvestorApplicationStatus;
 use App\Filament\Resources\InvestorApplicationResource\Pages;
 use App\Models\InvestorApplication;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,48 +17,48 @@ class InvestorApplicationResource extends BaseResource
 {
     protected static ?string $model = InvestorApplication::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Application Info')
+                Schemas\Components\Section::make('Application Info')
                     ->schema([
-                        Forms\Components\TextInput::make('application_no')
+                        Schemas\Components\TextInput::make('application_no')
                             ->label('Application No')
                             ->disabled(),
-                        Forms\Components\Select::make('service_id')
+                        Schemas\Components\Select::make('service_id')
                             ->label('Service')
                             ->relationship('service', 'name')
                             ->required(),
-                        Forms\Components\Select::make('status')
+                        Schemas\Components\Select::make('status')
                             ->label('Status')
                             ->options(collect(InvestorApplicationStatus::cases())->mapWithKeys(fn($s) => [$s->value => $s->label()])),
                     ])->columns(3),
 
-                Forms\Components\Section::make('Applicant Information')
+                Schemas\Components\Section::make('Applicant Information')
                     ->schema([
-                        Forms\Components\TextInput::make('full_name')
+                        Schemas\Components\TextInput::make('full_name')
                             ->label('Full Name')
                             ->required(),
-                        Forms\Components\TextInput::make('email')
+                        Schemas\Components\TextInput::make('email')
                             ->label('Email')
                             ->email()
                             ->required(),
-                        Forms\Components\TextInput::make('phone')
+                        Schemas\Components\TextInput::make('phone')
                             ->label('Phone')
                             ->tel()
                             ->required(),
-                        Forms\Components\TextInput::make('company_name')
+                        Schemas\Components\TextInput::make('company_name')
                             ->label('Company Name'),
-                        Forms\Components\TextInput::make('nationality')
+                        Schemas\Components\TextInput::make('nationality')
                             ->label('Nationality'),
-                        Forms\Components\TextInput::make('passport_no')
+                        Schemas\Components\TextInput::make('passport_no')
                             ->label('Passport No'),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Investment Details')
+                Schemas\Components\Section::make('Investment Details')
                     ->schema([
-                        Forms\Components\Select::make('investment_range')
+                        Schemas\Components\Select::make('investment_range')
                             ->label('Investment Range')
                             ->options([
                                 'under_1m' => 'Under SAR 1 Million',
@@ -66,19 +66,19 @@ class InvestorApplicationResource extends BaseResource
                                 '10m_50m' => 'SAR 10 - 50 Million',
                                 'over_50m' => 'Over SAR 50 Million',
                             ]),
-                        Forms\Components\TextInput::make('investment_amount')
+                        Schemas\Components\TextInput::make('investment_amount')
                             ->label('Investment Amount')
                             ->numeric()
                             ->prefix('SAR'),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Review')
+                Schemas\Components\Section::make('Review')
                     ->schema([
-                        Forms\Components\Select::make('assigned_to')
+                        Schemas\Components\Select::make('assigned_to')
                             ->label('Assigned To')
                             ->relationship('assignedTo', 'name')
                             ->searchable(),
-                        Forms\Components\Textarea::make('status_notes')
+                        Schemas\Components\Textarea::make('status_notes')
                             ->label('Status Notes')
                             ->rows(3),
                     ])->columns(1),
@@ -137,7 +137,7 @@ class InvestorApplicationResource extends BaseResource
                     ->icon('heroicon-o-x-mark')
                     ->color('danger')
                     ->form([
-                        Forms\Components\Textarea::make('reason')
+                        Schemas\Components\Textarea::make('reason')
                             ->label('Rejection Reason')
                             ->required(),
                     ])

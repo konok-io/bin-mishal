@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TranslationResource\Pages;
 use App\Models\Translation;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,26 +17,26 @@ class TranslationResource extends BaseResource
 {
     protected static ?string $model = Translation::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('Translation Key')
+                Schemas\Components\Section::make('Translation Key')
                     ->schema([
-                        Forms\Components\TextInput::make('group')
+                        Schemas\Components\TextInput::make('group')
                             ->required()
                             ->maxLength(100),
-                        Forms\Components\TextInput::make('key')
+                        Schemas\Components\TextInput::make('key')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\Select::make('source')
+                        Schemas\Components\Select::make('source')
                             ->options([
                                 'code' => 'From Code',
                                 'manual' => 'Manual Entry',
                                 'imported' => 'Imported',
                             ])
                             ->default('code'),
-                        Forms\Components\Select::make('status')
+                        Schemas\Components\Select::make('status')
                             ->options([
                                 'complete' => 'Complete',
                                 'missing_bn' => 'Missing Bengali',
@@ -46,17 +46,17 @@ class TranslationResource extends BaseResource
                             ]),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Translations')
+                Schemas\Components\Section::make('Translations')
                     ->schema([
-                        Forms\Components\Textarea::make('value_bn')
+                        Schemas\Components\Textarea::make('value_bn')
                             ->label('Bengali (বাংলা)')
                             ->rows(3)
                             ->columnSpanFull(),
-                        Forms\Components\Textarea::make('value_en')
+                        Schemas\Components\Textarea::make('value_en')
                             ->label('English')
                             ->rows(3)
                             ->columnSpanFull(),
-                        Forms\Components\Textarea::make('value_ar')
+                        Schemas\Components\Textarea::make('value_ar')
                             ->label('Arabic (العربية)')
                             ->rows(3)
                             ->columnSpanFull(),

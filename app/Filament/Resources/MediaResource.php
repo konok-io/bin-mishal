@@ -6,8 +6,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MediaResource\Pages;
 use App\Models\Media;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas;
+use Filament\Schemas\Schema;
 use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,39 +17,39 @@ class MediaResource extends BaseResource
 {
     protected static ?string $model = Media::class;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Forms\Components\Section::make('File Information')
+                Schemas\Components\Section::make('File Information')
                     ->schema([
-                        Forms\Components\TextInput::make('name')
+                        Schemas\Components\TextInput::make('name')
                             ->label('Display Name')
                             ->required(),
-                        Forms\Components\TextInput::make('alt')
+                        Schemas\Components\TextInput::make('alt')
                             ->label('Alt Text')
                             ->helperText('For SEO and accessibility'),
-                        Forms\Components\TextInput::make('title')
+                        Schemas\Components\TextInput::make('title')
                             ->label('Title'),
-                        Forms\Components\TextInput::make('folder')
+                        Schemas\Components\TextInput::make('folder')
                             ->label('Folder/Category')
                             ->selectOptionFromQuery(fn() => Media::getFolders())
                             ->default('general'),
-                        Forms\Components\TagsInput::make('tags')
+                        Schemas\Components\TagsInput::make('tags')
                             ->label('Tags'),
                     ])->columns(2),
                 
-                Forms\Components\Section::make('Description')
+                Schemas\Components\Section::make('Description')
                     ->schema([
-                        Forms\Components\Textarea::make('caption')
+                        Schemas\Components\Textarea::make('caption')
                             ->label('Caption'),
-                        Forms\Components\Textarea::make('description')
+                        Schemas\Components\Textarea::make('description')
                             ->label('Description'),
                     ]),
                 
-                Forms\Components\Section::make('Settings')
+                Schemas\Components\Section::make('Settings')
                     ->schema([
-                        Forms\Components\Toggle::make('is_active')
+                        Schemas\Components\Toggle::make('is_active')
                             ->label('Active')
                             ->default(true),
                     ]),
@@ -140,7 +140,7 @@ class MediaResource extends BaseResource
                         ->label('Move to Folder')
                         ->icon('heroicon-o-folder')
                         ->form([
-                            Forms\Components\Select::make('folder')
+                            Schemas\Components\Select::make('folder')
                                 ->label('Select Folder')
                                 ->options(Media::getFolders())
                                 ->required(),
