@@ -57,7 +57,7 @@ $activeTabs = Cache::remember('services_active_tabs', 600, function() {
         
         <!-- CTA -->
         <div class="text-center mt-5">
-            <a href="{{ route('services.all', ['locale' => app()->getLocale()]) }}" class="btn btn-primary btn-lg">
+            <a href="{{ route('services', ['locale' => app()->getLocale()]) }}" class="btn btn-primary btn-lg">
                 <i class="fas fa-th-large"></i> @lang('services.view_all_services')
             </a>
         </div>

@@ -71,7 +71,7 @@ use App\Models\SocialLink;
                     <ul class="footer-links">
                         <li><a href="{{ route('home', ['locale' => app()->getLocale()]) }}">@lang('nav.home')</a></li>
                         <li><a href="{{ route('about', ['locale' => app()->getLocale()]) }}">@lang('nav.about')</a></li>
-                        <li><a href="{{ route('services.all', ['locale' => app()->getLocale()]) }}">@lang('nav.services')</a></li>
+                        <li><a href="{{ route('services', ['locale' => app()->getLocale()]) }}">@lang('nav.services')</a></li>
                         <li><a href="{{ route('blog', ['locale' => app()->getLocale()]) }}">@lang('nav.blog')</a></li>
                         <li><a href="{{ route('careers', ['locale' => app()->getLocale()]) }}">@lang('nav.careers')</a></li>
                         <li><a href="{{ route('contact', ['locale' => app()->getLocale()]) }}">@lang('nav.contact')</a></li>

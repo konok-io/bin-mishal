@@ -109,7 +109,7 @@ $navTabs = Cache::remember('header_nav_tabs', 600, function() {
                                 </li>
                             @endforeach
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ route('services.all', ['locale' => app()->getLocale()]) }}">@lang('nav.all_services')</a></li>
+                            <li><a class="dropdown-item" href="{{ route('services', ['locale' => app()->getLocale()]) }}">@lang('nav.all_services')</a></li>
                         </ul>
                     </li>
                     
