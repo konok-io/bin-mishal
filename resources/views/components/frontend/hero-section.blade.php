@@ -640,7 +640,7 @@ $tabsJson = json_encode($displayTabs, JSON_UNESCAPED_UNICODE);
 .hero-booking-card {
     background: #fff;
     border-radius: 20px;
-    border: 8px solid rgba(255,255,255,0.9);
+    border: 1px solid rgba(255,255,255,0.9);
     box-shadow: 0 20px 50px rgba(0,0,0,0.25);
     overflow: hidden;
     color: #1F2937;
