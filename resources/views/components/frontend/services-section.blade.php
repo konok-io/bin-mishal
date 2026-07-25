@@ -1,16 +1,5 @@
 <?php
 use App\Models\HeroTab;
-use Illuminate\Support\Facades\Cache;
-
-// Get active tabs with fallback - cache key includes locale for correct translations
-$cacheKey = 'services_active_tabs_' . app()->getLocale();
-$activeTabs = Cache::remember($cacheKey, 600, function() {
-    try {
-        return \App\Models\HeroTab::where('is_active', 1)->orderBy('order')->get();
-    } catch (\Exception $e) {
-        return collect();
-    }
-});
 
 // Default services fallback data
 $defaultServices = [
@@ -112,8 +101,22 @@ $defaultServices = [
     ]
 ];
 
-// Use database data if available, otherwise use defaults
-$services = (!$activeTabs->isEmpty()) ? $activeTabs : $defaultServices;
+// Try to get services from database
+try {
+    $tabsCollection = \App\Models\HeroTab::where('is_active', 1)->orderBy('order')->get();
+    $dbServices = $tabsCollection->map(function($tab) {
+        return [
+            'icon' => $tab->icon ?? 'fas fa-plane',
+            'label' => is_string($tab->label) ? json_decode($tab->label, true) : ($tab->label ?? ['en' => 'Service']),
+            'description' => is_string($tab->subtitle) ? json_decode($tab->subtitle, true) : ($tab->subtitle ?? ['en' => '']),
+            'features' => is_string($tab->features) ? json_decode($tab->features, true) : ($tab->features ?? []),
+            'url' => $tab->route_name ?? 'services',
+        ];
+    })->toArray();
+    $services = !empty($dbServices) ? $dbServices : $defaultServices;
+} catch (\Exception $e) {
+    $services = $defaultServices;
+}
 
 // Helper function to get localized value
 function getLocalized($array, $locale = 'en') {
