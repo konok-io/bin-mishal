@@ -16,4 +16,7 @@ return [
     'gallery' => 'Gallery',
     'all_services' => 'All Services',
     'get_quote' => 'Get Quote',
+    'support' => 'Support',
+    'login' => 'Login',
+    'register' => 'Register',
 ];

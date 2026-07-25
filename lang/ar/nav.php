@@ -16,4 +16,7 @@ return [
     'gallery' => 'المعرض',
     'all_services' => 'جميع الخدمات',
     'get_quote' => 'احصل على عرض سعر',
+    'support' => 'الدعم',
+    'login' => 'تسجيل الدخول',
+    'register' => 'التسجيل',
 ];

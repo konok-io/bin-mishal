@@ -16,4 +16,7 @@ return [
     'gallery' => 'গ্যালারি',
     'all_services' => 'সকল সেবা',
     'get_quote' => 'উদ্ধৃতি পান',
+    'support' => 'সাপোর্ট',
+    'login' => 'লগইন',
+    'register' => 'রেজিস্টার',
 ];
