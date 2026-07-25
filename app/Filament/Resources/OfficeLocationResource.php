@@ -43,7 +43,7 @@ class OfficeLocationResource extends BaseResource
                         Schemas\Components\Textarea::make('address')
                             ->label('Full Address')
                             ->required()
-                            ->rows(2,
+                            ->rows(2),
                         Schemas\Components\TextInput::make('working_hours')
                             ->label('Working Hours')
                             ->placeholder('Sat-Thu: 9AM-6PM'),
