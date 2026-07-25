@@ -71,7 +71,7 @@
       body{top:0!important}
       font font{background:transparent!important;box-shadow:none!important}
       /* Topbar matches sidebar header */
-      .admin-topbar{background:linear-gradient(135deg, #343C90 0%, #252E72 100%);color:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+      .admin-topbar{background:linear-gradient(160deg, #343C90 0%, #252E72 50%, #1a1f4a 100%);color:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
       .admin-topbar .text-dark{color:#fff!important}
       .admin-topbar .gt-btn,.admin-topbar .theme-toggle-btn{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2)}
       .admin-topbar .gt-btn:hover,.admin-topbar .theme-toggle-btn:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.4)}
@@ -86,7 +86,8 @@
       /* dark theme */
       [data-theme="dark"] body,[data-theme="dark"] .admin-body,[data-theme="dark"] .admin-wrapper,[data-theme="dark"] .admin-main,[data-theme="dark"] .admin-content{background:#0A0A1F!important;color:#EDECFF}
       [data-theme="dark"] .admin-topbar,[data-theme="dark"] .admin-sidebar,[data-theme="dark"] .card,[data-theme="dark"] .admin-card,[data-theme="dark"] .stat-card,[data-theme="dark"] .dropdown-menu,[data-theme="dark"] .admin-page-header{background:#171433!important;color:#EDECFF!important;border-color:#2C2860!important}
-      [data-theme="dark"] .admin-topbar{background:linear-gradient(135deg, #171433 0%, #0F0F24 100%)!important}
+      [data-theme="dark"] .admin-topbar{background:linear-gradient(160deg, #171433 0%, #0F0F24 100%)!important}
+      [data-theme="dark"] .admin-sidebar{background:linear-gradient(160deg, #171433 0%, #0F0F24 100%)!important}
       [data-theme="dark"] .gt-btn,[data-theme="dark"] .theme-toggle-btn{background:#171433;color:#EDECFF;border-color:#2C2860}
       [data-theme="dark"] .text-dark,[data-theme="dark"] .text-body,[data-theme="dark"] .stat-value,[data-theme="dark"] h1,[data-theme="dark"] h2,[data-theme="dark"] h3,[data-theme="dark"] h4,[data-theme="dark"] h5{color:#EDECFF!important}
       [data-theme="dark"] .text-muted,[data-theme="dark"] .stat-label,[data-theme="dark"] .admin-breadcrumb,[data-theme="dark"] .admin-breadcrumb a,[data-theme="dark"] small{color:#9B98C7!important}
@@ -138,19 +139,6 @@
       [data-theme="dark"] .admin-sidebar .nav-link{color:#9B98C7}
       [data-theme="dark"] .admin-sidebar .nav-link:hover{color:#fff;background:rgba(79,47,232,0.25)}
       [data-theme="dark"] .admin-sidebar .nav-link.active{color:#fff;background:linear-gradient(135deg,#4F2FE8,#7C3AED)}
-      /* Dark mode sidebar shapes */
-      [data-theme="dark"] .shape-1 {
-        background: radial-gradient(circle, rgba(224,85,34,0.3) 0%, transparent 70%);
-      }
-      [data-theme="dark"] .shape-2 {
-        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-      }
-      [data-theme="dark"] .shape-3 {
-        background: radial-gradient(circle, rgba(79,70,229,0.4) 0%, transparent 70%);
-      }
-      [data-theme="dark"] .shape-4 {
-        background: radial-gradient(circle, rgba(224,85,34,0.2) 0%, transparent 70%);
-      }
       /* Sidebar collapse styles */
       .admin-sidebar.collapsed{width:70px!important}
       .admin-sidebar.collapsed .sidebar-brand span,
@@ -248,45 +236,72 @@
         overflow: hidden;
       }
       
-      .sidebar-bg-shapes .shape-circle {
+      .sidebar-shape {
         position: absolute;
         border-radius: 50%;
+        opacity: 0.15;
       }
       
-      .shape-1 {
+      .sidebar-shape-1 {
+        width: 200px;
+        height: 200px;
+        top: -80px;
+        right: -80px;
+        background: linear-gradient(135deg, #E05522 0%, #C94718 100%);
+      }
+      
+      .sidebar-shape-2 {
+        width: 150px;
+        height: 150px;
+        bottom: -50px;
+        left: -60px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
+      }
+      
+      .sidebar-shape-3 {
         width: 80px;
         height: 80px;
-        top: 10px;
-        right: 10px;
-        background: radial-gradient(circle, rgba(224,85,34,0.2) 0%, transparent 70%);
+        top: 150px;
+        right: -20px;
+        background: linear-gradient(135deg, #E05522 0%, #E05522 100%);
+        opacity: 0.2;
       }
       
-      .shape-2 {
+      .sidebar-shape-4 {
         width: 50px;
         height: 50px;
-        bottom: 80px;
-        left: 5px;
-        background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
-      }
-      
-      .shape-3 {
-        width: 35px;
-        height: 35px;
-        top: 100px;
-        right: 5px;
-        background: radial-gradient(circle, rgba(52,60,144,0.3) 0%, transparent 70%);
-      }
-      
-      .shape-4 {
-        width: 25px;
-        height: 25px;
-        bottom: 140px;
+        bottom: 200px;
         left: 10px;
-        background: radial-gradient(circle, rgba(224,85,34,0.15) 0%, transparent 70%);
+        background: linear-gradient(135deg, #E05522 0%, #C94718 100%);
+        opacity: 0.25;
       }
       
-      .sidebar-bg-shapes .shape-ring {
-        display: none;
+      .sidebar-shape-5 {
+        width: 100px;
+        height: 100px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        border: 2px solid rgba(255,255,255,0.08);
+      }
+      
+      .sidebar-shape-6 {
+        width: 60px;
+        height: 60px;
+        bottom: 100px;
+        right: 20px;
+        background: radial-gradient(circle, rgba(224,85,34,0.3) 0%, transparent 70%);
+      }
+      
+      .sidebar-dots {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+        background-size: 20px 20px;
       }
       
       /* Make nav content appear above shapes */
@@ -295,6 +310,26 @@
       .admin-sidebar .sidebar-collapse-btn {
         position: relative;
         z-index: 1;
+      }
+      
+      /* Dark mode sidebar shapes */
+      [data-theme="dark"] .sidebar-shape-1 {
+        opacity: 0.2;
+      }
+      [data-theme="dark"] .sidebar-shape-2 {
+        opacity: 0.15;
+      }
+      [data-theme="dark"] .sidebar-shape-3 {
+        opacity: 0.3;
+      }
+      [data-theme="dark"] .sidebar-shape-4 {
+        opacity: 0.35;
+      }
+      [data-theme="dark"] .sidebar-shape-5 {
+        border-color: rgba(255,255,255,0.1);
+      }
+      [data-theme="dark"] .sidebar-dots {
+        background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
       }
     </style>
     @stack('styles')
@@ -309,10 +344,13 @@
     <aside class="admin-sidebar">
         <!-- Dynamic Background Shapes -->
         <div class="sidebar-bg-shapes">
-            <div class="shape-circle shape-1"></div>
-            <div class="shape-circle shape-2"></div>
-            <div class="shape-circle shape-3"></div>
-            <div class="shape-circle shape-4"></div>
+            <div class="sidebar-shape sidebar-shape-1"></div>
+            <div class="sidebar-shape sidebar-shape-2"></div>
+            <div class="sidebar-shape sidebar-shape-3"></div>
+            <div class="sidebar-shape sidebar-shape-4"></div>
+            <div class="sidebar-shape sidebar-shape-5"></div>
+            <div class="sidebar-shape sidebar-shape-6"></div>
+            <div class="sidebar-dots"></div>
         </div>
         
         <div class="sidebar-brand d-flex align-items-center justify-content-between w-100">

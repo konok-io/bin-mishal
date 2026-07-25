@@ -341,8 +341,7 @@ body.admin-login-wrap {
 /* ---------------- Sidebar ---------------- */
 .admin-sidebar {
   width: var(--admin-sidebar-width);
-  background: linear-gradient(180deg, #343C90 0%, #252E72 100%);
-  background-color: #343C90; /* Fallback */
+  background: linear-gradient(160deg, #343C90 0%, #252E72 50%, #1a1f4a 100%);
   color: var(--admin-sidebar-text);
   position: fixed;
   top: 0;
