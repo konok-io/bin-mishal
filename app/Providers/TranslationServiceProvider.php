@@ -64,6 +64,11 @@ class DatabaseTranslationLoader
                     if (str_starts_with($key, $groupPrefix)) {
                         $shortKey = substr($key, strlen($groupPrefix));
 
+                        // Skip array values - only use string values
+                        if (is_array($value)) {
+                            continue;
+                        }
+
                         if (str_contains($shortKey, '.')) {
                             data_set($lines, $shortKey, $value);
                         } else {
