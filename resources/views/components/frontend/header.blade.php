@@ -61,13 +61,13 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
                     <!-- Portal Links -->
                     <div class="portal-links d-none d-lg-flex align-items-center gap-2">
                         <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}" class="btn btn-outline-light btn-sm">
-                            <i class="fas fa-headset me-1"></i> @lang('nav.support')
+                            <i class="fas fa-headset me-1"></i> {{ __('nav.support') }}
                         </a>
                         <a href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}" class="btn btn-outline-light btn-sm">
-                            <i class="fas fa-sign-in-alt me-1"></i> @lang('auth.login')
+                            <i class="fas fa-sign-in-alt me-1"></i> {{ __('auth.login') }}
                         </a>
                         <a href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}" class="btn btn-light btn-sm text-primary">
-                            <i class="fas fa-user-plus me-1"></i> @lang('auth.register')
+                            <i class="fas fa-user-plus me-1"></i> {{ __('auth.register') }}
                         </a>
                     </div>
                 </div>
@@ -147,17 +147,17 @@ $navTabs = Cache::remember($cacheKey, 600, function() {
                     <!-- Mobile Portal Links -->
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="{{ route('contact', ['locale' => app()->getLocale()]) }}">
-                            <i class="fas fa-headset me-1"></i> @lang('nav.support')
+                            <i class="fas fa-headset me-1"></i> {{ __('nav.support') }}
                         </a>
                     </li>
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="{{ route('portal.login', ['locale' => app()->getLocale()]) }}">
-                            <i class="fas fa-sign-in-alt me-1"></i> @lang('auth.login')
+                            <i class="fas fa-sign-in-alt me-1"></i> {{ __('auth.login') }}
                         </a>
                     </li>
                     <li class="nav-item d-lg-none">
                         <a class="nav-link text-primary" href="{{ route('portal.register', ['locale' => app()->getLocale()]) }}">
-                            <i class="fas fa-user-plus me-1"></i> @lang('auth.register')
+                            <i class="fas fa-user-plus me-1"></i> {{ __('auth.register') }}
                         </a>
                     </li>
                 </ul>
