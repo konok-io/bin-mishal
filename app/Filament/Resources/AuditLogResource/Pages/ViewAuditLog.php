@@ -11,6 +11,7 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\TextEntry;
 use Filament\Schemas\Components\KeyValueEntry;
 
+class ViewAuditLog extends BasePage
 {
     protected static string $resource = \App\Filament\Resources\AuditLogResource::class;
 
