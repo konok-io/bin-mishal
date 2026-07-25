@@ -39,6 +39,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     
     <style>
+        /* Custom Fonts */
+        @font-face {
+            font-family: 'BanglaFont';
+            src: url('/fonts/bangla.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'BanglaFont';
+            src: url('/fonts/bangla.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'EnglishFont';
+            src: url('/fonts/English.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'EnglishFont';
+            src: url('/fonts/English.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'ArabicFont';
+            src: url('/fonts/Arabic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'ArabicFont';
+            src: url('/fonts/Arabic.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+        
         :root {
             --primary-color: {{ \App\Models\CMS\Setting::getValue('primary_color', '#E05522') }};
             --primary-dark: {{ \App\Models\CMS\Setting::getValue('primary_dark', '#C94718') }};
@@ -49,9 +87,9 @@
             --bg-light: #F8FAFC;
         }
         
-        html[lang="bn"] body, html[lang="bn"] { font-family: 'Hind Siliguri', 'Inter', sans-serif; }
-        html[lang="ar"] body, html[lang="ar"] { font-family: 'Noto Sans Arabic', 'Inter', sans-serif; }
-        html[lang="en"] body, html[lang="en"] { font-family: 'Inter', 'Hind Siliguri', sans-serif; }
+        html[lang="bn"] body, html[lang="bn"] * { font-family: 'BanglaFont', 'Hind Siliguri', sans-serif; }
+        html[lang="ar"] body, html[lang="ar"] * { font-family: 'ArabicFont', 'Noto Sans Arabic', sans-serif; direction: rtl; }
+        html[lang="en"] body, html[lang="en"] * { font-family: 'EnglishFont', 'Inter', sans-serif; }
         
         body { color: var(--text-dark); background: #fff; }
         ::-webkit-scrollbar { width: 8px; }
