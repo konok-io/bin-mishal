@@ -307,7 +307,16 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     });
 });
 
-// Locale change route (for admin panel)
+// Locale change route (GET for links)
+Route::get('/locale/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'bn', 'ar'])) {
+        session(['locale' => $locale]);
+        app()->setLocale($locale);
+    }
+    return redirect()->back();
+})->name('locale');
+
+// Locale change route (POST for forms)
 Route::post('/locale/change', [LocaleController::class, 'change'])->name('locale.change');
 
 // =============================================================================
