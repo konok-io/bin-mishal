@@ -313,7 +313,23 @@ Route::get('/locale/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'bn', 'ar'])) {
         session(['locale' => $locale]);
         app()->setLocale($locale);
+        
+        // Get the current path and replace the locale prefix
+        $currentPath = request()->path();
+        $currentPath = trim($currentPath, '/');
+        $segments = explode('/', $currentPath);
+        
+        // Remove current locale from path if present
+        if (in_array($segments[0] ?? '', ['bn', 'en', 'ar'])) {
+            array_shift($segments);
+        }
+        
+        // Build the new localized URL
+        $newPath = $locale . '/' . implode('/', $segments);
+        
+        return redirect('/' . ltrim($newPath, '/'));
     }
+    
     return redirect()->back();
 })->name('locale');
 
