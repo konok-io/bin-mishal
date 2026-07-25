@@ -254,6 +254,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin', 'role:admin,su
     Route::resource('social-links', SocialLinkController::class);
     Route::resource('notices', NoticeController::class);
     Route::resource('translations', TranslationController::class);
+    Route::get('/translations/export', [TranslationController::class, 'export'])->name('translations.export');
     Route::resource('audit-logs', AuditLogController::class)->only(['index', 'show', 'destroy']);
     Route::get('/audit-logs/export', [AuditLogController::class, 'export'])->name('audit-logs.export');
 
