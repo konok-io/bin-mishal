@@ -17,7 +17,6 @@ class BookingConfigurationResource extends BaseResource
 {
     protected static ?string $model = BookingConfiguration::class;
     protected static ?string $navigationIcon = 'heroicon-o-cog';
-    protected static ?string $navigationGroup = 'Booking';
     protected static ?string $navigationLabel = 'Service Config';
     protected static ?int $navigationSort = 1;
 

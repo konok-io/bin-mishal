@@ -20,7 +20,6 @@ class StatisticResource extends BaseResource
 {
     protected static ?string $model = Statistic::class;
     protected static ?string $navigationIcon = 'heroicon-o-chart-bar';
-    protected static ?string $navigationGroup = 'CMS';
     protected static ?string $navigationLabel = 'Statistics';
     protected static ?int $navigationSort = 20;
 

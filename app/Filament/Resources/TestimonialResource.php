@@ -16,7 +16,6 @@ class TestimonialResource extends BaseResource
 {
     protected static ?string $model = Testimonial::class;
     protected static ?string $navigationIcon = 'heroicon-o-star';
-    protected static ?string $navigationGroup = 'Content';
     protected static ?string $navigationLabel = 'Testimonials';
     protected static ?int $navigationSort = 6;
 

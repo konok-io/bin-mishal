@@ -15,7 +15,6 @@ class TrustBadgeResource extends BaseResource
 {
     protected static ?string $model = TrustBadge::class;
     protected static ?string $navigationIcon = 'heroicon-o-badge-check';
-    protected static ?string $navigationGroup = 'CMS';
     protected static ?string $navigationLabel = 'Trust Badges';
     protected static ?int $navigationSort = 21;
 

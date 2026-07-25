@@ -16,7 +16,6 @@ class SeoSettingResource extends BaseResource
 {
     protected static ?string $model = SeoSetting::class;
     protected static ?string $navigationIcon = 'heroicon-o-magnifying-glass';
-    protected static ?string $navigationGroup = 'Settings';
     protected static ?string $navigationLabel = 'SEO Manager';
     protected static ?int $navigationSort = 10;
 

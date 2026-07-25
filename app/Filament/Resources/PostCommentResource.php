@@ -16,7 +16,6 @@ class PostCommentResource extends BaseResource
 {
     protected static ?string $model = PostComment::class;
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
-    protected static ?string $navigationGroup = 'Content';
     protected static ?string $navigationLabel = 'Comments';
     protected static ?int $navigationSort = 15;
 

@@ -17,7 +17,6 @@ class MediaResource extends BaseResource
 {
     protected static ?string $model = Media::class;
     protected static ?string $navigationIcon = 'heroicon-o-photo';
-    protected static ?string $navigationGroup = 'Content';
     protected static ?string $navigationLabel = 'Media Library';
     protected static ?int $navigationSort = 1;
 

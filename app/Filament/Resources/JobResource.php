@@ -16,7 +16,6 @@ class JobResource extends BaseResource
 {
     protected static ?string $model = Job::class;
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
-    protected static ?string $navigationGroup = 'HR';
     protected static ?string $navigationLabel = 'Job Postings';
 
     public static function canAccess(): bool

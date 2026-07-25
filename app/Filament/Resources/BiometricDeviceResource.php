@@ -20,7 +20,6 @@ class BiometricDeviceResource extends BaseResource
 {
     protected static ?string $model = BiometricDevice::class;
     protected static ?string $navigationIcon = 'heroicon-o-device-phone-mobile';
-    protected static ?string $navigationGroup = 'HR';
     protected static ?string $navigationLabel = 'Biometric Devices';
     protected static ?int $navigationSort = 15;
 

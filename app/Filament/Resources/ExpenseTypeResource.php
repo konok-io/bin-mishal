@@ -16,7 +16,6 @@ class ExpenseTypeResource extends BaseResource
 {
     protected static ?string $model = ExpenseType::class;
     protected static ?string $navigationIcon = 'heroicon-o-tag';
-    protected static ?string $navigationGroup = 'HR';
     protected static ?string $navigationLabel = 'Expense Types';
     protected static ?int $navigationSort = 18;
 

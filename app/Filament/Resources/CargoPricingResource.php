@@ -16,7 +16,6 @@ class CargoPricingResource extends BaseResource
 {
     protected static ?string $model = CargoPricing::class;
     protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
-    protected static ?string $navigationGroup = 'Cargo';
     protected static ?string $navigationLabel = 'Pricing';
     protected static ?int $navigationSort = 2;
 

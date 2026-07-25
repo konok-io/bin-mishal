@@ -18,7 +18,6 @@ class JobApplicationResource extends BaseResource
 {
     protected static ?string $model = JobApplication::class;
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
-    protected static ?string $navigationGroup = 'HR';
     protected static ?string $navigationLabel = 'Applications';
 
     public static function canAccess(): bool

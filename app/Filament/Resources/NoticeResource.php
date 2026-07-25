@@ -16,7 +16,6 @@ class NoticeResource extends BaseResource
 {
     protected static ?string $model = Notice::class;
     protected static ?string $navigationIcon = 'heroicon-o-megaphone';
-    protected static ?string $navigationGroup = 'CMS';
     protected static ?string $navigationLabel = 'Notices';
     protected static ?int $navigationSort = 13;
 

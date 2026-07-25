@@ -17,7 +17,6 @@ class InvestorApplicationResource extends BaseResource
 {
     protected static ?string $model = InvestorApplication::class;
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-    protected static ?string $navigationGroup = 'Investor';
     protected static ?string $navigationLabel = 'Applications';
     protected static ?int $navigationSort = 2;
 

@@ -17,7 +17,6 @@ class NewsletterSubscriberResource extends BaseResource
 {
     protected static ?string $model = NewsletterSubscriber::class;
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
-    protected static ?string $navigationGroup = 'CRM';
     protected static ?string $navigationLabel = 'Newsletter';
     protected static ?int $navigationSort = 15;
 

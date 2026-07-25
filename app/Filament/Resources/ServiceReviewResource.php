@@ -16,7 +16,6 @@ class ServiceReviewResource extends BaseResource
 {
     protected static ?string $model = ServiceReview::class;
     protected static ?string $navigationIcon = 'heroicon-o-star';
-    protected static ?string $navigationGroup = 'Content';
     protected static ?string $navigationLabel = 'Service Reviews';
     protected static ?int $navigationSort = 20;
 

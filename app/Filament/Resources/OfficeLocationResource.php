@@ -16,7 +16,6 @@ class OfficeLocationResource extends BaseResource
 {
     protected static ?string $model = OfficeLocation::class;
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
-    protected static ?string $navigationGroup = 'Settings';
     protected static ?string $navigationLabel = 'Office Locations';
     protected static ?int $navigationSort = 20;
 

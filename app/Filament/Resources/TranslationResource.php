@@ -17,7 +17,6 @@ class TranslationResource extends BaseResource
 {
     protected static ?string $model = Translation::class;
     protected static ?string $navigationIcon = 'heroicon-o-language';
-    protected static ?string $navigationGroup = 'Content';
     protected static ?string $navigationLabel = 'Translations';
     protected static ?int $navigationSort = 100;
 

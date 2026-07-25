@@ -16,7 +16,6 @@ class FaqResource extends BaseResource
 {
     protected static ?string $model = Faq::class;
     protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';
-    protected static ?string $navigationGroup = 'Content';
     protected static ?string $navigationLabel = 'FAQs';
     protected static ?int $navigationSort = 5;
 

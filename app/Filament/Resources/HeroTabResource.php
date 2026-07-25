@@ -16,7 +16,6 @@ class HeroTabResource extends BaseResource
 {
     protected static ?string $model = HeroTab::class;
     protected static ?string $navigationIcon = 'heroicon-o-view-columns';
-    protected static ?string $navigationGroup = 'CMS';
     protected static ?string $navigationLabel = 'Hero Tabs';
     protected static ?int $navigationSort = 14;
 

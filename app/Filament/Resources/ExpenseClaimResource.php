@@ -21,7 +21,6 @@ class ExpenseClaimResource extends BaseResource
 {
     protected static ?string $model = ExpenseClaim::class;
     protected static ?string $navigationIcon = 'heroicon-o-receipt-percent';
-    protected static ?string $navigationGroup = 'HR';
     protected static ?string $navigationLabel = 'Expense Claims';
     protected static ?int $navigationSort = 19;
 

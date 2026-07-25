@@ -16,7 +16,6 @@ class DownloadResource extends BaseResource
 {
     protected static ?string $model = Download::class;
     protected static ?string $navigationIcon = 'heroicon-o-document-arrow-down';
-    protected static ?string $navigationGroup = 'CMS';
     protected static ?string $navigationLabel = 'Downloads';
     protected static ?int $navigationSort = 12;
 

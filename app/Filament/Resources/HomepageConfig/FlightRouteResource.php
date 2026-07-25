@@ -15,7 +15,6 @@ class FlightRouteResource extends BaseResource
 {
     protected static ?string $model = FlightRoute::class;
     protected static ?string $navigationIcon = 'heroicon-o-paper-airplane';
-    protected static ?string $navigationGroup = 'CMS';
     protected static ?string $navigationLabel = 'Flight Routes';
     protected static ?int $navigationSort = 24;
 

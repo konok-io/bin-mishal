@@ -16,7 +16,6 @@ class PostCategoryResource extends BaseResource
 {
     protected static ?string $model = PostCategory::class;
     protected static ?string $navigationIcon = 'heroicon-o-folder';
-    protected static ?string $navigationGroup = 'Content';
     protected static ?string $navigationLabel = 'Blog Categories';
     protected static ?int $navigationSort = 4;
 

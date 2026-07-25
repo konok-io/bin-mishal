@@ -16,7 +16,6 @@ class ChartOfAccountResource extends BaseResource
 {
     protected static ?string $model = ChartOfAccount::class;
     protected static ?string $navigationIcon = 'heroicon-o-calculator';
-    protected static ?string $navigationGroup = 'Finance';
     protected static ?string $navigationLabel = 'Chart of Accounts';
     protected static ?int $navigationSort = 30;
 

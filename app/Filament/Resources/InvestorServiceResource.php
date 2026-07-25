@@ -16,7 +16,6 @@ class InvestorServiceResource extends BaseResource
 {
     protected static ?string $model = InvestorService::class;
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
-    protected static ?string $navigationGroup = 'Investor';
     protected static ?string $navigationLabel = 'Services';
     protected static ?int $navigationSort = 1;
 
