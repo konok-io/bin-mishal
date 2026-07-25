@@ -11,7 +11,7 @@ use Filament\Resources\Pages\ViewRecord;
 use Illuminate\Support\Facades\Storage;
 
 class ViewMedia extends ViewRecord
-    protected static string $resource = MediaResource::class;
+{    protected static string $resource = MediaResource::class;
 
     protected function getHeaderActions(): array
     {
