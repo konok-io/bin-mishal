@@ -121,6 +121,30 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin,supe
     Route::get('/profile', fn() => view('admin.profile.index'))->name('profile');
     Route::get('/settings', fn() => view('admin.settings.index'))->name('settings.index');
 
+    // User Management (Phase 18)
+    Route::resource('users', \App\Http\Controllers\Admin\UsersController::class)->names([
+        'index' => 'users.index',
+        'create' => 'users.create',
+        'store' => 'users.store',
+        'show' => 'users.show',
+        'edit' => 'users.edit',
+        'update' => 'users.update',
+        'destroy' => 'users.destroy',
+    ]);
+    Route::post('/users/{user}/suspend', [\App\Http\Controllers\Admin\UsersController::class, 'suspend'])->name('users.suspend');
+    Route::post('/users/{user}/activate', [\App\Http\Controllers\Admin\UsersController::class, 'activate'])->name('users.activate');
+
+    // Roles & Permissions (Phase 18)
+    Route::resource('roles', \App\Http\Controllers\Admin\RolesController::class)->names([
+        'index' => 'roles.index',
+        'create' => 'roles.create',
+        'store' => 'roles.store',
+        'show' => 'roles.show',
+        'edit' => 'roles.edit',
+        'update' => 'roles.update',
+        'destroy' => 'roles.destroy',
+    ]);
+
     // CRUD Routes
     Route::resource('customers', CustomerController::class)->names(['index' => 'customers.index', 'create' => 'customers.create', 'store' => 'customers.store', 'show' => 'customers.show', 'edit' => 'customers.edit', 'update' => 'customers.update', 'destroy' => 'customers.destroy']);
     Route::resource('leads', LeadController::class)->names(['index' => 'leads.index', 'create' => 'leads.create', 'store' => 'leads.store', 'show' => 'leads.show', 'edit' => 'leads.edit', 'update' => 'leads.update', 'destroy' => 'leads.destroy']);

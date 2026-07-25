@@ -256,6 +256,14 @@
                 <i class="fa-solid fa-address-book"></i><span>Leads</span>
             </a>
 
+            <div class="nav-section-title"><span>Messages</span></div>
+            <a href="{{ route('admin.contact-messages.index') }}" class="nav-link {{ request()->routeIs('admin.contact-messages.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-envelope"></i><span>Messages</span>
+            </a>
+            <a href="{{ route('admin.comments.index') }}" class="nav-link {{ request()->routeIs('admin.comments.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-comment-alt"></i><span>Comments</span>
+            </a>
+
             <div class="nav-section-title"><span>Bookings</span></div>
             <a href="{{ route('admin.bookings.index') }}" class="nav-link {{ request()->routeIs('admin.bookings.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-ticket"></i><span>Bookings</span>
@@ -366,6 +374,14 @@
             </a>
             <a href="{{ route('admin.audit-logs.index') }}" class="nav-link {{ request()->routeIs('admin.audit-logs.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-shield-alt"></i><span>Audit Logs</span>
+            </a>
+
+            <div class="nav-section-title"><span>User Management</span></div>
+            <a href="{{ route('admin.users.index') }}" class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-user-gear"></i><span>Users</span>
+            </a>
+            <a href="{{ route('admin.roles.index') }}" class="nav-link {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-user-shield"></i><span>Roles & Permissions</span>
             </a>
 
             <div class="nav-section-title"><span>City TV Connect</span></div>
