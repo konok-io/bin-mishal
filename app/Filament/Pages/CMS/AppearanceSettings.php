@@ -11,8 +11,6 @@ use Filament\Schemas\Schema;
 
 class AppearanceSettings extends Page
 {
-    protected static ?string $navigationGroup = 'CMS';
-    protected static ?string $navigationLabel = 'Appearance';
     protected static ?string $title = 'Appearance Settings';
     protected static string $view = 'filament.pages.settings-form';
 

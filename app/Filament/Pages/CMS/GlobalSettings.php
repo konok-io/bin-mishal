@@ -11,8 +11,6 @@ use Filament\Schemas\Schema;
 
 class GlobalSettings extends Page
 {
-    protected static ?string $navigationGroup = 'CMS';
-    protected static ?string $navigationLabel = 'Global Settings';
     protected static ?string $title = 'Global Settings';
     protected static string $view = 'filament.pages.settings-form';
 
