@@ -5,14 +5,19 @@ declare(strict_types=1);
 namespace App\Filament\Pages\CMS;
 
 use App\Models\CMS\Setting;
-use Filament\Pages\Page;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
-use Filament\Schemas;
-use Filament\Schemas\Schema;
+use Filament\Pages\Page;
 
 class SeoSettings extends Page
 {
     protected static ?string $title = 'SEO Settings';
+    protected static ?string $navigationLabel = 'SEO';
+    protected static ?string $navigationIcon = 'heroicon-o-magnifying-glass';
+    protected static ?string $navigationGroup = 'Settings';
 
     public ?array $data = [];
 
@@ -30,38 +35,38 @@ class SeoSettings extends Page
 
     public function form(Form $form): Form
     {
-        return $form->schema([
-            Schemas\Components\Tabs::make('SEO')
+        return $form->statePath('data')->schema([
+            Tabs::make('SEO')
                 ->tabs([
-                    Schemas\Components\Tabs\Tab::make('Meta Tags')
+                    Tabs\Tab::make('Meta Tags')
                         ->schema([
-                            Schemas\Components\Section::make('Default Meta Tags')
+                            Section::make('Default Meta Tags')
                                 ->description('These will be used as defaults across the site.')
                                 ->schema([
-                                    Schemas\Components\TextInput::make('meta_title')
+                                    TextInput::make('meta_title')
                                         ->label('Default Meta Title')
                                         ->placeholder('Page Title | Site Name'),
-                                    Schemas\Components\Textarea::make('meta_description')
+                                    Textarea::make('meta_description')
                                         ->label('Default Meta Description')
                                         ->rows(3),
-                                    Schemas\Components\TextInput::make('meta_keywords')
+                                    TextInput::make('meta_keywords')
                                         ->label('Meta Keywords')
                                         ->placeholder('keyword1, keyword2, keyword3'),
                                 ]),
                         ]),
 
-                    Schemas\Components\Tabs\Tab::make('Webmaster Tools')
+                    Tabs\Tab::make('Webmaster Tools')
                         ->schema([
-                            Schemas\Components\Section::make('Verification Codes')
+                            Section::make('Verification Codes')
                                 ->description('Add verification codes for search engine tools.')
                                 ->schema([
-                                    Schemas\Components\TextInput::make('google_analytics_id')
+                                    TextInput::make('google_analytics_id')
                                         ->label('Google Analytics ID')
                                         ->placeholder('G-XXXXXXXXXX'),
-                                    Schemas\Components\TextInput::make('google_search_console')
+                                    TextInput::make('google_search_console')
                                         ->label('Google Search Console Verification')
                                         ->placeholder('google-site-verification: xxxxxx'),
-                                    Schemas\Components\TextInput::make('bing_webmaster')
+                                    TextInput::make('bing_webmaster')
                                         ->label('Bing Webmaster Verification')
                                         ->placeholder('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'),
                                 ]),
