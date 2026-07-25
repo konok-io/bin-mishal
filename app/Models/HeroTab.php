@@ -79,42 +79,78 @@ class HeroTab extends Model
     public function getTranslatedLabelAttribute(): string
     {
         $locale = app()->getLocale();
-        return $this->label[$locale] ?? $this->label['en'] ?? '';
+        $label = $this->label;
+        
+        if (is_array($label)) {
+            return $label[$locale] ?? $label['en'] ?? '';
+        }
+        
+        return is_string($label) ? $label : '';
     }
 
     public function getTranslatedTitleAttribute(): string
     {
         $locale = app()->getLocale();
-        return $this->title[$locale] ?? $this->title['en'] ?? '';
+        $title = $this->title;
+        
+        if (is_array($title)) {
+            return $title[$locale] ?? $title['en'] ?? '';
+        }
+        
+        return is_string($title) ? $title : '';
     }
 
     public function getTranslatedSubtitleAttribute(): string
     {
         $locale = app()->getLocale();
-        return $this->subtitle[$locale] ?? $this->subtitle['en'] ?? '';
+        $subtitle = $this->subtitle;
+        
+        if (is_array($subtitle)) {
+            return $subtitle[$locale] ?? $subtitle['en'] ?? '';
+        }
+        
+        return is_string($subtitle) ? $subtitle : '';
     }
 
     public function getTranslatedDescriptionAttribute(): ?string
     {
         $locale = app()->getLocale();
-        return $this->description[$locale] ?? $this->description['en'] ?? null;
+        $description = $this->description;
+        
+        if (is_array($description)) {
+            return $description[$locale] ?? $description['en'] ?? null;
+        }
+        
+        return is_string($description) ? $description : null;
     }
 
     public function getTranslatedButtonTextAttribute(): string
     {
         $locale = app()->getLocale();
-        return $this->button_text[$locale] ?? $this->button_text['en'] ?? '';
+        $buttonText = $this->button_text;
+        
+        if (is_array($buttonText)) {
+            return $buttonText[$locale] ?? $buttonText['en'] ?? '';
+        }
+        
+        return is_string($buttonText) ? $buttonText : '';
     }
 
     public function getTranslatedFeaturesAttribute(): array
     {
-        if (!$this->features) {
+        $features = $this->features;
+        
+        if (!$features) {
+            return [];
+        }
+
+        if (!is_array($features)) {
             return [];
         }
 
         $locale = app()->getLocale();
 
-        return collect($this->features)->map(function ($feature) use ($locale) {
+        return collect($features)->map(function ($feature) use ($locale) {
             if (is_array($feature)) {
                 return $feature[$locale] ?? $feature['en'] ?? '';
             }
