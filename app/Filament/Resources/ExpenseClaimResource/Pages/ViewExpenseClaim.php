@@ -10,8 +10,7 @@ class ViewExpenseClaim extends ViewRecord
 {
     protected static string $resource = ExpenseClaimResource::class;
 
-    protected function getHeaderActions(array):     
-
+    protected function getHeaderActions(): array
     {
         return [
             Actions\EditAction::make(),

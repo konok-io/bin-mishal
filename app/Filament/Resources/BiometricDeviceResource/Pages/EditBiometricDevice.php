@@ -10,8 +10,7 @@ class EditBiometricDevice extends EditRecord
 {
     protected static string $resource = BiometricDeviceResource::class;
 
-    protected function getHeaderActions(array):     
-
+    protected function getHeaderActions(): array
     {
         return [
             Actions\ViewAction::make(),
