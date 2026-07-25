@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\AuditLogResource\Pages;
 
-use App\Filament\Resources\Pages\BasePage;
-use Filament\Schemas\Schema;
+use App\Filament\Resources\AuditLogResource;
 use Filament\Resources\Pages\ViewRecord;
-use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\TextEntry;
-use Filament\Schemas\Components\KeyValueEntry;
+use Filament\Infolists\Infolist;
+use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\KeyValueEntry;
 
-class ViewAuditLog extends BasePage
+class ViewAuditLog extends ViewRecord
 {
-    protected static string $resource = \App\Filament\Resources\AuditLogResource::class;
+    protected static string $resource = AuditLogResource::class;
 
-    public function infolist(Schema $schema): Schema
+    public function infolist(Infolist $infolist): Infolist
     {
-        return $schema
+        return $infolist
             ->schema([
                 Section::make('Action Details')
                     ->schema([

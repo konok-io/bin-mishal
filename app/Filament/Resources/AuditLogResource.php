@@ -11,10 +11,17 @@ use Filament\Tables\Table;
 
 class AuditLogResource extends BaseResource
 {
-
     public static function canCreate(): bool
     {
         return false;
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListAuditLogs::route('/'),
+            'view' => Pages\ViewAuditLog::route('/{record}'),
+        ];
     }
 
     public static function table(Table $table): Table
@@ -64,13 +71,5 @@ class AuditLogResource extends BaseResource
             ->actions([
                 Tables\Actions\ViewAction::make(),
             ]);
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListAuditLogs::route('/'),
-            'view' => Pages\ViewAuditLog::route('/{record}'),
-        ];
     }
 }
