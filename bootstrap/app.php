@@ -12,8 +12,6 @@ return Application::configure(basePath: dirname(__DIR__))
         api: __DIR__.'/../routes/api.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
-        admin: __DIR__.'/../routes/admin.php',
-        portal: __DIR__.'/../routes/portal.php',
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
@@ -30,4 +28,4 @@ return Application::configure(basePath: dirname(__DIR__))
         );
     })->create();
 
-// Auth and Portal routes are now loaded inside the locale group in routes/web.php
+// Portal routes are loaded inside the locale group in routes/web.php
