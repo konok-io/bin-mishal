@@ -16,12 +16,12 @@ class WhatsAppBroadcastController extends Controller
     public function index()
     {
         $settings = [
-            'whatsapp_enabled' => Setting::get('whatsapp_enabled', false),
-            'whatsapp_number' => Setting::get('whatsapp_number', ''),
-            'whatsapp_default_message' => Setting::get('whatsapp_default_message', 'Hello! I am interested in your services.'),
-            'whatsapp_position' => Setting::get('whatsapp_position', 'left'),
-            'whatsapp_button_color' => Setting::get('whatsapp_button_color', '#25D366'),
-            'whatsapp_hide_pages' => Setting::get('whatsapp_hide_pages', ''),
+            'whatsapp_enabled' => Setting::getValue('whatsapp_enabled', false),
+            'whatsapp_number' => Setting::getValue('whatsapp_number', ''),
+            'whatsapp_default_message' => Setting::getValue('whatsapp_default_message', 'Hello! I am interested in your services.'),
+            'whatsapp_position' => Setting::getValue('whatsapp_position', 'left'),
+            'whatsapp_button_color' => Setting::getValue('whatsapp_button_color', '#25D366'),
+            'whatsapp_hide_pages' => Setting::getValue('whatsapp_hide_pages', ''),
         ];
 
         $broadcasts = collect([]); // Would load from database
@@ -48,7 +48,7 @@ class WhatsAppBroadcastController extends Controller
         ]);
 
         foreach ($validated as $key => $value) {
-            Setting::set($key, $value);
+            Setting::setValue($key, $value);
         }
 
         return redirect()->back()->with('success', 'WhatsApp settings updated successfully.');

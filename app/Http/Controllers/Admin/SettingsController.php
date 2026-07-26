@@ -19,10 +19,10 @@ class SettingsController extends Controller
     public function tax()
     {
         $settings = [
-            'tax_vat_enabled' => Setting::get('tax_vat_enabled', true),
-            'tax_vat_rate' => Setting::get('tax_vat_rate', 15),
-            'tax_vat_number' => Setting::get('tax_vat_number', ''),
-            'tax_vat_applicable_services' => Setting::get('tax_vat_applicable_services', 'flight,umrah,visa,cargo'),
+            'tax_vat_enabled' => Setting::getValue('tax_vat_enabled', true),
+            'tax_vat_rate' => Setting::getValue('tax_vat_rate', 15),
+            'tax_vat_number' => Setting::getValue('tax_vat_number', ''),
+            'tax_vat_applicable_services' => Setting::getValue('tax_vat_applicable_services', 'flight,umrah,visa,cargo'),
         ];
 
         return view('admin.settings.tax', compact('settings'));
@@ -41,7 +41,7 @@ class SettingsController extends Controller
         ]);
 
         foreach ($validated as $key => $value) {
-            Setting::set($key, $value);
+            Setting::setValue($key, $value);
         }
 
         return redirect()->back()->with('success', 'Tax settings updated successfully.');
@@ -180,9 +180,9 @@ class SettingsController extends Controller
     public function maintenance()
     {
         $settings = [
-            'maintenance_enabled' => Setting::get('maintenance_enabled', false),
-            'maintenance_message' => Setting::get('maintenance_message', 'Site is under maintenance. Please check back soon.'),
-            'maintenance_allowed_ips' => Setting::get('maintenance_allowed_ips', ''),
+            'maintenance_enabled' => Setting::getValue('maintenance_enabled', false),
+            'maintenance_message' => Setting::getValue('maintenance_message', 'Site is under maintenance. Please check back soon.'),
+            'maintenance_allowed_ips' => Setting::getValue('maintenance_allowed_ips', ''),
         ];
 
         return view('admin.settings.maintenance', compact('settings'));
@@ -200,7 +200,7 @@ class SettingsController extends Controller
         ]);
 
         foreach ($validated as $key => $value) {
-            Setting::set($key, $value);
+            Setting::setValue($key, $value);
         }
 
         // Toggle maintenance mode

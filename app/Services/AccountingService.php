@@ -418,7 +418,7 @@ class AccountingService
         }
 
         // Get from settings or default
-        return (float) \App\Models\Setting::get('exchange_rate_' . $currency, 1.0);
+        return (float) \App\Models\Setting::getValue('exchange_rate_' . $currency, 1.0);
     }
 
     /**

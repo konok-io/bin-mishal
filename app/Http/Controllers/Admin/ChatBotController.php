@@ -14,16 +14,16 @@ class ChatBotController extends Controller
     public function index()
     {
         $settings = [
-            'chat_enabled' => Setting::get('chat_enabled', false),
-            'chat_position' => Setting::get('chat_position', 'right'),
-            'chat_greeting' => Setting::get('chat_greeting', 'Hello! How can I help you today?'),
-            'chat_offline_message' => Setting::get('chat_offline_message', 'We are currently offline. Please leave a message and we will get back to you.'),
-            'chat_business_hours_start' => Setting::get('chat_business_hours_start', '09:00'),
-            'chat_business_hours_end' => Setting::get('chat_business_hours_end', '18:00'),
-            'chat_ai_provider' => Setting::get('chat_ai_provider', 'openai'),
-            'chat_knowledge_base' => Setting::get('chat_knowledge_base', ''),
-            'chat_lead_capture_enabled' => Setting::get('chat_lead_capture_enabled', true),
-            'chat_human_handoff_enabled' => Setting::get('chat_human_handoff_enabled', true),
+            'chat_enabled' => Setting::getValue('chat_enabled', false),
+            'chat_position' => Setting::getValue('chat_position', 'right'),
+            'chat_greeting' => Setting::getValue('chat_greeting', 'Hello! How can I help you today?'),
+            'chat_offline_message' => Setting::getValue('chat_offline_message', 'We are currently offline. Please leave a message and we will get back to you.'),
+            'chat_business_hours_start' => Setting::getValue('chat_business_hours_start', '09:00'),
+            'chat_business_hours_end' => Setting::getValue('chat_business_hours_end', '18:00'),
+            'chat_ai_provider' => Setting::getValue('chat_ai_provider', 'openai'),
+            'chat_knowledge_base' => Setting::getValue('chat_knowledge_base', ''),
+            'chat_lead_capture_enabled' => Setting::getValue('chat_lead_capture_enabled', true),
+            'chat_human_handoff_enabled' => Setting::getValue('chat_human_handoff_enabled', true),
         ];
 
         return view('admin.chat-bot.index', compact('settings'));
@@ -48,7 +48,7 @@ class ChatBotController extends Controller
         ]);
 
         foreach ($validated as $key => $value) {
-            Setting::set($key, $value);
+            Setting::setValue($key, $value);
         }
 
         return redirect()->back()->with('success', 'AI Chat settings updated successfully.');
