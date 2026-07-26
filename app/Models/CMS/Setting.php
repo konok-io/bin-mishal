@@ -48,8 +48,14 @@ class Setting extends Model
     public static function getValue(string $key, $default = null)
     {
         $settings = self::all()->pluck('value', 'key')->toArray();
+        $value = $settings[$key] ?? $default;
 
-        return $settings[$key] ?? $default;
+        // Ensure value is a string or null
+        if (is_array($value)) {
+            return json_encode($value);
+        }
+
+        return $value !== null ? (string) $value : null;
     }
 
     /**
